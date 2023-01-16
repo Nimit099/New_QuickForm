@@ -3,6 +3,7 @@
     <div
     class="slds-col slds-size_1-of-1 slds-small-size_9-of-12  slds-medium-size_9-of-12  slds-large-size_8-of-12 mainSection">
     <div class="header" style="height:8%">
+        <img src={logo} alt="">
         <h1 class="mainFormTitle"> Welcome MV Clouds</h1>
     </div>
 
@@ -15,24 +16,24 @@
 
                 <lightning-input disabled={disableSearchBox} data-id="SearchBox" onchange={search}
                     name="enter-search" label="" type="text" class="searchBox" placeholder="Search for forms"
-                    value={searchFormName} autocomplete="off" ></lightning-input>
+                    value={searchkey} autocomplete="off" ></lightning-input>
             </div>
         </div>
 
          <!-- Create Form / folder buttons --> 
         <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_8-of-12">
             <div class="formButtons">
-                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                <!-- <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
                     <img src={addicon} class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default">
                     <lightning-button name="newform" label="New Form" onclick={openModal}
-                        class="formiconsmargin" ></lightning-button>
-                </div>
+                        class="formiconsmargin slds-button "></lightning-button>
+                </div> -->
 
                 <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left alf-btn"
                     style="margin-left: 10px;">
-                    <img src={allpage} class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default">
-                    <lightning-button name="allform" label="All Forms" onclick={showAllForms}
-                        class="allFormButtons" ></lightning-button>
+                    <img src={addicon} class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default">
+                    <lightning-button name="allform" label="New Form" onclick={showAllForms}
+                        class="allFormButtons slds-button " ></lightning-button>
                 </div>
             </div>
         </div>
@@ -80,7 +81,7 @@
                                     <div class="tablePreviewCol" style="text-align: -webkit-center;"> PREVIEW</div>
                                     <div class="tableActionCol"> ACTION </div>
                                 </div>
-                                <template for:each={PaginationList} for:item="obj" for:index="index">
+                                <template for:each={PaginationList} for:item="obj">
                                     <div class="tableBody" key={obj.Id}>
                                         <div class="tableIndexCol">
                                             {index}
@@ -98,7 +99,9 @@
                                                             <input type="checkbox"
                                                                 checked={obj.Status__c}
                                                                 name={obj.Id}
-                                                                onchange={switchButton} />
+                                                                data-id={obj.Id}
+                                                                onchange={changestatus}
+                                                                />
                                                             <small></small>
                                                         </label>
                                                     </div>
@@ -118,7 +121,7 @@
                                         <div class="tableActionCol">
                                             
                                             <lightning-button-menu class="buttonMenu" variant="container"
-                                                name={obj.Id} value={obj.Name__c}
+                                                name={obj.Id} value={obj.Name} data-id={obj.Id}
                                                 onselect={handleSelectAction} menu-alignment="auto">
                                                 
                                                 <lightning-menu-item value="Rename" label="Rename"
@@ -141,15 +144,64 @@
     </template>
 
     <!-- Footer  -->
-    <div class="slds-col slds-size_1-of-1 footer" style="height:9%;">
+    <!-- <div class="slds-col slds-size_1-of-1 footer" style="height:9%;">
         <template if:true={bNoRecordsFound}>
                 <div class="slds-grid slds-grid_align-spread">
                     <div class="slds-col slds-size_6-of-12"></div>
                     <div class="slds-col slds-size_2-of-12 footerCss totalForms">
-                        Total Forms : {}
+                        Total Forms : {count}
                     </div>
                 </div>
         </template>
-    </div>
+    </div> -->
 </div>
+
+
+
+
+
+    <!-- ========================= [ Rename Form ] Button click  strat=========================-->
+
+    
+    <template if:true={isOpenRenameForm}>
+        <div>
+            <section data-id="rename_Form" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true"
+                aria-describedby="ModalBody" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <div class="header">
+                            <h2 id="ModalHeading">Rename Form</h2>
+                        </div>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="ModalBody">
+                        <div class="pm-ttl">
+                         <!--make js method-->   Please Enter New Name For The <b> {formname} </b> Form
+                        </div>
+                        <div class="title slds-grid slds-wrap pm-dtl" id="renameTextField" style="padding: inherit;">
+                            <div class="slds-col slds-size_3-of-12">
+                                <span><abbr class="slds-required" title="required">* </abbr>New Name</span>
+                            </div>
+                            <div class="slds-col slds-size_1-of-12 pm-cl">
+                                <span>:</span>
+                            </div>
+                            <div class="slds-col slds-size_8-of-12">
+                                <lightning-input variant="label-hidden" value={newFormName}
+                                    placeholder="Enter New Name" required="true" onchange={rename}
+                                    message-when-value-missing="Please Fill the Details"></lightning-input>
+                            </div>
+                        </div>
+                        <div class="footer pm-ftr-rm-div">
+                            <lightning-button variant="brand" label="Rename" disabled={disableRenameFormBtn}
+                                onclick={renameForm} ></lightning-button>
+                            <lightning-button label="Cancel" onclick={cancleRenameForm} ></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div data-id="ModalBackdrop_renameForm" class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+        </template>
+
+    <!-- ========================= [ Rename Form ] Button click  finished=========================-->
+
 </template>

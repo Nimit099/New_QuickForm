@@ -738,6 +738,10 @@
  .mainFormTitle {
     font-size: 2rem;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    width: 85%;
+    justify-content: center;
 }
 
  .searchBox.slds-input {
@@ -903,7 +907,7 @@
 }
 
  .formButtons .slds-button__icon_left {
-    border: 2px solid #6699CC;
+    /* border: 2px solid #6699CC; */
     padding: 0.5px;
     border-radius: 10px;
 }
@@ -1182,6 +1186,16 @@
 
  .loader--ripple div {
     border-color: #00539f;
+}
+.header{
+    display: flex;
+}
+lightning-input{
+    --lwc-colorBorderInput: rgb(0, 0, 0);
+    --slds-c-input-radius-border: 3rem;
+}
+lightning-button{
+    --lwc-buttonColorBorderPrimary:rgb(255, 255, 255);
 }
 
 /* =========================     Spinner Sarts      =========================== */
