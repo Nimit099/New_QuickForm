@@ -1,0 +1,170 @@
+<template>
+
+    <!-- <c:QFNotificationToastComponent aura:id="toastCmp" />
+    <c:QFExceptionComponent aura:id="exceptionCmp" /> -->
+
+    <template if:true={spinner}>
+        <div data-id = "spinnerId" class="slds-spinner_container" style="overflow: hidden;">
+            <div class="spinner-main-div">
+                <div class="loader--ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div class="thanksMainDiv">
+        <section data-id="Modal" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true" aria-describedby="ModalBody" class="slds-modal" onclick={hideFolderList}>
+            <div class="richtextModel">
+                <div class="richtextMainDiv">
+                    <div class="richtextDiv">
+                        <div class="richtextLabel">
+                            <div>
+                                Edit Text
+                            </div>
+                        </div>
+                        <div class="richtextContent">
+                            <lightning-tabset variant="scoped">
+                                <lightning-tab class="richtextTab" label="Edit Rich Text">
+                                    <lightning-input-rich-text formats="['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
+                                'header', 'color', 'background']" value={} data-id="editor" placeholder="Type something" ></lightning-input-rich-text>
+                                </lightning-tab>
+                                <lightning-tab class="htmlTab" label="Edit HTML Text" onactive={HtmlTextC}>
+                                    <lightning-textarea label="HTML Text" value={} name="Html" onchange={RichTextC} ></lightning-textarea>
+                                </lightning-tab>
+                                <lightning-tab class="outputTab" label="Output">
+                                    <lightning-formatted-rich-text class="slds-text-longform" value={}></lightning-formatted-rich-text>
+                                </lightning-tab>
+                            </lightning-tabset>
+                        </div>
+                        <div class="richtextButtonDiv">
+                            <div class="richtextButton">
+                                <lightning-button label="Save" class="saveModelButton" onclick={saveRichText} ></lightning-button>
+                                <lightning-button label="Cancel" class="cancelModelButton" onclick={closeModel} ></lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div data-id="ModalBackdrop" class="slds-backdrop"></div>
+
+        <div class="thanksChoice">
+
+            <div class="thanksLabelDiv">
+                THANK YOU PAGE
+            </div>
+            <div>
+                <div class="form-check">
+                    <div class="thanks-optiondiv">
+                        <div class="thanks-option">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="None" value={} onchange={toggleFields} checked={} />
+                            <label class="form-check-label" for="None"> None</label>
+                        </div>
+                        <lightning-helptext class="helptxt" content="Not show any thank you page after submit form" ></lightning-helptext>
+                    </div>
+                    <div id="Input0"> </div>
+                </div>
+                <div class="hrLine"></div>
+                <div class="form-check">
+                    <div class="thanks-optiondiv">
+                        <div class="thanks-option">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="ThankYou_Text" value={} onchange={toggleFields} checked={} />
+                            <label class="form-check-label" for="ThankYou_Text"> Show Text</label>
+                        </div>
+                        <lightning-helptext class="helptxt" content="The text you enter below will be displayed on the Thank You page of the form. This page is displayed after the form is submitted." ></lightning-helptext>
+                    </div>
+                    <div class="form-control thankyouinput" id="Input1">
+                        <div id="demo"></div>
+                    </div>
+                    <lightning-textarea class="thankyouinput" value= "show text" ></lightning-textarea>
+                </div>
+                <div class="hrLine"></div>
+                <div class="form-check">
+                    <div class="thanks-optiondiv">
+                        <div class="thanks-option">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="ThankYou_URL" value={} onchange={toggleFields} checked={} />
+                            <label class="form-check-label" for="ThankYou_URL"> Redirect to a webpage</label>
+                        </div>
+                        <lightning-helptext class="helptxt" content="This is the URL where your form users are redirected after the form is submitted. If this option is selected, then no Thank You page is displayed and the redirect is made automatically after submission." ></lightning-helptext>
+                    </div>
+                    <div class="form-control thankyouinput" id="Input2">
+                        <lightning-input data-id="ThanksURL1" type="url" value={} class="thankyouinput" placeholder="Put Your Redirect Link" ></lightning-input>
+                    </div>
+                </div>
+                <div class="hrLine"></div>
+                <div class="form-check">
+                    <div class="thanks-optiondiv">
+                        <div class="thanks-option">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Redirect_Text_And_URL" value={} onchange={toggleFields} checked={}/>
+                            <label class="form-check-label" for="Redirect_Text_And_URL"> Show text, then redirect to web page</label>
+                        </div>
+                        <lightning-helptext class="helptxt" content="When this option is enabled, users see the Thank You page after submission, which contains the redirect link. Specify the Thank You message and the redirect URL below." ></lightning-helptext>
+                    </div>
+                    <div class="form-control thankyouinput" id="Input3">
+                        <lightning-textarea class="thankyouinput" value={} ></lightning-textarea>
+                        <lightning-input data-id="ThanksURL2" type="url" value={} class="thankyouinput" placeholder="Put Your Redirect Link" ></lightning-input>
+                    </div>
+                </div>
+                <div class="hrLine"></div>
+                <div class="form-check">
+                    <div class="thanks-optiondiv">
+                        <div class="thanks-option">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="ThankYou_Report" value={} onchange={toggleFields} checked={} />
+                            <label class="form-check-label" for="ThankYou_Report"> Show report of User data</label>
+                        </div>
+                        <lightning-helptext class="helptxt" content="Show a report generated for your form after submission." ></lightning-helptext>
+                    </div>
+                    <div id="Input4"></div>
+                </div>
+                <div class="hrLine"></div>
+                <div class="form-check">
+                    <div class="thanks-optiondiv">
+                        <div class="thanks-option">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="ThankYou_RichText" value={} onchange={toggleFields} checked={} />
+                            <label class="form-check-label" for="ThankYou_RichText"> Show HTML block</label>
+                        </div>
+                        <lightning-helptext class="helptxt" content="This option allows you to add HTML content to your Thank You page. You can use elements like images, links, colors and many others." ></lightning-helptext>
+                    </div>
+                    <div class="form-control thankyouinput-rich" id="Input5">
+                        <lightning-input-rich-text formats={formats} value={} placeholder="Type something interesting" ></lightning-input-rich-text>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="thanksPreviewDiv">
+            <div style="height: 100%;">
+                <div class="thanksEditButton">
+                    <lightning-button class="editBtn" label="Edit Text" icon-name="utility:edit" icon-position="left" onclick={openRichText} ></lightning-button>
+                </div>
+
+                <div class="thanksPreview">
+                    <div class="imgDiv">
+                        <img style="height: 100%;" src={thankyoulogo} />
+                    </div>
+                    <div class="thanksLabel">
+                        <lightning-formatted-rich-text class="outrichstyle slds-cell-wrap" value="Thank You !"></lightning-formatted-rich-text>
+                    </div>
+                    <template if:true={trued}>
+                        <div class="txtstyle"> {formData.ThankYou_Text__c} </div>
+                    </template>
+                    <template if:true={trued}>
+                        <div class="txtstyle"> {formData.Redirect_Text__c} </div>
+                    </template>
+                    <template if:true={trued}>
+                        <div style="padding: 10px;">
+                            <lightning-formatted-rich-text value={} ></lightning-formatted-rich-text>
+                        </div>
+                    </template>
+                    
+                </div>
+                <div class="saveButton">
+                    <button class="saveBtn" onclick={saveThanksData}>Save</button>
+                    <button class="cancelBtn" onclick={cancelThanksData}>Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

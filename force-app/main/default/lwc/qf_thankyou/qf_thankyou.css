@@ -1,0 +1,266 @@
+.thanksMainDiv {
+    height: 100%;
+    display: flex;
+}
+
+  .thanksChoice {
+    width: 20%;
+    height: 100%;
+    background-color: #F5F5F5;
+    padding: 1%;
+    overflow: auto;
+}
+
+  .thanksChoice::-webkit-scrollbar {
+    display: none;
+}
+
+  .thanksLabelDiv {
+    margin: 7% 0;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.56);
+}
+
+  .hrLine {
+    border-top: 2px solid #ccc;
+    margin: 4% 0 4% 3%;
+}
+
+  .form-control {
+    display: block;
+}
+
+  .form-check {
+    margin-left: 5%;
+    font-size: 16px;
+}
+
+  .thanks-option {
+    padding-top: 2px;
+    margin-right: 5px;
+}
+
+  .thanks-optiondiv {
+    display: flex;
+}
+
+  .thankyouinput {
+    margin-top: -15px;
+    margin-bottom: 5px;
+    width: 100%;
+    min-height: 30px;
+}
+
+  .thankyouinput-rich {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    min-height: 30px;
+}
+
+  .thanksPreviewDiv {
+    width: 80%;
+    height: 100%;
+    background-color: #E5E5E5;
+}
+
+  .thanksPreview {
+    height: 70%;
+    width: 80%;
+    background-color: #fff;
+    margin: auto;
+}
+
+  .thanksEditButton {
+    height: 13%;
+    padding: 4% 10% 0 0;
+}
+
+  .thanksEditButton .slds-button {
+    padding: 2px 29px;
+    font-size: 1rem;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: none;
+}
+
+  .editBtn {
+    float: right;
+}
+
+  .imgDiv {
+    height: 60%;
+    width: fit-content;
+    margin: auto;
+    padding: 10% 10% 0 12%;
+}
+
+  .txtstyle {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+  .saveButton {
+    height: 13%;
+    margin: 4% 0 0 40%;
+}
+
+  .saveBtn,
+  .cancelBtn {
+    border: none;
+    font-family: 'Roboto';
+    border-radius: 10px;
+    font-size: 20px;
+    width: 115px;
+    height: 35px;
+    margin: 1%;
+}
+
+  .saveBtn {
+    background-color: #6699CC;
+    color: #fff;
+}
+
+  .cancelBtn {
+    background-color: #c0c0c0;
+    text-align: center;
+}
+
+
+/* Richtext Model Start */
+
+  .richtextModel {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    z-index: 3;
+    background-color: rgb(255 255 255 / 75%);
+}
+
+  .richtextModel .richtextMainDiv {
+    margin: 0 auto;
+    display: flex;
+    width: 50%;
+    max-width: 40rem;
+    min-width: 20rem;
+    height: 100%;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+}
+
+  .richtextModel .richtextDiv {
+    background: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+  .richtextModel .richtextLabel {
+    height: 60px;
+    background: #6699cc;
+    padding: 7px;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+}
+
+  .richtextModel .richtextContent {
+    min-height: 260px;
+}
+
+  .richtextModel .richtextTab,
+  .richtextModel .htmlTab {
+    border: none;
+}
+
+  .richtextModel .slds-tabs_scoped__nav {
+    border-right: none;
+    border-left: none;
+}
+
+  .richtextModel .richtextButtonDiv {
+    height: 50px;
+}
+
+  .richtextModel .richtextButton {
+    width: fit-content;
+    margin: auto;
+}
+
+  .richtextModel .saveModelButton {
+    background: #6699CC;
+    color: #fff;
+    width: 100px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border-radius: 8px;
+    font-size: medium;
+    font-weight: 400;
+}
+
+  .richtextModel .cancelModelButton {
+    background: #E6E7E9;
+    color: #000;
+    margin-left: 20px;
+    width: 100px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border-radius: 8px;
+    font-size: medium;
+    font-weight: 400;
+}
+
+  .form-check .slds-dropdown_left {
+    right: auto;
+}
+
+
+/* Richtext Model End */
+
+  .slds-notify_container .slds-icon-utility-success {
+    --sds-c-icon-color-foreground: rgb(36, 146, 3);
+}
+
+@media only screen and (max-width:1500px) {
+      .thanksChoice {
+        width: 24%;
+    }
+
+      .thanksPreviewDiv {
+        width: 76%;
+    }
+}
+
+@media only screen and (max-width:1300px) {
+      .thanksChoice {
+        width: 27%;
+    }
+
+      .thanksPreviewDiv {
+        width: 73%;
+    }
+}
+
+@media only screen and (max-width:1100px) {
+      .thanksChoice {
+        width: 30%;
+    }
+
+      .thanksPreviewDiv {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-height:800px) {
+      .thanksEditButton {
+        padding: 2% 10% 0 0;
+    }
+}
+.thanksLabel{
+  font-size: 36px;
+  text-align: center;
+}

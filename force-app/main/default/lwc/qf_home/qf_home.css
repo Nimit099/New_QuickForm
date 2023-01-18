@@ -1,0 +1,1233 @@
+.mainsection {
+    width: 100vw;
+    background-color: white;
+}
+
+ .pm-dtl {
+    font-size: medium;
+    font-weight: 400;
+    align-items: center;
+}
+
+ .pm-ttl {
+    font-size: medium;
+    font-weight: 400;
+    align-items: center;
+    padding: inherit;
+}
+
+ .pm-cl {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+ .pm-ftr-div {
+    height: 100px;
+    padding: inherit;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+ .pm-ftr-rm-div {
+    height: 70px;
+    padding: inherit;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.opm-btn {
+    background-color: rgb(102, 153, 204);
+    color: white;
+    font-weight: 400;
+}
+
+ .slds-m-around_small {
+    display: inline;
+}
+
+ .quickformtitle {
+    font-size: x-large;
+    margin-left: 0.3rem;
+}
+
+ .header {
+    font-size: 2rem;
+}
+
+ .pm-header {
+    font-size: large;
+    font-weight: 500;
+}
+
+ .slds-modal__footer {
+    padding-bottom: 3% !important;
+    background: white;
+}
+
+ .slds-modal__header {
+    background-color: rgb(102, 153, 204);
+    color: white;
+    font-weight: 500;
+    border: 0px;
+}
+
+ .footer .slds-button {
+    font-size: medium !important;
+    border-radius: 10px;
+    width: 6rem;
+}
+
+ .footer .slds-button_brand {
+    background: rgb(102, 153, 204);
+    font-weight: 400;
+    border-color: rgb(102, 153, 204);
+    margin-right: 15px;
+}
+
+ .footer .slds-button_neutral {
+    background: rgb(230, 231, 233);
+    font-weight: 400;
+    color: black;
+}
+
+ .folder_component {
+    width: 21.2%;
+    max-width: 400px;
+    position: absolute;
+    height: 100%;
+    border: solid;
+    border-width: 1px;
+    border-color: #e6e6e6;
+    background-color: #f2f2f2;
+}
+
+ .hideit {
+    display: none;
+}
+
+ .hidalf-btneit {
+    margin-left: 2%;
+}
+
+ .rowsicon2 {
+    display: none;
+}
+
+ .formpart {
+    position: relative;
+    border-color: #e6e6e6;
+    background-color: #f2f2f2;
+}
+
+ .folder_tree {
+    background-color: #f2f2f2;
+    overflow: auto;
+    height: 85%;
+}
+
+ .new_folder {
+    height: 65px;
+    border: solid;
+    border-width: 1px;
+    border-color: #e6e6e6;
+    background-color: #f2f2f2;
+    padding: 18px 5px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+ .accordion {
+    border: solid;
+    border-width: 1px;
+    border-color: #e6e6e6;
+    background-color: #f2f2f2;
+    padding-left: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+ .accordion_1 {
+    background-color: #f2f2f2;
+    padding-left: 30px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+ .slds-tree__item-label {
+    display: block;
+    width: 310px;
+    max-width: 100%;
+}
+
+ .slds-tree__item .slds-button {
+    padding: 0 2px 2px 3px;
+}
+
+ .slds-tree__item:hover {
+    background-color: #ddd;
+}
+
+ .slds-tree__item a:focus {
+    text-decoration: none;
+}
+
+ .slds-tree [role=treeitem]:focus>.slds-tree__item {
+    text-decoration: none;
+}
+
+ .slds-notify_container .slds-icon-utility-success {
+    --sds-c-icon-color-foreground: rgb(36, 146, 3);
+}
+
+/* ================== FOR BUTTONS ==================*/
+
+ .button_slide {
+    height: 33px;
+    width: 115px;
+    color: blue;
+    border: 2px solid rgb(201, 201, 201);
+    border-radius: 5px;
+    padding: 4px 25px;
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+ .button_slide[disabled] {
+    pointer-events: none;
+    color: blue;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+
+/* ================== FOR BUTTONS ==================*/
+
+
+/* =========== table css Start ============== */
+
+
+/*  .dataTableMain {
+    height: 100%;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    width: 98%;
+    margin: 0px 10px 10px 10px;
+} */
+
+ .tableHeader {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    background-color: #f2f2f2;
+    height: 45px;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    font-weight: bold;
+}
+
+ .tableBody {
+    display: flex;
+    height: 50px;
+    align-items: center;
+}
+
+ .tableBody:nth-child(odd) {
+    background: #f2f2f2;
+}
+
+ .tableIndexCol {
+    text-align: center;
+    width: 13%;
+}
+
+ .tableTitleCol {
+    overflow: hidden;
+    width: 22%;
+    padding-left: 3%;
+}
+
+ .tableStatusCol {
+    text-align: center;
+    width: 20%;
+}
+
+ .tableSubmissionCol {
+    text-align: center;
+    width: 17%;
+}
+
+ .tablePreviewCol {
+    text-align: -webkit-center;
+    width: 12%;
+}
+
+ .tableActionCol {
+    text-align: center;
+    text-align: -webkit-center;
+    width: 15%;
+}
+
+ .arrow {
+    visibility: hidden;
+}
+
+ .formTitle {
+    color: black;
+    text-decoration: none;
+    padding: 0px;
+    background-color: #f2f2f2;
+}
+
+ .formTitle:hover>.arrow {
+    visibility: visible;
+}
+
+ .actionButton-main {
+    width: 32px;
+}
+
+ .action-text {
+    text-align: start;
+}
+
+ .dataTableMain::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+
+/* =========== table css End ============== */
+
+ .formicon {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+ .slds-large-size_9-of-12 {
+    width: 78.5%;
+}
+
+ .btnicon {
+    display: flex;
+}
+
+ .changeCursor {
+    margin: 1px;
+    min-width: 25px;
+    position: relative;
+}
+
+ .tooltip {
+    position: absolute;
+    top: 44px;
+    left: -120px;
+    width: 10rem;
+    transform: rotate(180deg);
+    display: none;
+}
+
+ .tooltipmainfolder {
+    position: absolute;
+    top: 44px;
+    left: -147px;
+    width: 12rem;
+    transform: rotate(180deg);
+    display: none;
+}
+
+ .tooltip2 {
+    position: absolute;
+    top: 44px;
+    left: -118px;
+    width: 10rem;
+    transform: rotate(180deg);
+    display: none;
+}
+
+ .tooltip3 {
+    position: absolute;
+    top: 44px;
+    left: -120px;
+    width: 10rem;
+    transform: rotate(180deg);
+    display: none
+}
+
+ .tooltipmainfolder3 {
+    position: absolute;
+    top: 44px;
+    left: -149px;
+    width: 12rem;
+    transform: rotate(180deg);
+    display: none
+}
+
+
+/* Active - Inactive button */
+
+ .switch input {
+    display: none;
+}
+
+ .switch small {
+    align-items: center;
+    display: inline-block;
+    width: 65px;
+    height: 20px;
+    background: #455a64;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+ .switch small:after {
+    content: "Inactive";
+    position: absolute;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    width: 100%;
+    left: 0px;
+    text-align: right;
+    padding: 1px 5px;
+    box-sizing: border-box;
+    line-height: 18px;
+}
+
+ .switch small:before {
+    align-items: center;
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    transition: .3s;
+    box-shadow: -3px 0 3px rgba(0, 0, 0, 0.1);
+}
+
+ .switch input:checked~small {
+    background: #6699CC;
+    transition: .3s;
+}
+
+ .switch input:checked~small:before {
+    transform: translate(46px, 0px);
+    transition: .3s;
+}
+
+ .switch input:checked~small:after {
+    content: "Active";
+    text-align: left;
+    padding-left: 10px;
+}
+
+ .imgfoldericon {
+    margin-right: 5px;
+}
+
+ .recordList {
+    padding: 2px 0 0 5px;
+}
+
+ .title {
+    padding: 3px 0;
+}
+
+ .slds-dropdown_length-3 {
+    max-height: 125px;
+    overflow-y: auto;
+}
+
+ .searchBar .slds-form-element .slds-form-element__label {
+    display: none;
+}
+
+ .slds-button_neutral {
+    background-color: #fff;
+}
+
+ .action-text:hover {
+    border-left: solid #8279ff 3px;
+    padding-left: 3px;
+    margin-left: -10px;
+}
+
+ .menuList-div {
+    min-width: 102px;
+}
+
+ .action-text {
+    height: 1.25rem;
+}
+
+ .actionButton-second {
+    display: none;
+}
+
+ .dropdownDiv .slds-form-element .slds-form-element__label {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+     .col-5 {
+        display: none;
+    }
+
+     .actionButton-second {
+        display: revert;
+    }
+
+     .btnicon {
+        display: block;
+        margin-top: -20px;
+    }
+
+     .changeCursor {
+        width: 25px;
+    }
+}
+
+@media screen and (max-width: 764px) {
+     .hideit {
+        display: block;
+        background-color: white;
+        height: 100%;
+        width: 8%;
+    }
+
+     .rowsicon {
+        margin: 7px;
+    }
+
+     .rowsicon2 {
+        display: block;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+     .slds-icon {
+        width: 15px
+    }
+
+     .btnicon {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+     .folder {
+        display: none;
+    }
+
+     .folder_component {
+        display: none;
+    }
+
+     .addclass {
+        background-color: #f2f2f2;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 10;
+        height: 100%;
+        width: 38vw;
+        transition: 0.2s;
+        display: block;
+    }
+
+     .new_folder {
+        padding: 10px 0px;
+    }
+
+     .formicon {
+        justify-content: flex-start;
+        margin-top: 12px;
+    }
+
+     .mainform {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 667px) {
+     .mainform {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 867px) {
+     .formicon {
+        justify-content: flex-start;
+        margin-top: 12px;
+    }
+
+     .mainform {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 595px) {
+     .hideit {
+        width: 20%;
+    }
+
+     .addclass {
+        width: 45vw;
+    }
+
+     .formicon {
+        justify-content: flex-start;
+        margin-top: 12px;
+    }
+
+     .formpart {
+        border: none;
+    }
+
+     .mainform {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+     .formicon {
+        display: block;
+        margin-top: 10px;
+    }
+
+     .formiconsmargin {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width:497px) {
+     .hideit {
+        width: 15%;
+    }
+
+     .formpart {
+        left: 15%;
+    }
+
+     .addclass {
+        width: 55vw;
+    }
+
+     .mainform {
+        display: flex;
+        flex-direction: column;
+    }
+
+     .formpart {
+        border: none;
+    }
+
+     .formicon {
+        display: block;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width:400px) {
+     .hideit {
+        display: block;
+        background-color: white;
+        height: 100%;
+        width: 18%;
+        z-index: 12;
+    }
+
+     .formpart {
+        border: none;
+        left: 18%;
+        width: 92%;
+    }
+
+     .addclass {
+        width: 85vw;
+        z-index: 14;
+    }
+
+     .formicon {
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width:347px) {
+     .formicon {
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width:380px) {
+     .formicon {
+        max-width: 20%;
+    }
+}
+
+@media screen and (max-width:300px) {
+     .addclass {
+        width: 100vw;
+        z-index: 14;
+    }
+}
+
+@media screen and (max-width:250px) {
+     .addclass {
+        width: 100vw;
+        z-index: 14;
+    }
+}
+
+
+/* CSS START */
+
+.Section {
+    background-color: white;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+ .folderSection {
+    background-color: white;
+    position: relative;
+    height: 100%;
+    border-radius: 0px 18px 18px 0px;
+    width: 20%;
+}
+
+ .folderSection::-webkit-scrollbar {
+    display: none;
+}
+
+ .mainSection {
+    background-color: white;
+    position: relative;
+    height: 100%;
+    padding: 10px 30px 10px 30px;
+    overflow: hidden;
+    border-radius: 18px 18px 18px 18px;
+    width: 100%;
+}
+
+ .slds-template__container {
+    border-radius: 0px 18px 18px 0px;
+}
+
+ .mainSection::-webkit-scrollbar {
+    display: none;
+}
+
+ .mainFormTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    width: 71%;
+    justify-content: center;
+}
+
+ .searchBox.slds-input {
+    border-radius: 17px;
+    border-color: black;
+    width: 85%;
+    padding-left: 40px;
+}
+
+ .searchBoxDiv.slds-input-has-icon .slds-input__icon {
+    margin-top: 2px;
+}
+
+ .formButtons {
+    margin-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+ .searchBox input::-webkit-input-placeholder {
+    color: darkgrey !important;
+    font-size: 1rem;
+    margin-left: 2px;
+}
+
+ .formButtons .slds-button {
+    border-style: none;
+    border-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #6699CC;
+    margin: 0 10px;
+    width: 134px;
+    padding-left: 2rem;
+}
+
+ .formButtons .allFormButton.slds-button {
+    margin: 0px;
+    width: 134px;
+}
+
+ .dataTable {
+    border: 0.2px solid lightgray;
+    margin-top: 1.5%;
+    height: 100%;
+    overflow-y: scroll
+}
+
+/*  .dataTable::-webkit-scrollbar {
+    display: none;
+} */
+
+/*  .dataTable::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+ .dataTable ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+} */
+
+ .footerCss {
+    position: absolute;
+    color: #6699CC;
+    border-radius: 16px;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    background: #FFFCFC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    bottom: 15px;
+}
+
+ .searchBoxDiv.slds-input-has-icon .slds-input__icon {
+    margin-top: 0px;
+    margin-left: -2px;
+}
+
+ .searchBoxDiv.slds-input-has-icon .slds-input__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+ .headertd {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    border: 1px solid lightgray;
+    background-color: #f2f2f2;
+    height: 50px;
+}
+
+ .dataTableMain th {
+    text-align: center;
+    padding: 10px;
+}
+
+ .dataTableMain tr td {
+    text-align: center;
+}
+
+ .dataTableMain tr .tableTitle {
+    text-align: left;
+    width: 19%;
+    padding: 10px;
+}
+
+ .dataTableMain tr th.tableTitleth {
+    width: 19%;
+    text-align: left;
+    padding: 0px;
+}
+
+ .dataTableMain .tabletr:nth-child(odd) {
+    background: #f2f2f2;
+}
+
+ .dataTableMain .tabletr {
+    border: 1px solid lightgray;
+    height: 50px;
+}
+
+/*  .tableBody:nth-last-child(-n+3).tableActionCol.slds-dropdown-trigger.slds-dropdown {
+    
+} */
+
+/*  .tableBody:nth-last-child(-n+3).tableActionCol.slds-dropdown-trigger.slds-dropdown {
+    
+} */
+
+ .footer {
+    /* margin-top: 25px; */
+    color: black;
+}
+
+
+/*  .tableIndex {
+    width: 11%;
+} */
+
+ .buttonMenu {
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+ .buttonMenu .slds-button_icon-container {
+    background: #FFFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+ .buttonMenu .slds-button__icon {
+    fill: black;
+}
+
+ .previewIcon {
+    width: 35px;
+    padding: 6px;
+    border-radius: 5px;
+    background: #FFFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    text-align: -webkit-center;
+    cursor: pointer;
+}
+
+ .formButtons .slds-button__icon_left {
+    /* border: 2px solid #6699CC; */
+    padding: 0.5px;
+    border-radius: 10px;
+}
+
+ .formButtons .slds-input-has-icon_left .slds-input__icon {
+    left: 27px;
+}
+
+ .totalForms {
+    right: 27px;
+}
+
+ .desertImg {
+    margin-top: 10%;
+}
+
+@media screen and (max-width:1400px) {
+     .dataTable {
+        height: 90%;
+    }
+
+     .folderSection {
+        width: 25%;
+    }
+     .dataTableMain tr .tableTitle {
+        width: 25%;
+    }
+
+      .footerCss {
+        bottom: 10px;
+    }
+
+     .desertImg {
+        margin-top: 4%;
+    }
+    .mainFormTitle{
+        width: 69%;
+    }
+}
+
+
+/* 
+// ================================================== */
+
+ .quickform-logo {
+    height: 10%;
+    justify-content: center;
+    margin-inline: 6%;
+}
+
+ .qfl {
+    background-color: white;
+    align-items: center;
+    display: contents;
+    align-items: center;
+    justify-content: center;
+}
+
+ .folder-part {
+    background-color: rgba(102, 153, 204, 1);
+    height: 90%;
+    border-radius: 0 0 0 25px;
+}
+
+ .folders-top {
+    height: 13%;
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    margin-inline: 5%;
+    padding-top: 6%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ .name-logo {
+    display: flex;
+    align-items: center;
+}
+
+ .folders-tab {
+    height: 40px;
+    width: 40px;
+}
+
+ .f-text {
+    margin-left: 3%;
+    font-family: sans-serif;
+}
+
+ .folder-button-bar {
+    display: flex;
+}
+
+ .tooltip2 {
+    position: absolute;
+    top: 44px;
+    left: -118px;
+    width: 10rem;
+    transform: rotate(180deg);
+    display: none;
+}
+
+ .tooltip {
+    position: absolute;
+    top: 44px;
+    left: -120px;
+    width: 10rem;
+    transform: rotate(180deg);
+    display: none;
+}
+
+ .tooltipmainfolder {
+    position: absolute;
+    top: 44px;
+    left: -147px;
+    width: 12rem;
+    transform: rotate(180deg);
+    display: none;
+}
+
+ .changeCursor {
+    margin: 0 3px;
+    min-width: 25px;
+    position: relative;
+}
+
+ .tooltip3 {
+    position: absolute;
+    top: 44px;
+    left: -120px;
+    width: 10rem;
+    transform: rotate(180deg);
+    display: none
+}
+
+ .tooltipmainfolder3 {
+    position: absolute;
+    top: 44px;
+    left: -149px;
+    width: 12rem;
+    transform: rotate(180deg);
+    display: none
+}
+
+ .btnicon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+ .slds-dropdown_length-3 {
+    max-height: 125px;
+    overflow-y: auto;
+}
+
+ .top-icon-button {
+    padding: 5px;
+    border-radius: 6px;
+    background: rgb(255, 253, 253);
+    box-shadow: rgb(0 0 0 / 25%) 0px 4px 4px 0px;
+}
+
+ .folder-tree {
+    height: 72%;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+ .folder-tree::-webkit-scrollbar {
+    display: none;
+}
+
+ .folder-tree-heirarchy {
+    margin-top: 5%;
+}
+
+ .folder-footer {
+    height: 15%;
+    margin-inline: 5%;
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0 0 0 25px;
+}
+
+ .folder-help-icon {
+    height: 25px;
+    width: 25px;
+}
+
+ .slds-tree__item .slds-truncate {
+    color: white;
+}
+
+ .slds-tree__item:hover {
+    background: rgba(254, 255, 255, 0.52);
+}
+
+ .slds-tree__item a:focus {
+    text-decoration: none;
+}
+
+ .slds-tree [role=treeitem]:focus>.slds-tree__item {
+    text-decoration: none;
+}
+
+ .slds-tree [role=treeitem][aria-selected=true]>.slds-tree__item {
+    background: rgba(254, 255, 255, 0.52);
+    box-shadow: rgba(254, 255, 255, 0.52) 4px 0 0 inset;
+}
+
+ .slds-tree__item .slds-button__icon {
+    color: white;
+}
+
+ .slds-tree__item .slds-button {
+    padding: 0 2px 2px 3px;
+}
+
+ .slds-tree [aria-expanded=true]>.slds-tree__item .slds-button {
+    border-color: white;
+    background-color: rgb(119, 163, 206);
+    box-shadow: rgb(0 0 0 / 25%) 0px 4px 4px 0px;
+}
+
+
+
+
+/* =========================     Spinner Sarts      =========================== */
+
+ .spinner-main-div {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+ .loader--ripple {
+    display: inline-block;
+    position: relative;
+    height: 100px;
+    width: 100px;
+
+}
+
+ .loader--ripple div {
+    position: absolute;
+    animation: loader--ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    border: 4px solid;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+ .loader--ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes loader--ripple {
+    0% {
+        top: 50px;
+        left: 50px;
+        opacity: 1;
+        height: 0;
+        width: 0;
+    }
+
+    100% {
+        top: -1px;
+        left: -1px;
+        opacity: 0;
+        height: 100px;
+        width: 100px;
+    }
+}
+
+ .loader--ripple div {
+    border-color: #00539f;
+}
+.header{
+    display: flex;
+}
+lightning-input{
+    --lwc-colorBorderInput: rgb(0, 0, 0);
+    --slds-c-input-radius-border: 3rem;
+}
+lightning-button{
+    --lwc-buttonColorBorderPrimary:rgb(255, 255, 255);
+}
+.help_div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 45px;
+    font-size: 13px;
+    margin: 15px 25px;
+}
+.help{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.feedback{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.help{
+    width: 20px;
+}
+.crossIcon{
+    left: 92%;
+    display: none;
+    cursor: pointer;
+    position: absolute;
+}
+/* =========================     Spinner Sarts      =========================== */
