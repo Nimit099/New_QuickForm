@@ -1,3 +1,12 @@
+//  ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used for Edit, Delete, Read or Create New Form
+// # Change Version History
+// # Version No.     Author          Date            Change Description            Jira Ticket
+// #    1.           Nimit         09/01/2023           Home Page UI 				     QUIC-37, QUIC-36
+// =================================== 
 import { LightningElement,wire,track } from 'lwc';
 
 // ALL ICONS OF HOME PAGE [START]
@@ -58,6 +67,12 @@ export default class Qf extends LightningElement {
     }
 // GET USER NAME [END] 
 
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Read All Forms record
+// =================================== -->
     connectedCallback(){
       this.spinnerDataTable = true;
         records().then(result => {
@@ -70,7 +85,12 @@ export default class Qf extends LightningElement {
 		})
     }
 
-    // SEARCH FUNCTIONALITY [START]
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Search Form From the List
+// =================================== -->
     search(event){
         this.searchkey = event.target.value; 
         search({searchkey : this.searchkey}).then(result => {
@@ -81,9 +101,14 @@ export default class Qf extends LightningElement {
               }
         })
     }
-   // SEARCH FUNCTIONALITY [END]
 
-  // CHANGE STATUS FUNCTIONALITY [START]
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Change Status of Form
+// =================================== -->
     changestatus(event){
         this.id = event.target.dataset.id;
         this.spinnerDataTable = true;
@@ -91,10 +116,15 @@ export default class Qf extends LightningElement {
               this.PaginationList = result;
               this.spinnerDataTable = false;
             })
-    }
-    // CHANGE FUNCTIONALITY [END]
+      }
 
-    // ACTIONS OF MENU BUTTONS [START]
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Functionality of Dropdown Buttons(Rename or Delete)
+// =================================== -->
     handleSelectAction(event){
 
           // DELETE FUNCTIONALITY [START]
@@ -116,20 +146,37 @@ export default class Qf extends LightningElement {
           this.id = event.target.dataset.id;          
         }
     }
-    // TAKING VALUE OF RENAME [START]
+
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Read New Form Name
+// =================================== -->
     rename(event){
       this.newFormName = event.target.value;
     }
-     // TAKING VALUE OF RENAME [END]
 
-     // CANCEL RENAMING [START]
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Cancel Rename
+// =================================== -->
     cancleRenameForm(){
       this.newFormName = '';
       this.isOpenRenameForm = false;
     }
-    // CANCEL RENAMING [END]
 
-    // RENAMING FORMS [START]
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Update Form Name
+// =================================== -->
     renameForm(){
       this.spinnerDataTable = true;
       renameform({id : this.id, rename : this.newFormName}).then(result => {
@@ -139,14 +186,18 @@ export default class Qf extends LightningElement {
           this.newFormName = '';
       })
     }
-    // RENAMING FORMS [END]
 
-    // GET INDEX VALUE [START]
+
+ // <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: For Index value
+// =================================== -->
     get index(){
       if(this.i > this.count){
         this.i = 1 ;
       }
       return this.i++;
     }
-    // GET INDEX VALUE [END]
 }

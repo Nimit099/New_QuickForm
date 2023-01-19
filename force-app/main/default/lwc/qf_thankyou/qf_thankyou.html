@@ -1,8 +1,4 @@
 <template>
-
-    <!-- <c:QFNotificationToastComponent aura:id="toastCmp" />
-    <c:QFExceptionComponent aura:id="exceptionCmp" /> -->
-
     <template if:true={spinner}>
         <div data-id = "spinnerId" class="slds-spinner_container" style="overflow: hidden;">
             <div class="spinner-main-div">
@@ -13,7 +9,6 @@
             </div>
         </div>
     </template>
-
     <div class="thanksMainDiv">
         <section data-id="Modal" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true" aria-describedby="ModalBody" class="slds-modal" onclick={hideFolderList}>
             <div class="richtextModel">
@@ -49,9 +44,7 @@
             </div>
         </section>
         <div data-id="ModalBackdrop" class="slds-backdrop"></div>
-
         <div class="thanksChoice">
-
             <div class="thanksLabelDiv">
                 THANK YOU PAGE
             </div>
@@ -79,7 +72,6 @@
                         <div id="demo"></div>
                         <lightning-textarea class="thankyouinput" value= {text} onchange={input} name="text"></lightning-textarea>
                     </div>
-                    
                 </div>
                 <div class="hrLine"></div>
                 <div class="form-check">
@@ -134,29 +126,16 @@
                 </div>
             </div>
         </div>
-
         <div class="thanksPreviewDiv">
             <div style="height: 100%;">
                 <div class="thanksEditButton">
-                    <!-- <lightning-button class="editBtn" label="Edit Text" icon-name="utility:edit" icon-position="left" onclick={openRichText} ></lightning-button> -->
                 </div>
-
                 <div class="thanksPreview">
                     <div class="imgDiv">
                         <img style="height: 100%;" src={thankyoulogo} />
                     </div>
-                    <div class="thanksLabel">
-                        <!-- <lightning-formatted-rich-text class="outrichstyle slds-cell-wrap" value=""></lightning-formatted-rich-text> -->
-                    </div>
-                    <template if:true={trued}>
-                        <div class="txtstyle"> {formData.ThankYou_Text__c} </div>
-                    </template>
-                    <template if:true={trued}>
-                        <div class="txtstyle"> {formData.Redirect_Text__c} </div>
-                    </template>
                     <template if:true={textcheck}>
                         <div style="padding: 10px; text-align: center;">
-                            <!-- <lightning-formatted-text value={richtext} style="text-align: center;"></lightning-formatted-text> -->
                             {text}
                         </div>
                     </template>
@@ -165,7 +144,6 @@
                             <lightning-formatted-rich-text value={richtext} ></lightning-formatted-rich-text>
                         </div>
                     </template>
-                    
                 </div>
                 <div class="saveButton">
                     <button class="saveBtn" onclick={saveThanksData}>Save</button>

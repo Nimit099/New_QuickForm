@@ -1,7 +1,20 @@
+//  ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 18/01/2023
+// # Description: Used for Edit, Delete, Read or Create New Form
+// # Change Version History
+// # Version No.     Author          Date            Change Description            Jira Ticket
+// #    1.           Nimit         18/01/2023           Home Page UI 		     QUIC-18, QUIC-27
+// =================================== 
 public with sharing class qfthankyou {
 
-    public Id recordid;
-
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 18/01/2023
+// # Description: Used to Check and get already created thank you page for the selected form
+// =================================== -->
     @AuraEnabled
     public static Thankyou_Page__c getthankyoupage(Id currentformid){
         try {
@@ -16,6 +29,13 @@ public with sharing class qfthankyou {
         }
     }
 
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 18/01/2023
+// # Description: Used to Update or insert thank you page 
+// =================================== -->
    @AuraEnabled
    public static string insertrecord(String picklist, String classtext, String formId, String url, Id currentthankyouid){
     try {
@@ -24,10 +44,6 @@ public with sharing class qfthankyou {
         Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, Thank_you_URL__c = url, Thankyou_Text__c = classtext, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid ); 
         Database.upsert(insertrecord);
         }
-        // else if(String.isNotBlank(classtext)){
-        // Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, Thank_you_URL__c = url, Thankyou_Text__c = classtext, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid );
-        // Database.upsert(insertrecord);
-        // }
         else{
             Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, Thank_you_URL__c = url, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid );
             Database.upsert(insertrecord); 

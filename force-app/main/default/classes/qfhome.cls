@@ -1,6 +1,22 @@
+//  ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used for Edit, Delete, Read or Create New Form
+// # Change Version History
+// # Version No.     Author          Date            Change Description            Jira Ticket
+// #    1.           Nimit         09/01/2023           Home Page UI 			 QUIC-37, QUIC-36
+// =================================== 
+
+
 public with sharing class qfhome {
 
-    // GET THE FORMS LIST WHILE OPENING THE HOME PAGE [START]
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Read All Forms record
+// =================================== -->
     @AuraEnabled
     public static Map<Integer,List<Form__c>> records(){
         try {
@@ -13,9 +29,14 @@ public with sharing class qfhome {
             throw new AuraHandledException(e.getMessage());
         }
     }
-        // GET THE FORMS LIST WHILE OPENING THE HOME PAGE [END]
 
-    // TO SEARCH THE FORM [START]
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Search Form
+// =================================== -->
     @AuraEnabled
     public static Map<Integer,List<Form__c>> search(String searchkey){
         try {
@@ -30,9 +51,14 @@ public with sharing class qfhome {
             throw new AuraHandledException(e.getMessage());
         }
     }
-    // TO SEARCH THE FORM [END]
 
-    // TO CHANGE STATUS OF THE FORM [START]
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Change Status of form
+// =================================== -->
     @AuraEnabled
     public static List<Form__c> status(Id id, String searchkey){
         try {
@@ -61,9 +87,14 @@ public with sharing class qfhome {
             throw new AuraHandledException(e.getMessage());
         }
     }
-    // TO CHANGE STATUS OF THE FORM [END]
 
-    // TO DELETE THE FORM [START]
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to delete form
+// =================================== -->
     @AuraEnabled
     public static List<Form__c> deleteform(Id id, String searchkey){
         try {
@@ -84,9 +115,14 @@ public with sharing class qfhome {
             throw new AuraHandledException(e.getMessage());
         }
     }
-    // TO DELETE THE FORM [END]
 
-    // TO RENAME THE FORM [START]
+
+// <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: Used to Rename form
+// =================================== -->
     @AuraEnabled
     public static List<Form__c> renameform(Id id, String rename){
         try {
@@ -100,5 +136,4 @@ public with sharing class qfhome {
             throw new AuraHandledException(e.getMessage());
         }
     }
-    // TO RENAME THE FORM [END]
 }
