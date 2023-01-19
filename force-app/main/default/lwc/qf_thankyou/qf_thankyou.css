@@ -29,7 +29,7 @@
 }
 
   .form-control {
-    display: block;
+    display: none;
 }
 
   .form-check {
@@ -259,8 +259,4 @@
       .thanksEditButton {
         padding: 2% 10% 0 0;
     }
-}
-.thanksLabel{
-  font-size: 36px;
-  text-align: center;
 }
