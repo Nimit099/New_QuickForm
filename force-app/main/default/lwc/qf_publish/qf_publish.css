@@ -1,0 +1,782 @@
+.publishCheckboxes {
+    padding: 30px 0 0 16px;
+}
+
+   .checkBoxes,
+   .iconsImage {
+    cursor: pointer;
+}
+
+   .publishCheckboxes .slds-form-element__control .slds-radio:last-child {
+    border: none
+}
+
+   .leftPanelTitle {
+    text-transform: capitalize;
+    color: rgba(0, 0, 0, 0.56);
+    padding: 41px 0 0 16px;
+    font-weight: bold;
+    font-size: 24px
+}
+
+   .lightBoxChexboxes {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+    align-items: center;
+}
+
+   .lightBoxAcc {
+    margin: 5px 0px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #6699CC;
+    padding: 5px 30px;
+    width: 85%;
+    margin-left: 6px;
+    width: 85%;
+}
+
+   .PublishForm {
+    background-color: white;
+    width: 80%;
+    height: 100vh;
+    padding: 0 6%;
+    /* margin: auto; */
+}
+
+   .showModalSection .slds-modal__container {
+    max-width: 45%;
+}
+
+   .showModalSection .slds-modal__content {
+    height: 20rem;
+}
+
+   .formlink {
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: flex;
+    height: 10%;
+    align-items: center;
+}
+
+   .inputBox {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    border: none;
+    width: 90%;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 1% 0.7%;
+}
+
+   .copyCodeSection {
+    height: 70%;
+    position: relative
+}
+
+   .codeCopySection {
+    background: #EBEBEB;
+    border-radius: 15px;
+    line-height: 3em;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+   .codeCopySection::-webkit-scrollbar {
+    display: none;
+}
+
+   .runcodeicon {
+    border: none;
+    border-radius: 10px;
+    background-color: #6699CC;
+    display: flex;
+    margin: 2% auto;
+}
+
+   .slds-button__icon {
+    fill: #6699cc;
+}
+
+   .copiedtext,
+   .copiedUrl {
+    position: absolute;
+    left: 0;
+    top: 4%;
+    right: 0;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-1em);
+    color: #000;
+    transition: all .500s;
+    opacity: 1;
+    transform: translateY(13em);
+    display: none;
+    color: #6699CC;
+    font-size: 1rem;
+}
+
+   .slds-form-element__control .slds-radio {
+    border-bottom: 1px solid lightgray;
+    padding: 18px 10px 18px 0px
+}
+
+   .LeftBar {
+    background-color: rgba(242, 242, 242, 0.76);
+    position: relative;
+    height: 100vh;
+    left: 0;
+    overflow: scroll;
+    padding-bottom: 10rem;
+}
+
+   .LeftBar::-webkit-scrollbar {
+    display: none;
+}
+
+   .EditForm {
+    width: 80%;
+    left: 20%;
+    position: relative;
+    background-color: #FEFEFE;
+    height: 100%;
+}
+
+   .formLinkTitle {
+    font-weight: bold;
+    font-size: 1.5rem;
+    height: 10%;
+    padding: 41px 0 0 0px;
+}
+
+   .linkText {
+    height: 2%;
+}
+
+   .formlink {
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: flex;
+    height: 5rem;
+    align-items: center;
+}
+
+   .iconsImage {
+    width: 32px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 25%);
+    border-radius: 7px;
+    padding: 7px;
+}
+
+   .publishUsing {
+    font-size: 1.4rem;
+    height: 4%;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+   .publishUsingText {
+    height: 3%;
+}
+
+   .inputBox {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    border: none;
+    width: 90%;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 1% 0.7%;
+}
+
+   .copyIcon:focus {
+    border: none;
+}
+
+   .codeCopySection::-webkit-scrollbar {
+    display: none;
+}
+
+   .publishFormMain {
+    width: 85%;
+    height: 100%;
+    margin: auto;
+}
+
+   .iframeCode {
+    background: #ebebeb;
+    border-radius: 15px;
+    height: 40%;
+    line-height: 4em;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+   .publishCheckboxes {
+    padding: 30px 0 0 16px;
+}
+
+   .copyCodeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+   .copyCodeButton button {
+    border-radius: 10px;
+    border: none;
+    background-color: #6699CC;
+    width: 10%;
+}
+
+   .lightBoxChexboxes {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+    align-items: center;
+}
+
+   .linkToFormText .para {
+    background: #EBEBEB;
+    margin: 10px 15px;
+    padding: 10px;
+}
+
+   .linkToFormText h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #6699CC;
+}
+
+   .lightBoxAcc {
+    margin: 5px 0px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #6699CC;
+    padding: 5px 30px;
+    width: 85%;
+    margin-left: 6px;
+    width: 85%;
+}
+
+   .publishCheckboxes .slds-form-element__control .slds-radio:last-child {
+    border: none
+}
+
+   .qr-code {
+    max-width: 200px;
+    margin: 10px;
+}
+
+
+/*copy code*/
+
+   .code {
+    background-color: white;
+}
+
+   .mainHeading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+   .copyIcon {
+    border: none;
+}
+
+   .codestyle {
+    padding-left: 0.9rem;
+    padding-left: 0.9rem;
+    background-color: #f0f0f0;
+    height: 20rem;
+    overflow-y: scroll;
+    background-color: #f0f0f0;
+}
+
+   .codestyle::-webkit-scrollbar {
+    display: none;
+}
+
+   .mainHeading {
+    background-color: #f0f0f0;
+}
+
+   .subcodeJs,
+   .subcodeCss {
+    margin: 0px 0 0 10px;
+}
+
+   .verticalTab .publishTab.slds-vertical-tabs__content {
+    height: 100vh;
+    padding-bottom: 10rem;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+   .verticalTab .publishTab.slds-vertical-tabs__content::-webkit-scrollbar {
+    display: none;
+}
+
+   .runcodeicon {
+    border: none;
+    border-radius: 10px;
+    background-color: #6699CC;
+    display: flex;
+    margin: 2% auto;
+}
+
+   .urlCopied {
+    position: relative;
+    top: -30px;
+    left: -48PX;
+    font-size: 14px;
+    color: #6699CC;
+    display: none;
+}
+
+   .subcode::-webkit-scrollbar {
+    display: none;
+}
+
+   .code::-webkit-scrollbar {
+    display: none;
+}
+
+   .heading {
+    display: flex;
+    margin: 10px 0 0 10px;
+    align-items: center;
+}
+
+   .heading .slds-button_icon-small {
+    background: white;
+    border: none;
+}
+
+   .copiedUrl {
+    position: absolute;
+    top: -38px;
+    left: 35px;
+    display: none;
+}
+
+   .slds-popover_tooltip {
+    background-color: #6699CC;
+}
+
+   .publishComponent {
+    position: relative;
+    width: 100%;
+}
+
+
+/* The Modal (background) */
+
+  .confirmBox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    z-index: 1000;
+}
+
+   .mainPublish {
+    position: relative;
+    width: 25%;
+    height: 30%;
+    margin: auto;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+/* === */
+
+  .slds-modal {
+    position: absolute !important;
+}
+
+   .publish-modal__container {
+    width: 30% !important;
+}
+
+   .slds-modal__header {
+    background: #6699CC !important;
+    font-size: 2rem !important;
+    font-weight: 500 !important;
+    color: white !important;
+}
+
+   .slds-modal__content {
+    font-size: medium;
+    font-weight: 400;
+    text-align: center;
+}
+
+   .iframe_modal__content {
+    height: 80% !important;
+}
+
+   .iframe-modal__container {
+    width: 60% !important;
+    max-width: 100%;
+    min-width: 50%;
+}
+
+   .slds-modal__footer {
+    background-color: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-style: none;
+}
+
+   .publishBoxTitle {
+    width: 100%;
+    background: #6699CC;
+    height: 20%;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+   .publishBoxContent {
+    height: 60%;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding: 10px 10px 0px 10px; */
+    font-size: medium;
+    font-weight: 400;
+    padding: 5% 7%;
+}
+
+   .publishBoxButton {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+   .boxContentIframe {
+    height: 80%;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 10px 0px 10px;
+}
+
+   .MainIframe {
+    position: relative;
+    width: 60%;
+    height: 65%;
+    margin: auto;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+   .boxYesButton,
+   .boxNoButton {
+    border-radius: 7px;
+    border: navajowhite;
+    width: 6rem;
+    height: 1.7rem;
+    font-size: medium;
+    font-weight: 400;
+}
+
+   .boxYesButton {
+    background: #6699CC;
+    color: white;
+}
+
+   .boxNoButton {
+    background-color: #E6E7E9;
+    color: black;
+}
+
+  .myBtn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    transition: box-shadow 0.4s ease;
+    background: #4610f5;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 1.7rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+  .myBtn span {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease;
+}
+
+   .boxContentIframe .iframe {
+    width: 100vw;
+    height: 100vh;
+}
+
+   .codeIcons {
+    margin-right: 10px;
+}
+
+   .mainPublishLightBox {
+    position: relative;
+    width: 30%;
+    height: 30%;
+    margin: auto;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+   .lightBoxSection {
+    /* height: 16rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+   .pm-ftr-rm-div {
+    height: 70px;
+    padding: inherit;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+   .pm-dtl {
+    font-size: medium;
+    font-weight: 400;
+    align-items: center;
+}
+
+   .pm-ttl {
+    font-size: medium;
+    font-weight: 400;
+    align-items: center;
+    padding: inherit;
+}
+
+@media only screen and (max-width:1669px) {
+       .iframeCode {
+        line-height: 3rem;
+    }
+}
+
+@media only screen and (max-width:1550px) {
+       .iframeCode {
+        line-height: 3rem;
+    }
+       .LeftBar {
+        width: 20%;
+    }
+       .PublishForm {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width:1400px) {
+       .publish-modal__container {
+        width: 40% !important;
+    }
+       .mainPublishLightBox {
+        position: relative;
+        width: 40%;
+        height: 50%;
+        margin: auto;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+       .MainIframe {
+        position: relative;
+        width: 70%;
+        height: 80%;
+        margin: auto;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+       .editFormContent {
+        height: 20%;
+    }
+       .verticalTab {
+        width: 30%;
+    }
+       .EditForm {
+        width: 70%;
+        left: 30%
+    }
+       .formTitle {
+        margin-bottom: 3%;
+        margin-top: 3%;
+    }
+       .formTitleHeader {
+        font-size: 1.5rem;
+    }
+       .fieldDiv2 {
+        display: none;
+        left: 46px;
+        width: 27%;
+        z-index: 10;
+        scroll-behavior: smooth;
+        overflow: scroll;
+        overflow: scroll;
+        height: 100vh;
+        padding: 0 0 10rem 0;
+    }
+       .codeCopySection,
+       .iframeCode {
+        background: #EBEBEB;
+        border-radius: 15px;
+        height: 12rem;
+        line-height: 2em;
+        display: flex;
+        justify-content: center;
+    }
+       .codeCopySectionQr {
+        border-radius: 15px;
+        height: 10rem;
+        line-height: 2em;
+        display: flex;
+        justify-content: center;
+    }
+       .lightBoxSection {
+        height: 16rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+       .copyCodeButton button {
+        border-radius: 10px;
+        border: none;
+        background-color: #6699CC;
+        width: 15%;
+    }
+       .linkToFormText .para {
+        background: #EBEBEB;
+        margin: 5px 10px;
+        padding: 10px;
+    }
+       .linkToFormText h2 {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #6699CC;
+    }
+       .linkToFormCode {
+        overflow: hidden;
+        height: 30%;
+        overflow-y: scroll;
+    }
+       .linkToFormCode::-webkit-scrollbar {
+        display: none;
+    }
+       .codestyle {
+        height: 10.5rem;
+    }
+       .formlink {
+        font-weight: normal;
+        height: 10%;
+    }
+       .copiedtext,
+       .copiedUrl {
+        position: absolute;
+        left: 0;
+        top: -6%;
+        right: 0;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-1em);
+        color: #000;
+        transition: all .500s;
+        opacity: 1;
+        transform: translateY(13em);
+        display: none;
+        color: #6699CC;
+        font-size: 16px;
+    }
+       .leftPanelTitle {
+        padding: 30px 0 0 16px;
+    }
+       .formLinkTitle {
+        height: 13%;
+        padding: 30px 0 0 0px;
+    }
+       .linkText {
+        height: 5%;
+    }
+       .PublishForm {
+        width: 77%;
+        padding: 0 5%;
+    }
+       .LeftBar {
+        width: 23%;
+    }
+       .publishUsing {
+        height: 2%;
+    }
+       .introCodeText {
+        display: none;
+    }
+       .mainPublish {
+        position: relative;
+        width: 35%;
+        height: 40%;
+        margin: auto;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+}
+
+@media only screen and (max-width:1102px) {
+       .LeftBar {
+        width: 26%;
+    }
+       .PublishForm {
+        width: 74%;
+    }
+}
+.checkBoxes .slds-form-element__control .slds-radio{
+    border-bottom: 1px solid lightgray;
+    padding: 18px 10px 18px 0;
+}
