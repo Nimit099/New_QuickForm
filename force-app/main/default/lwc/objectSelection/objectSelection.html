@@ -1,0 +1,174 @@
+<!-- ===================================
+# MV Clouds Private Limited
+# Author: Smit Patel
+# Create Date: 01/11/2023
+# Description: User for select an template and then select object for selected templated 
+# Change Version History
+
+Version No.     Author                 Date                  Change Description                      Jira Ticket
+
+1.              Smit Patel           01/11/2023                Object Mapping 				         QUIC-0005
+=================================== -->
+<template>
+    <!-- lightning button for open modal window -->
+    <!-- <lightning-button variant="brand"
+       label="Template"
+       title="Template"
+       onclick={openModal}
+       class="slds-m-left_x-small">
+    </lightning-button> -->
+
+    <!--Use template if:true to display/hide popup based on isModalOpen value--> 
+    <template if:true={errorModal}>
+        <div>    
+        <div class="main">
+            <div class="slds-notify_container slds-is-relative">
+                  <div class="slds-notify slds-notify_toast toast_shadow" role="status">
+                        <div style=" width:1px; height:40px; border-radius: 10px;"></div>
+                        <span class="slds-icon_container slds-icon-utility-success slds-icon-utility-success  slds-no-flex slds-align-top" style="margin:5px 10px; font-size:24px;">
+                            <div style="height:26px; width:26px; background-color:rgb(252, 8, 8); border-radius:50%; color:white; margin:3px 0; padding:0 9px; font-weight:bold;">!</div>
+                        </span>
+                        <div class="slds-notify_content" style="display:block;">                        
+                            <h1 style="font-weight:bold;">Uh oh, something went wrong</h1>
+                            <template if:true={objecterror}>
+                            <h2 class="slds-text-heading_small" >You, can't select the same Object.</h2>
+                            </template>
+                            <template if:true={saveerror}>
+                            <h2 class="slds-text-heading_small" >Please select the object.</h2>
+                            </template>
+                        </div>
+                        <div class="slds-notify__close">
+                              <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick={closeerror} style="margin: 7px 0;">
+                                    <lightning-icon icon-name="utility:close" size="small" variant="inverse" class="my-icon"></lightning-icon>
+                                    <span class="slds-assistive-text">Close</span>
+                              </button>
+                        </div>
+                  </div>
+            </div>
+        </div>
+        </div>
+        </template>
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                
+                <!-- header -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Template</h2>
+                </header>
+
+                <!-- body -->
+                <div class="main-body slds-modal__content slds-p-around_medium">
+
+                    <!-- Template selection page  -->
+                    <div class="main_box">
+                    <div class="main_box_grid">
+                        <div class="grid1 slds-grid slds-gutters">
+                            <div class="inner-grid1 slds-col" onclick={firstTemp}>
+                                <img src={section_One_img}>
+                            </div>
+                            <div class="inner-grid1 slds-col" onclick={secondTemp}>
+                                <img src={section_Two_img}>
+                            </div>
+                            <!-- <div class="inner-grid3 slds-col"></div> -->
+                        </div>
+                        <div class="grid1 slds-grid slds-gutters">
+                            <div class="inner-grid2 slds-col" onclick={thirdTemp}>
+                                <img src={section_Three_img}>
+                            </div>
+                        </div>
+                        <!-- <div class="grid1 slds-grid slds-gutters">
+                            <div class="inner-grid1 slds-col"><img src={section_Four_img}></div>
+                            <div class="inner-grid1 slds-col"><img src={section_Five_img}></div>
+                            <div class="inner-grid1 slds-col"><img src={section_Six_img}></div>
+                        </div> -->
+                    </div>
+
+                    <!-- Object Selection Page -->
+                    <div class="pop_up2">
+                        <div class="grid2">
+                            <!-- Spinner -->
+                            <template if:true={spinnerDataTable}>
+                                <div data-id="spinnerId" class="slds-spinner_container"
+                                    style="overflow: hidden;">
+                                    <div class="spinner-main-div">
+                                        <div class="loader--ripple">
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template> 
+                            <!-- Spinner -->
+                            <template if:true={temp_One}>
+                                <div class="one">
+                                    <div class="one_contener slds-align_absolute-center">
+                                        <lightning-combobox class="slds-size_2-of-6" name="object1" placeholder="Select Object" value={value1}
+                                            onchange={object1} options={options_object1}></lightning-combobox>
+                                    </div>
+                                    
+                                </div>
+                            </template>
+                            <template if:true={temp_Two}>
+                                <div class="two">
+                                    <div class="slds-wrap two_contener ">
+                                        <div class="slds-m-around_medium slds-align_absolute-center">
+                                            <lightning-combobox class="slds-size_2-of-6" name="object2.1" placeholder="Select Object 1"
+                                                value={value1} onchange={object1} options={options_object1}></lightning-combobox>
+                                        </div>
+                                        <div class="two_line"></div>
+                                        <div class="two_child_object slds-align_absolute-center">
+                                            <lightning-combobox class="slds-size_1-of-6" name="object2.2" placeholder=" Select Object 2"
+                                                value={value2} onchange={object2_1} options={options_object2}></lightning-combobox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <template if:true={temp_Third}>
+                                <div class="three">
+                                    <div class="slds-wrap three_contener">
+                                        <div class="slds-m-around_medium slds-align_absolute-center slds-wrap">
+                                            <lightning-combobox class="slds-size_2-of-6 " name="object3.1" placeholder="Selected Object 1"
+                                                value={value1} onchange={object1} options={options_object1}></lightning-combobox>
+                                        </div>
+                                        <div class="three_line_div">
+                                            <div class="three_line_one">
+                                            </div>
+                                            <div class="three_line_two">
+                                            </div>
+                                        </div>
+                                        <div class="slds-wrap slds-grid slds-align_absolute-center three_child_object">
+                                            <lightning-combobox class="three_child_left slds-size_1-of-6" name="Object 3.2.1" placeholder="Selected Object 2"
+                                                value={value2} onchange={object2_1} options={options_object2}></lightning-combobox>
+                                            <div class="slds-size_1-of-6"></div>
+                                            <lightning-combobox class="three_child_right slds-size_1-of-6" name="Object 3.2.2" placeholder="Selected Object 3"
+                                                value={value3} onchange={object2_2} options={options_object2}></lightning-combobox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div> 
+                    </div>
+                   
+                    <div class="bt-center">
+                        <div class="bt">
+                            <input class="qf-standard-button" type="button" value="Previous" name="Previous" />
+                            <input class="qf-standard-button" type="button" value="Save" name="Save" onclick={save} />
+                        </div>
+                    </div> 
+                </div>
+
+                
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+ </template>

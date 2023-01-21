@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>thankyou</fullName>
+    <active>true</active>
+    <label>thankyou</label>
+    <picklistValues>
+        <picklist>Thankyou_Page_Type__c</picklist>
+        <values>
+            <fullName>None</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Redirect to a webpage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Show HTML block</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Show Text</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Show report of User data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Show text%2C then redirect to web page</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

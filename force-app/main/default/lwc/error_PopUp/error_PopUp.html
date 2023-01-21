@@ -1,0 +1,40 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 01-20-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-button variant="brand"
+    label="error"
+    title="error"
+    onclick={openModal}
+    class="slds-m-left_x-small">
+    </lightning-button>
+
+    <template if:true={isModalOpen}>
+    <div>    
+    <div class="main">
+        <div class="slds-notify_container slds-is-relative">
+              <div class="slds-notify slds-notify_toast toast_shadow" role="status">
+                    <div style=" width:1px; height:40px; border-radius: 10px;"></div>
+                    <span class="slds-icon_container slds-icon-utility-success slds-icon-utility-success  slds-no-flex slds-align-top" style="margin:5px 10px; font-size:24px;">
+                        <div style="height:26px; width:26px; background-color:rgb(252, 8, 8); border-radius:50%; color:white; margin:3px 0; padding:0 9px; font-weight:bold;">!</div>
+                    </span>
+                    <div class="slds-notify_content" style="display:block;">                        
+                        <h1 style="font-weight:bold;">Uh oh, something went wrong</h1>
+                        <h2 class="slds-text-heading_small" >Sorry,There was a problem with your submission.</h2>
+                    </div>
+                    <div class="slds-notify__close">
+                          <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick={closeModal} style="margin: 7px 0;">
+                                <lightning-icon icon-name="utility:close" size="small" variant="inverse" class="my-icon"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                          </button>
+                    </div>
+              </div>
+        </div>
+    </div>
+    </div>
+    </template>
+</template>

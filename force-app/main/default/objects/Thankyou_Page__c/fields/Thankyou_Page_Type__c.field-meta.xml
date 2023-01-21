@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Thankyou_Page_Type__c</fullName>
+    <businessStatus>Active</businessStatus>
+    <externalId>false</externalId>
+    <label>Thankyou Page Type</label>
+    <required>false</required>
+    <securityClassification>Public</securityClassification>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Show Text</fullName>
+                <default>false</default>
+                <label>Show Text</label>
+            </value>
+            <value>
+                <fullName>Redirect to a webpage</fullName>
+                <default>false</default>
+                <label>Redirect to a webpage</label>
+            </value>
+            <value>
+                <fullName>Show text, then redirect to web page</fullName>
+                <default>false</default>
+                <label>Show text, then redirect to web page</label>
+            </value>
+            <value>
+                <fullName>Show report of User data</fullName>
+                <default>false</default>
+                <label>Show report of User data</label>
+            </value>
+            <value>
+                <fullName>Show HTML block</fullName>
+                <default>false</default>
+                <label>Show HTML block</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
