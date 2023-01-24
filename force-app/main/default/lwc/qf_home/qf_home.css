@@ -229,12 +229,14 @@
     z-index: 1;
     top: 0;
     font-weight: bold;
+    font-size: 16px;
 }
 
  .tableBody {
     display: flex;
     height: 50px;
     align-items: center;
+    font-size: 16px;
 }
 
  .tableBody:nth-child(odd) {
@@ -296,7 +298,7 @@
     text-align: start;
 }
 
- .dataTableMain::-webkit-scrollbar {
+ .dataTable::-webkit-scrollbar {
     width: 0;
     background: transparent;
 }
@@ -725,6 +727,7 @@
     overflow: hidden;
     border-radius: 18px 18px 18px 18px;
     width: 100%;
+    font-family: 'Roboto', sans-serif !important;
 }
 
  .slds-template__container {
@@ -784,7 +787,6 @@
 
  .dataTable {
     border: 0.2px solid lightgray;
-    margin-top: 1.5%;
     height: 100%;
     overflow-y: scroll
 }
@@ -804,15 +806,17 @@
 } */
 
  .footerCss {
-    position: absolute;
+    /* position: absolute; */
     color: #6699CC;
+    width: 12%;
     border-radius: 16px;
     padding: 5px 0;
     text-align: center;
     font-size: 0.9rem;
     background: #FFFCFC;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    bottom: 15px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    /* bottom: 17px; */
+    /* left: 83.5%; */
 }
 
  .searchBoxDiv.slds-input-has-icon .slds-input__icon {
@@ -915,7 +919,7 @@
 }
 
  .formButtons .slds-input-has-icon_left .slds-input__icon {
-    left: 27px;
+    left: -18px;
 }
 
  .totalForms {
@@ -925,12 +929,31 @@
  .desertImg {
     margin-top: 10%;
 }
-
+.table{
+    height: 78%;
+}
+@media screen and (min-width:1400px) {
+    .uppersection{
+        height: 8%;
+    }
+    .table{
+        height: 73%;
+        margin: 1.1% 0;
+    }
+}
+@media screen and (min-width:1800px){
+    .table{
+        height: 78%;
+        margin: 0;
+    }
+}
 @media screen and (max-width:1400px) {
      .dataTable {
-        height: 90%;
+        margin-top: 1.1%;
     }
-
+    .table{
+        height: 69.54%;
+    }
      .folderSection {
         width: 25%;
     }
@@ -947,6 +970,12 @@
     }
     .mainFormTitle{
         width: 69%;
+    }
+    .rename_input{
+        width: 75% !important;
+    }
+    .container{
+        top: 2px !important;
     }
 }
 
@@ -1137,6 +1166,82 @@
     background-color: rgb(119, 163, 206);
     box-shadow: rgb(0 0 0 / 25%) 0px 4px 4px 0px;
 }
+.titlename{
+    display: flex;
+}
+.right{
+    width: 24px;
+    height: 25px;
+    background-color: #6699CC;
+    margin: 22px 2px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wrong{
+    width: 24px;
+    height: 25px;
+    background-color: #455a64;
+    margin: 22px 2px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.new_form{
+    display: flex;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    justify-content: center;
+    align-items: center;
+    width: 14%;
+    height: 31px;
+    gap: 10px;
+    border-radius: 16px;
+    cursor: pointer;
+    color: #6699CC;;
+}
+.rename_input{
+    width: 77%;
+     margin-bottom: 23px;
+}
+.container{
+    position: relative;
+    top: 3px;
+}
+.rename_div{
+    display: flex;
+    align-items: center;
+}
+.deletecontent{
+    /* height: auto; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 7px 9px rgb(0 0 0 / 25%) !important;
+    border-radius: 25px;
+    width: 70%;
+    background-color: white;
+}
+.deleteicon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #6699CC;
+    width: 101px;
+    height: 100px;
+    border-radius: 100%;
+}
+.deletedescription{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+    font-size: 15px;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 400;
+}
 
 
 
@@ -1206,11 +1311,12 @@ lightning-button{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 45px;
+    gap: 4px;
     font-size: 13px;
     margin: 15px 25px;
 }
 .help{
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1219,10 +1325,30 @@ lightning-button{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    /* gap: 5px;
+    color: #6699CC;
+    border-radius: 16px;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    background: #FFFCFC;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    bottom: 15px;
+    position: relative;
+    top: 3px;
+    right: 1.5%; */
+    width: 10%;
 }
 .help{
-    width: 20px;
+    width: 10%;
+    gap: 5px;
+    color: #6699CC;
+    border-radius: 16px;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    background: #FFFCFC;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
 .crossIcon{
     left: 92%;
@@ -1231,3 +1357,72 @@ lightning-button{
     position: absolute;
 }
 /* =========================     Spinner Sarts      =========================== */
+
+/* ========================== Delete Popup ============================= */
+.slds-modal__container{
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+.deleteheader {
+    font-size: 2rem;
+}
+.slds-modal__header {
+    background-color: rgb(102, 153, 204);
+    color: white;
+    font-weight: 500;
+    border: 0px;
+}
+.confirm-message {
+    font-size: x-large;
+    font-weight: bold;
+    font-family: 'Roboto',sans-serif;
+    align-items: flex-end;
+    /* padding: inherit; */
+    padding-top: 20px;
+    padding-bottom: 4px;
+}
+.deletefooter {
+    height: 70px;
+    padding: inherit;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.yes-btn {
+    height: 40px;
+    width: 100px;
+    border-radius: 101px;
+    justify-content: center;
+    background: rgb(102, 153, 204) !important;
+}
+.no-btn {
+    height: 40px;
+    width: 100px;
+    border-radius: 101px;
+    justify-content: center;
+    /* background: rgb(102, 153, 204) !important; */
+    border-color: #E6E7E9;
+}
+.yes-text {
+    /* margin-left: 40px; */
+    font-size: medium;
+    color: white;   
+}
+.no-text {
+    /* margin-left: 40px; */
+    font-size: medium;
+    color: rgb(102, 153, 204);
+}
+/* ========================== Delete Popup ============================= */
+/* ==================== Error toast =======================  */
+.main{
+    height: 10px;
+}
+
+.toast_shadow {
+    box-shadow: 1px 2px 4px 0px #888888;
+    border-radius: 3px;
+    background: #FFCCCB;
+}
+/* ==================== Error toast =======================  */

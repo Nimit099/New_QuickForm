@@ -1,4 +1,32 @@
 <template>
+
+    <!-- ============== error toast=========== -->
+    <template if:true={error_toast}>
+        <div>    
+        <div class="main">
+            <div class="slds-notify_container slds-is-relative">
+                  <div class="slds-notify slds-notify_toast toast_shadow" role="status">
+                        <div style=" width:1px; height:40px; border-radius: 10px;"></div>
+                        <span class="slds-icon_container slds-icon-utility-success slds-icon-utility-success  slds-no-flex slds-align-top" style="margin:5px 10px; font-size:24px;">
+                            <div style="height:26px; width:26px; background-color:rgb(252, 8, 8); border-radius:50%; color:white; margin:3px 0; padding:0 9px; font-weight:bold;">!</div>
+                        </span>
+                        <div class="slds-notify_content" style="display:block;">                        
+                            <h1 style="font-weight:bold;">Uh oh, something went wrong</h1>
+                            <h2 class="slds-text-heading_small" >Please Enter Name</h2>
+                        </div>
+                        <div class="slds-notify__close">
+                              <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick={deleteno} style="margin: 7px 0;">
+                                    <lightning-icon icon-name="utility:close" size="small" variant="inverse" class="my-icon"></lightning-icon>
+                                    <span class="slds-assistive-text">Close</span>
+                              </button>
+                        </div>
+                  </div>
+            </div>
+        </div>
+        </div>
+        </template>
+        <!-- ============== error toast=========== -->
+
     <!-- Main Form section -->
     <div
     class="slds-col slds-size_1-of-1 slds-small-size_9-of-12  slds-medium-size_9-of-12  slds-large-size_8-of-12 mainSection">
@@ -9,14 +37,14 @@
     </div>
 
     <!-- search box and create form buttons -->
-    <div class="slds-grid slds-wrap slds-grid_align-spread" style="height:10%;">
+    <div class="slds-grid slds-wrap slds-grid_align-spread uppersection" >
         <!-- Search box -->
-        <div class="slds-col slds-medium-size_4-of-12 slds-size_1-of-1 slds-large-size_4-of-12">
+        <div class="slds-col slds-medium-size_4-of-12 slds-size_1-of-1 slds-large-size_3-of-12">
             <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left searchBoxDiv">
                 <img src={searchicon} class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default searchIcon">
                 
                 <lightning-input disabled={disableSearchBox} data-id="SearchBox" onchange={search}
-                    name="enter-search" label="" type="search" class="searchBox" placeholder="Search for forms"
+                    name="enter-search" label="" type="text" class="searchBox" placeholder="Search for forms"
                     value={searchkey} autocomplete="off" ></lightning-input>
 
 
@@ -32,11 +60,12 @@
                         class="formiconsmargin slds-button "></lightning-button>
                 </div> -->
 
-                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left alf-btn"
-                    style="margin-left: 10px;">
-                    <img src={addicon} class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default">
-                    <lightning-button name="allform" label="New Form" onclick={showAllForms}
-                        class="allFormButtons slds-button " ></lightning-button>
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left alf-btn new_form"
+                    style="margin-left: 10px;" onclick={renameForm}>
+                    <img src={addicon} class="" style="height: 16px; margin-top: 0.1px;">
+                    <p class="allFormButtons">New Form</p>
+                    <!-- <lightning-button name="allform" label="New Form" onclick={showAllForms}
+                        class="allFormButtons slds-button " ></lightning-button> -->
                 </div>
             </div>
         </div>
@@ -44,7 +73,7 @@
 
     <template if:true={bNoRecordsFound}>
 
-            <div style="height:72%">
+            <div class="table">
                 <template if:true={NoRecordsFound}>
             
                         <!-- data table start-->
@@ -52,7 +81,6 @@
                         <div class="dataTable">
                             <div>
                                 <template if:true={spinnerDataTable}>
-
                                     <div data-id="spinnerId" class="slds-spinner_container"
                                         style="overflow: hidden;">
                                         <div class="spinner-main-div">
@@ -82,8 +110,9 @@
                                             {index}
                                         </div>
                                         <div class="tableTitleCol">
-                                            <div class="slds-truncate" style="cursor:pointer;">
-                                                <lightning-formatted-text value={obj.Name}></lightning-formatted-text>
+                                            <div class="slds-truncate titlename" data-id={obj.Id} data-name={obj.Name} style="cursor:pointer;"  ondblclick={new_rename}>
+                                                <div><lightning-formatted-text value={obj.Name} class="slds-col" data-id={obj.Id}></lightning-formatted-text></div>
+                                                <div class="slds-col slds-grid slds-wrap rename_div" data-name={obj.Id} style ="display: none;"><lightning-input type="text" value={newFormName} data-id={obj.Id} onchange={rename} onkeypress={key} onclick={insideClick} class="rename_input"></lightning-input><div class="right" onclick={renameForm}><img src={right} alt=""></div><div class="wrong" onclick={cancleRenameForm}><img src={cross} alt=""></div></div>
                                             </div>
                                         </div>
                                         <div class="tableStatusCol">
@@ -119,15 +148,15 @@
                                                 name={obj.Id} value={obj.Name} data-id={obj.Id}
                                                 onselect={handleSelectAction} menu-alignment="auto">
                                                 
-                                                <lightning-menu-item value="Rename" label="Rename"
-                                                    prefix-icon-name="utility:edit" ></lightning-menu-item>
+                                                <!-- <lightning-menu-item value="Rename" label="Rename"
+                                                    prefix-icon-name="utility:edit" ></lightning-menu-item> -->
                                                 <lightning-menu-item value="Edit" label="Edit"
                                                     prefix-icon-name="utility:edit_form"></lightning-menu-item> 
                                                 <lightning-menu-item value="Delete" label="Delete"
                                                     prefix-icon-name="utility:delete" ></lightning-menu-item>
-                                                <lightning-menu-item value="Preview" label="Preview"
+                                                <!-- <lightning-menu-item value="Preview" label="Preview"
                                                     prefix-icon-name="utility:preview"
-                                                    class="actionButton-second" ></lightning-menu-item>
+                                                    class="actionButton-second" ></lightning-menu-item> -->
                                             </lightning-button-menu>
                                         </div>
                                     </div>
@@ -140,66 +169,62 @@
 
     <!-- Footer  -->
     <div class="slds-col slds-size_1-of-1 footer" style="height:9%;">
-        <div class="help_div">
-            <div class="help">
-                <img src={helpIcon} alt="" class="help">
-                <p>Help</p>
-            </div>
-            <div class="feedback">
-                <img src={feedbackIcon} alt="" class="help">
-                <p>Give Feedback</p>
-            </div>
-        </div>
-        <template if:true={bNoRecordsFound}>
-                <div class="slds-grid slds-grid_align-spread">
-                    <div class="slds-col slds-size_6-of-12"></div>
-                    <div class="slds-col slds-size_2-of-12 footerCss totalForms">
+        
+        <!-- <template if:true={bNoRecordsFound}> -->
+                <div class="slds-grid" style="gap: 10px;">
+                    <div class="help  slds-col">
+                        <img src={helpIcon} alt="" class="feedback" style="width: 8%;">
+                        <p>Help</p>
+                    </div>
+                    <div class="feedback help slds-col" style="margin-right: 63%;">
+                        <img src={feedbackIcon} alt="" class="feedback">
+                        <p>Give Feedback</p>
+                    </div>
+                    <!-- <div class="slds-col slds-size_6-of-12"></div> -->
+                    <div class="slds-col footerCss totalForms">
                         Total Forms : {count}
                     </div>
                 </div>
-        </template>
+        <!-- </template> -->
     </div>
 </div>
 
-    <!-- ========================= [ Rename Form ] Button click  strat=========================-->
-
-    <template if:true={isOpenRenameForm}>
-        <div>
-            <section data-id="rename_Form" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true"
-                aria-describedby="ModalBody" class="slds-modal slds-fade-in-open">
+    <template if:true={deletepopup}>
+        <template if:true={spinnerdelete}>
+            <div data-id="spinnerId" class="slds-spinner_container"
+                style="overflow: hidden;">
+                <div class="spinner-main-div">
+                    <!-- <div class="loader--ripple">
+                        <div></div>
+                        <div></div>
+                    </div> -->
+                </div>
+            </div>
+        </template>
+        <div class="deletepopup">
+            <section role="dialog" tabindex="-1" aria-labelledby="ModalHeading"
+                aria-modal="true" aria-describedby="ModalBody" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container">
-                    <header class="slds-modal__header">
-                        <div class="header">
-                            <h2 id="ModalHeading">Rename Form</h2>
+                    <!-- <header class="slds-modal__header">
+                        <div class="deleteheader">
+                            <h2>Are you sure?</h2>
                         </div>
-                    </header>
-                    <div class="slds-modal__content slds-p-around_medium" id="ModalBody">
-                        <div class="pm-ttl">
-                            Please Enter New Name For The <b> {formname} </b> Form
+                    </header> -->
+                    <div class=" slds-p-around_large deletecontent" data-id="ModalBody">
+                        <div class="deleteicon"><img src={bin} alt=""></div>
+                        <div class="confirm-message">
+                           Do you want to delete?
                         </div>
-                        <div class="title slds-grid slds-wrap pm-dtl" id="renameTextField" style="padding: inherit;">
-                            <div class="slds-col slds-size_3-of-12">
-                                <span><abbr class="slds-required" title="required">* </abbr>New Name</span>
-                            </div>
-                            <div class="slds-col slds-size_1-of-12 pm-cl">
-                                <span>:</span>
-                            </div>
-                            <div class="slds-col slds-size_8-of-12">
-                                <lightning-input variant="label-hidden" value={newFormName}
-                                    placeholder="Enter New Name" required="true" onchange={rename}
-                                    message-when-value-missing="Please Fill the Details"></lightning-input>
-                            </div>
+                        <div class="deletedescription">
+                          <p>  This process cannot be undone ! </p>
                         </div>
-                        <div class="footer pm-ftr-rm-div">
-                            <lightning-button variant="brand" label="Rename" disabled={disableRenameFormBtn}
-                                onclick={renameForm} ></lightning-button>
-                            <lightning-button label="Cancel" onclick={cancleRenameForm} ></lightning-button>
+                        <div class="deletefooter">
+                            <button class="slds-button yes-btn" onclick={deleteyes}><p class="yes-text">Yes</p></button>
+                            <button class="slds-button no-btn" onclick={deleteno}><p class="no-text">No</p></button>
                         </div>
                     </div>
                 </div>
             </section>
-            <div data-id="ModalBackdrop_renameForm" class="slds-backdrop slds-backdrop_open"></div>
         </div>
-        </template>
-    <!-- ========================= [ Rename Form ] Button click  finished=========================-->
+    </template>
 </template>

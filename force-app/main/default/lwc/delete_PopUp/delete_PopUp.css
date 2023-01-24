@@ -1,0 +1,96 @@
+.header {
+    font-size: 2rem;
+}
+
+.slds-modal__header {
+    background-color: rgb(102, 153, 204);
+    color: white;
+    font-weight: 500;
+    border: 0px;
+}
+
+.confirm-message {
+    font-size: medium;
+    font-weight: 400;
+    align-items: center;
+    padding: inherit;
+}
+
+.footer {
+    height: 70px;
+    padding: inherit;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+/* 
+.footer .slds-button_brand {
+    background-color: rgb(102, 153, 204);
+    color: white;
+    font-weight: 500;
+} */
+/* .slds-modal__footer {
+    padding-bottom: 3% !important;
+    background: white;
+} */
+
+/* .footer .slds-button {
+    font-size: medium !important;
+    border-radius: 10px;
+    width: 6rem;
+}
+
+.footer .slds-button_brand {
+    background: rgb(102, 153, 204);
+    font-weight: 400;
+    border-color: rgb(102, 153, 204);
+    margin-right: 15px;
+}
+
+.footer .slds-button_neutral {
+    background: rgb(230, 231, 233);
+    font-weight: 400;
+    color: black;
+} */
+
+
+.yes-btn {
+    /* font-size: medium !important; */
+    height: 35px;
+    width: 100px;
+    border-radius: 10px;
+    /* width: 6rem; */
+    background: rgb(102, 153, 204) !important;
+    margin-right: 20px;
+}
+
+.no-btn {
+    height: 35px;
+    width: 100px;
+    border-radius: 10px;
+    /* background: rgb(102, 153, 204); */
+    font-weight: 400;
+    border-color: #E6E7E9;
+    /* margin-right: 15px; */
+}
+
+.yes-text {
+    /* align-items: center; */
+    margin-left: 40px;
+    font-size: medium;
+    color: white;
+    
+}
+
+.no-text {
+    /* align-items: center; */
+    margin-left: 40px;
+    font-size: medium;
+    color: rgb(102, 153, 204);
+    /* margin-left: 40px; */
+}
+/* .footer .slds-button_neutral {
+    background: rgb(230, 231, 233);
+    font-weight: 400;
+    color: black;
+} */
