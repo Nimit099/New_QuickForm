@@ -71,6 +71,7 @@
     width: 80%;
     background-color: #fff;
     margin: auto;
+    border-radius: 20px;
 }
 
   .thanksEditButton {
@@ -118,6 +119,7 @@
     width: 115px;
     height: 35px;
     margin: 1%;
+    border-radius: 20px;
 }
 
   .saveBtn {

@@ -36,5 +36,9 @@
         <members>*</members>
         <name>CustomObject</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>CustomMetaData</name>
+    </types>
     <version>56.0</version>
 </Package>

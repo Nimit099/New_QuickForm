@@ -1,0 +1,111 @@
+.bar{
+    background-color: #6699CC;
+    display: flex;
+    flex-direction: column;
+    width: 4%;
+    padding-top: 2%;
+    border-top-left-radius: 6vh;
+    border-bottom-left-radius: 6vh;
+    height: 100%;
+    font-size: 12px;
+    color: white;
+    /* gap: 2%; */
+}
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    height: 9%;
+}
+.field{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px;
+    height: 9%;
+}
+.design{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    height: 9%;
+}
+.notification{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    height: 9%;
+}
+.thankyou{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    height: 9%;
+}
+.object{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    height: 9%;
+}
+.preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    height: 9%;
+}
+.publish{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    height: 9%;
+}
+@media screen and (max-width:1700px) {
+    .home_icon{
+        width: 50%;
+    }
+    .field_icon{
+        width: 50%;
+    }
+    .design_icon{
+        width: 50%;
+    }
+    .notification_icon{
+        width: 50%;
+    }
+    .thankyou_icon{
+        width: 50%;
+    }
+    .object_icon{
+        width: 50%;
+    }
+    .preview_icon{
+        width: 50%;
+    }
+    .publish_icon{
+        width: 50%;
+    }
+    .bar{
+        font-size: 8px;
+    }
+}
+@media screen and (min-width: 1440px) and (max-width: 1650px) {
+    .bar{
+        font-size: 9px;
+    }
+}

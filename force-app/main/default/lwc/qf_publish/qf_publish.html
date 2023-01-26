@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 01-26-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
     <!-- =========[Start Popup Modal] =======================-->
     <!-- [Text Box] -->
@@ -165,11 +172,13 @@
         <div class="LeftBar slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_2-of-12 slds-p-left_medium slds-p-right_large">
             <!-- [Title] -->
             <div>
-                <h1 class="leftPanelTitle  ">PUBLISHMENT</h1>
+                <h1 class="leftPanelTitle">PUBLISHMENT</h1>
             </div>
             <!-- [Checkboxes] -->
             <div class="publishCheckboxes">
-                <lightning-radio-group class='checkBoxes slds-form-element__control slds-radio' onchange={k} name="radioGroup" options={option} value={} type="radio" ></lightning-radio-group>
+                <lightning-radio-group class='checkBoxes' onclick={publishment}  name="radioGroup" options={option} value={} type="radio" ></lightning-radio-group>
+                <!-- <lightning-radio-group name="radioGroup" onchange={k} options={option} value={} type="radio" ></lightning-radio-group> -->
+                <!-- <input type="radio" name="" value={option} style="margin-right: 5px;" > -->
             </div> 
             <!-- [Start light box accordions] -->
             <!-- <aura:if isTrue="{!v.showLightBoxCode}"> -->
@@ -199,15 +208,16 @@
             <div class=" linkText ">
                 <p>This way of publishing your form is perfect if you want to handle a small amount of code or if you want to directly invite somebody to view your form.</p>
             </div>
+
             <!-- [Form URL and copy button to copy url directly to clipboard] -->
             <!-- <aura:if isTrue="{!v.site_deactivate}"> -->
                 <template if:true={trued8}>
-                <div class="formlink ">
-                    <input type="link" data-id="urlinput" value="" id="myInput" readonly={trued} class="inputBox" />
-                    <img src="" class="iconsImage" id="menuItems" title='copy' onclick={k} data-id="buttonId" />
-                    <span class="urlCopied" aria-hidden="true">Copied</span>
-                </div>
-            </template>
+                    <div class="formlink ">
+                        <input type="link" data-id="urlinput" value="" id="myInput" readonly={trued} class="inputBox" />
+                        <img src={copy_Icon} class="iconsImage" id="menuItems" title='copy' onclick={k} data-id="buttonId" />
+                        <span class="urlCopied" aria-hidden="true">Copied</span>
+                    </div>
+                </template>
 
             <!-- [Aura code, copy button , description etc... ] -->
             <!-- <aura:if isTrue="{!v.showAuraCode}"> -->
@@ -238,8 +248,14 @@
                         <!-- </p> -->
                     </div>
 
-                    <lightning-button variant="brand" label="Copy Code" title="Copy Code" onclick={k} class="runcodeicon slds-m-vertical_medium" ></lightning-button>
-                    <span class="copiedtext" aria-hidden="true">Copied</span>
+                    <!-- <lightning-button variant="brand" label="Copy Code" title="Copy Code" onclick={k} class="runcodeicon slds-m-vertical_medium" ></lightning-button>
+                    <span class="copiedtext" aria-hidden="true">Copied</span> -->
+                    <div class="bt-center">
+                        <div class="bt">
+                            <input class="std-btn" type="button" value="Copy Code" name="Copy Code" /> 
+                            <span class="copiedtext" aria-hidden="true">Copied</span>
+                        </div>
+                    </div>
                 </div>
                 </template>
 
@@ -267,8 +283,14 @@
                             &lt;/lightning-layout-item&gt;
                         <!-- </p> -->
                     </div>
-                    <lightning-button variant="brand" label="Copy Code" title="Copy Code" onclick={k} class="runcodeicon slds-m-vertical_medium"></lightning-button>
-                    <span class="copiedtext" aria-hidden="true">Copied</span>
+                    <!-- <lightning-button variant="brand" label="Copy Code" title="Copy Code" onclick={k} class="runcodeicon slds-m-vertical_medium"></lightning-button>
+                    <span class="copiedtext" aria-hidden="true">Copied</span> -->
+                    <div class="bt-center">
+                        <div class="bt">
+                            <input class="std-btn" type="button" value="Copy" name="Copy" /> 
+                            <!-- <span class="copiedtext" aria-hidden="true">Copied</span> -->
+                        </div>
+                    </div>
                 </div>
             <!-- </aura:if> -->
             </template>
@@ -291,11 +313,15 @@
                             &lt;iframe src="{}" transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
                             <br />&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
                             <br />&lt;/iframe&gt;
-
                         </p>
                     </div>
-                    <lightning-button variant="brand" label="Copy Code" title="Copy Code" onclick={k} class="runcodeicon slds-m-vertical_medium" ></lightning-button>
-                    <span class="copiedtext" aria-hidden="true">Copied</span>
+                    
+                </div>
+                <div class="bt-center">
+                    <div class="bt">
+                        <input class="std-btn" type="button" value="Copy" name="Copy" /> 
+                        <!-- <span class="copiedtext" aria-hidden="true">Copied</span> -->
+                    </div>
                 </div>
             <!-- </aura:if> -->
             </template>

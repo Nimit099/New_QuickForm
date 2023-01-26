@@ -252,6 +252,8 @@
     overflow: hidden;
     width: 22%;
     padding-left: 3%;
+    display: flex;
+    justify-content: space-between;
 }
 
  .tableStatusCol {
@@ -788,7 +790,8 @@
  .dataTable {
     border: 0.2px solid lightgray;
     height: 100%;
-    overflow-y: scroll
+    overflow-y: scroll;
+    border-radius: 20px;
 }
 
 /*  .dataTable::-webkit-scrollbar {
@@ -927,11 +930,22 @@
 }
 
  .desertImg {
-    margin-top: 10%;
+    /* max-width: 40%;
+    margin: 7.6% 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 38px; */
 }
 .table{
     height: 78%;
 }
+.norecordfound{
+    height: 78%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (min-width:1400px) {
     .uppersection{
         height: 8%;
@@ -940,9 +954,17 @@
         height: 73%;
         margin: 1.1% 0;
     }
+    .norecordfound{
+        height: 73%;
+        margin: 1.1% 0;
+    }
 }
 @media screen and (min-width:1800px){
     .table{
+        height: 78%;
+        margin: 0;
+    }
+    .norecordfound{
         height: 78%;
         margin: 0;
     }
@@ -966,7 +988,7 @@
     }
 
      .desertImg {
-        margin-top: 4%;
+        /* margin-top: 4%; */
     }
     .mainFormTitle{
         width: 69%;
@@ -978,8 +1000,6 @@
         top: 2px !important;
     }
 }
-
-
 /* 
 // ================================================== */
 
@@ -1242,7 +1262,10 @@
     font-family: 'Roboto',sans-serif;
     font-weight: 400;
 }
-
+.editpen{
+    display: none;
+    cursor: pointer;
+}
 
 
 
@@ -1325,24 +1348,13 @@ lightning-button{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* gap: 5px;
-    color: #6699CC;
-    border-radius: 16px;
-    padding: 5px 0;
-    text-align: center;
-    font-size: 0.9rem;
-    background: #FFFCFC;
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    bottom: 15px;
-    position: relative;
-    top: 3px;
-    right: 1.5%; */
-    width: 10%;
+    width: 8%;
 }
 .help{
     width: 10%;
     gap: 5px;
-    color: #6699CC;
+    /* color: #6699CC; */      /* Remove comment once button is working*/
+    color: grey;
     border-radius: 16px;
     padding: 5px 0;
     text-align: center;

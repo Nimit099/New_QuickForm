@@ -1,3 +1,29 @@
+.std-btn{
+    height: 34px;
+    width: 110px;
+    margin-right: 15px;
+    border-radius: 30px;
+    background-color: #6699CC;
+    font-size: 15px;
+    color: #ffffff;
+    border: none;
+}
+
+.bt-center{
+    background-color: #ffffff;
+    width: 100%;
+    padding: var(--lwc-spacingMedium,1rem);
+}
+
+.bt{
+    /* width: 100%; */
+    background-color: #ffffff;
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
 .publishCheckboxes {
     padding: 30px 0 0 16px;
 }
@@ -5,6 +31,15 @@
    .checkBoxes,
    .iconsImage {
     cursor: pointer;
+    /* border-bottom: var(--lwc); */
+}
+
+.checkBoxes .slds-form-element__control .slds-radio{
+    /* border-bottom: var(--lwc-BorderBottom, 1px solid lightgray); */
+    border-bottom: 1px solid lightgrey !important;
+    /* padding: var(--lwc-Padding, 18px 10px 18px 0px); */
+    padding: 18px 10px 18px 0px !important;
+    /* padding: 18px 10px 18px 0px !important; */
 }
 
    .publishCheckboxes .slds-form-element__control .slds-radio:last-child {
@@ -46,6 +81,32 @@
     height: 100vh;
     padding: 0 6%;
     /* margin: auto; */
+}
+
+.std-btn{
+    height: 34px;
+    width: 110px;
+    margin-right: 15px;
+    border-radius: 30px;
+    background-color: #6699CC;
+    font-size: 15px;
+    color: #ffffff;
+    border: none;
+}
+
+.bt-center{
+    background-color: #ffffff;
+    width: 100%;
+    padding: var(--lwc-spacingMedium,1rem);
+}
+
+.bt{
+    /* width: 100%; */
+    background-color: #ffffff;
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+
 }
 
    .showModalSection .slds-modal__container {
@@ -95,13 +156,13 @@
     display: none;
 }
 
-   .runcodeicon {
+   /* .runcodeicon {
     border: none;
     border-radius: 10px;
     background-color: #6699CC;
     display: flex;
     margin: 2% auto;
-}
+} */
 
    .slds-button__icon {
     fill: #6699cc;
@@ -125,10 +186,12 @@
     font-size: 1rem;
 }
 
-   .slds-form-element__control .slds-radio {
+   /* .slds-form-element__control .slds-radio {
     border-bottom: 1px solid lightgray;
     padding: 18px 10px 18px 0px
-}
+} */
+
+
 
    .LeftBar {
     background-color: rgba(242, 242, 242, 0.76);
@@ -336,13 +399,13 @@
     display: none;
 }
 
-   .runcodeicon {
+   /* .runcodeicon {
     border: none;
     border-radius: 10px;
     background-color: #6699CC;
     display: flex;
     margin: 2% auto;
-}
+} */
 
    .urlCopied {
     position: relative;

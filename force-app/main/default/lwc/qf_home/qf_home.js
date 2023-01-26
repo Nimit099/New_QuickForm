@@ -19,6 +19,7 @@ import helpIcon from '@salesforce/resourceUrl/helpIcon';
 import right from '@salesforce/resourceUrl/right';
 import cross from '@salesforce/resourceUrl/cross';
 import bin from '@salesforce/resourceUrl/bin';
+import editpen from '@salesforce/resourceUrl/editpen';
 // ALL ICONS OF HOME PAGE [END]
 
 // TO IMPORT USER INFO [START]
@@ -44,6 +45,9 @@ export default class Qf extends LightningElement {
     deletepopup = false;
     spinnerdelete = false;
     error_toast = false;
+    data = false;
+    renamediv;
+    pencheck;
     count;                              // COUNT OF FORMS
     searchkey;                          // SEARCH FORMS
     id;                                 // ID OF FORM WHILE DOING SOME ACTION
@@ -64,6 +68,7 @@ export default class Qf extends LightningElement {
     cross = cross;
     right = right;
     bin = bin;
+    editpen = editpen;
 // ICONS OF HOME PAGE [END] ============
 
 // GET USER NAME [START] 
@@ -85,14 +90,21 @@ export default class Qf extends LightningElement {
     connectedCallback(){
       this.spinnerDataTable = true;
         records().then(result => {
+          
             for (let key in result) {
                 this.count = key;
+                if(this.count > 0){
                 this.PaginationList = result[key];
-                // NoRecordsFound = true;
+                this.data = true;
+                this.bNoRecordsFound = true;
+                }
+                else{
+                  this.bNoRecordsFound = false;
+                }
              }
              this.spinnerDataTable = false;
-		})
-   
+
+  })
     }
 
 // <!-- ===================================
@@ -107,10 +119,19 @@ export default class Qf extends LightningElement {
         search({searchkey : this.searchkey}).then(result => {
           this.i = 1;
           this.spinnerDataTable = false;
+          console.log(result.length);
+
               for (let key in result) {
                 this.count = key;
+                if(this.count > 0){
                 this.PaginationList = result[key];
-                // NoRecordsFound = true;
+                this.data = true;
+                this.bNoRecordsFound = true;
+                }
+                else{
+                  console.log('hii');
+                  this.bNoRecordsFound = false;
+                }
               }
         })
     }
@@ -183,6 +204,7 @@ export default class Qf extends LightningElement {
 // # Description: Used to Cancel Rename
 // =================================== -->
     cancleRenameForm(event){
+      this.renamediv = true;
       document.removeEventListener('click', this.outsideClick);
       if(event.target.dataset.id != this.id){
       this.template.querySelector("div[data-name ="+this.id+"]").style.display='none';
@@ -190,11 +212,7 @@ export default class Qf extends LightningElement {
     }
 
 
-    insideClick(event) {
-      // This event is necessary to not trigger close with an inside click
-      event.stopPropagation();
-      return false;
-  }
+  
 
 // <!-- ===================================
 // # MV Clouds Private Limited
@@ -204,7 +222,7 @@ export default class Qf extends LightningElement {
 // =================================== -->
     renameForm(event){
       // console.log(String.fromCharCode(event.keyCode));
-     
+     this.renamediv = true;
       if( this.keyCode === 13){
       if(this.newFormName.length > 0 && this.newFormName.replaceAll(' ', '').length > 0){
       this.spinnerDataTable = true; 
@@ -257,17 +275,39 @@ export default class Qf extends LightningElement {
       this.error_toast = false;
     }
     new_rename(event){
-      // if(this.id != '' || this.id == undefined || this.id == null){
-      // this.template.querySelector("lightning-formatted-text[data-id ="+this.id+"]").style.display='block';   
-      // this.template.querySelector("div[data-name ="+this.id+"]").style.display='none';
-      // }
-      // else{
-      document.addEventListener('click', this.outsideClick = this.cancleRenameForm.bind(this));
+      
       this.id = event.currentTarget.dataset.id;
       this.newFormName = event.currentTarget.dataset.name;
+      console.log(this.id);
       console.log( event.currentTarget.dataset.name);
+      this.pencheck = true;
+      this.renamediv = true;
       this.template.querySelector("lightning-formatted-text[data-id ="+event.currentTarget.dataset.id+"]").style.display='none';   
       this.template.querySelector("div[data-name ="+event.currentTarget.dataset.id+"]").style.display='flex';
-      // }
+      if(this.pencheck == true)
+      this.template.querySelector("span[data-id ="+event.currentTarget.dataset.id+"]").style.display='none';  
+      document.addEventListener('click', this.outsideClick = this.cancleRenameForm.bind(this));
+      console.log('1');
+      event.stopPropagation();
+      return false; 
       }
+      showpen(event) {
+        if(this.pencheck == false){
+        document.addEventListener('click', this.outsideClick = this.cancleRenameForm.bind(this));
+        this.template.querySelector("span[data-id ="+event.currentTarget.dataset.id+"]").style.display='block'; 
+
+        }
+    }
+    hidepen(event) {
+      this.pencheck = false;
+      this.template.querySelector("span[data-id ="+event.currentTarget.dataset.id+"]").style.display='none'; 
+      if(renamediv == false){
+      this.template.querySelector("div[data-name ="+this.id+"]").style.display='none';
+        this.template.querySelector("lightning-formatted-text[data-id ="+this.id+"]").style.display='block';   
+      }
+  }
+  insideClick(event){
+    event.stopPropagation();
+      return false;
+  }
 }
