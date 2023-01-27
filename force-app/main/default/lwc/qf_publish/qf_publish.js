@@ -12,7 +12,7 @@ export default class Qf_publish extends LightningElement {
     trued4; // proper popup
     trued5; //proper
     trued6;  // Not required
-    trued7 = true; // Required to check css
+    trued7; // Required to check css
     trued8 = true; // Not sure
     trued9 = true;// proper required css
     trued10; // proper required css
@@ -61,9 +61,86 @@ export default class Qf_publish extends LightningElement {
         ]
         // this.template.querySelector('.EndTimeDropDown').value = event.target.value;
     }
+    
+    handleRadioChange(event) {
+        const selectedOption = event.detail.value;
+        //alert('selectedOption ' + selectedOption);
+        if (selectedOption == 'aura'){
+            this.trued9 = true;
+        }else{
+            this.trued9 = false;
+        }
+      
+        
+        if (selectedOption == 'lwc'){
+            this.trued10 = true;
+        }else{
+            this.trued10 = false;
+        }
+        
+ 
+        if (selectedOption == 'iframe'){
+            this.trued11 = true;
+        }else{
+            this.trued11 = false;
+        }
+        
+ 
+        if (selectedOption == 'linkToForm'){
+            this.trued12 = true;
+        }
+        else{
+            this.trued12 = false;
+        }
+      
+        // if (selectedOption == 'QR Code'){
+        //     this.salesforceLwcFieldValue = true;
+        // }
+        // else{
+        //     this.salesforceLwcFieldValue = false;
+        // }
 
-    publishment(){
+        if (selectedOption == 'lightBox'){
+            this.trued13 = true;
+        }
+        else{
+            this.trued13 = false;
+        }
+        
         
     }
+    // publishment(event){
+    //     let Name = event.currentTarget.dataset.name;
+    //     if (Name == 'aura') {
+    //         this.trued9 = true;
+    //         this.trued10 = false;
+
+
+    //     } else if (publishCheckboxes == 'lwc') {
+    //         this.trued9 = false;
+    //         this.trued10 = true;
+    //     }            
+    //     // } else if (Name == 'iframe') {
+            
+
+    //     // } else if (Name == 'linkToForm') {
+            
+
+
+
+
+    //     // } else if (Name == 'lightBox') {
+            
+
+
+    //     // } else if (Name == 'QR Code') {
+            
+
+    //     // } 
+    //     else {
+    //         console.log('else');
+
+    //     }
+    // }
     
 }

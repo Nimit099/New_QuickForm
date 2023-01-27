@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 01-26-2023
+  @last modified on  : 01-27-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -176,7 +176,7 @@
             </div>
             <!-- [Checkboxes] -->
             <div class="publishCheckboxes">
-                <lightning-radio-group class='checkBoxes' onclick={publishment}  name="radioGroup" options={option} value={} type="radio" ></lightning-radio-group>
+                <lightning-radio-group class='checkBoxes'  onchange={handleRadioChange}  name="radioGroup" options={option} value={value} data-name='aura' type="radio" ></lightning-radio-group>
                 <!-- <lightning-radio-group name="radioGroup" onchange={k} options={option} value={} type="radio" ></lightning-radio-group> -->
                 <!-- <input type="radio" name="" value={option} style="margin-right: 5px;" > -->
             </div> 
@@ -315,14 +315,15 @@
                             <br />&lt;/iframe&gt;
                         </p>
                     </div>
+                    <div class="bt-center">
+                        <div class="bt">
+                            <input class="std-btn" type="button" value="Copy" name="Copy" /> 
+                            <!-- <span class="copiedtext" aria-hidden="true">Copied</span> -->
+                        </div>
+                    </div>
                     
                 </div>
-                <div class="bt-center">
-                    <div class="bt">
-                        <input class="std-btn" type="button" value="Copy" name="Copy" /> 
-                        <!-- <span class="copiedtext" aria-hidden="true">Copied</span> -->
-                    </div>
-                </div>
+                
             <!-- </aura:if> -->
             </template>
 
@@ -345,8 +346,13 @@
                         <p class="para">
                             &lt;a href="" target="_blank" &gt;Text &lt;/a&gt;
                         </p>
-                        <lightning-button label="Run Code" variant="brand" onclick={k} class="runcodeicon" ></lightning-button>
-
+                        <!-- <lightning-button label="Run Code" variant="brand" onclick={k} class="runcodeicon" ></lightning-button> -->
+                        <div class="bt-center">
+                            <div class="bt">
+                                <input class="std-btn" type="button" value="Copy" name="Copy" /> 
+                                <!-- <span class="copiedtext" aria-hidden="true">Copied</span> -->
+                            </div>
+                        </div>
 
 
                     </div>
@@ -354,8 +360,13 @@
                         <h2>Image</h2>
                         <!-- <p class="para"> &lt;a href="{}" target="_blank"href="{}" target="_blank"&gt; &lt;img src="https://cdn-main.123contactform.com/images3/contactbutton2.png" &gt; &lt;/a&gt;</p> -->
 
-                        <lightning-button label="Run Code" variant="brand" onclick={k} class="runcodeicon" ></lightning-button>
-
+                        <!-- <lightning-button label="Run Code" variant="brand" onclick={k} class="runcodeicon" ></lightning-button> -->
+                        <div class="bt-center">
+                            <div class="bt">
+                                <input class="std-btn" type="button" value="Copy" name="Copy" /> 
+                                <!-- <span class="copiedtext" aria-hidden="true">Copied</span> -->
+                            </div>
+                        </div>
 
                     </div>
                 </div>

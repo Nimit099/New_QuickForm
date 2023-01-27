@@ -38,16 +38,16 @@ import renameform from '@salesforce/apex/qfhome.renameform'             // RENAM
 
 export default class Qf extends LightningElement {
     PaginationList;                      //LIST OF FORMS
-    
     bNoRecordsFound = true; 
     NoRecordsFound = true;
     spinnerDataTable = false;
     deletepopup = false;
     spinnerdelete = false;
-    error_toast = false;
+    error_toast = true;
     data = false;
+    isModalOpen_2;
     renamediv;
-    pencheck;
+    pencheck = false;
     count;                              // COUNT OF FORMS
     searchkey;                          // SEARCH FORMS
     id;                                 // ID OF FORM WHILE DOING SOME ACTION
@@ -114,13 +114,12 @@ export default class Qf extends LightningElement {
 // # Description: Used to Search Form From the List
 // =================================== -->
     search(event){
-        this.searchkey = event.target.value; 
         this.spinnerDataTable = true;
+        this.searchkey = event.target.value; 
+        console.log(this.spinnerDataTable);
         search({searchkey : this.searchkey}).then(result => {
           this.i = 1;
           this.spinnerDataTable = false;
-          console.log(result.length);
-
               for (let key in result) {
                 this.count = key;
                 if(this.count > 0){
@@ -129,7 +128,6 @@ export default class Qf extends LightningElement {
                 this.bNoRecordsFound = true;
                 }
                 else{
-                  console.log('hii');
                   this.bNoRecordsFound = false;
                 }
               }
@@ -167,21 +165,9 @@ export default class Qf extends LightningElement {
           this.deletepopup =true;
           this.id = event.target.dataset.id;
           this.spinnerdelete = true;
-          // this.spinnerDataTable = true;
-          // deleteform({id : this.id, searchkey : this.searchkey}).then(result => {
-          //     this.PaginationList = result;
-          //     this.spinnerDataTable = false;
-          //     this.count -= 1;
-          // })
+          
         }
           // DELETE FUNCTIONALITY [END]
-
-          // RENAME FUNCTIONALITY [START]
-        // else if(event.detail.value == 'Rename'){
-        //   this.isOpenRenameForm = true;
-        //   this.formname = event.target.value;
-        //   this.id = event.target.dataset.id;          
-        // }
     }
 
 
@@ -194,6 +180,7 @@ export default class Qf extends LightningElement {
     rename(event){
       this.newFormName = event.target.value;  
       this.keyCode = 13; 
+      this.error_toast = false;
     }
 
 
@@ -205,13 +192,12 @@ export default class Qf extends LightningElement {
 // =================================== -->
     cancleRenameForm(event){
       this.renamediv = true;
+      this.pencheck = false;
       document.removeEventListener('click', this.outsideClick);
       if(event.target.dataset.id != this.id){
       this.template.querySelector("div[data-name ="+this.id+"]").style.display='none';
       this.template.querySelector("lightning-formatted-text[data-id ="+this.id+"]").style.display='block'; }
     }
-
-
   
 
 // <!-- ===================================
@@ -221,8 +207,7 @@ export default class Qf extends LightningElement {
 // # Description: Used to Update Form Name
 // =================================== -->
     renameForm(event){
-      // console.log(String.fromCharCode(event.keyCode));
-     this.renamediv = true;
+    
       if( this.keyCode === 13){
       if(this.newFormName.length > 0 && this.newFormName.replaceAll(' ', '').length > 0){
       this.spinnerDataTable = true; 
@@ -232,7 +217,9 @@ export default class Qf extends LightningElement {
           this.template.querySelector("div[data-name ="+this.id+"]").style.display='none';
           this.template.querySelector("lightning-formatted-text[data-id ="+this.id+"]").style.display='block';   
           this.isOpenRenameForm = false;
-          this.spinnerDataTable = false;        
+          this.spinnerDataTable = false;   
+          this.renamediv = true;
+          this.pencheck = false;     
       })
     }
     else{
@@ -242,72 +229,74 @@ export default class Qf extends LightningElement {
     
   }
 }
-    key(event){
-      this.keyCode = event.keyCode;
-      this.renameForm ();
-    }
- // <!-- ===================================
-// # MV Clouds Private Limited
-// # Author: Nimit Shah
-// # Create Date: 09/01/2023
-// # Description: For Index value
-// =================================== -->
-    get index(){
-      if(this.i > this.count){
-        this.i = 1 ;
-      }
-      return this.i++;
-    }
-
-    deleteyes(){
-      this.deletepopup = false;
-      this.spinnerDataTable = true;
-          deleteform({id : this.id, searchkey : this.searchkey}).then(result => {
-                        this.PaginationList = result;
-                        this.count -= 1;
-                        this.spinnerdelete = false;
-                       
-                        this.spinnerDataTable = false;
-                    })
-    }
-    deleteno(){
-      this.deletepopup = false;
-      this.error_toast = false;
-    }
+  
     new_rename(event){
-      
       this.id = event.currentTarget.dataset.id;
       this.newFormName = event.currentTarget.dataset.name;
-      console.log(this.id);
-      console.log( event.currentTarget.dataset.name);
       this.pencheck = true;
       this.renamediv = true;
       this.template.querySelector("lightning-formatted-text[data-id ="+event.currentTarget.dataset.id+"]").style.display='none';   
       this.template.querySelector("div[data-name ="+event.currentTarget.dataset.id+"]").style.display='flex';
-      if(this.pencheck == true)
-      this.template.querySelector("span[data-id ="+event.currentTarget.dataset.id+"]").style.display='none';  
+      if(this.pencheck == true){
+      this.template.querySelector("span[data-id ="+event.currentTarget.dataset.id+"]").style.display='none';  }
       document.addEventListener('click', this.outsideClick = this.cancleRenameForm.bind(this));
-      console.log('1');
       event.stopPropagation();
       return false; 
-      }
-      showpen(event) {
+    }
+
+    showpen(event) {
         if(this.pencheck == false){
         document.addEventListener('click', this.outsideClick = this.cancleRenameForm.bind(this));
         this.template.querySelector("span[data-id ="+event.currentTarget.dataset.id+"]").style.display='block'; 
 
         }
     }
+
     hidepen(event) {
-      this.pencheck = false;
+      // this.pencheck = false;
       this.template.querySelector("span[data-id ="+event.currentTarget.dataset.id+"]").style.display='none'; 
       if(renamediv == false){
       this.template.querySelector("div[data-name ="+this.id+"]").style.display='none';
-        this.template.querySelector("lightning-formatted-text[data-id ="+this.id+"]").style.display='block';   
+      this.template.querySelector("lightning-formatted-text[data-id ="+this.id+"]").style.display='block';   
       }
-  }
+    }
+
   insideClick(event){
     event.stopPropagation();
-      return false;
+    return false;
   }
+  deleteyes(){
+    this.deletepopup = false;
+    this.spinnerDataTable = true;
+        deleteform({id : this.id, searchkey : this.searchkey}).then(result => {
+                      this.PaginationList = result;
+                      this.count -= 1;
+                      this.spinnerdelete = false;
+                      this.spinnerDataTable = false;
+                      let toast_error_msg = 'Form is successfully deleted';
+                      this.error_toast = true;
+                      this.template.querySelector('c-toast-component').showToast('success',toast_error_msg,3000);
+                  })
+  }
+  deleteno(){
+    this.deletepopup = false;
+  }
+
+   // <!-- ===================================
+// # MV Clouds Private Limited
+// # Author: Nimit Shah
+// # Create Date: 09/01/2023
+// # Description: For Index value
+// =================================== -->
+get index(){
+  if(this.i > this.count){
+    this.i = 1 ;
+  }
+  return this.i++;
+}
+
+key(event){
+  this.keyCode = event.keyCode;
+  this.renameForm ();
+}
 }

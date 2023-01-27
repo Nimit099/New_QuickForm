@@ -8,7 +8,7 @@
 // #    1.           Nimit         18/01/2023           Home Page UI 		     QUIC-18, QUIC-27
 // =================================== 
 
-import { LightningElement } from 'lwc';
+import { LightningElement, api } from 'lwc';
 import thankyoulogo from '@salesforce/resourceUrl/Thankyoulogo';
 import records from '@salesforce/apex/qfthankyou.insertrecord';
 import getrecords from '@salesforce/apex/qfthankyou.getthankyoupage';
@@ -23,8 +23,8 @@ export default class Qf_thankyou extends LightningElement {
     textcheck = false;
     richtextcheck = false;
     picklist;
-    currentformid = 'a046D0000056TGHQA';
-    currentthankyouid;
+    @api currentformid = 'a046D0000056tgNQAQ';
+    @api currentthankyouid;
     None = true;
     ThankYou_Text;
     ThankYou_URL;

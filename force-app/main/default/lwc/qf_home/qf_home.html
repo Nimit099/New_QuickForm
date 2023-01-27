@@ -2,28 +2,7 @@
 
     <!-- ============== error toast=========== -->
     <template if:true={error_toast}>
-        <div>    
-        <div class="main">
-            <div class="slds-notify_container slds-is-relative">
-                  <div class="slds-notify slds-notify_toast toast_shadow" role="status">
-                        <div style=" width:1px; height:40px; border-radius: 10px;"></div>
-                        <span class="slds-icon_container slds-icon-utility-success slds-icon-utility-success  slds-no-flex slds-align-top" style="margin:5px 10px; font-size:24px;">
-                            <div style="height:26px; width:26px; background-color:rgb(252, 8, 8); border-radius:50%; color:white; margin:3px 0; padding:0 9px; font-weight:bold;">!</div>
-                        </span>
-                        <div class="slds-notify_content" style="display:block;">                        
-                            <h1 style="font-weight:bold;">Uh oh, something went wrong</h1>
-                            <h2 class="slds-text-heading_small" >Please Enter the Name</h2>
-                        </div>
-                        <div class="slds-notify__close">
-                              <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick={deleteno} style="margin: 7px 0;">
-                                    <lightning-icon icon-name="utility:close" size="small" variant="inverse" class="my-icon"></lightning-icon>
-                                    <span class="slds-assistive-text">Close</span>
-                              </button>
-                        </div>
-                  </div>
-            </div>
-        </div>
-        </div>
+        <c-toast-component></c-toast-component>
         </template>
         <!-- ============== error toast=========== -->
 
@@ -94,10 +73,11 @@
                                 <div class="tableHeader">
                                     <div class="tableIndexCol">INDEX </div>
                                     <div class="tableTitleCol" onclick={sortFormList}>
-                                        <a href="javascript:void(0);"
-                                            class="slds-th__action slds-text-linkreset formTitle">
+                                        <div class="slds-th__action slds-text-linkreset formTitle">
                                             <span class="slds-truncate">TITLE</span>
-                                        </a>
+                                            <lightning-helptext class="helptext" content='To rename the text, move the cursor over it and click the edit icon or double-click it.'></lightning-helptext>
+                                    </div>
+                                        
                                     </div>
                                     <div class="tableStatusCol">STATUS </div>
                                     <div class="tableSubmissionCol">SUBMISSION</div>
@@ -110,11 +90,11 @@
                                             {index}
                                         </div>
                                         <div class="tableTitleCol"  data-id={obj.Id} data-name={obj.Name} onmouseover={showpen} onmouseleave={hidepen} >
-                                            <div class="slds-truncate titlename" data-id={obj.Id} data-name={obj.Name} style="cursor:pointer;"  ondblclick={new_rename}>
-                                                <div><lightning-formatted-text value={obj.Name} class="slds-col" data-id={obj.Id}></lightning-formatted-text></div>
+                                            <div class="slds-truncate titlename " data-id={obj.Id} data-name={obj.Name} style="cursor:pointer;"  ondblclick={new_rename}>
+                                                <div class=""><lightning-formatted-text value={obj.Name} class="slds-col title_name" title={obj.Name} data-id={obj.Id}></lightning-formatted-text></div>
                                                 <div class="slds-col slds-grid slds-wrap rename_div" data-name={obj.Id} style ="display: none;"><lightning-input type="text" value={newFormName} data-id={obj.Id} onchange={rename} onkeypress={key} onclick={insideClick} class="rename_input"></lightning-input><div class="right" onclick={renameForm}><img src={right} alt=""></div><div class="wrong" onclick={cancleRenameForm}><img src={cross} alt=""></div></div>
                                             </div>
-                                            <span class="editpen" data-id={obj.Id} data-name={obj.Name} onclick={new_rename} ><img src={editpen} alt="" ></span>
+                                            <span class="editpen" data-id={obj.Id} data-name={obj.Name} onclick={new_rename} title="Rename" ><img src={editpen} alt="" ></span>
                                         </div>
                                         <div class="tableStatusCol">
                                             <div class="slds-truncate">
@@ -163,6 +143,18 @@
 
     <!-- Footer  -->
     <template if:false={bNoRecordsFound}>
+
+        <template if:true={spinnerDataTable}>
+            <div data-id="spinnerId" class="slds-spinner_container"
+                style="overflow: hidden;">
+                <div class="spinner-main-div">
+                    <div class="loader--ripple">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </template> 
         <div class="norecordfound">
             <div class="desertImg" aria-hidden="true">
                 <img src="/img/chatter/Desert.svg" class="" alt="test" style="height: 29vh" />
@@ -173,7 +165,7 @@
             </div>
         </div>
     </template>
-    <div class="slds-col slds-size_1-of-1 footer" style="height:9%;">
+    <div class="slds-col slds-size_1-of-1 footer" style="height:7.5%;">
                 <div class="slds-grid" style="gap: 10px;">
                     <div class="help  slds-col">
                         <img src={helpIcon} alt="" class="feedback" style="width: 6%;">
