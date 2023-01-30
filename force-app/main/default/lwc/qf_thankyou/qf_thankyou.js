@@ -10,11 +10,13 @@
 
 import { LightningElement, api } from 'lwc';
 import thankyoulogo from '@salesforce/resourceUrl/Thankyoulogo';
+import whitepen from '@salesforce/resourceUrl/whitepen';
 import records from '@salesforce/apex/qfthankyou.insertrecord';
 import getrecords from '@salesforce/apex/qfthankyou.getthankyoupage';
 
 export default class Qf_thankyou extends LightningElement {
     thankyoulogo = thankyoulogo;
+    whitepen = whitepen;
     formats = ['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
     'header', 'color', 'background'];
     text;

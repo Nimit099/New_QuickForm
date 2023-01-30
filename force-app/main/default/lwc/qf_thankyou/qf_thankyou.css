@@ -100,6 +100,10 @@
 
   .editBtn {
     margin: 0% 10% 0px 0px!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
   .imgDiv {
@@ -130,7 +134,7 @@
     font-family: 'Roboto',sans-serif;
     font-size: 20px;
     width: 11%;
-    height: 41%;
+    height: 42%;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     border-radius: 58px;
 }
@@ -149,16 +153,17 @@
 /* Richtext Model Start */
 
   .richtextModel {
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    position: fixed;
-    z-index: 3;
     background-color: rgb(255 255 255 / 75%);
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-  .richtextModel .richtextMainDiv {
+  /* .richtextModel .richtextMainDiv {
     margin: 2% auto;
     margin-left: 44%;
     display: flex;
@@ -169,7 +174,7 @@
     position: relative;
     flex-direction: column;
     justify-content: center;
-}
+} */
 
   .richtextModel .richtextDiv {
     background: #fff;
@@ -260,8 +265,25 @@
       .thanksPreviewDiv {
         width: 76%;
     }
+    .saveBtn,
+    .cancelBtn {
+      width: 16%;
+  }
+  
 }
 
+@media only screen and (max-width:1400px) {
+  .saveBtn,
+  .cancelBtn {
+    width: 17%;
+  }
+}
+@media only screen and (max-height:800px) {
+  .saveBtn,
+  .cancelBtn {
+   height: 56%;
+  }
+}
 @media only screen and (max-width:1300px) {
       .thanksChoice {
         width: 27%;
