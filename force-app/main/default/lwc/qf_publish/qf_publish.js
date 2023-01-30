@@ -129,7 +129,7 @@ export default class Qf_publish extends LightningElement {
     // renderedCallback() {
     qrGenerate(){    
         const qrCodeGenerated = new qrcode(0, 'H');
-        let strForGenearationOfQRCode  = 'https://www.google.com/';
+        let strForGenearationOfQRCode  = 'https://mvclouds.com/';
         qrCodeGenerated.addData(strForGenearationOfQRCode);
         qrCodeGenerated.make();
         let element = this.template.querySelector(".qrcode2");

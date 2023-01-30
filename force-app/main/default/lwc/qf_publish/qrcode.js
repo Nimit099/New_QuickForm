@@ -1,22 +1,15 @@
 /**
- * ```
- *
  * @module qrcode-generator-es6
  */
-//---------------------------------------------------------------------
-//
+//--------------------------------------------------------------------
 // QR Code Generator for JavaScript
-//
 //---------------------------------------------------------------------
 
 const PAD0 = 0xec;
 const PAD1 = 0x11;
 
 /**
- * Displays a QR code. Set the code data with `addData` and, call `make` and then call `createSvgTag` or `createImgTag`.
- *
- *
- * @param {integer} typeNumber The minimum QR code type number from 1 to 40.  Using 0 allows any QR code type number.
+ * @param {integer} typeNumber 
  * @param {String} errorCorrectionLevel 'L','M','Q','H'
  */
 export default class qrcode {
