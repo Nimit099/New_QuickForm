@@ -210,15 +210,6 @@
 
 /* =========== table css Start ============== */
 
-
-/*  .dataTableMain {
-    height: 100%;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    width: 98%;
-    margin: 0px 10px 10px 10px;
-} */
-
  .tableHeader {
     display: flex;
     align-items: center;
@@ -798,22 +789,7 @@
     border-radius: 20px;
 }
 
-/*  .dataTable::-webkit-scrollbar {
-    display: none;
-} */
-
-/*  .dataTable::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-}
-
- .dataTable ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-} */
-
  .footerCss {
-    /* position: absolute; */
     color: #6699CC;
     width: 5%;
     border-radius: 16px;
@@ -822,8 +798,6 @@
     font-size: 0.9rem;
     background: #FFFCFC;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    /* bottom: 17px; */
-    /* left: 83.5%; */
 }
 
  .searchBoxDiv.slds-input-has-icon .slds-input__icon {
@@ -870,28 +844,14 @@
     background: #f2f2f2;
 }
 
- .dataTableMain .tabletr {
+.dataTableMain .tabletr {
     border: 1px solid lightgray;
     height: 50px;
 }
 
-/*  .tableBody:nth-last-child(-n+3).tableActionCol.slds-dropdown-trigger.slds-dropdown {
-    
-} */
-
-/*  .tableBody:nth-last-child(-n+3).tableActionCol.slds-dropdown-trigger.slds-dropdown {
-    
-} */
-
  .footer {
-    /* margin-top: 25px; */
     color: black;
 }
-
-
-/*  .tableIndex {
-    width: 11%;
-} */
 
  .buttonMenu {
     border-radius: 5px;
@@ -920,7 +880,6 @@
 }
 
  .formButtons .slds-button__icon_left {
-    /* border: 2px solid #6699CC; */
     padding: 0.5px;
     border-radius: 10px;
 }
@@ -933,22 +892,17 @@
     right: 27px;
 }
 
- .desertImg {
-    /* max-width: 40%;
-    margin: 7.6% 30%;
-    display: flex;
-    flex-direction: column;
-    gap: 38px; */
-}
 .table{
     height: 78%;
 }
+
 .norecordfound{
     height: 78%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .title_name{
     display: inline-block;
     white-space: nowrap;
@@ -998,9 +952,6 @@
         bottom: 10px;
     }
 
-     .desertImg {
-        /* margin-top: 4%; */
-    }
     .mainFormTitle{
         width: 69%;
     }
@@ -1245,7 +1196,6 @@
     align-items: center;
 }
 .deletecontent{
-    /* height: auto; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1365,7 +1315,7 @@ lightning-button{
     width: 5%;
     gap: 5px;
     /* color: #6699CC; */      /* Remove comment once button is working*/
-    color: grey;
+    color: rgb(204, 192, 192);
     border-radius: 16px;
     padding: 5px 0;
     text-align: center;
@@ -1401,7 +1351,6 @@ lightning-button{
     font-weight: bold;
     font-family: 'Roboto',sans-serif;
     align-items: flex-end;
-    /* padding: inherit; */
     padding-top: 20px;
     padding-bottom: 4px;
 }
@@ -1424,16 +1373,13 @@ lightning-button{
     width: 100px;
     border-radius: 101px;
     justify-content: center;
-    /* background: rgb(102, 153, 204) !important; */
     border-color: #E6E7E9;
 }
 .yes-text {
-    /* margin-left: 40px; */
     font-size: medium;
     color: white;   
 }
 .no-text {
-    /* margin-left: 40px; */
     font-size: medium;
     color: rgb(102, 153, 204);
 }

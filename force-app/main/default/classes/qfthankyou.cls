@@ -19,7 +19,7 @@ public with sharing class qfthankyou {
     public static Thankyou_Page__c getthankyoupage(Id currentformid){
         try {
             if(currentformid != null){
-            Thankyou_Page__c record = [SELECT Id, Name, Form__c,Thank_you_URL__c, Thankyou_Page_Type__c	, Thankyou_Text__c	FROM Thankyou_Page__c WHERE Form__c =: currentformid limit 1];
+            Thankyou_Page__c record = [SELECT Id, Name, Form__c,Thank_you_URL__c, Thankyou_Page_Type__c	, Thankyou_Text__c, ThankYou_Label__c	FROM Thankyou_Page__c WHERE Form__c =: currentformid limit 1];
             return record;
             }
             return null;
@@ -37,15 +37,15 @@ public with sharing class qfthankyou {
 // # Description: Used to Update or insert thank you page 
 // =================================== -->
    @AuraEnabled
-   public static string insertrecord(String picklist, String classtext, String formId, String url, Id currentthankyouid){
+   public static string insertrecord(String picklist, String label, String classtext, String formId, String url, Id currentthankyouid){
     try {
         
         if(String.isNotBlank(classtext)){
-        Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, Thank_you_URL__c = url, Thankyou_Text__c = classtext, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid ); 
+        Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, ThankYou_Label__c = label, Thank_you_URL__c = url, Thankyou_Text__c = classtext, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid ); 
         Database.upsert(insertrecord);
         }
         else{
-            Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, Thank_you_URL__c = url, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid );
+            Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, ThankYou_Label__c = label, Thank_you_URL__c = url, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid );
             Database.upsert(insertrecord); 
         }
         return null;

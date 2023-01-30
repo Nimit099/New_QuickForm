@@ -10,39 +10,41 @@
         </div>
     </template>
     <div class="thanksMainDiv">
-        <section data-id="Modal" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true" aria-describedby="ModalBody" class="slds-modal" onclick={hideFolderList}>
+        <!-- <template if:true={editlabelcheck}>
+        <section data-id="Modal" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true" aria-describedby="ModalBody" class="slds-modal editlabel" onclick={hideFolderList}>
             <div class="richtextModel">
                 <div class="richtextMainDiv">
                     <div class="richtextDiv">
                         <div class="richtextLabel">
                             <div>
-                                Edit Text
+                                Edit Label
                             </div>
                         </div>
                         <div class="richtextContent">
                             <lightning-tabset variant="scoped">
                                 <lightning-tab class="richtextTab" label="Edit Rich Text">
                                     <lightning-input-rich-text formats="['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
-                                'header', 'color', 'background']" value={} data-id="editor" placeholder="Type something" ></lightning-input-rich-text>
+                                'header', 'color', 'background']" value={changelabel} data-id="editor" placeholder="Type something" class="labelinput slds-nowrap" onchange={labelinput} ></lightning-input-rich-text>
                                 </lightning-tab>
-                                <lightning-tab class="htmlTab" label="Edit HTML Text" onactive={HtmlTextC}>
-                                    <lightning-textarea label="HTML Text" value={} name="Html" onchange={RichTextC} ></lightning-textarea>
+                                <lightning-tab class="htmlTab" label="Edit HTML Text">
+                                    <lightning-textarea label="HTML Text" value={changelabel} name="Html" onchange={labelinput} ></lightning-textarea>
                                 </lightning-tab>
                                 <lightning-tab class="outputTab" label="Output">
-                                    <lightning-formatted-rich-text class="slds-text-longform" value={}></lightning-formatted-rich-text>
+                                    <lightning-formatted-rich-text class="slds-text-longform" value={changelabel}></lightning-formatted-rich-text>
                                 </lightning-tab>
                             </lightning-tabset>
                         </div>
                         <div class="richtextButtonDiv">
                             <div class="richtextButton">
-                                <lightning-button label="Save" class="saveModelButton" onclick={saveRichText} ></lightning-button>
-                                <lightning-button label="Cancel" class="cancelModelButton" onclick={closeModel} ></lightning-button>
+                                <button label="Cancel" class="cancelModelButton" onclick={closeLabel}>Cancel</button>
+                                <button label="Save" class="saveModelButton" onclick={saveLabel}>Save</button> 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        </template> -->
         <div data-id="ModalBackdrop" class="slds-backdrop"></div>
         <div class="thanksChoice">
             <div class="thanksLabelDiv">
@@ -127,15 +129,63 @@
             </div>
         </div>
         <div class="thanksPreviewDiv">
-            <div style="height: 100%;">
+     
                 <div class="thanksEditButton">
-                    <!-- <lightning-button class="editBtn" label="Edit Text" icon-name="utility:edit" icon-position="left" onclick={c} ></lightning-button> -->
+                    <button label="Edit Text" icon-position="left" onclick={editlabel} class="saveBtn editBtn">Edit Label</button>
                 </div>
                 <div class="thanksPreview">
+
+
+
+                    <template if:true={editlabelcheck}>
+                        <!-- <section data-id="Modal" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true" aria-describedby="ModalBody" class="slds-modal editlabel" onclick={hideFolderList}> -->
+                            <!-- <div class="richtextModel"> -->
+                                <!-- <div class="richtextMainDiv"> -->
+                                    <div class="richtextDiv">
+                                        <div class="richtextLabel">
+                                            <div>
+                                                Edit Label
+                                            </div>
+                                        </div>
+                                        <div class="richtextContent">
+                                            <lightning-tabset variant="scoped">
+                                                <lightning-tab class="richtextTab" label="Edit Rich Text">
+                                                    <lightning-input-rich-text formats="['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
+                                                'header', 'color', 'background']" value={changelabel} data-id="editor" placeholder="Type something" class="labelinput slds-nowrap" onchange={labelinput} ></lightning-input-rich-text>
+                                                </lightning-tab>
+                                                <lightning-tab class="htmlTab" label="Edit HTML Text">
+                                                    <lightning-textarea label="HTML Text" value={changelabel} name="Html" onchange={labelinput} ></lightning-textarea>
+                                                </lightning-tab>
+                                                <lightning-tab class="outputTab" label="Output">
+                                                    <lightning-formatted-rich-text class="slds-text-longform" value={changelabel}></lightning-formatted-rich-text>
+                                                </lightning-tab>
+                                            </lightning-tabset>
+                                        </div>
+                                        <div class="richtextButtonDiv">
+                                            <div class="richtextButton">
+                                                <button label="Cancel" class="cancelModelButton" onclick={closeLabel}>Cancel</button>
+                                                <button label="Save" class="saveModelButton" onclick={saveLabel}>Save</button> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            <!-- </div> -->
+                        <!-- </section> -->
+                        </template>
+
+
+
+
+
+
                     <div class="imgDiv">
                         <img style="height: 100%;" src={thankyoulogo} />
                     </div>
+                    <div style="padding: 10px;">
+                        <lightning-formatted-rich-text value={label} ></lightning-formatted-rich-text>
+                    </div>
                     <template if:true={textcheck}>
+                        
                         <div style="padding: 10px; text-align: center;">
                             {text}
                         </div>
@@ -147,10 +197,9 @@
                     </template>
                 </div>
                 <div class="saveButton">
-                    <button class="saveBtn" onclick={saveThanksData}>Save</button>
                     <button class="cancelBtn" onclick={cancelThanksData}>Cancel</button>
+                    <button class="saveBtn" onclick={saveThanksData}>Save</button>                   
                 </div>
-            </div>
         </div>
     </div>
 </template>

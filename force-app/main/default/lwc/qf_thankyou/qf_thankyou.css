@@ -9,6 +9,7 @@
     background-color: #F5F5F5;
     padding: 1%;
     overflow: auto;
+    font-family: 'Roboto',sans-serif;
 }
 
   .thanksChoice::-webkit-scrollbar {
@@ -64,6 +65,9 @@
     width: 80%;
     height: 100%;
     background-color: #E5E5E5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
   .thanksPreview {
@@ -71,12 +75,18 @@
     width: 80%;
     background-color: #fff;
     margin: auto;
-    border-radius: 20px;
+    border: 1px solid #000000;
+    box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
 }
 
   .thanksEditButton {
-    height: 13%;
-    padding: 4% 10% 0 0;
+    width: 100%;
+    display: flex;
+    height: 15%;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 2%;
 }
 
   .thanksEditButton .slds-button {
@@ -89,7 +99,7 @@
 }
 
   .editBtn {
-    float: right;
+    margin: 0% 10% 0px 0px!important;
 }
 
   .imgDiv {
@@ -106,20 +116,23 @@
 }
 
   .saveButton {
-    height: 13%;
-    margin: 4% 0 0 40%;
+    display: flex;
+    height: 15%;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2%;
+    margin-top: 2%;
 }
 
   .saveBtn,
   .cancelBtn {
     border: none;
-    font-family: 'Roboto';
-    border-radius: 10px;
+    font-family: 'Roboto',sans-serif;
     font-size: 20px;
-    width: 115px;
-    height: 35px;
-    margin: 1%;
-    border-radius: 20px;
+    width: 11%;
+    height: 41%;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border-radius: 58px;
 }
 
   .saveBtn {
@@ -146,7 +159,8 @@
 }
 
   .richtextModel .richtextMainDiv {
-    margin: 0 auto;
+    margin: 2% auto;
+    margin-left: 44%;
     display: flex;
     width: 50%;
     max-width: 40rem;
@@ -160,16 +174,20 @@
   .richtextModel .richtextDiv {
     background: #fff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
 }
 
   .richtextModel .richtextLabel {
     height: 60px;
     background: #6699cc;
     padding: 7px;
-    font-size: 2rem;
+    font-size: 30px;
     font-weight: 500;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
     color: #fff;
     text-align: center;
+    font-family: 'Roboto',sans-serif;
 }
 
   .richtextModel .richtextContent {
@@ -193,6 +211,8 @@
   .richtextModel .richtextButton {
     width: fit-content;
     margin: auto;
+    display: flex;
+    gap: 10px;
 }
 
   .richtextModel .saveModelButton {
@@ -200,20 +220,25 @@
     color: #fff;
     width: 100px;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    border-radius: 8px;
+    border-radius: 28px;
     font-size: medium;
     font-weight: 400;
+    border: 0;
+    height: 30px;
+    font-family: 'Roboto',sans-serif;
 }
 
   .richtextModel .cancelModelButton {
     background: #E6E7E9;
     color: #000;
-    margin-left: 20px;
     width: 100px;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    border-radius: 8px;
+    border-radius: 28px;
     font-size: medium;
     font-weight: 400;
+    border: 0;
+    height: 30px;
+    font-family: 'Roboto',sans-serif;
 }
 
   .form-check .slds-dropdown_left {
@@ -257,8 +282,14 @@
     }
 }
 
-@media only screen and (max-height:800px) {
-      .thanksEditButton {
-        padding: 2% 10% 0 0;
-    }
+.thanksMainDiv .editlabel{
+  opacity: 1 !important;
+    visibility: visible;
+    transition: transform var(--lwc-durationQuickly,0.1s) linear,opacity var(--lwc-durationQuickly,0.1s) linear;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9001;
 }

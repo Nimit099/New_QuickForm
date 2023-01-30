@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 01-27-2023
+  @last modified on  : 01-30-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -184,10 +184,10 @@
             <!-- <aura:if isTrue="{!v.showLightBoxCode}"> -->
                 <template if:true={trued7}>
                 <div class="lightBoxChexboxes">
-                    <div class="lightBoxAcc" style="background-color: rgb(178,204,229);" onclick={k} id='textLink'>Text Link</div>
-                    <div class="lightBoxAcc" onclick={k} id='imageLink'> Image Link</div>
-                    <div class="lightBoxAcc" onclick={k} id='autoPopup'>Auto popup</div>
-                    <div class="lightBoxAcc" onclick={k} id='floatingBtn'>Floating Button</div>
+                    <div class="lightBoxAcc" style="background-color: rgb(178,204,229);" onclick={handleLightBoxChange} id='textLink'>Text Link</div>
+                    <div class="lightBoxAcc" onclick={handleLightBoxChange} id='imageLink'> Image Link</div>
+                    <div class="lightBoxAcc" onclick={handleLightBoxChange} id='autoPopup'>Auto popup</div>
+                    <div class="lightBoxAcc" onclick={handleLightBoxChange} id='floatingBtn'>Floating Button</div>
 
                 </div>
             </template>
@@ -234,7 +234,7 @@
                 <div class="copyCodeSection">
                     <div class="codeCopySection slds-p-around_large slds-m-top_medium" id="iframeLink">
 
-                        <!-- <p style="padding-bottom: 20px;" class="copyCodePara" id="auraLink"> -->
+                        <div style='padding-bottom: 20px;'>
                             &lt; aura:component implements="forceCommunity:availableForAllPageTypes" access="global" &gt;
                             <br />
                             <div style='text-align:left; padding-left:15px'>
@@ -243,9 +243,7 @@
                                 <br />&lt;/iframe&gt;
                             </div>
                             &lt;/aura:component &gt;
-
-
-                        <!-- </p> -->
+                        </div>
                     </div>
 
                     <!-- <lightning-button variant="brand" label="Copy Code" title="Copy Code" onclick={k} class="runcodeicon slds-m-vertical_medium" ></lightning-button>
@@ -273,7 +271,7 @@
                 <!-- [Lightning Component code] -->
                 <div class="copyCodeSection">
                     <div class="codeCopySection slds-p-around_large slds-m-top_medium">
-                        <!-- <p id="lwcLink"> -->
+                        <div style='padding-bottom: 20px;'>
                             &lt;lightning-layout-item&gt; <br />
                             <div style='text-align:left; padding-left:15px'>
                                 &lt;iframe src="{}" transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
@@ -281,7 +279,7 @@
                                 <br />&lt;/iframe&gt;
                             </div>
                             &lt;/lightning-layout-item&gt;
-                        <!-- </p> -->
+                        </div>
                     </div>
                     <!-- <lightning-button variant="brand" label="Copy Code" title="Copy Code" onclick={k} class="runcodeicon slds-m-vertical_medium"></lightning-button>
                     <span class="copiedtext" aria-hidden="true">Copied</span> -->
@@ -343,9 +341,33 @@
                     <div class='linkToFormText'>
                         <h2>Text</h2>
 
-                        <p class="para">
-                            &lt;a href="" target="_blank" &gt;Text &lt;/a&gt;
-                        </p>
+                        <!-- <p class="para">
+                            &lt;a href="https://www.google.com/search?q=image+url+generator&rlz=1C1CHBF_enIN929IN931&oq=image+&aqs=chrome.1.69i57j35i39l2j0i433i512j0i131i433i512j69i60l3.4894j0j7&sourceid=chrome&ie=UTF-8" target="_blank" &gt;Text &lt;/a&gt;
+                        </p> -->
+
+                        <!-- <div class="copyCodeSection">
+                            <div class="codeCopySection slds-p-around_large slds-m-top_medium" id="iframeLink"> -->
+                        <!-- <div class="codeCopySection slds-p-around_large slds-m-top_medium" >
+                            <div style='padding-bottom: 20px;'>
+                                &lt; aura:component implements="forceCommunity:availableForAllPageTypes" access="global" &gt;
+                                <br />
+                                <div style='text-align:left; padding-left:15px'>
+                                    &lt;iframe src={} transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
+                                    <br />&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
+                                    <br />&lt;/iframe&gt;
+                                </div>
+                                &lt;/aura:component &gt;
+                            </div>
+                        </div> -->
+
+                        <div class="linkToForm  slds-p-around_large slds-m-top_medium">
+                            <p>
+                                <!-- <div style='padding-bottom: 20px;'> -->
+                                    &lt;a href="https://www.google.com/search?q=image+url+generator&rlz=1C1CHBF_enIN929IN931&oq=image" target="_blank" &gt;Text &lt;/a&gt;
+                                <!-- </div>     -->
+                            </p>
+                        </div>
+
                         <!-- <lightning-button label="Run Code" variant="brand" onclick={k} class="runcodeicon" ></lightning-button> -->
                         <div class="bt-center">
                             <div class="bt">
@@ -359,7 +381,11 @@
                     <div class='linkToFormText'>
                         <h2>Image</h2>
                         <!-- <p class="para"> &lt;a href="{}" target="_blank"href="{}" target="_blank"&gt; &lt;img src="https://cdn-main.123contactform.com/images3/contactbutton2.png" &gt; &lt;/a&gt;</p> -->
-
+                        <div class=" linkToForm slds-p-around_large slds-m-top_medium">
+                            <p>
+                                &lt;a href="https://www.google.com/search?q=image+url+generator&rlz=1C1CHBF_enIN929IN931&oq=image" target="_blank" &gt;Text &lt;/a&gt;
+                            </p>
+                        </div>
                         <!-- <lightning-button label="Run Code" variant="brand" onclick={k} class="runcodeicon" ></lightning-button> -->
                         <div class="bt-center">
                             <div class="bt">
@@ -994,16 +1020,24 @@
                 </div>
                 <!-- [QR] -->
                 <div class="center">
-                    <div class="form">
+                    <div class="bt-center">
+                        <div class="bt">
+                            <input class="std-btn" type="button" value="Show QR" name="Show QR" onclick={qrGenerate}/> 
+                            <!-- <span class="copiedtext" aria-hidden="true">Copied</span> -->
+                        </div>
+                    </div>
+                    <!-- <div class="form">
 
                         <div class="form-element">
                             <lightning-button variant="brand" label="Show QR" title="Show QR" onclick={k} class="runcodeicon slds-m-vertical_medium" ></lightning-button>
+                            
                         </div>
-                    </div>
-                    <div class="qr-img codeCopySectionQr">
+                    </div> -->
+                    <div class="qrcode2" id="qrcode2" style="height:200px;width:200px"></div>
+                    <!-- <div class="qr-img codeCopySectionQr">
                         <img src="" />
 
-                    </div>
+                    </div> -->
                 </div>
             </template>
             <!-- </aura:if> -->

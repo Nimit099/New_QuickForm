@@ -2,6 +2,7 @@ import { LightningElement } from 'lwc';
 import copyIcon from '@salesforce/resourceUrl/CopyUrlIcon'; //static resource for copy url icon
 import { loadStyle } from 'lightning/platformResourceLoader';
 import GroupRadio from '@salesforce/resourceUrl/groupRadio';
+import qrcode from './qrcode.js';
 
 export default class Qf_publish extends LightningElement {
     copy_Icon = copyIcon;
@@ -93,21 +94,46 @@ export default class Qf_publish extends LightningElement {
             this.trued12 = false;
         }
       
-        // if (selectedOption == 'QR Code'){
-        //     this.salesforceLwcFieldValue = true;
-        // }
-        // else{
-        //     this.salesforceLwcFieldValue = false;
-        // }
+        if (selectedOption == 'QR Code'){
+            this.trued18 = true;
+        }
+        else{
+            this.trued18 = false;
+        }
 
         if (selectedOption == 'lightBox'){
             this.trued13 = true;
+            this.trued7 = true;
         }
         else{
             this.trued13 = false;
+            this.trued7 = false;
         }
-        
-        
+    }
+
+    handleLightBoxChange(event) {
+        // const selectedOption = event.detail.value;
+        var getDiv = event.target.id;
+
+
+        if (getDiv == 'textLink'){
+            this.trued14 = true;
+            this.trued4 = true;
+        }
+        else{
+            this.trued14 = false;
+            this.trued4 = false;
+        }
+    }
+
+    // renderedCallback() {
+    qrGenerate(){    
+        const qrCodeGenerated = new qrcode(0, 'H');
+        let strForGenearationOfQRCode  = 'https://www.google.com/';
+        qrCodeGenerated.addData(strForGenearationOfQRCode);
+        qrCodeGenerated.make();
+        let element = this.template.querySelector(".qrcode2");
+        element.innerHTML = qrCodeGenerated.createSvgTag({});
     }
     // publishment(event){
     //     let Name = event.currentTarget.dataset.name;

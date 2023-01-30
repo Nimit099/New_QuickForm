@@ -86,7 +86,7 @@
 .std-btn{
     height: 34px;
     width: 110px;
-    margin-right: 15px;
+    margin-left: 60px;
     border-radius: 30px;
     background-color: #6699CC;
     font-size: 15px;
@@ -136,12 +136,12 @@
     padding: 1% 0.7%;
 }
 
-   .copyCodeSection {
+.copyCodeSection {
     height: 70%;
     position: relative
 }
 
-   .codeCopySection {
+.codeCopySection {
     background: #EBEBEB;
     border-radius: 15px;
     line-height: 3em;
@@ -727,8 +727,7 @@
         height: 100vh;
         padding: 0 0 10rem 0;
     }
-       .codeCopySection,
-       .iframeCode {
+    .codeCopySection,.iframeCode {
         background: #EBEBEB;
         border-radius: 15px;
         height: 12rem;
@@ -736,6 +735,30 @@
         display: flex;
         justify-content: center;
     }
+    .linkToForm{
+        background: #EBEBEB;
+        border-radius: 15px;
+        height: 3rem;
+        line-height: 2em;
+        display: flex;
+        justify-content: center; 
+    }
+    .linkToForm p{
+        padding-bottom: 20px;
+    }
+    /* .codeCopySection{
+        background: #EBEBEB;
+        border-radius: 15px;
+        line-height: 3em;
+        overflow: hidden;
+        overflow-y: scroll;
+        height: 40%;
+        display: flex;
+        justify-content: center;
+    }
+    .codeCopySection::-webkit-scrollbar {
+        display: none;
+    } */
        .codeCopySectionQr {
         border-radius: 15px;
         height: 10rem;
@@ -755,6 +778,12 @@
         background-color: #6699CC;
         width: 15%;
     }
+
+    .linkToFormText{
+        height: 40%;
+        position: relative;
+    }
+
        .linkToFormText .para {
         background: #EBEBEB;
         margin: 5px 10px;
@@ -767,7 +796,8 @@
     }
        .linkToFormCode {
         overflow: hidden;
-        height: 30%;
+        /* height: 30%; */
+        height: 50%;
         overflow-y: scroll;
     }
        .linkToFormCode::-webkit-scrollbar {
@@ -817,8 +847,8 @@
        .publishUsing {
         height: 2%;
     }
-       .introCodeText {
-        display: none;
+    .introCodeText {
+        /* display: none; */
     }
        .mainPublish {
         position: relative;

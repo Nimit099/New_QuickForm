@@ -20,10 +20,13 @@ export default class Qf_thankyou extends LightningElement {
     text;
     url;
     richtext;
+    label;
+    changelabel;
     textcheck = false;
     richtextcheck = false;
+    editlabelcheck = false;
     picklist;
-    @api currentformid = 'a046D0000056tgNQAQ';
+    @api currentformid = 'a046D0000056tXOQAY';
     @api currentthankyouid;
     None = true;
     ThankYou_Text;
@@ -44,8 +47,10 @@ export default class Qf_thankyou extends LightningElement {
     connectedCallback(){
         this.spinner = true;
         getrecords({currentformid : this.currentformid}).then(result => {
-
+            this.label = result.ThankYou_Label__c;
+            this.changelabel = result.ThankYou_Label__c;
             this.currentthankyouid = result.Id;
+            console.log(this.label);
             if(result.Thankyou_Page_Type__c == 'Show Text'){
             this.text = result.Thankyou_Text__c;
             this.textfunc();
@@ -149,14 +154,14 @@ export default class Qf_thankyou extends LightningElement {
            const regexp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/ ;
             if (regexp.test(this.url))
             { 
-                records({picklist : this.picklist,classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => {
+                records({picklist : this.picklist,label : this.label, classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => {
                     this.spinner = false;
                 })
               return true;
             }
         }
         else{
-        records({picklist : this.picklist,classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => { 
+        records({picklist : this.picklist,label : this.label, classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => { 
             this.spinner = false;
         })
         }
@@ -260,5 +265,19 @@ export default class Qf_thankyou extends LightningElement {
         this.richtextcheck = false;
         this.template.querySelector(".url").style="display:block"
         this.spinner = false;
+    }
+    editlabel(){
+        this.editlabelcheck = true;
+    }
+    labelinput(event){
+        this.changelabel = event.target.value;
+        console.log(this.label);
+    }
+    closeLabel(){
+        this.editlabelcheck = false;
+    }
+    saveLabel(){
+        this.editlabelcheck = false;
+        this.label = this.changelabel
     }
 }
