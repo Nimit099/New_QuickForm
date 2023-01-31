@@ -23,7 +23,7 @@
                 <img src={searchicon} class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default searchIcon">
                 
                 <lightning-input disabled={disableSearchBox} data-id="SearchBox" onchange={search}
-                    name="enter-search" label="" type="text" class="searchBox" placeholder="Search for forms"
+                    name="enter-search" label="" type="text" class="sarchBox" placeholder="Search for forms"
                     value={searchkey} autocomplete="off" ></lightning-input>
 
 
@@ -40,7 +40,7 @@
                 </div> -->
 
                 <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left alf-btn new_form"
-                    style="margin-left: 10px;" onclick={renameForm}>
+                    style="" onclick={renameForm}>
                     <img src={addicon} class="" style="height: 16px; margin-top: 0.1px;">
                     <p class="allFormButtons">New Form</p>
                     <!-- <lightning-button name="allform" label="New Form" onclick={showAllForms}
@@ -166,17 +166,21 @@
         </div>
     </template>
     <div class="slds-col slds-size_1-of-1 footer" style="height:7.5%;">
-                <div class="slds-grid" style="gap: 10px;">
-                    <div class="help  slds-col">
-                        <img src={helpIcon} alt="" class="feedback" style="width: 6%;">
-                        <p><s>Help</s></p>
+                <div class="slds-grid footer1">
+                    <div class="footer_half1">
+                        <div class="help">
+                            <img src={helpIcon} alt="" class="feedback">
+                            <p>Help</p>
+                        </div>
+                        <div class="feedback help" >
+                            <img src={feedbackIcon} alt="" class="feedback">
+                            <p>Feedback</p>
+                        </div>
                     </div>
-                    <div class="feedback help slds-col" style="margin-right: 63%;">
-                        <img src={feedbackIcon} alt="" class="feedback">
-                        <p><s>Give Feedback</s></p>
-                    </div>
-                    <div class="slds-col footerCss totalForms">
-                        Total Forms : {count}
+                    <div class="footer_half2">
+                        <div class="footerCss totalForms">
+                            Total Forms : {count}
+                        </div>
                     </div>
                 </div>
     </div>
@@ -203,8 +207,8 @@
                           <p>  This process cannot be undone ! </p>
                         </div>
                         <div class="deletefooter">
-                            <button class="slds-button yes-btn" onclick={deleteyes}><p class="yes-text">Yes</p></button>
                             <button class="slds-button no-btn" onclick={deleteno}><p class="no-text">No</p></button>
+                            <button class="slds-button yes-btn" onclick={deleteyes}><p class="yes-text">Yes</p></button>
                         </div>
                     </div>
                 </div>

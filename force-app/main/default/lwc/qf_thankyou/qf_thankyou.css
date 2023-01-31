@@ -41,6 +41,8 @@
   .thanks-option {
     padding-top: 2px;
     margin-right: 5px;
+    display: flex;
+    gap: 5px;
 }
 
   .thanks-optiondiv {

@@ -73,7 +73,7 @@ export default class Qf_thankyou extends LightningElement {
            else if(result.Thankyou_Page_Type__c == 'None'){
            this.nonefunc();
            }
-           else if(result.Thankyou_Page_Type__c == 'Show report of User date'){
+           else if(result.Thankyou_Page_Type__c == 'Show report of User data'){
            this.reportfunc();  
         }
         })
@@ -244,6 +244,7 @@ export default class Qf_thankyou extends LightningElement {
         this.spinner = false;
     }
     reportfunc(){
+        console.log('12334');
         this.picklist = 'Show report of User data';
         this.None = false;
         this.ThankYou_Text = false;

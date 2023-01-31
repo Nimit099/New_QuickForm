@@ -242,7 +242,7 @@
  .tableTitleCol {
     overflow: hidden;
     width: 22%;
-    padding-left: 3%;
+    padding-left: 6%;
     display: flex;
     justify-content: space-between;
 }
@@ -250,6 +250,7 @@
  .tableStatusCol {
     text-align: center;
     width: 20%;
+    padding-left: 7%;
 }
 
  .tableSubmissionCol {
@@ -722,7 +723,7 @@
     height: 100%;
     padding: 10px 30px 10px 30px;
     overflow: hidden;
-    border-radius: 18px 18px 18px 18px;
+    border-radius: 28px;
     width: 100%;
     font-family: 'Roboto', sans-serif !important;
 }
@@ -748,6 +749,7 @@
     border-radius: 17px;
     border-color: black;
     width: 85%;
+    height: 35px;
     padding-left: 40px;
 }
 
@@ -756,7 +758,7 @@
 }
 
  .formButtons {
-    margin-top: 18px;
+    margin-top: 20px;
     display: flex;
     justify-content: flex-end;
 }
@@ -786,7 +788,7 @@
     border: 0.2px solid lightgray;
     height: 100%;
     overflow-y: scroll;
-    border-radius: 20px;
+    border-radius: 28px;
 }
 
  .footerCss {
@@ -890,10 +892,20 @@
 
  .totalForms {
     right: 27px;
+    width: 160px !important;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 58px;
+    font-size: 17px;
 }
 
 .table{
     height: 78%;
+    border-radius: 28px;
 }
 
 .norecordfound{
@@ -908,7 +920,7 @@
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
-    width: 180px;
+    width: 200px;
 }
 
 @media screen and (min-width:1400px) {
@@ -917,7 +929,7 @@
     }
     .table{
         height: 73%;
-        margin: 1.1% 0;
+        margin-top: 1.4%;
     }
     .norecordfound{
         height: 73%;
@@ -928,6 +940,7 @@
     .table{
         height: 78%;
         margin: 0;
+        margin-top: 0.2%;
     }
     .norecordfound{
         height: 78%;
@@ -1176,12 +1189,16 @@
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     justify-content: center;
     align-items: center;
-    width: 14%;
-    height: 31px;
+    width: 160px;
+    height: 35px;
+    font-size: 17px;
     gap: 10px;
-    border-radius: 16px;
+    border-radius: 58px;
     cursor: pointer;
-    color: #6699CC;;
+    color: white;
+    background: #6699CC;
+    margin-top: 2px;
+    margin-left: 10px;
 }
 .rename_input{
     width: 77%;
@@ -1204,6 +1221,8 @@
     border-radius: 25px;
     width: 70%;
     background-color: white;
+    position: absolute;
+    top: 36%;
 }
 .deleteicon{
     display: flex;
@@ -1287,6 +1306,8 @@
 lightning-input{
     --lwc-colorBorderInput: rgb(0, 0, 0);
     --slds-c-input-radius-border: 3rem;
+    --lwc-heightInput: 35px;
+    --sds-c-input-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
 lightning-button{
     --lwc-buttonColorBorderPrimary:rgb(255, 255, 255);
@@ -1309,18 +1330,20 @@ lightning-button{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 9%;
+    width: 15px;
 }
 .help{
-    width: 5%;
+    width: 160px;
+    height: 35px;
     gap: 5px;
-    /* color: #6699CC; */      /* Remove comment once button is working*/
-    color: rgb(204, 192, 192);
+    border-radius: 28px;
+    color: white;      /* Remove comment once button is working*/
+    /* color: rgb(204, 192, 192); */
     border-radius: 16px;
     padding: 5px 0;
     text-align: center;
-    font-size: 0.9rem;
-    background: #FFFCFC;
+    font-size: 17px;
+    background: #6699CC;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
 .crossIcon{
@@ -1360,28 +1383,31 @@ lightning-button{
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    gap: 10px;
 }
 .yes-btn {
-    height: 40px;
-    width: 100px;
+    height: 35px;
+    width: 130px;
     border-radius: 101px;
     justify-content: center;
     background: rgb(102, 153, 204) !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 17px;
+    color: white;  
+    overflow: hidden;
+    --webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s; 
 }
 .no-btn {
-    height: 40px;
-    width: 100px;
+    height: 35px;
+    width: 130px;
     border-radius: 101px;
     justify-content: center;
     border-color: #E6E7E9;
-}
-.yes-text {
-    font-size: medium;
-    color: white;   
-}
-.no-text {
-    font-size: medium;
-    color: rgb(102, 153, 204);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 17px;
+    color: black;
+    background-color: #DEDEDE;
 }
 /* ========================== Delete Popup ============================= */
 /* ==================== Error toast =======================  */
@@ -1392,6 +1418,44 @@ lightning-button{
 .toast_shadow {
     box-shadow: 1px 2px 4px 0px #888888;
     border-radius: 3px;
-    background: #FFCCCB;
+    /* background: #FFCCCB; */
 }
 /* ==================== Error toast =======================  */
+
+.footer1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+}
+.footer_half1{
+    width: 50%;
+    display: flex;
+    gap: 10px;
+}
+.footer_half2{
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+button:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+     position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+   transition: all 0.3s
+  }
+  
+  button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
