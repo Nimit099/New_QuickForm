@@ -1,4 +1,9 @@
 <template>
+     <!-- ============== error toast=========== -->
+     <template if:true={error_toast}>
+        <c-toast-component></c-toast-component>
+        </template>
+        <!-- ============== error toast=========== -->
     <template if:true={spinner}>
         <div data-id = "spinnerId" class="slds-spinner_container" style="overflow: hidden;">
             <div class="spinner-main-div">
@@ -131,7 +136,7 @@
         <div class="thanksPreviewDiv">
      
                 <div class="thanksEditButton">
-                    <button label="Edit Text" icon-position="left" onclick={editlabel} class="saveBtn editBtn"> <img src={whitepen} alt=""> Edit Label</button>
+                    <button label="Edit Text" icon-position="left" onclick={editlabel} class="saveBtn editBtn"> <img src={whitepen} alt="" class="penicon"> Edit Label</button>
                 </div>
 
 
@@ -146,16 +151,18 @@
                                         </div>
                                     </div>
                                     <div class="richtextContent">
-                                        <lightning-tabset variant="scoped">
+                                        <lightning-tabset variant="scoped" class="slds-tabs_scoped__nav">
                                             <lightning-tab class="richtextTab" label="Edit Rich Text">
                                                 <lightning-input-rich-text formats="['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
                                             'header', 'color', 'background']" value={changelabel} data-id="editor" placeholder="Type something" class="labelinput slds-nowrap" onchange={labelinput} ></lightning-input-rich-text>
                                             </lightning-tab>
                                             <lightning-tab class="htmlTab" label="Edit HTML Text">
-                                                <lightning-textarea label="HTML Text" value={changelabel} name="Html" onchange={labelinput} ></lightning-textarea>
+                                                <!-- <lightning-textarea label="HTML Text" value={changelabel} name="Html" onchange={labelinput} class="slds-nowrap" ></lightning-textarea> -->
+                                                <div class="htmlhead">HTML Text</div>
+                                                <textarea rows="5" name="Html" onchange={labelinput} >{changelabel}</textarea>
                                             </lightning-tab>
                                             <lightning-tab class="outputTab" label="Output">
-                                                <lightning-formatted-rich-text class="slds-text-longform" value={changelabel}></lightning-formatted-rich-text>
+                                                <lightning-formatted-rich-text class="slds-text-longform slds-nowrap" value={changelabel} ></lightning-formatted-rich-text>
                                             </lightning-tab>
                                         </lightning-tabset>
                                     </div>

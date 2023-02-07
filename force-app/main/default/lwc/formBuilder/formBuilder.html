@@ -1,0 +1,216 @@
+<template>
+ <div class="MainComponent">
+        <template if:true={spinnerDataTable}>
+            <div data-id="spinnerId" class="slds-spinner_container"
+                style="overflow: hidden;">
+                <div class="spinner-main-div">
+                    <div class="loader--ripple">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </template> 
+   
+                        <div class="bar child1">
+            <div class="sidebar" data-name="home" id="Tab-1" data-title="tab-1" onclick={handleActive}>
+                                <div class="home_icon"><img src={homeIcon} alt=""></div>
+                <div class="home_text">
+                    <p style="font-size:xx-small;">Home</p>
+                            </div>
+            </div>
+            <div class="sidebar fieldtab" data-name="field" id="Tab-2" data-title="tab-2" onclick={handleActive}>
+                                <div class="field_icon"><img src={fieldicon} alt=""></div>
+                <div class="field_text">
+                    <p style="font-size:xx-small;">Field</p>
+                            </div>
+            </div>
+            <div class="sidebar" data-name="design" id="Tab-3" data-title="tab-3" onclick={handleActive}>
+                                <div class="design_icon"><img src={designIcon} alt=""></div>
+                <div class="desgin_text">
+                    <p style="font-size:xx-small;">Design</p>
+                            </div>
+            </div>
+            <div class="sidebar" data-name="notification" id="Tab-4" data-title="tab-4" onclick={handleActive}>
+                                <div class="notification_icon"><img src={notificationicon} alt=""></div>
+                <div class="notification_text">
+                    <p style="font-size:xx-small;">Notification</p>
+                            </div>
+            </div>
+            <div class="sidebar" data-name="thankyou" id="Tab-5" data-title="tab-5" onclick={handleActive}>
+                                <div class="thankyou_icon"><img src={thankyouicon} alt=""></div>
+                <div class="thankyou_text">
+                    <p style="font-size:xx-small;">Thankyou</p>
+                            </div>
+            </div>
+            <!-- <div class="sidebar" data-name="object" id="Tab-6" data-title="tab-6" onclick={handleActive}>
+                                <div class="object_icon"><img src={object} alt=""></div>
+                <div class="object_text">
+                    <p style="font-size:xx-small;">Object</p>
+                            </div>
+            </div> -->
+            <div class="sidebar" data-name="preview" id="Tab-7" data-title="tab-7" onclick={handleActive}>
+                                <div class="preview_icon"><img src={previewIcon} alt=""></div>
+                <div class="preview_text">
+                    <p style="font-size:xx-small;">Preview</p>
+                            </div>
+            </div>
+            <div class="sidebar" data-name="publish" id="Tab-8" data-title="tab-8" onclick={handleActive}>
+                                <div class="publish_icon"><img src={publishIcon} alt=""></div>
+                <div class="publish_text">
+                    <p style="font-size:xx-small;">Publish</p>
+                </div>
+                            </div>
+                        </div>
+            
+    <!-- <div class="slds-grid" onmouseover={SetOpacity} > -->
+        <!-- <div class="" style="background-color: white; position:fixed; width:100%; height:10%; z-index:100000">Test </div> -->
+
+        <!-- Vertical Tab Div  -->
+        <!-- <div class="main slds-size_1-of-1 slds-small-size_6-of-12  slds-medium-size_4-of-12 slds-large-size_3-of-12"> -->
+
+
+        
+    <!-- </div> -->
+<!-- </div> -->
+
+<template if:true={activesidebar}>
+<div class="child3">
+    <c-fields-section-component formid={ParentMessage} oncallpasstoparent={passToParent}></c-fields-section-component>
+</div>
+</template>
+
+<template if:true={activeDesignsidebar}>
+    <div class="child3">
+        <c-design-section-component ongetnewcss={handlenewCSS} ongetpagecss={handlepagecss} ongetlabelcss={handlelabelcss} ongetformcss={handleformcss} recordid={ParentMessage}></c-design-section-component>
+    </div>
+</template>
+
+<template if:true={activeNotification}>
+    <c-notification-component  cmptype="main" form-id={FormId} id='notmcp'></c-notification-component>
+</template>
+
+<template if:true={activethankyou}>
+    <c-thankyou-component currentformid={ParentMessage} formname={FormName} cmptype="main" form-id={FormId} id='thkmcp'></c-thankyou-component>
+</template>
+
+<template if:true={activepreview}>
+    <c-preview-form-cmp formid={ParentMessage} activepreview ={activepreview}></c-preview-form-cmp>
+</template>
+
+<template if:true={activeDropZone}>
+    <div class="showtabs2">
+        <div class="objects">
+            <c-object-mapping form-id={ParentMessage} id="objcmp"></c-object-mapping>
+        </div>
+    </div>
+
+    
+
+    <div class="child2">
+
+        <!-- Main Form Div -->
+
+        <div class="addFormTitle">
+            <div class="InnerFormtitle">
+                <div class="formName">
+                    <p> {FormName}</p>
+                </div>
+                        <!-- <div class="formButtons">
+                            <button  class="FormButtons"
+                                onclick={handleSelect} name={EditButtonName}> <img src={EditIcon} alt="edit button" class="icon">Edit Form</button>
+                            <button value="new page add"  class="FormButtons"
+                                onclick={handleSelect}
+                                name={EditButtonName}><img src={addIcon} alt="Add button" class="icon">Add Page</button>
+                        </div> -->
+            </div>
+        </div>
+
+
+
+        <div class="fieldDiv1 slds-col  slds-small-size_6-of-12  slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_9-of-12"
+            style="padding:5%; width:100%;background-color: white;display:block">
+
+            <div class="myform" id="mainformid">
+                <template for:each={MainList} for:item="page">
+                    <div class="page" id={page.pageId} key={page.pageId}>
+                        <div class="pagetitle">
+                            <div style="display: flex;align-items: center;">
+                                <div>
+                                    <template if:true={page.pageName}>
+                                        <div class="pagetitle1">{page.pageName}</div>
+                                    </template>
+
+                                </div>
+                            </div>
+                                    <!-- <lightning-button-menu class="pageButtonMenu slds-dropdown_left"
+                                        alternative-text="Show menu" onselect={handleSelectPage} name={page.pageName}>
+                                <lightning-menu-item id={page.pageId} value="edit" label="Edit Page"
+                                            onclick={onEdit} prefix-icon-name="utility:edit"></lightning-menu-item>
+                                <lightning-menu-item id={page.pageId} value="delete" label="Delete Page"
+                                            onclick={ondelete} prefix-icon-name="utility:delete"></lightning-menu-item>
+                                    </lightning-button-menu> -->
+                                    <!-- <div class="PageButtonMenu">
+                                        <button class="pageIconButton"><img class="pageIcons" src={editpageIcon} alt="Edit page"></button>
+                                        <button class="pageIconButton"><img class="pageIcons" src={DeleteIcon} alt="Delete Page"></button>
+                                    </div> -->
+                        </div>
+                                <div class="example-dropzone" ondragover={onDragOver} ondrop={onDrop}
+                                    ondragleave={dragLeave} ondragenter={dragEnter} data-page-record={page.pageId}>
+
+                            <template for:each={page.FieldData} for:item="field">
+
+                                        <div id={field.Id} class="field" draggable="true"
+                                            data-order-id={field.Field_Order__c} data-page-record={field.Form_Page__c}
+                                            data-record={field.Id} data-ref="inner" ondragstart={onDragStart} data-record-count={fieldcount}
+                                            onclick={handleid} key={field.Id} data-field-name={field.Name}>
+                                            <c-quickformfieldcomponent formid={ParentMessage} t-view={field.Name} compview="Full"
+                                                disable-field="true" field-attribute="" field-attribute-value=""
+                                                field-id={field.Id} page-id={page.Id}></c-quickformfieldcomponent>
+
+                                </div>
+                            </template>
+                        </div>
+                                <div class="footer">
+
+                            <template if:true={isIndexZero}>
+
+                                        <lightning-button class="nextbutton " variant="brand" label="Next" title="Next"
+                                            disabled onclick={onaddpage1}></lightning-button>
+                            </template>
+                            <template if:false={isIndexZero}>
+                                    <template if:true={isIndexIsNotLast}>
+
+                                            <lightning-button id={previousButton} variant="brand" label="Previous"
+                                                title="Previous" disabled onclick={onaddpage1}
+                                            class="btn"></lightning-button>
+                                            <lightning-button id={nextButton} variant="brand" label="Next" title="Next"
+                                                disabled onclick={onaddpage1} class="btn"></lightning-button>
+
+                                    </template>
+                                <template if:false={isIndexIsNotLast}>
+                                    <template if:true={isIndexLast}>
+                                        
+                                                <lightning-button variant="brand" label="Previous" title="Previous"
+                                                    disabled onclick={onaddpage1} class="btn"></lightning-button>
+                                                <lightning-button variant="brand" label="Submit" title="Submit" disabled
+                                                    onclick={onaddpage1} class="btn"></lightning-button>
+                                        
+                                    </template>
+                                </template>
+                            </template>
+
+
+                                </div>
+                    </div>
+
+                </template>
+
+                <!-- End Main form div -->
+            </div>
+        </div>
+
+    </div>
+</template>
+    </div>
+</template>

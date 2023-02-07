@@ -1,0 +1,87 @@
+<template>
+    <div class="main">
+        <p class="captcha-label" if:true={Captcha}><b> Captcha </b></p>
+        <!-- Start Captcha 1 Normal Captcha -->
+        <div class="captcha-main-div" if:true={Normal_Captcha}>
+            <div>
+                <div class="show_captcha_text">
+                    <input type="text" class="generated-captcha" id="generated-captcha" value={normal_captcha} />
+                </div>
+                <div>
+                    <input type="text" class="captchainput" placeholder="Captcha" data-id="normal_captch_usr_input" value={set_normal_captcha_value}/>
+                    <button type="button" class="captchabutton captchabtn1" onclick={verify_normal_captcha} >
+                    Verify
+                    </button>
+                    <button type="button" class="captchabutton captchabtn2" onclick={generate_new_normal_captcha} >
+                    Generate New
+                </button>
+                </div>
+            </div>
+            <div class="captcha-footer">
+                    <p if:true={msg_invalid_captcha} class="invalid_captcha"> Invalid Captcha. </p>
+                    <p if:true={msg_verified_captcha} class="verified_captcha"> Captcha Verified </p>
+            </div>
+        </div>
+        <!-- End Captcha 1 Normal Captcha -->
+        <!-- Start Captcha 2 Math Captcha -->
+        <div class="captcha-main-div" if:true={Maths_Captcha}>
+            <div class="math_show_captcha_text" onload={ch_onload}>
+                <input type="text" class="math-generated-captcha"  value={mat_captcha_1} />
+                <b>+</b>
+                <input type="text" class="math-generated-captcha"  value={mat_captcha_2} />
+                <b>=</b>
+                <input type="text" data-id="math_captch_usr_input" name="user_input" class="math_captchainput" value={set_math_captcha_value}/>
+            </div>
+                <button type="button" class="captchabutton captchabtn1" onclick={verify_math_captcha} >
+                Verify
+                </button>
+                <button type="button" class="captchabutton captchabtn2" onclick={generate_new_math_captcha} >
+                Generate New
+                </button>
+            <div class="captcha-footer">
+                <p if:true={msg_invalid_captcha} class="invalid_captcha"> Invalid Captcha. </p>
+                <p if:true={msg_verified_captcha} class="verified_captcha"> Captcha Verified </p>
+            </div>
+
+        </div>
+        <!-- End Captcha 2 Math Captcha -->
+        <!-- Start Captcha 3 Slider Captcha -->
+        <div class="captcha-main-div" if:true={Slider_Captcha}>
+            <div class="captcha-header">
+                <p class="slider_captcha_label">If you are human, adjust the slider to <b>{slider_captcha_1}</b>.</p>
+                <div class="slds-slider" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow={value}>
+                    <input class="slider_captcha_input" type="range" min="0" max="50" step="1" value={value} oninput={handleValueChange} />
+                    <span class="slds-slider-value" aria-hidden="true"><b>{value}</b></span>
+                </div>
+            </div>
+            <div class="captcha-footer">
+                    <p if:true={msg_invalid_captcha} class="invalid_captcha"> Invalid Captcha. </p>
+                    <p if:true={msg_verified_captcha} class="verified_captcha"> Captcha Verified </p>
+            </div>
+        </div>
+        <!-- End Captcha 3 Slider Captcha --> 
+        <!-- Start Captcha 4 Color Captcha -->
+        <div class="captcha-main-div" if:true={Image_Captcha}>
+            <div class="color_captcha_main">
+                <div class="rendomcolorbox">
+                    <button class="testinput" style={rendomcolor}></button>
+                </div>
+                <div class="color_captch_text">Pick colors similar to the above.</div>
+                <div class="container-fluid Select" >
+                    <div class="element" for:each={pickListValueList} for:item="car" key={car} >
+                      <button style={car} class="testinput" data-name={car} onclick={verfication_color_captcha}></button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="captchabutton captchabtn3" onclick={getrendomcolore} >
+                Generate New
+            </button>
+            
+            <div class="captcha-footer">
+                    <p if:true={msg_invalid_captcha} class="invalid_captcha"> Invalid Captcha. </p>
+                    <p if:true={msg_verified_captcha} class="verified_captcha"> Captcha Verified </p>
+            </div>
+        </div>
+        <!-- End Captcha 4 Color Captcha -->
+    </div>
+</template>

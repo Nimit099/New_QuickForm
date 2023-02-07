@@ -12,7 +12,7 @@
                     <h2 class="tost_h2">{message}</h2>
                 </div>
                 <div class="slds-notify__close close_btn" >
-                    <!-- <lightning-button-icon icon-name="utility:close" size="small" variant="border-filled" style="background-color: #bdee9e;" class="slds-button slds-button_icon slds-button_icon-inverse .slds-button_icon-border-filled" alternative-text="next" onclick={closeModel} ></lightning-button-icon> -->
+                    <!-- <lightning-button-icon icon-name="utility:close" size="small" variant="border-filled" class="slds-button slds-button_icon slds-button_icon-inverse" alternative-text="next" onclick={closeModel} ></lightning-button-icon> -->
                     
                 </div>
             </div>
@@ -21,7 +21,7 @@
 
     <template if:true={showToastBar_error}>
         <div class="slds-notify_container">
-            <div class="slds-notify slds-notify_toast error_outer toast_shadow" role="status">
+            <div class="slds-notify slds-notify_toast error_outer toast_shadow1" role="status">
                 <span class="slds-assistive-text">{type}</span>
                 <div style=" width:1px; height:40px; border-radius: 10px; border:2px solid red; border-radius:7px;"></div>
                 <span class="slds-no-flex error_inner" title={message}>

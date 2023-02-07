@@ -1,0 +1,136 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 01-27-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="main">
+        <div class="input_section">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12">
+                    <div class="titel">NOTIFICATION</div>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12">
+                    <div class="input_label">TO</div>
+                </div>
+                <div class="slds-col slds-size_7-of-12">
+                    <div class="input-box">
+                        <!-- <input class="input_box" type="text" onfocusout={emailto}> -->
+                        <!-- <lightning-input variant="label-hidden" class="input_box" type="text"></lightning-input> -->
+                        <c-email-input onvalueselect={handleToAddressChange} onselection={handleToAddressChange}></c-email-input>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12">
+                    <div class="input_label">Add CC</div>
+                </div>
+                <div class="slds-col slds-size_7-of-12">
+                    <div class="input-box">
+                        <!-- <input class="input_box" type="text" onfocusout={emailto}> -->
+                        <!-- <lightning-input variant="label-hidden" class="input_box" type="text"></lightning-input> -->
+                        <c-email-input onselection={handleCcAddressChange}></c-email-input>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12">
+                </div>
+                <div class="slds-col slds-size_7-of-12">
+                    <div>
+                        <div><samp><img src={img} style="width: 2%;"></samp> Add Recipient</div>
+                    </div>
+                </div>
+            </div> -->
+            
+            <!-- <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12">
+                </div>
+                <div class="slds-col slds-size_7-of-12">
+                    <div>
+                        <div><samp><img src={img} style="width: 2%;"></samp> Add Recipient</div>
+                        <div><samp><img src={img} style="width: 2%;"></samp> Add Reply-To</div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12">
+                    <div class="input_label" >Subject</div>
+                </div>
+                <div class="slds-col slds-size_7-of-12">
+                    <!-- <input class="input_box" type="text"> -->
+                    <lightning-input variant="label-hidden" class="input_box" placeholder="Enter Subject" type="text" onfocusout={handleSubject}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12">
+                    <div class="input_label" >Message</div>
+                </div>
+                <div class="slds-col slds-size_10-of-12">
+                    <lightning-input-rich-text label="Message" onfocusout={handlemessage}></lightning-input-rich-text>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12">
+                    <div class="input_label" >Attachment</div>
+                </div>
+                <div class="slds-col slds-size_10-of-12">
+                    <lightning-input type="checkbox" onchange={handleAttachment} value=""></lightning-input><lightning-helptext content="Attachment would be received by all the recipient in pdf formate"></lightning-helptext>
+                    
+                </div>
+            </div>
+            <div class="bt-center">
+                <div class="bt">
+                    <input class="qf-standard-button" type="button" value="Cancel" onclick={save} name="Cancel" />
+                    <input class="qf-standard-button" type="button" value="Next" name="Next" />
+                </div>
+                                    <!-- <div class="form-details-cancel-button">
+                    <input class="qf-standard-button" type="button" value="Cancel" name="Cancel" />
+                </div>
+                <div class="form-details-next-button">
+                    <input class="qf-standard-button" type="button" value="Next" name="Next" />
+                </div> -->
+            </div>
+        <!-- <div class="emailsend">
+            <b>NOTIFICATION</b>
+            <div>
+                <div class="email_to">
+                    <label>TO</label>
+                    <lightning-input type="email" placeholder="username@example.com"
+                        onfocusout={emailto}></lightning-input>
+                </div>
+                <div onclick={addrecipient}><img src={img} style="width: 2%;"> &nbsp;
+                    <span>Add Recipient</span>
+                </div>
+            </div>
+            <div class="email_reply">
+                <lightning-input label="Reply-To" type="email" onfocusout={reply}></lightning-input>
+                <div class="add">
+                    <div class={addbcc}><img src={img} style="width: 18%;"> &nbsp;<span>Add Bcc</span></div>
+                    <div class={addreply_to}><img src={img} style="width: 15%;"> &nbsp;<span>Add Reply-To</span></div>
+                </div>
+            </div>
+            <div class="email_subject">
+                <lightning-input type="text" label="Subject" onfocusout={subject} placeholder="Required"
+                    required></lightning-input>
+            </div>
+        </div>
+        <div class="email_message">
+            <span>Message</span>
+            <lightning-input-rich-text label="Message" onfocusout={message}></lightning-input-rich-text>
+        </div>
+        <div class="checkbox">
+            <lightning-input type="checkbox" label="Recieved Attachment" required></lightning-input>
+            <div class="slds-align_absolute-center slds-size_1-of-4">
+                <lightning-button class="slds-m-around_medium " variant="brand" label="Save"
+                    onclick={save}></lightning-button>
+                <lightning-button class="slds-m-around_medium " label="Cancel" onclick={cancel}></lightning-button>
+            </div>
+        </div> -->
+        </div>
+    </div>
+</template>

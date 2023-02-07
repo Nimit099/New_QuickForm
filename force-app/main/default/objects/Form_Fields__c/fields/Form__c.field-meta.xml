@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Form__c</fullName>
-    <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
     <label>Form</label>
     <referenceTo>Form__c</referenceTo>
+    <relationshipLabel>Form_Fields</relationshipLabel>
     <relationshipName>Form_Fields</relationshipName>
-    <required>true</required>
+    <relationshipOrder>1</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
     <trackTrending>false</trackTrending>
-    <type>Lookup</type>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
 </CustomField>

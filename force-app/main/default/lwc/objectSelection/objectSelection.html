@@ -28,7 +28,7 @@ Version No.     Author                 Date                  Change Description 
                         <span class="slds-icon_container slds-icon-utility-success slds-icon-utility-success  slds-no-flex slds-align-top" style="margin:5px 10px; font-size:24px;">
                             <div style="height:26px; width:26px; background-color:rgb(252, 8, 8); border-radius:50%; color:white; margin:3px 0; padding:0 9px; font-weight:bold;">!</div>
                         </span>
-                        <div class="slds-notify_content" style="display:block;">                        
+                        <div>                        
                             <h1 style="font-weight:bold;">Uh oh, something went wrong</h1>
                             <template if:true={objecterror}>
                             <h2 class="slds-text-heading_small" >You, can't select the same Object.</h2>
@@ -109,11 +109,17 @@ Version No.     Author                 Date                  Change Description 
                             <!-- Spinner -->
                             <template if:true={temp_One}>
                                 <div class="one">
-                                    <div class="one_contener slds-align_absolute-center">
-                                        <lightning-combobox class="slds-size_2-of-6" name="object1" placeholder="Select Object" value={value1}
-                                            onchange={object1} options={options_object1}></lightning-combobox>
+                                    <div class="slds-wrap two_contener ">
+                                        <div class="slds-m-around_medium slds-align_absolute-center">
+                                            <lightning-combobox class="slds-size_2-of-6" name="object1" placeholder="Select Object 1"
+                                                value={value1} onchange={Temp1Obj} options={options_object1}></lightning-combobox>
+                                        </div>
+                                        <!-- <div class="two_line"></div>
+                                        <div class="two_child_object slds-align_absolute-center">
+                                            <lightning-combobox class="slds-size_1-of-6" name="object2.2" placeholder=" Select Object 2"
+                                                value={value2} onchange={object2_1} options={options_object2}></lightning-combobox>
+                                        </div> -->
                                     </div>
-                                    
                                 </div>
                             </template>
                             <template if:true={temp_Two}>
@@ -149,7 +155,7 @@ Version No.     Author                 Date                  Change Description 
                                                 value={value2} onchange={object2_1} options={options_object2}></lightning-combobox>
                                             <div class="slds-size_1-of-6"></div>
                                             <lightning-combobox class="three_child_right slds-size_1-of-6" name="Object 3.2.2" placeholder="Selected Object 3"
-                                                value={value3} onchange={object2_2} options={options_object2}></lightning-combobox>
+                                                value={value3} onchange={object2_2} options={options_object2_2}></lightning-combobox>
                                         </div>
                                     </div>
                                 </div>

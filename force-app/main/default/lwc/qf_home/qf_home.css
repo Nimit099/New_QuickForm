@@ -241,16 +241,15 @@
 
  .tableTitleCol {
     overflow: hidden;
-    width: 22%;
-    padding-left: 6%;
+    width: 32%;
+    padding-left: 5%;
     display: flex;
     justify-content: space-between;
 }
 
  .tableStatusCol {
     text-align: center;
-    width: 20%;
-    padding-left: 7%;
+    width: 10%;
 }
 
  .tableSubmissionCol {
@@ -737,7 +736,7 @@
 }
 
  .mainFormTitle {
-    font-size: 2rem;
+    font-size: 30px;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -798,8 +797,8 @@
     padding: 5px 0;
     text-align: center;
     font-size: 0.9rem;
-    background: #FFFCFC;
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    background: #FAFAFA;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
  .searchBoxDiv.slds-input-has-icon .slds-input__icon {
@@ -846,7 +845,7 @@
     background: #f2f2f2;
 }
 
-.dataTableMain .tabletr {
+ .dataTableMain .tabletr {
     border: 1px solid lightgray;
     height: 50px;
 }
@@ -871,8 +870,8 @@
 }
 
  .previewIcon {
-    width: 35px;
-    padding: 6px;
+    width: 32px;
+    padding: 4px;
     border-radius: 5px;
     background: #FFFDFD;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -898,7 +897,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
     border-radius: 58px;
     font-size: 17px;
 }
@@ -945,6 +943,9 @@
     .norecordfound{
         height: 78%;
         margin: 0;
+    }
+    .title_name{
+        width: 250px;
     }
 }
 @media screen and (max-width:1400px) {
@@ -1163,6 +1164,7 @@
 }
 .titlename{
     display: flex;
+    width: 100%;
 }
 .right{
     width: 24px;
@@ -1206,7 +1208,7 @@
 }
 .container{
     position: relative;
-    top: 3px;
+    top: 4px;
 }
 .rename_div{
     display: flex;
@@ -1245,6 +1247,8 @@
 .editpen{
     display: none;
     cursor: pointer;
+    margin-right: 14%;
+    align-items: center;
 }
 
 
@@ -1335,7 +1339,8 @@ lightning-button{
 .help{
     width: 160px;
     height: 35px;
-    gap: 5px;
+    cursor: none;
+    gap: 7px;
     border-radius: 28px;
     color: white;      /* Remove comment once button is working*/
     /* color: rgb(204, 192, 192); */
@@ -1439,23 +1444,22 @@ lightning-button{
     justify-content: flex-end;
     align-items: center;
 }
-
-button:after {
-    content: "";
-    background: #90EE90;
-    display: block;
-     position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px!important;
-    margin-top: -120%;
-    opacity: 0;
-   transition: all 0.3s
+  .penicon{
+    height: 19px;
+    width: 19px;
   }
-  
-  button:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
+  .helpicon{
+    width: 11px;
+  }
+  .name{
+    display: flex;
+  }
+  lightning-menu-item{
+    --lwc-colorTextDefault:black;
+    --sds-c-icon-color-foreground-default: #6699CC;
+  }
+  .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

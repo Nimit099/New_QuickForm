@@ -27,6 +27,7 @@ export default class Qf_thankyou extends LightningElement {
     textcheck = false;
     richtextcheck = false;
     editlabelcheck = false;
+    error_toast = false;
     picklist;
     @api currentformid = 'a046D0000056tXOQAY';
     @api currentthankyouid;
@@ -160,6 +161,13 @@ export default class Qf_thankyou extends LightningElement {
                     this.spinner = false;
                 })
               return true;
+            }
+            else{
+                let toast_error_msg = 'Enter Correct URL';
+                this.spinner = false;
+                this.error_toast = true;
+                this.template.querySelector('c-toast-component').showToast('Error',toast_error_msg,3000);
+
             }
         }
         else{

@@ -11,27 +11,27 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Normal Captcha</fullName>
+                <fullName>Normal_Captcha</fullName>
                 <default>false</default>
                 <label>Normal Captcha</label>
             </value>
             <value>
-                <fullName>Normal Captcha In Popup</fullName>
+                <fullName>Normal_Captcha_In_Popup</fullName>
                 <default>false</default>
                 <label>Normal Captcha In Popup</label>
             </value>
             <value>
-                <fullName>Math Captcha</fullName>
+                <fullName>Math_Captcha</fullName>
                 <default>false</default>
                 <label>Math Captcha</label>
             </value>
             <value>
-                <fullName>Slider Captcha</fullName>
+                <fullName>Slider_Captcha</fullName>
                 <default>false</default>
                 <label>Slider Captcha</label>
             </value>
             <value>
-                <fullName>Image Captcha</fullName>
+                <fullName>Image_Captcha</fullName>
                 <default>false</default>
                 <label>Image Captcha</label>
             </value>

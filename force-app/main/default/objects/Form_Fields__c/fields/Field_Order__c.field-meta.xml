@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Field_Order__c</fullName>
+    <description>This is custom field to use to give the sequence of fields List</description>
     <externalId>false</externalId>
     <label>Field_Order</label>
     <precision>18</precision>

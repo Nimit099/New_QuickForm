@@ -1,0 +1,79 @@
+<template>
+
+    <template if:true={spinnerDataTable}>
+        <div data-id="spinnerId" class="slds-spinner_container"
+            style="overflow: hidden;">
+            <div class="spinner-main-div">
+                <div class="loader--ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </template> 
+    <template if:false={activepreview}>
+    <lightning-button label="back" onclick={backhome}></lightning-button>
+    </template>
+    <div class="fieldDiv1">
+<div class="myform" id="mainformid">
+    <div class="progressindicator">
+        <template if:true={Progressbarvalue}>
+            <c-progress-indicator></c-progress-indicator>
+        </template>
+    </div>
+        <div class="page" id={page.pageId}>
+            <div class="pagetitle">
+                <div style="display: flex;align-items: center;">
+                    <div>
+                        <template if:true={page.pageName}>
+                            <div class="pagetitle1">{page.pageName}</div>
+                        </template>
+
+                    </div>
+                </div>
+
+            </div>
+                    <div class="example-dropzone" data-page-record={page.pageId}>
+
+                <template for:each={page.FieldData} for:item="field">
+
+                            <div id={field.Id} class="field" data-order-id={field.Field_Order__c} data-page-record={field.Form_Page__c}
+                                data-record={field.Id} data-ref="inner"  data-record-count={fieldcount}
+                                onclick={handleid} key={field.Id} data-field-name={field.Name}>
+                                <c-quickformfieldcomponent formid={ParentMessage} t-view={field.Name} compview="Full"
+                                    disable-field="true" field-attribute="" field-attribute-value=""
+                                    field-id={field.Id} page-id={page.Id}></c-quickformfieldcomponent>
+
+                    </div>
+                </template>
+            </div>
+                    <div class="footer">
+
+                <template if:true={isIndexZero}>
+                            <lightning-button data-name = "next" class="nextbutton " variant="brand" label="Next" title="Next"
+                                 onclick={onaddpage1}></lightning-button>
+                </template>
+
+                <template if:false={isIndexZero}>
+                            <lightning-button data-name = "previous" variant="brand" label="Previous"
+                                title="Previous"  onclick={onaddpage1} class="btn"></lightning-button>  
+                        
+                            <template if:false={isIndexLast}>
+                            <lightning-button data-name = "next" variant="brand" label="Next" title="Next"
+                            onclick={onaddpage1} class="btn"></lightning-button>
+                            </template>
+                            <template if:true={isIndexLast}>
+                                <lightning-button variant="brand" label="Submit" title="Submit" 
+                                onclick={onaddpage1} class="btn" data-name = "submit"></lightning-button>
+                            </template>
+                </template>
+
+                <!-- <template if:true={isIndexLast}>
+                    <lightning-button variant="brand" label="Submit" title="Submit" 
+                    onclick={onaddpage1} class="btn" data-name = "submit"></lightning-button>
+                </template> -->
+            </div>
+        </div>
+    </div>
+</div>
+</template>

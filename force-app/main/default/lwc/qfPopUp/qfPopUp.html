@@ -1,0 +1,137 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 01-19-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <!-- lightning button for open modal window -->
+    <lightning-button variant="brand"
+       label="Template"
+       title="Template"
+       onclick={openModal}
+       class="slds-m-left_x-small">
+    </lightning-button>
+
+    <!--Use template if:true to display/hide popup based on isModalOpen value--> 
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                
+                <!-- header -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Template</h2>
+                </header>
+
+                <!-- body -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+                    <!-- Template selection page  -->
+                    <div class="main_box">
+                    <div class="main_box_grid">
+                        <div class="grid1 slds-grid slds-gutters">
+                            <div class="inner-grid1 slds-col" onclick={firstTemp}>
+                                <img src={section_One_img}>
+                            </div>
+                            <div class="inner-grid1 slds-col" onclick={secondTemp}>
+                                <!-- <img src={section_Two_img}> -->
+                            </div>
+                            <!-- <div class="inner-grid3 slds-col"></div> -->
+                        </div>
+                        <div class="grid1 slds-grid slds-gutters">
+                            <div class="inner-grid2 slds-col" onclick={thirdTemp}>
+                                <!-- <img src={section_Three_img}> -->
+                            </div>
+                        </div>
+                        <!-- <div class="grid1 slds-grid slds-gutters">
+                            <div class="inner-grid1 slds-col"><img src={section_Four_img}></div>
+                            <div class="inner-grid1 slds-col"><img src={section_Five_img}></div>
+                            <div class="inner-grid1 slds-col"><img src={section_Six_img}></div>
+                        </div> -->
+                    </div>
+
+                    <!-- Object Selection Page -->
+                    <div class="pop_up2">
+                        <div class="grid2">
+                            <template if:true={temp_One}>
+                                <div class="one">
+                                    <div class="one_contener slds-align_absolute-center">
+                                        <lightning-combobox class="slds-size_2-of-6" name="object1" placeholder="Select Object" value={value1}
+                                            onchange={object1} options={options_object1}></lightning-combobox>
+                                    </div>
+                                    <!-- <div class="first slds-align_absolute-center">
+                                    <select>
+                                        <option value="Select Object">Select Object</option>
+                                        <template> 
+                                            <option>Object 1</option>
+                                        </template>
+                                    </select>
+                                    </div> -->
+                                </div>
+                            </template>
+                            <template if:true={temp_Two}>
+                                <div class="two">
+                                    <div class="slds-wrap two_contener ">
+                                        <div class="slds-m-around_medium slds-align_absolute-center">
+                                            <lightning-combobox class="slds-size_2-of-6" name="object2.1" placeholder="Select Object 1"
+                                                value={value1} onchange={object1} options={options_object1}></lightning-combobox>
+                                        </div>
+                                        <div class="two_line"></div>
+                                        <div class="two_child_object slds-align_absolute-center">
+                                            <lightning-combobox class="slds-size_1-of-6" name="object2.2" placeholder=" Select Object 2"
+                                                value={value2} onchange={object2_1} options={options_object2}></lightning-combobox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <template if:true={temp_Third}>
+                                <div class="three">
+                                    <div class="slds-wrap three_contener">
+                                        <div class="slds-m-around_medium slds-align_absolute-center slds-wrap">
+                                            <lightning-combobox class="slds-size_2-of-6 " name="object3.1" placeholder="Selected Object 1"
+                                                value={value1} onchange={object1} options={options_object1}></lightning-combobox>
+                                        </div>
+                                        <div class="three_line_div">
+                                            <div class="three_line_one">
+                                            </div>
+                                            <div class="three_line_two">
+                                            </div>
+                                        </div>
+                                        <div class="slds-wrap slds-grid slds-align_absolute-center three_child_object">
+                                            <lightning-combobox class="three_child_left slds-size_1-of-6" name="Object 3.2.1" placeholder="Selected Object 2"
+                                                value={value2} onchange={object2_1} options={options_object2}></lightning-combobox>
+                                            <div class="slds-size_1-of-6"></div>
+                                            <lightning-combobox class="three_child_right slds-size_1-of-6" name="Object 3.2.2" placeholder="Selected Object 3"
+                                                value={value3} onchange={object2_2} options={options_object3}></lightning-combobox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div> 
+                    </div>
+                    <div class="footer">
+                        <button class="pre-btn slds-button slds-button_brand" title="Previous">Previous</button>
+                        <button class="save-btn slds-button slds-button_brand" title="Save">Save</button>
+                    </div>
+                </div>
+
+                <!-- footer -->
+                <!-- <footer class="slds-modal__footer"> -->
+                    
+                    <!-- <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button> -->
+                <!-- </footer> -->
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+ </template>

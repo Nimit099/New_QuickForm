@@ -1,0 +1,11 @@
+.page_number{
+    text-align: center;
+    font-size: 25px;
+}
+lightning-progress-bar{
+    width: 100%;
+}
+.show_progress_bar_value{
+    font-size: 15px;
+    text-align: center;
+}

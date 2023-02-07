@@ -1,0 +1,22 @@
+/* .Accord{
+    height: 750px;
+} */
+.fieldname{
+    margin-top:1%; 
+    background-color: white;
+}
+.fieldname > p{
+    color: rgb(97, 121, 199);
+    text-align: center;
+}
+.Accord{
+    height: 75vh;
+}
+.slds-scrollable_y{
+    overflow-y: scroll;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.slds-scrollable_y::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}

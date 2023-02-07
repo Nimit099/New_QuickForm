@@ -11,22 +11,22 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Page Count</fullName>
+                <fullName>Page_Count</fullName>
                 <default>false</default>
                 <label>Page Count</label>
             </value>
             <value>
-                <fullName>Progress Bar</fullName>
+                <fullName>Progress_Bar</fullName>
                 <default>false</default>
                 <label>Progress Bar</label>
             </value>
             <value>
-                <fullName>Standard Steps</fullName>
+                <fullName>Standard_Steps</fullName>
                 <default>false</default>
                 <label>Standard Steps</label>
             </value>
             <value>
-                <fullName>Custom Steps</fullName>
+                <fullName>Custom_Steps</fullName>
                 <default>false</default>
                 <label>Custom Steps</label>
             </value>
