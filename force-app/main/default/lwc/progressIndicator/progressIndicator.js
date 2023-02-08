@@ -39,7 +39,7 @@ export default class ProgressIndicator extends LightningElement {
             this.Custom_Steps = false;
             this.Standard_Steps = false;
             this.Page_Count = false;
-            this.progress_bar_value = Math.round(( (this.currentpage -1) / this.totalpage) * 100);
+            this.progress_bar_value = Math.round(( (this.currentpage) / this.totalpage) * 100);
         }
         if(this.getprogreshbar=='Custom_Steps'){
             this.Progress_Bar = false;

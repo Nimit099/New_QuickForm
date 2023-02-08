@@ -6,10 +6,11 @@ import getFormCSS from '@salesforce/apex/FormBuilderController.getFormCSS';
 import getPageCSS from '@salesforce/apex/FormBuilderController.getPageCSS';
 import getprogressbar from '@salesforce/apex/FormBuilderController.getprogressbar';
 import getcaptcha from '@salesforce/apex/FormBuilderController.getcaptcha';
+import BackButton from '@salesforce/resourceUrl/BackButton';
 
 import { NavigationMixin } from "lightning/navigation";
 
-export default class PreviewFormCmp extends LightningElement {
+export default class PreviewFormCmp  extends NavigationMixin(LightningElement) {
 
     @api formid ='';
     @track getFieldCSS;
@@ -24,21 +25,24 @@ export default class PreviewFormCmp extends LightningElement {
     @track isIndexZero = true;
     @track isIndexLast = false;
     @track Progressbarvalue;
+    @track captchavalue;
+    BackButton = BackButton;
+    @track verify;
 
 
     connectedCallback() {
-
+        this.spinnerDataTable = true;
         getprogressbar({id:this.formid})
         .then(result =>{
             this.Progressbarvalue = result;
             });
 
-            // getcaptcha({id:this.formid})
-            // .then(result =>{
-            //     console.log(result);
-            //     this.Progressbarvalue = result;
-            //     console.log('progress -- ' +this.Progressbarvalue);
-            //     });
+        getcaptcha({id:this.formid})
+        .then(result =>{
+            console.log(result);
+            this.captchavalue = result;
+            console.log('captcha -- ' +this.captchavalue);
+            });
 
         GetFormPage({ Form_Id: this.formid})
         .then(result => {
@@ -110,17 +114,20 @@ export default class PreviewFormCmp extends LightningElement {
         }).catch(error=>{
             console.log({error});
         })
+        if(this.pageindex == this.PageList.length){
+            this.isIndexZero = true;
+            this.isIndexLast = true;
+        }
+        this.spinnerDataTable = false;
         this.template.querySelector('c-progress-indicator').calculation(this.Progressbarvalue,this.pageindex, this.PageList.length);
+       
     }
 
     backhome(event){
-        console.log('back home');
-        this.spinnerDataTable = true;
         let cmpDef = {
             componentDef: "c:qf_home"
         };
         let encodedDef = btoa(JSON.stringify(cmpDef));
-        this.spinnerDataTable = false;
         this[NavigationMixin.Navigate]({
             type: "standard__webPage",
             attributes: {
@@ -146,6 +153,10 @@ export default class PreviewFormCmp extends LightningElement {
                 console.log('lastindex');
                 this.pageindex--;               
                 this.isIndexLast = false;
+                if(this.pageindex == 1){
+                    this.isIndexLast = false;
+                    this.isIndexZero = true;
+                }
             }
             this.page = this.Mainlist[this.pageindex - 1]; 
             this.template.querySelector('c-progress-indicator').calculation(this.Progressbarvalue,this.pageindex, this.PageList.length);
@@ -163,6 +174,9 @@ export default class PreviewFormCmp extends LightningElement {
                     this.pageindex++;
                     this.isIndexZero = false;
                     this.isIndexLast = false;
+                    if(this.pageindex == this.PageList.length){
+                        this.isIndexLast = true;
+                    }
                 }              
             }
             else if(this.PageList.length  > this.pageindex){
@@ -180,6 +194,22 @@ export default class PreviewFormCmp extends LightningElement {
             this.template.querySelector('c-progress-indicator').calculation(this.Progressbarvalue,this.pageindex, this.PageList.length);
         }
 
-        else if(event.currentTarget.dataset.name == 'submit'){}
+        else if(event.currentTarget.dataset.name == 'submit'){
+            if(this.verify == true){
+                console.log(this.verify);
+            }
+            else if(this.verify == false){
+                console.log(this.verify);
+                this.spinnerDataTable = true;
+            }
+            else {
+                console.log(this.verify);
+                this.spinnerDataTable = true;
+            }
+        }
+    }
+
+    verifycaptcha(event){
+        this.verify = event.detail;
     }
 }

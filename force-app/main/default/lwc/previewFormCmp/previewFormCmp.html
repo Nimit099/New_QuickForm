@@ -12,7 +12,7 @@
         </div>
     </template> 
     <template if:false={activepreview}>
-    <lightning-button label="back" onclick={backhome}></lightning-button>
+    <button onclick={backhome} class="backbutton"><img src={BackButton} alt=""> <p>Home Page</p></button>
     </template>
     <div class="fieldDiv1">
 <div class="myform" id="mainformid">
@@ -46,12 +46,23 @@
 
                     </div>
                 </template>
+                <div class="field captchafield">
+                    <template if:true={isIndexLast}>
+                        <c-captcha-type oncaptchaverification={verifycaptcha} captypetypes={captchavalue}></c-captcha-type>
+                    </template>
+                </div>
             </div>
                     <div class="footer">
 
                 <template if:true={isIndexZero}>
-                            <lightning-button data-name = "next" class="nextbutton " variant="brand" label="Next" title="Next"
-                                 onclick={onaddpage1}></lightning-button>
+                    <template if:false={isIndexLast}>
+                        <lightning-button data-name = "next" variant="brand" label="Next" title="Next"
+                        onclick={onaddpage1} class="btn"></lightning-button>
+                        </template>
+                        <template if:true={isIndexLast}>
+                            <lightning-button variant="brand" label="Submit" title="Submit" 
+                            onclick={onaddpage1} class="btn" data-name = "submit"></lightning-button>
+                        </template>
                 </template>
 
                 <template if:false={isIndexZero}>

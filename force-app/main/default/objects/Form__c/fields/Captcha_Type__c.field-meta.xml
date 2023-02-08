@@ -21,9 +21,9 @@
                 <label>Normal Captcha In Popup</label>
             </value>
             <value>
-                <fullName>Math_Captcha</fullName>
+                <fullName>Maths_Captcha</fullName>
                 <default>false</default>
-                <label>Math Captcha</label>
+                <label>Maths Captcha</label>
             </value>
             <value>
                 <fullName>Slider_Captcha</fullName>

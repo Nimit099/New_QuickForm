@@ -491,3 +491,20 @@ border-radius: 28px;
     margin: auto;
 
 }
+.captchafield{
+    height: 5vh;
+}
+.backbutton{
+    width: 160px;
+    height: 35px;
+    border-radius: 101px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(102, 153, 204) !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 17px;
+    color: white; 
+    gap: 10px;
+    border-color: #6699CC;
+}
