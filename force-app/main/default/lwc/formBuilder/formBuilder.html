@@ -172,7 +172,7 @@
                                         <div id={field.ParentMessage} class="field" draggable="true" 
                                             data-order-id={field.Field_Order__c} data-page-record={field.Form_Page__c}
                                             data-record={field.ParentMessage} data-ref="inner" ondragstart={onDragStart} data-record-count={fieldcount}
-                                            onclick={openfieldvalidation} key={field.ParentMessage} data-field-name={field.Name}>
+                                            onclick={openfieldvalidation} key={field.ParentMessage} data-field-name={field.Name} data-id={field.Id}>
                                             <c-quickformfieldcomponent formid={ParentMessage} t-view={field.Name} compview="Full"
                                                 disable-field="true" field-attribute="" field-attribute-value=""
                                                 field-id={field.ParentMessage} page-id={page.ParentMessage}></c-quickformfieldcomponent>
@@ -222,7 +222,7 @@
 
     <template if:true={fieldvalidationdiv}>
         <div class="fieldvalidationdiv">
-            <c-field-validation tab={tab}></c-field-validation>
+            <c-field-validation tab={tab} field-id={fieldId} field-name={fieldName}  onclosevalidation={closevalidation} ></c-field-validation>
         </div>
     </template>
 </template>

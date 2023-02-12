@@ -87,6 +87,9 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
     fieldcount  = 0;
     removeObjFields = [];
     fieldvalidationdiv = false;
+    @track tab ='tab-2';
+    @track fieldId;
+    @track fieldName;
 
     renderedCallback(){
         console.log('inside the renderedcallBack--->>>');
@@ -256,7 +259,7 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
     //  }
     handleActive(event) {
 
-        console.log(event.currentTarget.dataset.title);
+        this.tab = event.currentTarget.dataset.title;
         console.log('inside onclick'); 
 
 
@@ -275,7 +278,6 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
         }
         
          console.log(event.currentTarget.title);
-         console.log(this.message + 'messsage');
        if (event.currentTarget.dataset.title == 'tab-1'){
         let cmpDef = {
             componentDef: "c:qf_home"
@@ -867,11 +869,30 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
     }
     
     openfieldvalidation(event){
+
+        if(this.fieldvalidationdiv == false){
+        this.fieldId = event.currentTarget.dataset.id;
+        this.fieldName = event.currentTarget.dataset.fieldName;
         this.activesidebar = false;
         this.activeDesignsidebar = false
         this.fieldvalidationdiv = true;
-        
-        var ans = event.currentTarget.dataset.fieldName.slice(0, event.currentTarget.dataset.fieldName.indexOf(','));
-        console.log(ans);
+        }
+    // this.template.querySelector('c-field-validation').fieldvalidation(this.tab,this.fieldId,fieldName);
+    }
+    closevalidation(event){
+        if(event.detail == 'tab-2'){
+            this.activesidebar = true;
+            this.activeDesignsidebar = false;
+            this.activeNotification = false;
+            this.activethankyou = false;
+            this.fieldvalidationdiv = false;
+        }
+        else if(event.detail == 'tab-3'){
+            this.activeDesignsidebar = true;
+            this.activesidebar = false;
+            this.activeNotification = false;
+            this.activethankyou = false;
+            this.fieldvalidationdiv = false;
+        }
     }
 }

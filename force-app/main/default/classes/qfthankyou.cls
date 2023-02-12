@@ -41,8 +41,8 @@ public with sharing class qfthankyou {
         try {
             
             if(String.isNotBlank(classtext)){
-        Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, ThankYou_Label__c = label, Thank_you_URL__c = url, Thankyou_Text__c = classtext, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid ); 
-        Database.upsert(insertrecord);
+            Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, ThankYou_Label__c = label, Thank_you_URL__c = url, Thankyou_Text__c = classtext, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid ); 
+            Database.upsert(insertrecord);
             }
             else{
             Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, ThankYou_Label__c = label, Thank_you_URL__c = url, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid );

@@ -29,7 +29,7 @@ export default class Qf_thankyou extends LightningElement {
     editlabelcheck = false;
     error_toast = false;
     picklist;
-    @api currentformid = 'a046D0000056tXOQAY';
+    @api currentformid = '';
     @api currentthankyouid;
     None = true;
     ThankYou_Text;

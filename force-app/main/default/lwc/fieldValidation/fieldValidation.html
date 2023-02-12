@@ -1,19 +1,69 @@
 <template>
-    <div class="fieldvalidationbody">
-    <!-- <aura:if isTrue={fields == 'field'}> -->
+<div class="fieldvalidationbody">
     <template if:true={mainbody}>
 
-        <!-- Short Text Validation Fields -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c ==  'QFSHORTTEXT'}> -->
-
-        <template if:true={shorttext}>
-            <!-- <div class="fieldname slds-box slds-box_x-small slds-theme_shade">
-                Short Text
-            </div> -->
+        <template if:true={d}>
             <div class="fieldLabel">
-                <h1>Short Text</h1>
+                {fieldName}
             </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <div class="fieldvalidationbtnmaindiv">
+                <div class="fieldvalidationbtndiv">
+                    <div class="attributeButton">
+                        <div class="btnDiv" data-title="Close" title="Close" onclick={validatingbtnhandle}>
+                        <img src={fieldcancel} alt="" class="validationicon">
+                        </div>
+                        <div class="btnDiv" data-title="Delete" title="Delete" onclick={validatingbtnhandle}>
+                            <img src={fielddelete} alt="" class="validationicon">
+                        </div>
+                        <div class="btnDiv" data-title="Save" title="Save" onclick={validatingbtnhandle}>
+                            <img src={fieldsave} alt="" class="validationicon">
+                        </div>
+                        <div class="btnDiv" data-title="Copy" title="Copy" onclick={validatingbtnhandle}>
+                            <img src={fieldduplicate} alt="" class="validationicon">
+                        </div>
+                    </div>
+
+                    <div class="styletext">
+                        <lightning-combobox
+                        name="progress"
+                        label="Label"
+                        value={labelcheck}
+                        placeholder="Label"
+                        options={showlabel}
+                        onchange={handleChange}
+                        data-title="Label" ></lightning-combobox>
+                    </div>
+                    <template if:true={d}>
+                        <div class="styletext">
+                            <lightning-input label="Label" data-title="Label" value={labelvalue} onchange={validatingvalue} ></lightning-input>
+                        </div>
+                    </template>
+                    <div class="togglebox">
+                        <lightning-combobox
+                        name="progress"
+                        label="Help Text"
+                        value={helptextcheck}
+                        placeholder="Help Text"
+                        options={showlabel}
+                        onchange={handleChange}
+                        data-title="HelpText" ></lightning-combobox>
+                    </div>
+                    <template if:true={d}>
+                        <div class="styletext">
+                            <lightning-input label="Help Text" data-title="HelpText" value={helptext} onchange={validatingvalue}></lightning-input>
+                        </div>
+                    </template>
+                    <div class="textlabel">Validation</div>
+                    <div class="togglebox">
+                        <lightning-input type="toggle" label="Required Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+    <template for:each={field.data} for:item="fields">
+        <div key={fields.Nme}>
+        <template if:true={fields.QFSHORTTEXT}>
             <div class="plaintext">
                 <lightning-select label="Field Validation" value={}>
                     <option value="None">None</option>
@@ -35,22 +85,20 @@
             <div class="togglebox">
                 <lightning-input type="toggle" label="Add Placeholder text:" checked= {} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
-            <!-- <aura:if isTrue= {}> -->
             <template if:true={shorttextoptions}>
                 <div class="plaintext">
                     <lightning-input variant="label-hidden" value={}></lightning-input>
                 </div>
             </template>
             <div class="togglebox">
-                                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
+                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
             <div class="togglebox">
-                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input></lightning-input></lightning-input>
+                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
             <div class="togglebox">
                 <lightning-input type="toggle" label="Add prefix Inside the Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
-            <!-- <aura:if isTrue={WrapperList.AttributeList.Add_Prefix_Inside_The_Field__c}> -->
             <template if:true={shorttextprefix}>
                 <div class="plaintext">
                     <lightning-input label="prefix value" value={} placeholder="enter Prefix value"></lightning-input>
@@ -58,13 +106,7 @@
             </template>
         </template>
 
-        <!-- Long Text Validation Fields -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFLONGTEXT'}> -->
-        <template if:true={longtext}>
-            <div class="fieldLabel">
-                Long Text
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+        <template if:true={fields.QFLONGTEXT}>
             <div class="slider">
                 <lightning-slider label="Min no of character" value={} min="0" max={} ></lightning-slider>
             </div>
@@ -76,7 +118,6 @@
             <div class="togglebox">
                 <lightning-input type="toggle" label="Add Placeholder text:" checked= {} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
-            <!-- <aura:if isTrue= {}> -->
             <template if:true={longtextoptions}>
                 <div class="plaintext">
                     <lightning-input variant="label-hidden" value={}></lightning-input>
@@ -90,25 +131,23 @@
             </div>
         </template>
 
-        <!-- DropDown Validation -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFDROPDOWN'}> -->
-        <template if:true={dropdown}>
+            <!-- DropDown Validation -->
+        <template if:true={fields.QFDROPDOWN}>
             <div class="fieldLabel">
                 DropDown
             </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- <c-field-validationbtn  ></c-field-validationbtn> -->
             <div class="textlabel">Options</div>
             <div class="togglebox">
                 <lightning-accordion type="toggle" label="Add Placeholder text:" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-accordion>
             </div>
-            <!-- <aura:if isTrue= {}> -->
             <template if:true={dropdownchoices}>
                 <div class="plaintext">
                     <lightning-input variant="label-hidden" value={}></lightning-input>
                 </div>
             </template>
             <div class="togglebox">
-                                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
+                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
             <div class="textlabel">Choices</div>
             <!-- <aura:iteration items={WrapperList.FieldList} var="item"> -->
@@ -122,13 +161,8 @@
             </div>
         </template>
 
-        <!-- Radio Button -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFRADIOBUTTON'}> -->
-        <template if:true={radiobutton}>
-            <div class="fieldLabel">
-                Radio Button
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- Radio Button -->
+        <template if:true={fields.QFRADIOBUTTON}>
             <div class="textlabel">Options</div>
             <div class="togglebox">
                 <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
@@ -145,13 +179,8 @@
             </div>
         </template>
 
-        <!-- CheckBox -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFCHECKBOX'}> -->
-        <template if:true={checkbox}>
-            <div class="fieldLabel">
-                CheckBox
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- CheckBox -->
+        <template if:true={fields.QFCHECKBOX}>
             <div class="textlabel">Options</div>
             <div class="togglebox">
                 <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input><br/>
@@ -168,26 +197,16 @@
             </div>
         </template>
 
-        <!--File-->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFFILEUPLOAD'}> -->
-        <template if:true={fileupload}>
-            <div class="fieldLabel">
-                File Upload
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!--File-->
+        <template if:true={fields.QFFILEUPLOAD}>
             <div class="textlabel">Options</div>
             <div class="togglebox">
                 <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
         </template>
 
-        <!-- Number -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFNUMBER'}> -->
-        <template if:true={number}>
-            <div class="fieldLabel">
-                Number
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- Number -->
+        <template if:true={fields.QFNUMBER}>
             <div class="slider">
                 <lightning-slider label="Min value" value={} min="0" max={} ></lightning-slider>
             </div>
@@ -199,22 +218,20 @@
             <div class="togglebox">
                 <lightning-input type="toggle" label="Add Placeholder text:" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
-            <!-- <aura:if isTrue= {}> -->
             <template if:true={numberoptions}>
                 <div class="plaintext">
                     <lightning-input variant="label-hidden" value={}></lightning-input>
                 </div>
             </template>
             <div class="togglebox">
-                                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
+                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
             <div class="togglebox">
-                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input></lightning-input></lightning-input>
+                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
             <div class="togglebox">
                 <lightning-input type="toggle" label="Add prefix Inside the Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
-            <!-- <aura:if isTrue={WrapperList.AttributeList.Add_Prefix_Inside_The_Field__c}> -->
             <template if:true={numberprefix}>
                 <div class="plaintext">
                     <lightning-input label="Prefix value" value={} placeholder="enter Prefix value"></lightning-input>
@@ -222,12 +239,8 @@
             </template>
         </template>
 
-        <!-- Email-Id -->
-        <template if:true={qfemail}>
-            <div class="fieldLabel">
-                Email-Id
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- Email-Id -->
+        <template if:true={fields.QFEMAILID}>
             <div class="slider">
                 <lightning-slider label="Min no of character" value={} min="0" max={} ></lightning-slider>
             </div>
@@ -239,27 +252,21 @@
             <div class="togglebox">
                 <lightning-input type="toggle" label="Add Placeholder text:" checked= {} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
-            <!-- <aura:if isTrue= {}> -->
             <template if:true={emailoptions}>
                 <div class="plaintext">
                     <lightning-input variant="label-hidden" value={}></lightning-input>
                 </div>
             </template>
             <div class="togglebox">
-                                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
+                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
             <div class="togglebox">
-                                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive=""></lightning-input>
+                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive=""></lightning-input>
             </div>
         </template>
 
-        <!-- PRICE -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFPRICE'}> -->
-        <template if:true={price}>
-            <div class="fieldLabel">
-                Price
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- PRICE -->
+        <template if:true={fields.QFPRICE}>
             <div class="plaintext">
                 <lightning-select label="Show Decimal Places" value={}>
                     <option value="0">0</option>
@@ -270,9 +277,8 @@
             </div>
             <div class="textlabel">Options</div>
             <div class="togglebox">
-                        <lightning-input type="toggle" label="Add Placeholder text:" checked={} message-toggle-active="" message-toggle-inactive=""></lightning-input>
+                <lightning-input type="toggle" label="Add Placeholder text:" checked={} message-toggle-active="" message-toggle-inactive=""></lightning-input>
             </div>
-            <!-- <aura:if isTrue= {}> -->
             <template if:true={priceoptions}>
                 <div class="plaintext">
                     <lightning-input variant="label-hidden" value={}></lightning-input>
@@ -283,12 +289,8 @@
             </div>
         </template>
 
-        <!-- FULL NAME -->
-        <template if:true={qffullname}>
-            <div class="fieldLabel">
-                Full Name
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- FULL NAME -->
+        <template if:true={fields.QFFULLNAME}>
             <div class="textlabel">Options</div>
             <div class="togglebox">
                 <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive=""></lightning-input>
@@ -305,18 +307,12 @@
             </div>
         </template>
 
-        <!-- NAME -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFNAME'}> -->
-        <template if:true={qfname}>
-            <div class="fieldLabel">
-                Name
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- NAME -->
+        <template if:true={fields.QFNAME}>
             <div class="textlabel">Options</div>
             <div class="togglebox">
-                            <lightning-input type="toggle" label="Add Placeholder text:" checked= {} message-toggle-active="" message-toggle-inactive=""></lightning-input>
+                <lightning-input type="toggle" label="Add Placeholder text:" checked= {} message-toggle-active="" message-toggle-inactive=""></lightning-input>
             </div>
-            <!-- <aura:if isTrue= {}> -->
             <template if:true={nameoptions}>
                 <div class="plaintext">
                     <lightning-input variant="label-hidden" value={}></lightning-input>
@@ -327,27 +323,19 @@
             </div>
         </template>
 
-        <!-- ADDRESS -->
-        <template if:true={qfaddress}>
-            <div class="fieldLabel">
-                Address
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- ADDRESS -->
+        <template if:true={fields.QFADDRESS}>
             <div class="textlabel">Options</div>
             <div class="togglebox">
                 <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive=""></lightning-input>
             </div>
             <div class="togglebox">
-                    <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive=""></lightning-input>
+                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive=""></lightning-input>
             </div>
         </template>
 
-        <!-- PHONE -->
-        <template if:true={qfphone}>
-            <div class="fieldLabel">
-                Phone
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- PHONE -->
+        <template if:true={fields.QFPHONE}>
             <div class="textlabel">Options</div>
             <div class="togglebox">
                 <lightning-input type="toggle" label="Add Placeholder text:" checked= {} message-toggle-active="" message-toggle-inactive=""></lightning-input>
@@ -365,13 +353,8 @@
             </div>
         </template>
 
-        <!-- DATE -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFDATE'}> -->
-        <template if:true={date}>
-            <div class="fieldLabel">
-                Date
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- DATE -->
+        <template if:true={fields.QFDATE}>
             <div class="plaintext">
                 <lightning-select label="Date Format" value={}>
                     <option value="None">None</option>
@@ -388,90 +371,43 @@
             </div>
         </template>
 
-        <!-- TIME -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFTIME'}> -->
-        <template if:true={time}>
-            <div class="fieldLabel">
-                Time
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- TIME -->
+        <template if:true={fields.QFTIME}>
             <div class="textlabel">Options</div>
             <div class="togglebox">
-                                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
+                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
             <div class="togglebox">
-                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input></lightning-input>
+                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
         </template>
 
-        <!-- DATE/TIME -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFDATETIME'}> -->
-        <template if:true={datetime}>
-            <div class="fieldLabel">
-                Date-Time
-            </div>
-            <!-- <c:FieldAttributeButtons WrapperList={WrapperList} > -->
+            <!-- DATE/TIME -->
+        <template if:true={fields.QFDATETIME}>
             <div class="textlabel">Validation</div>
             <div class="toggle">
                 <lightning-input type="toggle" label="Required Field" checked={WrapperList.AttributeList.Required_Field__c} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
             <div class="textlabel">Options</div>
             <div class="togglebox">
-                                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
+                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
             <div class="togglebox">
-                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input></lightning-input>
+                <lightning-input type="toggle" label="Read only" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
         </template>
 
-        <!-- Rating -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFRATING'}> -->
-        <template if:true={starrating}>
-            <div class="fieldLabel">
-                Star Rating
-            </div>
-            <!-- <c:FieldAttributeButtons WrapperList={WrapperList} > -->
+            <!-- Rating -->
+        <template if:true={fields.QFRATING}>
         </template>
 
-        <!-- Emoji Rating -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFEMOJIRATING'}> -->
-        <template if:true={emojirating}>
-            <div class="fieldLabel">
-                Emoji Rating
-            </div>
-            <!-- <c:FieldAttributeButtons WrapperList={WrapperList} > -->
+            <!-- Emoji Rating -->
+        <template if:true={fields.QFEMOJIRATING}>
         </template>
 
-        <!-- Scale Rating -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFSCALERATING'}> -->
-        <template if:true={scalerating}>
-            <div class="fieldLabel">
-                Scale Rating
-            </div>
-            <!-- <c:FieldAttributeButtons WrapperList={WrapperList} > -->
-
-
-            <!-- <div class="attributeButton">
-                <div class="btnDiv">
-                    <lightning-button label="Cancel" onclick={cancelValidation} ></lightning-button>
-                </div>
-                <div class="btnDiv">
-                    <lightning-button label="Delete" onclick={deleteFieldRecord} ></lightning-button>                                 <// Use Child component>
-                </div>          
-                <div class="btnDiv">
-                    <lightning-button label="Apply" onclick={saveLikertValue} ></lightning-button>
-                </div>
-                <div class="btnDiv">
-                    <lightning-button label="Duplicate" onclick={duplicateRecord} ></lightning-button>
-                </div>
-            </div>
-            <div class="styletext">
-                <lightning-select label="Label Visibility" value={}>
-                    <option value="Shown">Shown</option>
-                    <option value="Hidden">Hidden</option>
-                </lightning-select>
-            </div> -->
-            <!-- <aura:if isTrue={WrapperList.AttributeList.Visibility__c == 'Shown'}> -->
+            <!-- Scale Rating -->
+            <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFSCALERATING'}> -->
+        <template if:true={fields.QFSCALERATING}>
             <template if:true={scaleratinghelptext}>
                 <div class="styletext">
                     <lightning-input label="Label" value={} ></lightning-input>
@@ -480,7 +416,6 @@
             <div class="togglebox">
                 <lightning-input type="toggle" label="Show Help Text" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
             </div>
-            <!-- <aura:if isTrue={WrapperList.AttributeList.Show_on_click__c}> -->
             <template if:true={scaleratingoptions}>
                 <div class="styletext">
                     <lightning-input label="Help Text" value={} ></lightning-input>
@@ -512,13 +447,8 @@
             </div>
         </template>
 
-        <!-- Terms of Service -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFTERMSOFSERVICE'}> -->
-        <template if:true={termsofservice}>
-            <div class="fieldLabel">
-                Terms of Service
-            </div>
-            <!-- <c:FieldAttributeButtons WrapperList={WrapperList} > -->
+            <!-- Terms of Service -->
+        <template if:true={fields.QFTERMSOFSERVICE}>
             <div class="textlabel">Options</div>
             <div class="togglebox">
                 <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
@@ -526,8 +456,6 @@
             <div class="richstyle">
                 <lightning-button class="richbutton" label="Edit Agreement Text" onclick={openRichText} ></lightning-button>
             </div>
-
-            <!-- <aura:if isTrue={termRichText}> -->
             <template if:true={editterms}>
                 <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
                     <div class="slds-modal__container">
@@ -559,13 +487,9 @@
             </template>
         </template>
 
-        <!-- LINK -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c ==  'QFLINK'}> -->
-        <template if:true={link}>
-            <div class="fieldLabel">
-                Link
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- LINK -->
+            <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c ==  'QFLINK'}> -->
+        <template if:true={fields.QFLINK}>
             <div class="slider">
                 <lightning-slider label="Min no of character" value={} min="0" max={}></lightning-slider>
             </div>
@@ -577,7 +501,6 @@
             <div class="togglebox">
                 <lightning-input type="toggle" label="Add Placeholder text:" checked= {} message-toggle-active="" message-toggle-inactive=""></lightning-input>
             </div>
-            <!-- <aura:if isTrue= {}> -->
             <template if:true={linkoptions}>
                 <div class="plaintext">
                     <lightning-input variant="label-hidden" value={}></lightning-input>
@@ -591,26 +514,15 @@
             </div>
         </template>
 
-        <!-- Signature -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFSIGNATURE'}> -->
-        <template if:true={signature}>
-            <div class="fieldLabel">
-                Signature
-            </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- Signature -->
+        <template if:true={fields.QFSIGNATURE}>
         </template>
 
-        <!-- RichText -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFRICHTEXT'}> -->
-        <template if:true={richtext}>
-            <div class="fieldLabel">
-                RichText
-            </div>
-            <!-- <c:FieldAttributeButtons WrapperList={WrapperList} FieldType="RichText"> -->
+            <!-- RichText -->
+        <template if:true={fields.QFRICHTEXT}>
             <div class="richstyle">
-                <lightning-button class="richbutton" label="Edit RichText" onclick={openRichText}></lightning-button>
+                <lightning-button  label="Edit RichText" onclick={openRichText}></lightning-button>
             </div>
-            <!-- <aura:if isTrue={showRichText}> -->
             <template if:true={richtextinput}>
                 <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
                     <div class="slds-modal__container">
@@ -631,8 +543,6 @@
                                 <!-- <ui-output-rich-text class="slds-text-longform" value={WrapperList.AttributeList.RichText__c}></ui-output-rich-text> -->
                             </lightning-tab>
                         </lightning-tabset>
-
-
                         <footer class="slds-modal__footer">
                             <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={c}></lightning-button>
                             <lightning-button variant="brand" label="OK" title="OK" onclick={OutRichC}></lightning-button>
@@ -643,13 +553,12 @@
             </template>
         </template>
 
-        <!-- Look Up -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFLOOKUP'}> -->
-        <template if:true={lookup}>
+            <!-- Look Up -->
+        <template if:true={fields.QFLOOKUP}>
             <div class="fieldLabel">
                 Look Up Field
             </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- <c-field-validationbtn  ></c-field-validationbtn> -->
             <div class="textlabel">Object Selection</div>
             <div class="styletext">
                 <lightning-select data-id="SobjectList" label="Select Object" name="SobjectList" value={defvalue} onchange={selectObject}>
@@ -661,15 +570,15 @@
             </div>
         </template>
 
-        <!-- Captcha -->
-        <!-- <aura:if isTrue={WrapperList.AttributeList.Form_Field__r.Data_Record_Id__c == 'QFCAPTCHA'}> -->
-        <template if:true={captcha}>
+            <!-- Captcha -->
+        <template if:true={fields.QFCAPTCHA}>
             <div class="fieldLabel">
                 Captcha
             </div>
-           <c-field-validationbtn  ></c-field-validationbtn>
+            <!-- <c-field-validationbtn  ></c-field-validationbtn> -->
         </template>
-
+        </div>
+    </template>
     </template>
 
     <!-- Form -->
@@ -727,6 +636,7 @@
     </template>
 
     <!-- Page -->
+    <!-- <aura:if isTrue={fields == 'page'}> -->
     <template if:true={pageedit}>
         <div class="fieldLabel">
             Page Edit

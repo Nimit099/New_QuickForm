@@ -17,6 +17,8 @@
     <template if:false={activepreview}>
     <button onclick={backhome} class="backbutton"><img src={BackButton} alt=""> <p>Home Page</p></button>
     </template>
+
+    <template if:true={previewactive}>
     <div class="fieldDiv1">
         <div class="mainbody">
 
@@ -83,14 +85,13 @@
                             onclick={onaddpage1} class="btn" data-name = "submit"></lightning-button>
                         </template>
                     </template>
-                    
-                    <!-- <template if:true={isIndexLast}>
-                        <lightning-button variant="brand" label="Submit" title="Submit" 
-                        onclick={onaddpage1} class="btn" data-name = "submit"></lightning-button>
-                    </template> -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+</template>
+        <template if:false={previewactive}>
+            <c-thankyou-component currentformid={formid} previewthankyou={thankyou} cmptype="main"  id='thkmcp'></c-thankyou-component>
+        </template>
 </template>
