@@ -141,7 +141,13 @@ public with sharing class objectSelection {
     @AuraEnabled
     public static String saveMapped_object(String Mapped_Objects, String FormTitle, String FormDesc,String ProgressIndicator,String CaptchaType){
         try {
-            Form__c form = new Form__c(Name = FormTitle, Mapped_Objects__c = Mapped_Objects, Captcha_Type__c = CaptchaType, Form_Description__c = FormDesc, Progress_Indicator__c = ProgressIndicator);
+            String Styles = 'width:100%;padding-top:0%;padding-bottom:0%;padding-left:0%;padding-right:0%;background-color:#FFFFFF;background-size:auto;background-position:top center;background-repeat:Repeat;background-attachment:Fixed;';
+            String PageStyle = 'padding-top:0%;padding-bottom:0%;background-color:#FFFFFF;background-size:auto;background-position:top center;background-repeat:Repeat;background-attachment:Fixed;border-color:#000000;border-style:solid;border-width:1px;border-radius:0px;';
+            String FieldStyle = 'background-color:#FFFFFF;border-color:#000000;border-style:Solid;border-width:1px;border-radius:5px;font-family:Arial;font-weight:Normal;color:#242424;font-size:12px;font-style:Normal;padding-left:5%px;padding-right:0px;padding-top:0px;padding-bottom:0px;';
+            String HoverStyle = '';
+            String FocusStyle = '';
+            String LabelStyle = '';            
+            Form__c form = new Form__c(Name = FormTitle, Mapped_Objects__c = Mapped_Objects, Captcha_Type__c = CaptchaType, Form_Description__c = FormDesc, Progress_Indicator__c = ProgressIndicator, Form_Styling__c = Styles, All_Field_Styling__c = FieldStyle, Page_CSS__c = PageStyle);
             Database.insert(form);
             List<String> lst = Mapped_Objects.split(',');
             System.debug(form.Id);

@@ -32,9 +32,27 @@
     display: none;  /* Safari and Chrome */
 }
 
+.slds-icon {
+    overflow: hidden;
+    /* color: #6699cc; */
+    fill: #6699cc;
+    background-color: #ffffff;
+}
 .icon {
     margin-right: 6px !important;
     padding: 0 !important;
+}
+
+.fieldname > p{
+    color: rgb(0,0,0,0.56);
+    font-size:30px;
+    font-weight: 800;
+    font-family: 'Roboto';
+    line-height: 25px;
+    /* margin: 1%; */
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-bottom: 10px;
 }
 
 .Accord{
@@ -54,7 +72,8 @@
     height: 40px !important;
     border-radius: 28px !important;
     font-size: 15px !important;
-    padding: 0 15px !important;
+    height: 35px !important;
+    padding: 0 12px !important;
     white-space: revert;
-    margin: 0 0 10px 10%;
+    margin: 0 15px 14px 5%;
 }

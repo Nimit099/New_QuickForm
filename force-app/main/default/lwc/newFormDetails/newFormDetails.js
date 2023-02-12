@@ -14,11 +14,14 @@ import saveMapped_object from '@salesforce/apex/objectSelection.saveMapped_objec
 import { NavigationMixin } from "lightning/navigation";
 import fetchChildObject1 from '@salesforce/apex/objectSelection.fetchChildObject1';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { loadStyle } from 'lightning/platformResourceLoader';
+import selectobject_dropdown from '@salesforce/resourceUrl/selectobject_dropdown';
+
 
 export default class NewFormDetails extends NavigationMixin(LightningElement) {
     //Boolean tracked variable to indicate if modal is open or not default value is false as modal is closed when page is loaded 
+    @track isModalOpen_3 = false;
     @track isModalOpen_2 = false;
-    @track testtest = true;
     @track isModalOpen = true;
     @track progressindicator;
     @track formdetails =true;
@@ -29,17 +32,18 @@ export default class NewFormDetails extends NavigationMixin(LightningElement) {
     // progressindicator;     //this variable used to store progressindicator input value
     captchatype;    //this variable used to store captchatype input value
     @track ispreview_show_msg_captcha = true;
-    @track ispreview_show_msg = true;
-    @track pi = false;
-    @track ct = false;
+    @track ispreview_show_msg = false;
+    @track testtest = false;
+    @track pi = true;
+    @track ct = true;
     @track l_All_Types;
     @track TypeOptions;
     @track description;
 
     @track l_All_Types_2;
     @track TypeOptions_2;
-    @track Progressbarvalue='';
-    @track captchTypeparent='';
+    @track Progressbarvalue='Standard_Steps';
+    @track captchTypeparent='Normal_Captcha';
   
     @track global_options
 
@@ -69,10 +73,26 @@ export default class NewFormDetails extends NavigationMixin(LightningElement) {
     recordid;
     saveerror = false;
     objecterror = false;
+    @track sec_obj_error = false;
+    @track tep3_sec_obj_error_2 = false;
     
     connectedCallback() {
+        
         this.global_options = [];
         this.getParentObject();
+        this.spinnerDataTable = false;
+       
+    }
+    renderedCallback(){
+        // console.log('print to list',this.listto);
+        Promise.all([
+            loadStyle( this, selectobject_dropdown )
+            ]).then(() => {
+                // console.log( 'icon' );
+            })
+            .catch(error => {
+                // console.log( error.body.message );
+        });
     }
 
     @wire(Objects_Type, {})
@@ -236,6 +256,7 @@ export default class NewFormDetails extends NavigationMixin(LightningElement) {
                 this.ct = true;
                 // alert('hiii');
                 // console.log('test :- ',event.target.value);
+                this.template.querySelector('c-captcha-type').error_msg();
                 this.template.querySelector('c-captcha-type').preview_chptchatype(this.captchTypeparent);
             }
         
@@ -266,6 +287,30 @@ export default class NewFormDetails extends NavigationMixin(LightningElement) {
         
         
     } 
+    handleValidation() {
+        let nameCmp = this.template.querySelector(".nameCls");
+        console.log({nameCmp});
+        
+        
+        if (!nameCmp.value || nameCmp.value.trim().length == 0 ) {
+            console.log('test for form titel');
+            nameCmp.setCustomValidity("Form Title is required");
+        } else {
+            nameCmp.setCustomValidity(""); // clear previous value
+            this.formdetails = false;
+            this.objectselection = true;
+        }
+        nameCmp.reportValidity();
+    }
+    // handleKeyUp(event) {
+    //     console.log('hey u r in handlekeyup');
+    //     event.nameCmp.reportValidity();
+    // }
+    handleFocus(event) {
+        // event.target.className = event.target.className.replace('slds-has-error', '');
+        let nameCmp = this.template.querySelector(".nameCls");
+        nameCmp.setCustomValidity("");
+    }
     next_bt(){
         // alert('hiii :- ' ,this.formtitle);
         if(this.formtitle !='' && this.formtitle != null){
@@ -295,6 +340,8 @@ export default class NewFormDetails extends NavigationMixin(LightningElement) {
         
     }
     Previouus_bt(){
+        this.tep3_sec_obj_error_2 = false;
+        this.sec_obj_error = false;
         this.formdetails = true;
         this.objectselection = false;
     }
@@ -354,6 +401,32 @@ getParentObject() {
     }) 
 }
 
+selcel_object_errormsg(){
+    if(this.value1 == ''){
+        this.sec_obj_error = true;
+        this.tep3_sec_obj_error_2 = false;
+    }
+    // let nameCmp = this.template.querySelector(".testval");
+    // this.formtitle = nameCmp;
+    // console.log({nameCmp});
+    
+    
+    // if (!nameCmp.value) {
+    //     console.log('Select First');
+    //     nameCmp.setCustomValidity("Select First");
+    // } else {
+    //     nameCmp.setCustomValidity(""); // clear previous value
+    // }
+    // nameCmp.reportValidity();
+}
+tep3_selcel_object_errormsg_2(){
+    if(this.value1 == ''){
+        this.sec_obj_error = false;
+        this.tep3_sec_obj_error_2 = true;
+    }
+
+}
+
 firstTemp(event){
     this.value1 = '';
     this.value2 = '';
@@ -367,6 +440,8 @@ firstTemp(event){
     this.spinnerDataTable = true;
     this.isselect_msg = false;
     this.popup_2 = true;
+    this.sec_obj_error = false;
+    this.tep3_sec_obj_error_2 = false;
     // ParentObject()
     // .then( result => {
     //     let opp = [];
@@ -414,6 +489,8 @@ secondTemp(){
     this.spinnerDataTable = true;
     this.isselect_msg = false;
     this.popup_2 = true;
+    this.sec_obj_error = false;
+    this.tep3_sec_obj_error_2 = false;
     ParentObjectTemp2({Parent : this.global_options})
     .then( result => {
         let opp = [];
@@ -439,6 +516,8 @@ thirdTemp(){
     this.spinnerDataTable = true;
     this.isselect_msg = false;
     this.popup_2 = true;
+    this.sec_obj_error = false;
+    this.tep3_sec_obj_error_2 = false;
     ParentObjectTemp3({Parent : this.global_options})
     .then( result => {
         let opp = [];
@@ -457,6 +536,8 @@ this.isModalOpen = true;
 }
 
 object1(event){
+    this.sec_obj_error = false;
+    this.tep3_sec_obj_error_2 = false;
 this.value1 = event.detail.value;
 this.spinnerDataTable = true;
 if(this.value1 != '')
@@ -512,115 +593,151 @@ object2_2(event){
     }
 
 save(event){
+    console.log('y r in save');
     console.log('SAve-->'+this.value1);
     console.log(this.value2);
     console.log(this.value3);
     console.log(this.temp_One);
     console.log(this.temp_Two);
     console.log(this.temp_Third);
+    this.spinnerDataTable = true;
+    if(this.temp_One == true || this.temp_Two == true || this.temp_Third == true){
+        console.log('y r in select template if');
+        if(this.temp_One == true){
+            console.log('y r in select template 1 if');
+            console.log('value1',this.value1);
+            if(this.value1 != null && this.value1 != '' ){
+                console.log('y r in template 1 object if');
+                const Mapped_Objects = this.value1;
+                console.log(this.captchTypeparent);
+                saveMapped_object({Mapped_Objects : Mapped_Objects, FormTitle : this.formtitle, FormDesc : this.description, ProgressIndicator : this.Progressbarvalue, CaptchaType : this.captchTypeparent})
+                .then( result => {
+                    this.recordid = result;
+                    console.log(result);
+                    console.log('recordid :- '+this.recordid);
+                    let cmpDef = {
+                        componentDef: "c:formBuilder",
+                        attributes:{
+                            ParentMessage:this.recordid!=""?this.recordid:"No Record Created",
+                            FormName:this.formtitle!=""?this.formtitle:"No Name"
+                        }
+                    };
+                    let toast_error_msg_object = 'form created';
+                    this.template.querySelector('c-toast-component').showToast('success',toast_error_msg_object,3000);
+                    let encodedDef = btoa(JSON.stringify(cmpDef));
+                    
+                    this[NavigationMixin.Navigate]({
+                        type: "standard__webPage",
+                        attributes: {
+                            url: "/one/one.app#" + encodedDef
+                        }
+                    });
+                    this.spinnerDataTable = false;
+                    this.isModalOpen = false; 
+                }).catch(error=>{
+                    console.log('Error=>'+error);
+                });   
+                
+                
+            }
+            else {
+                this.spinnerDataTable = false;
+                this.objecterror = false;
+                this.saveerror = true;
+                this.errorModal = true;
+                let toast_error_msg_object = 'Please Select Object';
+                this.template.querySelector('c-toast-component').showToast('error',toast_error_msg_object,3000); 
+            }
+        }
+        else if(this.temp_Two == true){
+            if(this.value1 != null && this.value2 != null && this.value1 != '' && this.valu2 != ''){
+                const Mapped_Objects = this.value1+','+this.value2;
+                saveMapped_object({Mapped_Objects : Mapped_Objects, FormTitle : this.formtitle, FormDesc : this.description, ProgressIndicator : this.Progressbarvalue, CaptchaType : this.captchTypeparent})
+                .then( result => {
+                    this.recordid = result;
+                    console.log(result);
+                    console.log('recordid :- '+this.recordid);
+                    let cmpDef = {
+                        componentDef: "c:formBuilder",
+                        attributes:{
+                            ParentMessage:this.recordid!=""?this.recordid:"No Record Created",
+                            FormName:this.formtitle!=""?this.formtitle:"No Name"
+                        }
+                    };
+                    let toast_error_msg_object = 'form created';
+                    this.template.querySelector('c-toast-component').showToast('success',toast_error_msg_object,3000);
+                    let encodedDef = btoa(JSON.stringify(cmpDef));
+                    this[NavigationMixin.Navigate]({
+                        type: "standard__webPage",
+                        attributes: {
+                            url: "/one/one.app#" + encodedDef
+                        }
+                    });
+                    this.spinnerDataTable = false;
+                    this.isModalOpen = false; 
+                }).catch(error=>{
+                    console.log('Error=>'+error);
+                });
+                
+            }
+            else {
+                this.spinnerDataTable = false;
+                this.objecterror = false;
+                this.saveerror = true;
+                this.errorModal = true;
+                let toast_error_msg_object = 'Please Select Object';
+                this.template.querySelector('c-toast-component').showToast('error',toast_error_msg_object,3000); 
+            }
+    
+        }
+        else if(this.temp_Third == true){
+            if(this.value1 != null && this.value2 != null && this.value3 != null && this.value1 != '' && this.value2 != '' && this.value3 != ''){
+                const Mapped_Objects = this.value1+','+this.value2+','+this.value3;
+                saveMapped_object({Mapped_Objects : Mapped_Objects, FormTitle : this.formtitle, FormDesc : this.description, ProgressIndicator : this.Progressbarvalue, CaptchaType : this.captchTypeparent})
+                .then( result => {
+                    this.recordid = result;
+                    console.log(result);
+                    console.log('recordid :- '+this.recordid);
+                    let cmpDef = {
+                        componentDef: "c:formBuilder",
+                        attributes:{
+                            ParentMessage:this.recordid!=""?this.recordid:"No Record Created",
+                            FormName:this.formtitle!=""?this.formtitle:"No Name"
+                        }
+                    };
+                    let toast_error_msg_object = 'form created';
+                    this.template.querySelector('c-toast-component').showToast('success',toast_error_msg_object,3000);
+                    let encodedDef = btoa(JSON.stringify(cmpDef));
+                    this[NavigationMixin.Navigate]({
+                        type: "standard__webPage",
+                        attributes: {
+                            url: "/one/one.app#" + encodedDef
+                        }
+                    });
+                    this.spinnerDataTable = false;
+                    this.isModalOpen = false; 
+                }).catch(error=>{
+                    console.log('Error=>'+error);
+                });
+            }
+            else {
+                this.spinnerDataTable = false;
+                this.objecterror = false;
+                this.saveerror = true;
+                this.errorModal = true;
+                let toast_error_msg_object = 'Please Select Object';
+                this.template.querySelector('c-toast-component').showToast('error',toast_error_msg_object,3000); 
+            }
+        }
+    }
+    else{
+        console.log('y r in save else');
+        this.isModalOpen_3 = true;
+        let toast_error_msg_object = 'Please Select Template';
+        this.template.querySelector('c-toast-component').showToast('error',toast_error_msg_object,3000); 
+    }
 
-if(this.temp_One == true){
-    if(this.value1 != null){
-        const Mapped_Objects = this.value1;
-        console.log(this.captchTypeparent);
-        saveMapped_object({Mapped_Objects : Mapped_Objects, FormTitle : this.formtitle, FormDesc : this.description, ProgressIndicator : this.Progressbarvalue, CaptchaType : this.captchTypeparent})
-        .then( result => {
-            this.recordid = result;
-            console.log(result);
-            console.log('recordid :- '+this.recordid);
-            let cmpDef = {
-                componentDef: "c:formBuilder",
-                attributes:{
-                    ParentMessage:this.recordid!=""?this.recordid:"No Record Created",
-                    FormName:this.formtitle!=""?this.formtitle:"No Name"
-                }
-            };
-            
-            let encodedDef = btoa(JSON.stringify(cmpDef));
-            this[NavigationMixin.Navigate]({
-                type: "standard__webPage",
-                attributes: {
-                    url: "/one/one.app#" + encodedDef
-                }
-            });
-        }).catch(error=>{
-            console.log('Error=>'+error);
-        });         
-    }
-    else {
-        this.objecterror = false;
-        this.saveerror = true;
-        this.errorModal = true;
-    }
-}
-else if(this.temp_Two == true){
-    if(this.value1 != null && this.value2 != null){
-        const Mapped_Objects = this.value1+','+this.value2;
-        saveMapped_object({Mapped_Objects : Mapped_Objects, FormTitle : this.formtitle, FormDesc : this.description, ProgressIndicator : this.Progressbarvalue, CaptchaType : this.captchTypeparent})
-        .then( result => {
-            this.recordid = result;
-            console.log(result);
-            console.log('recordid :- '+this.recordid);
-            let cmpDef = {
-                componentDef: "c:formBuilder",
-                attributes:{
-                    ParentMessage:this.recordid!=""?this.recordid:"No Record Created",
-                    FormName:this.formtitle!=""?this.formtitle:"No Name"
-                }
-            };
-            
-            let encodedDef = btoa(JSON.stringify(cmpDef));
-            this[NavigationMixin.Navigate]({
-                type: "standard__webPage",
-                attributes: {
-                    url: "/one/one.app#" + encodedDef
-                }
-            });
-        }).catch(error=>{
-            console.log('Error=>'+error);
-        });
-        
-    }
-    else {
-        this.objecterror = false;
-        this.saveerror = true;
-        this.errorModal = true;
-    }
 
-}
-else if(this.temp_Third == true){
-    if(this.value1 != null && this.value2 != null && this.value3 != null){
-        const Mapped_Objects = this.value1+','+this.value2+','+this.value3;
-        saveMapped_object({Mapped_Objects : Mapped_Objects, FormTitle : this.formtitle, FormDesc : this.description, ProgressIndicator : this.Progressbarvalue, CaptchaType : this.captchTypeparent})
-        .then( result => {
-            this.recordid = result;
-            console.log(result);
-            console.log('recordid :- '+this.recordid);
-            let cmpDef = {
-                componentDef: "c:formBuilder",
-                attributes:{
-                    ParentMessage:this.recordid!=""?this.recordid:"No Record Created",
-                    FormName:this.formtitle!=""?this.formtitle:"No Name"
-                }
-            };
-            
-            let encodedDef = btoa(JSON.stringify(cmpDef));
-            this[NavigationMixin.Navigate]({
-                type: "standard__webPage",
-                attributes: {
-                    url: "/one/one.app#" + encodedDef
-                }
-            });
-        }).catch(error=>{
-            console.log('Error=>'+error);
-        });
-    }
-    else {
-        this.objecterror = false;
-        this.saveerror = true;
-        this.errorModal = true;
-    }
-}
 }
 
 closeModalerror() {

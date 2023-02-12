@@ -14,13 +14,15 @@ export default class ToastComponent extends LightningElement {
     cross_gery_img = cross_gery;
     
     @api messagee ;
-
+    
+    
 
     @api
     showToast(type, message, time) {
         this.type = type;
         this.message = message;
-      
+      console.log('type',this.type);
+      console.log('message',this.message);
         if(this.type == "success"){
             this.showToastBar_success = true;
             this.showToastBar_error = false;

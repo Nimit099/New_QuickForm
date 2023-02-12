@@ -1,0 +1,36 @@
+.attributeButton  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.btnDiv {
+    margin: 2% 5%;
+    width: 50px;
+    height: 50px;
+    background-color: #6699CC;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fieldvalidationbtndiv{
+    width: 96%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.fieldvalidationbtnmaindiv{
+    display: flex;
+    justify-content: center;
+}
+.textlabel{
+    background-color:#d5d5d5;
+    text-align: center;
+}
+@media screen and (max-width: 1600px) {
+    .btnDiv{
+        width: 45px;
+        height: 45px;
+    }
+}

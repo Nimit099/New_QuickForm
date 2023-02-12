@@ -234,7 +234,18 @@
 
 </template> 
 
+    <!--page break-->
+    <template if:true={isTruePageBreak}>
+        <template if:true={isFieldCompView}>
+            <div class="slds-box_xx-small fieldOutlines">
+                <lightning-icon class="icon" icon-name="utility:display_rich_text" alternative-text="Page Break"
+                    title="Short Text" size="small"></lightning-icon> Page Break
+            </div>
+        </template>
+    </template>
+
     <template if:true={hasType}>
+        <div onmouseenter={FieldCSSUpdate}>
         <template if:true={FieldShown}>
             <template if:true={LabelShown}>
                 <template if:true={isReqired}>
@@ -242,12 +253,12 @@
              <label class="slds-form-element_label">
                 <abbr class="slds-required" title="required">* </abbr>
              </label>
-                <label class="slds-form-element__label">
+                            <label class="slds-form-element__label flabel">
                  {FieldLabel}
                 </label>
                         <lightning-helptext class="helptxt" content={fieldHelpText}></lightning-helptext>
-                <div class="slds-form-element__control">
-                            <input onmouseenter={handlehover} onmouseleave={handleblur} placeholder={placeHolder} type={FieldType} value=""
+                            <div onmouseover={handlehover} onmouseout={handleblur} onfocus={handlefocus} onfocusout={handleblur1} class="slds-form-element__control">
+                                <input  placeholder={placeHolder} type={FieldType} value=""
                             onclick={OnFieldClick} class="slds-input" />
                   </div>
                         <!-- <lightning-input class={fieldId} ></lightning-input> -->
@@ -255,6 +266,7 @@
                 </template>
             </template>
         </template>
+        </div>
     </template>
  <template if:false={hasType}>
 
@@ -269,7 +281,7 @@
                 </label>
                 </template>
                 
-                    <label class="slds-form-element__label">
+                    <label class="slds-form-element__label flabel">
                             Email {count}
                     </label>
               </template>  
@@ -296,7 +308,7 @@
                         </label>
                         </template>
                         
-                            <label class="slds-form-element__label">
+                            <label class="slds-form-element__label flabel">
                             Full Name {count}
                             </label>
                       </template>  
@@ -348,7 +360,7 @@
                     </label>
                     </template>
                     
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Name {count}
                         </label>
                   </template>  
@@ -375,8 +387,8 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
-                            Address {count}
+                        <label class="slds-form-element__label flabel">
+                            {Address} {count}
                         </label>
                     </template>
 
@@ -401,7 +413,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Short Text {count}
                         </label>
                     </template>
@@ -428,7 +440,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Long Text {count}
                         </label>
                     </template>
@@ -454,7 +466,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             DropDown {count}
                         </label>
                     </template>
@@ -481,7 +493,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             CheckBox {count}
                         </label>
                     </template>
@@ -505,7 +517,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Radio Button {count}
                         </label>
                     </template>
@@ -530,7 +542,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             File Upload {count}
                         </label>
                     </template>
@@ -554,7 +566,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Number {count}
                         </label>
                     </template>
@@ -579,7 +591,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Price {count}
                         </label>
                     </template>
@@ -588,6 +600,31 @@
                     <lightning-input class={fieldId} placeholder={placeHolder} type="number" formatter="currency"
                         value="" pattern={fieldValidations} disabled message-when-pattern-mismatch={fieldAttributeValue}
                         onclick={OnFieldClick}></lightning-input>
+
+                </template>
+            </template>
+        </template>
+         <!-- Phone -->
+         <template if:true={isTruePhone}>
+
+            <template if:true={isFullView}>
+                <template if:true={FieldShown}>
+                    <template if:true={LabelShown}>
+                        <template if:true={isReqired}>
+                            <label class="slds-form-element__label">
+                                <abbr class="slds-required" title="required">* </abbr>
+                            </label>
+                        </template>
+
+                        <label class="slds-form-element__label">
+                            Phone {count}
+                        </label>
+                    </template>
+
+                    <lightning-helptext class="helptxt" content={fieldHelpText}></lightning-helptext>
+                    <input class={fieldId} placeholder={placeHolder} type="number" 
+                        value="" disabled 
+                        onclick={OnFieldClick}></input>
 
                 </template>
             </template>
@@ -604,7 +641,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Date
                         </label>
                     </template>
@@ -627,7 +664,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Time
                         </label>
                     </template>
@@ -650,7 +687,7 @@
                             </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Date-Time
                         </label>
                     </template>
@@ -673,11 +710,11 @@
                     </label>
                     </template>
                     
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                              Rating
                         </label>
                   </template>  
-            
+                    <div class="fieldOutlines">
                     <div class="rate"  id={PageId}>
                         <input type="radio" id={ratingfirst} disabled name={ratingfirst} value="5" onclick={ratingvalue} checked={checkedRating} />
                         <label  class="ratingfield" for={ratingfirst} title="5 stars">5 stars</label>
@@ -689,6 +726,7 @@
                         <label  class="ratingfield" for={ratingfour} title="2 stars">2 stars</label>
                         <input type="radio" id={ratingfive} disabled name={ratingfive} value="1" onclick={ratingvalue} checked={checkRating} />
                         <label  class="ratingfield" for={ratingfive} title="1 stars">1 star</label>
+                    </div>
                     </div>
               </template>
               </template>
@@ -704,22 +742,22 @@
                            </label>
                         </template>
                         
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                             Emoji Rating
                         </label>
                     </template>  
    
-                    <div class="rateEmoji"  id={PageId}>
-                        <input type="radio" id={ratingfirst} disabled name={ratingfirst} value="5" onclick={ratingvalue} checked={checkedRating} />
-                        <label  class="ratingfield" for={ratingfirst} title="5 stars"><img></label>
-                        <input type="radio" id={ratingtwo} disabled name={ratingtwo} value="4" onclick={ratingvalue} checked={checkRating} />
-                        <label  class="ratingfield" for={ratingtwo} title="4 stars">4 stars</label>
-                        <input type="radio" id={ratingthree} disabled name={ratingthree} value="3" onclick={ratingvalue} checked={checkRating} />
-                        <label  class="ratingfield" for={ratingthree} title="3 stars">3 stars</label>
-                        <input type="radio" id={ratingfour} disabled name={ratingfour} value="2" onclick={ratingvalue} checked={checkRating} />
-                        <label  class="ratingfield" for={ratingfour} title="2 stars">2 stars</label>
-                        <input type="radio" id={ratingfive} disabled name={ratingfive} value="1" onclick={ratingvalue} checked={checkRating} />
-                        <label  class="ratingfield" for={ratingfive} title="1 stars">1 star</label>
+                    <div class="rateEmoji1"  id={PageId}>
+                        <input class="emoji-input-box" type="radio" id="emoji-1" disabled={isFieldDesabled} name="emoji-1" value="1" onclick={emojiRatingValue} checked={checkRating} />
+                        <label class="emoji-ratingfield" for="emoji-1" title="emoji-1"><img class="rating-Emoji-icons" src={emojiRating1}></label>
+                        <input class="emoji-input-box" type="radio" id="emoji-2" disabled={isFieldDesabled} name="emoji-2" value="2" onclick={emojiRatingValue} checked={checkRating} />
+                        <label class="emoji-ratingfield" for="emoji-2" title="emoji-2"><img class="rating-Emoji-icons" src={emojiRating2}></label>
+                        <input class="emoji-input-box" type="radio" id="emoji-3" disabled={isFieldDesabled} name="emoji-3" value="3" onclick={emojiRatingValue} checked={checkRating} />
+                        <label class="emoji-ratingfield" for="emoji-3" title="emoji-3"><img class="rating-Emoji-icons" src={emojiRating3}></label>
+                        <input class="emoji-input-box" type="radio" id="emoji-4" disabled={isFieldDesabled} name="emoji-4" value="4" onclick={emojiRatingValue} checked={checkRating} />
+                        <label class="emoji-ratingfield" for="emoji-4" title="emoji-4"><img class="rating-Emoji-icons" src={emojiRating4}></label>
+                        <input class="emoji-input-box" type="radio" id="emoji-5" disabled={isFieldDesabled} name="emoji-5" value="5" onclick={emojiRatingValue} checked={checkedRating} />
+                        <label class="emoji-ratingfield" for="emoji-5" title="emoji-5"><img class="rating-Emoji-icons" src={emojiRating5}></label>
                     </div>
               </template>
               </template>
@@ -735,23 +773,34 @@
                            </label>
                         </template>
                         
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                           Scale Rating
                         </label>
                     </template>  
                 
-                    <div class="rate"  id={PageId}>
-                        <input type="radio" id={ratingfirst} disabled name={ratingfirst} value="5" onclick={ratingvalue} checked={checkedRating} />
-                        <label  class="ratingfield" for={ratingfirst} title="5 stars">5 stars</label>
-                        <input type="radio" id={ratingtwo} disabled name={ratingtwo} value="4" onclick={ratingvalue} checked={checkRating} />
-                        <label  class="ratingfield" for={ratingtwo} title="4 stars">4 stars</label>
-                        <input type="radio" id={ratingthree} disabled name={ratingthree} value="3" onclick={ratingvalue} checked={checkRating} />
-                        <label  class="ratingfield" for={ratingthree} title="3 stars">3 stars</label>
-                        <input type="radio" id={ratingfour} disabled name={ratingfour} value="2" onclick={ratingvalue} checked={checkRating} />
-                        <label  class="ratingfield" for={ratingfour} title="2 stars">2 stars</label>
-                        <input type="radio" id={ratingfive} disabled name={ratingfive} value="1" onclick={ratingvalue} checked={checkRating} />
-                        <label  class="ratingfield" for={ratingfive} title="1 stars">1 star</label>
+                    <div class="scaleRating" id={PageId}>
+                      <table>
+                        <tr>
+                        <th></th>
+                        
+                             <template for:each={scaleRating} for:item="rating">
+                                <th key={rating}>
+                                 <label for={rating}  class="likert-style" title="5 stars">{rating.Label} </label>
+                                </th>
+                                </template>
+                           
+                    </tr>
+                    <tr>
+                        <td>FeedBack</td>
+                            <template for:each={scaleRating} for:item="rating">
+                                <td key={rating}>
+                                 <input  type="radio" class="radio" id={rating} disabled name={rating} value="5" onclick={ratingvalue} checked={checkedRating}  style="display:block;margin:auto;width:8rem"/>
+                                </td>
+                                </template>
+                    </tr>
+                     </table>
                     </div>
+                    
               </template>
               </template>
         </template>
@@ -766,7 +815,7 @@
                                </label>
                             </template>
                             
-                            <label class="slds-form-element__label">
+                            <label class="slds-form-element__label flabel">
                                 TermsAndCondition
                             </label>
                         </template>  
@@ -789,7 +838,7 @@
                                </label>
                             </template>
                             
-                            <label class="slds-form-element__label">
+                            <label class="slds-form-element__label flabel">
                                  Link
                             </label>
                         </template>  
@@ -811,7 +860,7 @@
                        </label>
                     </template>
                     
-                    <label class="slds-form-element__label">
+                    <label class="slds-form-element__label flabel">
                         Signature
                     </label>
                 </template>  
@@ -843,7 +892,7 @@
                            </label>
                         </template>
 
-                        <label class="slds-form-element__label">
+                        <label class="slds-form-element__label flabel">
                              RichText
                         </label>
                     </template>  

@@ -52,9 +52,8 @@ export default class PreviewFormCmp  extends NavigationMixin(LightningElement) {
             console.log(error);
         });
     }
-
     secondmethod(){
-        getFieldsRecords()
+        getFieldsRecords({id:this.formid})
             .then(result => {
                 this.FieldList = result;
                 console.log('FieldList ====>'+ JSON.stringify(this.FieldList));
@@ -195,16 +194,17 @@ export default class PreviewFormCmp  extends NavigationMixin(LightningElement) {
         }
 
         else if(event.currentTarget.dataset.name == 'submit'){
+            
             if(this.verify == true){
-                console.log(this.verify);
             }
             else if(this.verify == false){
-                console.log(this.verify);
-                this.spinnerDataTable = true;
+                let toast_error_msg = 'Invalid Captcha';
+                this.template.querySelector('c-toast-component').showToast('error',toast_error_msg,3000);
             }
             else {
                 console.log(this.verify);
-                this.spinnerDataTable = true;
+                let toast_error_msg = 'Please Verify Captcha';
+                this.template.querySelector('c-toast-component').showToast('error',toast_error_msg,3000);
             }
         }
     }

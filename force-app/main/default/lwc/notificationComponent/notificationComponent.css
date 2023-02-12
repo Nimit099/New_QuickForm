@@ -1,9 +1,27 @@
 .main{
     width: 100%;
     height:calc(100vh);
-    background-color: #fff;
-    padding-top: 5%;
-    
+    background-color: #fff;    
+}
+.notification_titel{
+    width: 90%;
+    height: 10%;
+    /* margin-top: 10%; */
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.39);
+}
+c-email-input {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    /* border-bottom-color: #dddbda; */
+    background-color: hidden;
+    width: 100%;
 }
 .titel{
     /* position: absolute; */
@@ -13,7 +31,7 @@
     line-height: 25px;
     text-transform: capitalize;
     color: rgba(0, 0, 0, 0.56);
-    text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    /* text-shadow: 0px 4px 4px rgb(0 0 0 / 25%); */
 }
 .input_label{
     font-style: normal;
@@ -24,16 +42,35 @@
     color: #000000;
 
 }
+abbr{
+    color: #ff0000;
+}
 .lgc-bg-inverse {
     background-color: rgb(22, 50, 92);
 }
-.input_section{
-    width: 80%;
-    height: 80%;
-    /* margin-top: 10%; */
+.input_outerbox {
+    width: 85%;
+    height: 55%;
     margin-left: auto;
     margin-right: auto;
-    /* background-color: aqua; */
+    border: 1px solid;
+    border-radius: 28px;
+    margin-top: 3%;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    height: 90%;
+}
+.input_section{
+    width: 90%;
+    /* height: 80%; */
+    padding-bottom: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 .slds-grid.slds-wrap {
     margin-top: 2%;
@@ -41,22 +78,42 @@
 .input_box{
     width: 100%;
 }
-.bt{
-    /* width: 100%; */
-    background-color: #ffffff;
-    width: 250px;
-    margin-right: auto;
-    margin-left: auto;
-
+.slds-form-element__icon {
+    display: inline-block;
+    position: relative;
+    /* padding-top: var(--lwc-spacingXxSmall,0.25rem); */
+    vertical-align: top;
+    line-height: var(--lwc-lineHeightReset,1);
+    z-index: 1;
 }
 .bt-center{
     background-color: #ffffff;
     width: 100%;
     padding: var(--lwc-spacingMedium,1rem);
+    margin-top: 1%;
 }
+.bt{
+    /* width: 100%; */
+    background-color: #ffffff;
+    width: 350px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+.qf-standard-button-cancel {
+    height: 35px;
+    width: 160px;
+    margin-right: 15px;
+    border-radius: 30px;
+    background-color: #DEDEDE;
+    font-size: 15px;
+    color: #000000;
+    border: none;
+}
+
 .qf-standard-button {
-    height: 34px;
-    width: 110px;
+    height: 35px;
+    width: 160px;
     margin-right: 15px;
     border-radius: 30px;
     background-color: #6699CC;
@@ -109,3 +166,117 @@
     padding: 0px 16px 0px 12px ;
     border-width: thin;
 }
+.input[c-emailInput_emailInput] {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(214, 15, 15) !important;
+    background-color: hidden;
+    width: 100%;
+}
+.test{
+    margin-top: 3%;
+    border-bottom: 1px solid #D3D3D3;
+
+}
+.error_msg{
+    color: #ff0000;
+}
+
+/* =========================     Spinner Sarts      =========================== */
+
+.spinner-main-div {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+ .loader--ripple {
+    display: inline-block;
+    position: relative;
+    height: 100px;
+    width: 100px;
+
+}
+
+ .loader--ripple div {
+    position: absolute;
+    animation: loader--ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    border: 4px solid;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+ .loader--ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes loader--ripple {
+    0% {
+        top: 50px;
+        left: 50px;
+        opacity: 1;
+        height: 0;
+        width: 0;
+    }
+
+    100% {
+        top: -1px;
+        left: -1px;
+        opacity: 0;
+        height: 100px;
+        width: 100px;
+    }
+}
+
+ .loader--ripple div {
+    border-color: #00539f;
+}
+.header{
+    display: flex;
+}
+lightning-button{
+    --lwc-buttonColorBorderPrimary:rgb(255, 255, 255);
+}
+.help_div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    margin: 15px 25px;
+}
+.help{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.feedback{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 9%;
+}
+.help{
+    width: 5%;
+    gap: 5px;
+    /* color: #6699CC; */      /* Remove comment once button is working*/
+    color: grey;
+    border-radius: 16px;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    background: #FFFCFC;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+}
+.crossIcon{
+    left: 92%;
+    display: none;
+    cursor: pointer;
+    position: absolute;
+}
+/* =========================     Spinner Sarts      =========================== */

@@ -1,0 +1,77 @@
+<template>
+
+    <template if:true={d}>
+        <div class="fieldvalidationbtnmaindiv">
+        <div class="fieldvalidationbtndiv">
+        <div class="attributeButton">
+            <div class="btnDiv" data-title="Close" title="Close" onclick={validatingbtnhandle}>
+               <img src={fieldcancel} alt="" class="validationicon">
+            </div>
+            <div class="btnDiv" data-title="Delete" title="Delete" onclick={validatingbtnhandle}>
+                <img src={fielddelete} alt="" class="validationicon">
+            </div>
+            <div class="btnDiv" data-title="Save" title="Save" onclick={validatingbtnhandle}>
+                <img src={fieldsave} alt="" class="validationicon">
+            </div>
+            <div class="btnDiv" data-title="Copy" title="Copy" onclick={validatingbtnhandle}>
+                <img src={fieldduplicate} alt="" class="validationicon">
+            </div>
+        </div>
+
+        <div class="styletext">
+            <lightning-select label="Label Visibility" value={}>
+                <option value="Shown">Shown</option>
+                <option value="Hidden">Hidden</option>
+            </lightning-select>
+        </div>
+        <template if:true={d}>
+            <div class="styletext">
+                <lightning-input label="Label" value={} ></lightning-input>
+            </div>
+        </template>
+        <div class="togglebox">
+            <lightning-input type="toggle" label="Show Help Text" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
+        </div>
+        <template if:true={d}>
+            <div class="styletext">
+                <lightning-input label="Help Text" value={}></lightning-input>
+            </div>
+        </template>
+        <div class="textlabel">Validation</div>
+        <div class="togglebox">
+            <lightning-input type="toggle" label="Required Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
+        </div>
+    </div>
+</div>
+    </template>
+
+    <template if:true={e}>
+        <div class="attributeButton">
+            <div class="btnDiv">
+                <lightning-button label="Cancel" onclick={cancelValidation} ></lightning-button>
+            </div>
+            <div class="btnDiv">
+                <lightning-button label="Delete" onclick={deleteFieldRecord} ></lightning-button>
+            </div>
+            <div class="btnDiv">
+                <lightning-button label="Apply" onclick={saveValue} ></lightning-button>
+            </div>
+            <div class="btnDiv">
+                <lightning-button label="Duplicate" onclick={duplicateRecord} ></lightning-button>
+            </div>
+        </div>
+        <div class="styletext">
+            <lightning-select label="Label Visibility" value={}>
+                <option value="Shown">Shown</option>
+                <option value="Hidden">Hidden</option>
+            </lightning-select>
+        </div>
+        <template if:true={de}>
+            <div class="styletext">
+                <lightning-input label="Label" value={}></lightning-input>
+            </div>
+        </template>
+    </template>
+
+
+</template>

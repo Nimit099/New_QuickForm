@@ -1,0 +1,273 @@
+<template>
+    <div class="main">
+        <div class="slds-size_1-of-2 sizebox">
+            <div class="slds-grid gridbox">
+                <div class="slds-size_3-of-4 s-item-1" >
+                    <div class="tab-container ">
+                        <div class="tab-menu">
+                            <ul>
+                                <li><a href="#" class="active-tab" data-tab-id="tab1">User Configuration</a></li>
+                                <li><a href="#" data-tab-id="tab2">How to Create Form</a></li>
+                                <li><a href="#" data-tab-id="tab3">Limitations</a></li>
+                            </ul>
+                        </div>
+                
+                        <div class="tab active-tab-content" data-id="tab1"> 
+                            <div class="slds-p-top_medium slds-p-left_large slds-p-bottom_large slds-p-right_large">
+                                <div class="slds-p-left_xx-small slds-text-heading_large">
+                                    <h1 class="h1class"> <b>User Configuration</b></h1>
+                                </div>
+                                <div class="slds-text-heading_small slds-p-around_medium">
+                                    <p>
+                                        <span class="spanclass"><b>Note: </b> If you already created site in your Org then skip the <b>Step1.</b></span><br /><br />
+                                    </p>
+
+                                    <p>
+                                        <b>Step 1: Don't have Any Site Yet? - </b>
+                                        <a onclick={openModel}>Create New Site
+                                        </a>
+                                    </p>
+
+                                    <p class="slds-m-top_small slds-m-left_large">
+                                        To use Salesforce Sites with or without a custom domain, you must first register
+                                        a Salesforce Sites domain.
+                                        Your company's Salesforce Sites domain is used for all the sites that you
+                                        create.
+                                        By Following the <b>Steps 1</b> your organisation can create new salesforce
+                                        site.<br/>
+                                    </p> <br/>
+                                    <p>
+                                        <b>Step 2: Use of Visualforce Component </b>
+                                    </p>
+                                    <div>
+                                        <p class="slds-m-top_small slds-m-left_large">
+                                            In the package you will get a visualforce component named as " ".</p>
+                                            <p class="slds-m-top_small slds-m-left_large">
+                                            <span class="spanclass"><b>Note:</b> You can add visualforce component into existing visualforce
+                                            page or you can create a new visualforce page and add this component.</span>
+                                        </p>
+                                    </div><br />
+                                    <p>
+                                        <b>Step 3: Haven't Added Visualforce Page? - </b>
+                                        <a onclick={openCreateEditModel}>Add Visualforce Page To Site
+                                        </a>
+                                    </p>
+                                    <p class="slds-m-top_small slds-m-left_large">
+                                        After the creation of new salesforce site to add visualpage follow the below
+                                        given <b>Step 3</b> Visualforce page is use to access, display and update your firm's data.
+                                    </p><br />
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="tab" data-id="tab2">
+                            <div class="slds-p-top_medium slds-p-left_large slds-p-bottom_large slds-p-right_large">
+                                <div class="slds-p-left_xx-small slds-text-heading_large">
+                                    <h1 class="h1class"> <b>How To Create Form</b></h1>
+                                </div>
+                                <div class="outer-wrapper1 slds-p-left_xx-small">
+                                    <div class="s-wrap1 s-type-11" role="slider">
+                                        <input type="radio" id="ss-1" class="ss-1" name="slider-control1" checked="checked"/>
+                                        <input type="radio" id="ss-2" class="ss-2" name="slider-control1"/>
+                                        <input type="radio" id="ss-3" class="ss-3" name="slider-control1"/>
+                                        <input type="radio" id="ss-4" class="ss-4" name="slider-control1"/>
+                                        <ul class="s-content1">
+                                            <h1 class="header_cls1 header_11">
+                                                <b>Step 1:</b> Launch QuickForm Application.</h1>
+                                            <li class="s-item1 s-item-4"></li>
+                                            <h1 class="header_cls1 header_21">
+                                                <b>Step 2:</b> Click On New Form Button For create Form.</h1>
+                                            <li class="s-item1 s-item-5"></li>
+                                            <h1 class="header_cls1 header_31">
+                                                <b>Step 3:</b> Fill Required Form Details and Click "Next".</h1>
+                                            <li class="s-item1 s-item-6"></li>
+                                            <h1 class="header_cls1 header_41">
+                                                <b>Step 4:</b> Select Object Template and Click "Save".</h1>
+                                            <li class="s-item1 s-item-7"></li>
+                                        </ul>
+                                        <div class="s-control1">
+                                            <label class="ss-c-11" for="ss-1"></label>
+                                            <label class="ss-c-21" for="ss-2"></label>
+                                            <label class="ss-c-31" for="ss-3"></label>
+                                            <label class="ss-c-41" for="ss-4"></label>
+                                        </div>
+                                        <div class="s-nav1">
+                                            <label class="s-nav-11 right" for="ss-2"></label>
+                                            <label class="s-nav-21 left" for="ss-1"></label>
+                                            <label class="s-nav-21 right" for="ss-3"></label>
+                                            <label class="s-nav-31 left" for="ss-2"></label>
+                                            <label class="s-nav-31 right" for="ss-4"></label>
+                                            <label class="s-nav-41 left" for="ss-3"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="tab" data-id="tab3">
+                            <div class="bouncer">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                              </div>
+                        </div>  
+                        </div>
+                </div>
+                <div class="slds-size_1-of-4 slds-p-around_medium slds-scrollable resourcediv">
+                    <div class="slds-p-left_xx-small slds-text-heading_large slds-p-bottom_large">
+                        <h1 class="resourceh1"><b>Resources</b></h1>
+                    </div>
+                    <div class="slds-p-around_xx-small">
+                        <P onclick={tabing} class="linkp"><span class="arrow">&#10148;</span>&nbsp;
+                            <a class="linka" href="https://developer.salesforce.com/docs/atlas.en-us.salesforce_platform_portal_implementation_guide.meta/salesforce_platform_portal_implementation_guide/sites_site_pages.htm" target="_blank">How to create visual force site </a>
+                        </P><br/>
+                        <P onclick={tabing} class="linkp"><span class="arrow">&#10148;</span>&nbsp;
+                            <a class="linka" href="https://help.salesforce.com/s/articleView?id=sf.sites_setup_overview.htm&amp;type=5" target="_blank">Setting Up Salesforce Sites </a>
+                        </P><br/>
+                        <P onclick={tabing} class="linkp"><span class="arrow">&#10148;</span>&nbsp;
+                            <a class="linka" href="https://help.salesforce.com/s/articleView?id=sf.sites_creating_subdomain.htm&amp;type=5" target="_blank">Register a Salesforce Sites Domain</a>
+                        </P><br/>
+                        <P onclick={tabing} class="linkp"><span class="arrow">&#10148;</span>&nbsp;
+                            <a class="linka" href="https://help.salesforce.com/s/articleView?id=sf.sites_creating_and_editing_sites.htm&amp;type=5" target="_blank">Create and Edit Salesforce Sites</a>
+                        </P><br/>
+                        <P onclick={tabing} class="linkp"><span class="arrow">&#10148;</span>&nbsp;
+                            <a class="linka" href="https://help.salesforce.com/s/articleView?id=sf.sites_configuring_sites.htm&amp;type=5" target="_blank">Configure Salesforce Sites</a>
+                        </P><br/>
+                        <P onclick={tabing} class="linkp"><span class="arrow">&#10148;</span>&nbsp;
+                            <a class="linka" href="https://help.salesforce.com/s/articleView?id=sf.sites_site_pages.htm&amp;type=5" target="_blank">Managing Salesforce Site Visualforce Pages</a>
+                        </P><br/>
+                        <P onclick={tabing} class="linkp"><span class="arrow">&#10148;</span>&nbsp;
+                            <a class="linka" href="https://help.salesforce.com/s/articleView?id=sf.sites_public_access_settings.htm&amp;type=5" target="_blank">Public Access Settings for Salesforce Sites</a>
+                        </P>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- You have create new site ? -->
+    <template if:true={isModalOpen}>
+        <div class="demo-only">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" onclick = {closesiteModel} alternative-text="close" variant="bare-inverse" class="slds-modal__close" ></lightning-button-icon>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create New Site</h2>
+                    </header>
+                    <div class="outer-wrapper">
+                        <div class="s-wrap11 s-type-111" role="slider">
+                            <input type="radio"  id="sss-1" class="sss-1" name="slider-control2" checked="checked"/>
+                            <input type="radio"  id="sss-2" class="sss-2" name="slider-control2"/>
+                            <input type="radio"  id="sss-3" class="sss-3" name="slider-control2"/>
+                            <input type="radio"  id="sss-4" class="sss-4" name="slider-control2"/>
+                            <ul class="s-content11">
+                                <h1 class="header_cls11 header_111">
+                                    <p> &#10148; &nbsp;&nbsp;Navigate to Setup > Quick Find Box, Enter <b>Sites</b>. OR <a onclick={opensite}>Click here</a> to navigate.
+                                    </p></h1>
+                                <li class="s-item11 s-item-8"></li>
+                                <h1 class="header_cls11 header_211">
+                                    <p> &#10148; &nbsp;&nbsp;<b>Register</b> the Salesforce Sites domain for your organisation.</p></h1>
+                                <li class="s-item11 s-item-9"></li>
+                                <h1 class="header_cls11 header_311">
+                                    <p> &#10148; &nbsp;&nbsp; <b>Create</b> and <b>Configure</b> your site. </p></h1>
+                                <li class="s-item11 s-item-10"></li>
+                                <h1 class="header_cls11 header_411">
+                                    <p> &#10148; &nbsp;&nbsp;
+                                        When you are ready to make your site public, click <b>Activate</b> on the Site
+                                        Details page.<br />
+                                        <span class="slds-p-left_x-large spanclass"><b>Note: </b>
+                                            You can also activate your site from the Site Edit and Sites pages.</span>
+                                    </p></h1>
+                                <li class="s-item11 s-item-11"></li>
+                            </ul>
+                            <div class="s-control11">
+                                <label class="sss-c-11" for="sss-1"></label>
+                                <label class="sss-c-21" for="sss-2"></label>
+                                <label class="sss-c-31" for="sss-3"></label>
+                                <label class="sss-c-41" for="sss-4"></label>
+                            </div>
+                            <div class="s-nav11">
+                                <label class="s-nav-111 right" for="sss-2"></label>
+                                <label class="s-nav-211 left" for="sss-1"></label>
+                                <label class="s-nav-211 right" for="sss-3"></label>
+                                <label class="s-nav-311 left" for="sss-2"></label>
+                                <label class="s-nav-311 right" for="sss-4"></label>
+                                <label class="s-nav-411 left" for="sss-3"></label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open overlay"></div>
+        </div>
+    </template>
+
+
+    <!--  You have alredy created site ? -->
+    <template if:true={issiteModelopen}>
+        <div class="demo-only">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" onclick = {closeModel}
+                            alternative-text="close" variant="bare-inverse" class="slds-modal__close" ></lightning-button-icon>
+                        <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Add Visualforce Page To Site
+                        </h2>
+                    </header>
+                    <div class="outer-wrapper">
+                        <div class="ss-wrap ss-type-1" role="slider">
+                            <input type="radio" id="s-11" class="s-11" name="slider-control3" checked="checked"/>
+                            <input type="radio" id="s-22" class="s-22" name="slider-control3"/>
+                            <input type="radio" id="s-33" class="s-33" name="slider-control3"/>
+                            <input type="radio" id="s-44" class="s-44" name="slider-control3"/>
+                            <ul class="ss-content">
+                                <h1 class="header_clss headerr_1">
+                                    <p> &#10148; &nbsp;&nbsp; Navigate to Setup > Quick Find Box, Enter <b>Sites</b>. OR
+                                        <a onclick={opensite}> Click here </a> to navigate. </p></h1>
+                                <li class="ss-item ss-item-1"></li>
+                                <h1 class="header_clss headerr_2">
+                                    <p> &#10148; &nbsp;&nbsp;
+                                        Click the name of the site you want to modify.
+                                    </p></h1>
+                                <li class="ss-item ss-item-2"></li>
+                                <h1 class="header_clss headerr_3">
+                                    <p> &#10148; &nbsp;&nbsp;
+                                        Click <b>Edit</b> on the Site Visualforce Pages related list.
+                                    </p></h1>
+                                <li class="ss-item ss-item-3"></li>
+                                <h1 class="header_clss headerr_4">
+                                    <p> &#10148; &nbsp;&nbsp;
+                                        Use the <b>Add</b> and <b>Remove</b> buttons to enable or disable Visualforce
+                                        pages for your site.
+                                    </p></h1>
+                                <li class="ss-item ss-item-4"></li>
+                            </ul>
+                            <div class="ss-control">
+                                <label class="s-cc-1" for="s-11"></label>
+                                <label class="s-cc-2" for="s-22"></label>
+                                <label class="s-cc-3" for="s-33"></label>
+                                <label class="s-cc-4" for="s-44"></label>
+                            </div>
+                            <div class="ss-nav">
+                                <label class="ss-nav-1 right" for="s-22"></label>
+                                <label class="ss-nav-2 left" for="s-11"></label>
+                                <label class="ss-nav-2 right" for="s-33"></label>
+                                <label class="ss-nav-3 left" for="s-22"></label>
+                                <label class="ss-nav-3 right" for="s-44"></label>
+                                <label class="ss-nav-4 left" for="s-33"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open overlay"></div>
+        </div>
+    </template>
+ 
+</template>

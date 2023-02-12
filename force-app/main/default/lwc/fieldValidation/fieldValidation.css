@@ -1,0 +1,147 @@
+label.slds-checkbox_toggle.slds-grid>* {
+    width: 100%;
+    margin-top: 5px;
+    margin-left: 2%;
+}
+
+ .slds-checkbox_toggle.slds-grid {
+    justify-content: flex-end;
+}
+
+ label.slds-checkbox_toggle.slds-grid .slds-checkbox_faux_container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+    margin-right: 4px;
+    align-items: center;
+}
+
+.textlabel {
+    background-color: #d5d5d5;
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    margin: 15px 10px 15px 10px;
+}
+
+.resetcharacter {
+    width: 94%;
+    margin: 7px 0px 7px 8px;
+    background-color: rgb(252, 252, 252);
+    border: 1px solid black;
+    color: #000000;
+}
+
+.resetcharacter:hover {
+    background-color: rgb(233, 232, 232);
+}
+
+ .slds-slider-label__range {
+    display: none;
+}
+
+.slider {
+    margin: 16px 10px 16px 10px;
+}
+
+.togglebox {
+    margin: 11px 10px 11px 10px;
+}
+
+ .slds-input {
+    background-color: #f0f0f0;
+}
+
+ .slds-form-element__label {
+    font-weight: 500;
+}
+
+.styletext {
+    margin: 7px 10px 7px 10px;
+}
+
+.styletext .slds-form-element__label {
+    font-weight: 700;
+}
+
+.plaintext {
+    margin: 7px 10px 7px 10px;
+}
+
+.Item {
+    display: flex;
+    margin-bottom: 1px;
+}
+
+.Item .slds-button {
+    margin-left: 10px;
+    width: 12%;
+    height: 32px;
+}
+
+.Item .slds-input {
+    margin-left: 8px;
+}
+
+.Itembutton {
+    display: flex;
+}
+
+.Itembutton .slds-button {
+    width: 100%;
+    margin: 5px 8px 0 8px;
+}
+
+.richstyle {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.richbutton {
+    position: absolute;
+}
+
+.fieldname {
+    margin: 10px;
+    font-size: large;
+    color: rgb(97, 121, 199);
+    text-align: center;
+    font-weight: bold;
+}
+
+ .slds-tabs_scoped {
+    background-color: #fff;
+}
+
+.fieldLabel {
+    text-transform: capitalize;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.56);
+    padding: 10% 0 3% 0;
+    font-weight: bold;
+    font-size: 24px
+}
+
+.attributeButton .slds-button {
+    border-style: none;
+    border-color: white;
+    font-size: 1rem;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    color: #6699CC;
+    width: 100%;
+    border: 1px solid #6699cc;
+    border-radius: 10px;
+}
+
+ .btnDiv {
+    margin: 2% 5%;
+}
+.fieldvalidationbody{
+    /* width: 21%; */
+    background-color: #F5F5F5;
+    height: 100%;
+    overflow-y: scroll;
+}
+.fieldvalidationbody::-webkit-scrollbar {
+    display: none;
+}

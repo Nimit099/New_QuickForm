@@ -54,7 +54,30 @@ padding: 5px 16px 5px 12px;
 border: 1px solid rgb(201, 201, 201);
 border-radius: 3px;
 }
-
+.fieldOutlines{
+    position: relative;
+}
+.radio{
+    margin: 3px;
+    background-color: var(--bgcolorfield, 'white');
+    border-color: var(--bordercolorfield, 'black');
+    border-style: var(--borderstylefield, solid);
+    border-width: var(--borderwidthfield, 1px);
+    border-radius: var(--borderradiusfield, 1px);
+    padding-top: var(--bordervtpaddingfield, 1px);
+    padding-bottom: var(--bordervbpaddingfield, 0px);
+    padding-left: var(--borderhlpaddingfield, 0px);
+    padding-right: var(--borderhrpaddingfield, 0px);
+    color: var(--bordertextcolor, black);
+    line-height: var(--inputlineheight, normal);
+    font-size: var(--inputfontsize, normal);
+    font-style: var(--inputfontstyle, normal);
+    font-weight: var(--inputfontweight, normal);
+    font-family: var(--inputfontfamily, sans-serif);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .ratingstyle {
 width: 100%;
 border: none;
@@ -66,9 +89,11 @@ margin: 0 0 0 0px;
 background-color: transparent;
 }
 
-.rate {
-float: left;
-margin-left: 15px;
+ .rate {
+    position: absolute;
+    top: -26%;
+    float: left;
+    margin-left: 15px;
 }
 
 .rate:not(:checked)>input {
@@ -370,4 +395,62 @@ box-shadow: none;
 --sds-c-icon-color-foreground-default: #6699CC;
 /* --sds-c-icon-color-background: gray;  */
 margin: 3%;
+}
+
+::placeholder{
+    color: var(--c, rgb(0, 0, 0));
+}
+/*  For Emoji Rating  */
+
+.rateEmoji1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.rating-Emoji-icons {
+    height: 100px;
+    width: 100px;
+}
+
+.emoji-input-box {
+    display: none;
+}
+
+.emoji-ratingfield {
+    filter: grayscale(1);
+    cursor: pointer;
+}
+
+.emoji-ratingfield:hover {
+    filter: grayscale(0);
+    transition: 100ms ease;
+}
+
+.emoji-ratingfield-Selected {
+    filter: grayscale(0);
+    transition: 100ms ease;
+}
+
+.statement-style {
+    min-height: 30px;
+    min-width: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+ .likert-style {
+    min-height: 30px;
+    min-width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.scaleRating {
+    border: 1px solid;
+    border-color:  grey;
+    color: black;
+    padding:3%;
+    font-family:  sans-serif;
 }

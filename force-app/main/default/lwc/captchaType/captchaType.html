@@ -50,7 +50,7 @@
             <div class="captcha-header">
                 <p class="slider_captcha_label">If you are human, adjust the slider to <b>{slider_captcha_1}</b>.</p>
                 <div class="slds-slider" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow={value}>
-                    <input class="slider_captcha_input" type="range" min="0" max="50" step="1" value={value} oninput={handleValueChange} />
+                    <input class="slider_captcha_input" type="range" min="0" max="50" step="1" value={value} oninput={testch} onblur={handleValueChange} />
                     <span class="slds-slider-value" aria-hidden="true"><b>{value}</b></span>
                 </div>
             </div>
@@ -72,15 +72,15 @@
                       <button style={car} class="testinput" data-name={car} onclick={verfication_color_captcha}></button>
                     </div>
                 </div>
+                <div class="captcha-footer">
+                    <p if:true={msg_invalid_captcha} class="invalid_captcha"> Invalid Captcha. </p>
+                    <p if:true={msg_verified_captcha} class="verified_captcha"> Captcha Verified </p>
+                </div>
             </div>
             <button type="button" class="captchabutton captchabtn3" onclick={getrendomcolore} >
                 Generate New
             </button>
             
-            <div class="captcha-footer">
-                    <p if:true={msg_invalid_captcha} class="invalid_captcha"> Invalid Captcha. </p>
-                    <p if:true={msg_verified_captcha} class="verified_captcha"> Captcha Verified </p>
-            </div>
         </div>
         <!-- End Captcha 4 Color Captcha -->
     </div>

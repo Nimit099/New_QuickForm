@@ -6,9 +6,6 @@ export default class CaptchaType extends LightningElement {
     @track Image_Captcha = false;
     @track Normal_Captcha = false;
     @track Maths_Captcha = false;
-   
-
-
     @track showBool = false;
     alphabets = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
     alphabetslength = this.alphabets.length;
@@ -30,7 +27,7 @@ export default class CaptchaType extends LightningElement {
     @track BackgroundColor;
     @track test;
 
-    @api captypetypes='Select';
+    @api captypetypes='Normal_Captcha';
 
     connectedCallback() {
         this.generate_new_math_captcha();
@@ -55,14 +52,11 @@ export default class CaptchaType extends LightningElement {
         }
         else{
             console.log('Invalid Captcha');
+            this.generate_new_normal_captcha();
             this.msg_invalid_captcha = true;
             this.msg_verified_captcha = false; 
             this.set_normal_captcha_value = null;
         }
-        const selectEvent = new CustomEvent('captchaverification', {
-            detail:this.msg_verified_captcha
-        });
-        this.dispatchEvent(selectEvent);
     }
     generate_new_normal_captcha() {
         this.first = this.alphabets[Math.floor(Math.random() * this.alphabetslength)];
@@ -95,15 +89,13 @@ export default class CaptchaType extends LightningElement {
             this.set_math_captcha_value = this.get_math_captcha_value;
         }
         else{
+            this.generate_new_math_captcha();
             console.log('Invalid Captcha');
             this.msg_invalid_captcha = true;
             this.msg_verified_captcha = false; 
             this.set_math_captcha_value = null;
         }
-        const selectEvent = new CustomEvent('captchaverification', {
-            detail:this.msg_verified_captcha
-        });
-        this.dispatchEvent(selectEvent);
+       
     }
     
     
@@ -113,8 +105,13 @@ export default class CaptchaType extends LightningElement {
     generate_new_slider_captcha(){
         this.slider_captcha_1 = Math.floor(Math.random() * 50);
     }
-    handleValueChange(event) {
+    testch(event){
         this.value = event.target.value;
+
+    }
+    handleValueChange() {
+        console.log('test log');
+        
         if(this.value == this.slider_captcha_1){
             console.log('Captcha Verified');
             this.msg_verified_captcha = true;
@@ -125,10 +122,7 @@ export default class CaptchaType extends LightningElement {
             this.msg_invalid_captcha = true;
             this.msg_verified_captcha = false; 
         }
-        const selectEvent = new CustomEvent('captchaverification', {
-            detail:this.msg_verified_captcha
-        });
-        this.dispatchEvent(selectEvent);
+
     }
     // End Captcha 3 Slider Captcha
 
@@ -167,10 +161,6 @@ export default class CaptchaType extends LightningElement {
             this.getrendomcolore();
            
         }
-        const selectEvent = new CustomEvent('captchaverification', {
-            detail:this.msg_verified_captcha
-        });
-        this.dispatchEvent(selectEvent);
     }
 
 
@@ -215,6 +205,10 @@ export default class CaptchaType extends LightningElement {
             this.Maths_Captcha = true;
         }
 
+    }
+    @api error_msg(){
+        this.msg_invalid_captcha = false;
+        this.msg_verified_captcha = false;
     }
 
     

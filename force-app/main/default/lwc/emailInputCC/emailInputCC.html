@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-combobox_container">
+        <div class={boxClass}>
+            <div class="slds-combobox__form-element slds-has-focus">
+                <lightning-input class="input2" variant="label-hidden" id="to" type="text" placeholder="Enter Email" 
+                    onkeyup={handleInputChange}
+                    onfocusout={handleKeyPress}
+                    onkeypress={handleKeyPress}
+                    onblur={handleBlur}></lightning-input>
+                    <div class="email_error_msg" if:true={email_msg}>Please Enter Valid Email Details..!</div>
+                <template for:each={selectedValues} for:item="selectedValue" for:index="index">
+                    <lightning-pill class="pill" id={pillid} 
+                        key={selectedValue}
+                        label={selectedValue}
+                        onremove={handleRemove}
+                        data-index={index}
+                    ></lightning-pill>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

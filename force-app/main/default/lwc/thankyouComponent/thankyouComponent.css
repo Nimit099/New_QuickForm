@@ -263,7 +263,10 @@
     }
     .richtextModel .richtextMainDiv {
       width: 55%;
-}
+    }
+    .editBtn{
+      margin: 0 !important;
+    }
 }
 /* 
 @media only screen and (max-width:1400px) {

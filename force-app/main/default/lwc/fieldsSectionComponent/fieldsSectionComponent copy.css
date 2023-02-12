@@ -1,0 +1,60 @@
+.main {
+    /* overflow-y: scroll; */
+    background-color: antiquewhite;
+    width: 19%;
+    /* scroll-behavior: smooth; */
+    /* overscroll-behavior: none; */
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;  /* Firefox */
+    /* box-shadow: 10px 10px 10px 10px; */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+
+.main::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+.OtherFields{
+    overflow-y: scroll;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.OtherFields::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+.slds-scrollable_y{
+    overflow-y: scroll;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.slds-scrollable_y::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.icon {
+    margin-right: 6px !important;
+    padding: 0 !important;
+}
+
+.Accord{
+    height: 75vh;
+}
+
+.slds-box_xx-small:hover {
+    background-color: #f0f0f0;
+}
+
+.slds-box_xx-small {
+    border: 1px solid #046EAA;
+    align-items: center;
+    text-align: left;
+    flex-direction: row;
+    display: flex !important;
+    height: 40px !important;
+    border-radius: 28px !important;
+    font-size: 15px !important;
+    padding: 0 15px !important;
+    white-space: revert;
+    margin: 0 0 10px 10%;
+}

@@ -1,11 +1,14 @@
 import getFieldCSS from '@salesforce/apex/FormBuilderController.getFieldCSS';
 import getLabelCSS from '@salesforce/apex/FormBuilderController.getLabelCSS';
+import getHoverCSS from '@salesforce/apex/FormBuilderController.getHoverCSS';
+import getFocusCSS from '@salesforce/apex/FormBuilderController.getFocusCSS';
 import { LightningElement,api,wire,track } from 'lwc';
 import EmojiRating1 from '@salesforce/resourceUrl/EmojiRating1';
 import EmojiRating5 from '@salesforce/resourceUrl/EmojiRating5';
 import EmojiRating2 from '@salesforce/resourceUrl/EmojiRating2';
 import EmojiRating3 from '@salesforce/resourceUrl/EmojiRating3';
 import EmojiRating4 from '@salesforce/resourceUrl/EmojiRating4';
+import getScaleRating from '@salesforce/apex/FormBuilderController.getScaleRating';
 export default class Quickformfieldcomponent extends LightningElement {
 
     // icons
@@ -22,6 +25,9 @@ export default class Quickformfieldcomponent extends LightningElement {
    @api fieldAttributeValue;
    @api fieldId;
    @api formid;
+   @track scaleRating=[];
+   @track isFieldDesabled = false;
+
    @track FieldShown = true;
    @track LabelShown =true;
    @track isReqired =true;
@@ -30,41 +36,49 @@ export default class Quickformfieldcomponent extends LightningElement {
    FieldLabel;
    FieldType;
    count;
-   
-   @track getFieldCSS;
+   @track Address='Address';
+   @track onfocus = false;
+   @track getFieldCSS1;
+   @track getLabelCSS1;
+   hovercssproperty;
 
     connectedCallback(){
+         getScaleRating()
+    .then(result=>{
+       this.scaleRating = result;
+       console.log(result);
+    }).catch(err=>{
+        console.log(err);
+    })
         console.log('c callback ');
-        // getFieldCSS({id:this.formid})
-        // .then(result=>{
-        //     console.log(result);
-        //     this.getFieldCSS = result;
-        //     console.log('FieldCSS->> '+this.getFieldCSS);
-        //   }).catch(error=>{
-        //     console.log(error);
-        //   })
-        // for (let i = 0; i < Tags.length; i++) {
-        //     console.log('connected callback '+i);
-        //     const element = Tags[i];
-        //     element.classList.add('AllfieldCSS');
-        //     element.style="color:red";
-        // }
-        // this.template.querySelectorAll('.AllfieldCSS').style="color:green";
+        this.onfocus = false;
+        getHoverCSS({id:this.formid})
+        .then(result=>{
+            console.log(result);
+            console.log('FieldCSS->> '+result);
+            this.hovercssproperty = result;
+        }).catch(error=>{
+            console.log({error});
+        })
     }
     renderedCallback(){
+        console.log('quickformfield rendered callback!');
         getFieldCSS({id:this.formid})
         .then(result=>{
             console.log(result);
-            this.getFieldCSS = result;
-            console.log('FieldCSS->> '+this.getFieldCSS);
+            this.getFieldCSS1 = result;
+            console.log('FieldCSS->> '+this.getFieldCSS1);
             console.log(this.template.querySelectorAll('input'));
             let array = this.template.querySelectorAll('input');
             console.log(array.length);
-            let str = this.getFieldCSS;
+            let str = this.getFieldCSS1;
+            let Arr = str.split(';color:');
+            let Arr2 = Arr[1].split(';');
+            let pcolor = Arr2[0];
             for (let i = 0; i < array.length; i++) {
                 const element = array[i];
                 element.style=str;
-            
+                element.style.setProperty("--c",pcolor);
             }
             this.template.querySelector('select').style = str;
         }).catch(error=>{
@@ -74,12 +88,12 @@ export default class Quickformfieldcomponent extends LightningElement {
         getLabelCSS({id:this.formid})
         .then(result=>{
             console.log(result);
-            this.getFieldCSS = result;
-            console.log('FieldCSS->> '+this.getFieldCSS);
+            this.getLabelCSS1 = result;
+            console.log('FieldCSS->> '+this.getLabelCSS1);
             console.log(this.template.querySelectorAll('label'));
             let array = this.template.querySelectorAll('label');
             console.log(array.length);
-            let str = this.getFieldCSS;
+            let str = this.getLabelCSS1;
             for (let i = 0; i < array.length; i++) {
                 const element = array[i];
                 element.style=str;
@@ -94,16 +108,19 @@ export default class Quickformfieldcomponent extends LightningElement {
         getFieldCSS({id:this.formid})
         .then(result=>{
             console.log(result);
-            this.getFieldCSS = result;
-            console.log('FieldCSS->> '+this.getFieldCSS);
+            this.getFieldCSS1 = result;
+            console.log('FieldCSS->> '+this.getFieldCSS1);
             console.log(this.template.querySelectorAll('input'));
             let array = this.template.querySelectorAll('input');
             console.log(array.length);
-            let str = this.getFieldCSS;
+            let str = this.getFieldCSS1;
+            let Arr = str.split(';color:');
+            let Arr2 = Arr[1].split(';');
+            let pcolor = Arr2[0];
             for (let i = 0; i < array.length; i++) {
                 const element = array[i];
                 element.style=str;
-            
+                element.style.setProperty("--c",pcolor);
             }
             this.template.querySelector('select').style = str;
         }).catch(error=>{
@@ -111,11 +128,21 @@ export default class Quickformfieldcomponent extends LightningElement {
         })
 
         // console.log('CSS->> '+CSSString);
+        // if (CSSString == null || CSSString == undefined) {
+        //     this.getFieldCSS1 = CSSString;
+        // }
+        // console.log('FieldCSS->> '+this.getFieldCSS1);
         // console.log(this.template.querySelectorAll('input'));
         // let array = this.template.querySelectorAll('input');
+        // console.log(array.length);
+        // let str = this.getFieldCSS1;
+        // let Arr = str.split(';color:');
+        // let Arr2 = Arr[1].split(';');
+        // let pcolor = Arr2[0];
         // for (let i = 0; i < array.length; i++) {
         //     const element = array[i];
-        //     element.style=CSSString;
+        //     element.style=str;
+        //     element.style.setProperty("--c",pcolor);
         // }
         // this.template.querySelector('select').style = str;
     }
@@ -124,12 +151,12 @@ export default class Quickformfieldcomponent extends LightningElement {
         getLabelCSS({id:this.formid})
         .then(result=>{
             console.log(result);
-            this.getFieldCSS = result;
-            console.log('FieldCSS->> '+this.getFieldCSS);
+            this.getLabelCSS1 = result;
+            console.log('FieldCSS->> '+this.getLabelCSS1);
             console.log(this.template.querySelectorAll('label'));
             let array = this.template.querySelectorAll('label');
             console.log(array.length);
-            let str = this.getFieldCSS;
+            let str = this.getLabelCSS1;
             for (let i = 0; i < array.length; i++) {
                 const element = array[i];
                 element.style=str;
@@ -144,14 +171,59 @@ export default class Quickformfieldcomponent extends LightningElement {
     }
 
     handlehover(event){
-        console.log('Hover On Field');
-        console.log(event);
+        console.log(this.template.querySelectorAll('input'));
+        let array = this.template.querySelectorAll('input');
+        console.log(array.length);
+        let str = this.hovercssproperty;
+        for (let i = 0; i < array.length; i++) {
+            const element = array[i];
+            element.style=str;
+        }
+        this.template.querySelector('select').style = str;
+    }
+
+    handlefocus(event){
+        console.log('handlefocus ***');
+        console.log('this.onfocus --> ',this.onfocus);
+        getFocusCSS({id:this.formid})
+        .then(result=>{
+            console.log(result);
+            
+            console.log('FieldCSS->> '+result);
+            console.log(this.template.querySelectorAll('input'));
+            let array = this.template.querySelectorAll('input');
+            console.log(array.length);
+            let str = result;
+            for (let i = 0; i < array.length; i++) {
+                const element = array[i];
+                element.style=str;
+            }
+            // this.template.querySelector('select').style = str;
+            this.onfocus = true;
+            console.log('this.onfocus --> ',this.onfocus);
+        }).catch(error=>{
+            console.log({error});
+        })
     }
 
     handleblur(event){
         console.log('Blur On Field');
         console.log(event);
+        console.log('this.onfocus --> ',this.onfocus);
+
+        if (this.onfocus == false) {
+            this.FieldCSSUpdate(this.getFieldCSS1)
     }
+    }
+
+    handleblur1(event){
+        console.log('Blur On Field');
+        console.log(event);
+        console.log('this.onfocus --> ',this.onfocus);
+        this.onfocus = false;
+        this.FieldCSSUpdate(this.getFieldCSS1)
+    }
+
     get CheckBoxOp(){
         return [
             { label: 'first', value: 'option1' },
@@ -171,7 +243,11 @@ if(tempararyList.length==3){
 
 if(this.FieldType!=undefined && this.FieldType!='undefined' && this.FieldType!='Extra')
 {
-
+    if(this.FieldType=='QFADDRESS'){
+        this.tView = this.FieldType;
+        this.Address = this.FieldLabel;
+        return false;
+    }
     return true;}
         }
         return false;
@@ -205,7 +281,9 @@ if(this.FieldType!=undefined && this.FieldType!='undefined' && this.FieldType!='
    get isTrueCheckBox(){
     return this.tView=='QFCHECKBOX';
      }
- 
+ get isTruePageBreak(){
+    return this.tView=='QFPAGEBREAK';
+ }
     get isTrueShortText(){
      return this.tView == 'QFSHORTTEXT' ;
     }
@@ -369,6 +447,26 @@ if(this.FieldType!=undefined && this.FieldType!='undefined' && this.FieldType!='
 } catch (error) {
     console.log({ error });
 }
-    renderedCallback(){
+
+    emojiRatingValue(event) {
+        try {
+            var emojiValue = event.target.value;
+            var emojiName = event.target.name;
+            console.log('emoji Name ==>', emojiName);
+            console.log("rating ==>", emojiValue);
+
+            var emojiSelectedEle = this.template.querySelectorAll('.emoji-ratingfield-Selected');
+            emojiSelectedEle.forEach(element => {
+                element.classList.remove('emoji-ratingfield-Selected');
+            });
+            var emojiEle = this.template.querySelector('label[title="'+ emojiName +'"]');
+            emojiEle.classList.add('emoji-ratingfield-Selected');
+        } catch (error) {
+            console.log('In the catch part of emojiRatingValue ==>', {error});
+        }
+    }
+
+    get Address(){
+       
     } 
 }

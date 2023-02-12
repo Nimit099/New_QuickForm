@@ -2,126 +2,114 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 02-03-2023
+  @last modified on  : 02-06-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
     <template if:true={isModalOpen}>
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <!-- Form Details -->
             <div class="slds-modal__container" if:true={formdetails}>
-                <!-- <div class="progressbar_newform">
-                    <div class="on_newform">New Form</div>
-                    <div class="not_newform">Object Template</div>
-                </div> -->
+                <!-- spinner -->
+                                <template if:true={spinnerDataTable}>
+                                    <div data-id="spinnerId" class="slds-spinner_container" style="overflow: hidden;">
+                                        <div class="spinner-main-div">
+                                            <div class="loader--ripple">
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!-- spinner -->
                 <header class="slds-modal__header">
                     <p class="popup_titel">New Form</p>
-                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
-                        <lightning-icon icon-name="utility:close"
-                            alternative-text="close"
-                            variant="inverse"
-                            size="small" 
-                             ></lightning-icon>
-                                                <span class="slds-assistive-text">Close</span>
-                                          </button>
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
                 </header>
                 <div if:true={isModalOpen_2}>
                     <c-toast-component></c-toast-component>
-                    <!-- <c-error_-pop-up></c-error_-pop-up> -->
-                                    </div>
+                </div>
                 <div class="slds-modal__content  newform_body" id="modal-content-id-1">
                     <div class="form-details-input">
+
+                        <!-- Form Title  -->
                         <div class="input_field">
-                            <div class="description">
-                                <div class="descriptiontext">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
                                     <label class="input_field-label"><abbr>*</abbr>Form Title</label>
-                                    <div class="input_field-label">:</div>
                                 </div>
-                                <!-- <div class="slds-col slds-size_1-of-12">
-                                  </div> -->
-                                  <div class="desctextarea">
-                                    <!-- <input class="input_field-input-box" onchange={changeFormTitle} type="text" name="form_title" required> -->
-                                    <lightning-input variant="label-hidden"  type="text" onchange={changeFormTitle} name="form_title" value={formtitle} required="true"></lightning-input>
-                                  </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-input variant="label-hidden" onchange={changeFormTitle} onkeypress={handleFocus} type="text"
+                                        name="form_title" class="nameCls" value={formtitle}></lightning-input>
+                                </div>
                             </div>
                         </div>
-                        
+
+                        <!-- Progress Indicator  -->
                         <div class="input_field">
-                            <div class="description">
-                                <div class="descriptiontext" style="gap: 10%;">
-                                    <div class="input_field-label progress"><div>Progress Indicator</div>
-                                        <lightning-helptext style="margin-bottom: 2px;" content="To display the form using the Progress bar or Steps" class="helpicon"></lightning-helptext>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label">Progress Indicator <lightning-helptext
+                                            variant="label-hidden"
+                                            content="To display the form using the Progress bar or Steps"></lightning-helptext></label>
                                 </div>
-                                    <div class="input_field-label">:</div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
                                 </div>
-
-                                <!-- <div class="slds-col slds-size_1-of-12">
-                                    
-                                </div> -->
-                                <div class="desctextarea" style="width: 73%;">
-                                
-                                    <!-- <select class="input_field-input-box" onchange={changeProgressIndicator}>
-                                        <option value="Select">Select Progress Indicator</option>
-                                        <template for:each={records.data} for:item="rec">
-                                            <option key={rec} value={rec.DeveloperName}>{rec.MasterLabel}</option>
-                                        </template>
-                                    </select> -->
-                                    <lightning-combobox 
-                                        name="ProgressIndicator"
-                                        value={Progressbarvalue}
-                                        variant="label-hidden"
-                                        placeholder="Select Progress Indicator"
-                                        options={TypeOptions}
-                                        onchange={changeProgressIndicator}
-                                        class="slds-is-open">
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-combobox name="ProgressIndicator" value={Progressbarvalue}
+                                        variant="label-hidden" placeholder="Select Progress Indicator"
+                                        options={TypeOptions} onchange={changeProgressIndicator} class="slds-is-open">
                                     </lightning-combobox>
                                 </div>
                             </div>
                         </div>
-                        <div class="input_field" id="test">
-                            <div class="description">
-                                <div class="descriptiontext" style="gap: 26%;">
-                                    <div class="input_field-label captcha">Captcha Type <lightning-helptext style="margin-bottom: 2px;" content="To display Captach type for the form"></lightning-helptext></div>
-                                    <div class="input_field-label">:</div>
+                        <!-- Captcha Type  -->
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label">Captcha Type <lightning-helptext
+                                            content="Choose a captcha type to display a generic test to the user to determine whether or not they are human."></lightning-helptext></label>
                                 </div>
-                                <!-- <div class="slds-col slds-size_1-of-12">
-                                  
-                                </div> -->
-                                <div class="desctextarea">
-                                    <!-- <select class="input_field-input-box" onchange={changeCaptchaType}>
-                                        <option value="Select">Select Captcha Type</option>
-                                        <template for:each={captcharecords.data} for:item="cap_rec">
-                                            <option key={cap_rec} value={cap_rec.DeveloperName}>{cap_rec.MasterLabel}</option>
-                                        </template>
-                                    </select> -->
-                                    <lightning-combobox 
-                                        name="CaptchaType"
-                                        variant="label-hidden"
-                                        value={captchTypeparent}
-                                        placeholder="Select Captcha Type"
-                                        options={TypeOptions_2}
-                                        onchange={changeCaptchaType}
-                                        class="slds-is-open" >
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-combobox name="CaptchaType" variant="label-hidden"
+                                        value={captchTypeparent} placeholder="Select Captcha Type"
+                                        options={TypeOptions_2} onchange={changeCaptchaType} class="slds-is-open">
                                     </lightning-combobox>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="input_field" style="height: 55%;">
-                            <div class="description">
-                                <div class="descriptiontext">
-                                    <div class="input_field-label">Description</div>
-                                    <div class="input_field-label">:</div>
+                        <!-- Description -->
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label">Description</label>
                                 </div>
-                                  <div class="desctextarea" style="height: 100%;">
-                                    <!-- <input class="input_field-input-box"  type="text" name="description"> -->
-                                    <!-- <lightning-input variant="label-hidden" type="text" name="description"></lightning-input> -->
-                                    <!-- <textarea class="input_field-input-box" name="description"></textarea> -->
-                                    <textarea name="description" onchange={changeDescription}  variant="label-hidden" class="desc"></textarea>
-                                  </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-textarea variant="label-hidden" name="description"
+                                        onchange={changeDescription} class="desc"></lightning-textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="captcha_progressbar_preview_main">
                         <div if:true={ispreview_show_msg} class="preview_show_msg_progress_bar">
                             <p>Select Progress Indicator</p>
@@ -129,83 +117,68 @@
                         <div if:true={pi} class="progressbar_preview">
                             <div class="captcha_progressbar_preview_main_titel">Progress Indicator :</div>
                             <div class="preview_box_progressbar">
-                                <c-progress-indicator progress={Progressbarvalue}></c-progress-indicator>
+                                <div class="prog-bar-width">
+                                    <c-progress-indicator progress={Progressbarvalue}></c-progress-indicator>
+                                </div>
                             </div>
                         </div>
-                        <div if:true={testtest} class="preview_show_msg_captcha">    
+                        <div if:true={testtest} class="preview_show_msg_captcha">
                             <p>Select Captcha Type</p>
                         </div>
                         <div if:true={ct} class="captcha_preview">
-                            
-                                <div class="captcha_progressbar_preview_main_titel">Captcha Type :</div>
-                                
-                                <div class="preview_box_captcha">
-                                    <c-captcha-type captypetypes={captchTypeparent}></c-captcha-type>
-                                </div>
-                            
-                            <!-- <div class="captcha_progressbar_preview_main_titel">Captcha Type :</div>
-                            <div class="preview_show_msg">
-                                <p>hiiii</p>
-                                <div class="preview_box">
-                                    <c-captcha-type></c-captcha-type>
-                                </div>
-                            </div> -->
+
+                            <div class="captcha_progressbar_preview_main_titel">Captcha Type :</div>
+                            <div class="preview_box_captcha">
+                                <c-captcha-type captypetypes={captchTypeparent}></c-captcha-type>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="slds-modal__footer">
                     <div class="bt-center">
                         <div class="bt">
-                            <button class="qf-standard-button cancelbtn"  value="Cancel" onclick={closeModal} name="Cancel">Cancel</button>
-                            <button class="qf-standard-button"  value="Next" name="Next" onclick={next_bt}>Next</button>
+                            <button class="qf-standard-button cancelbtn" value="Cancel" onclick={closeModal}
+                                name="Cancel">Cancel</button>
+                            <button class="qf-standard-button" value="Next" name="Next"
+                                onclick={handleValidation}>Next</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- END Form Details -->
-            <!-- Object Selection --> 
+            <!-- Object Selection -->
+            
+                <c-toast-component></c-toast-component>
+        
             <div class="slds-modal__container" if:true={objectselection}>
-                <!-- <div class="progressbar_newform">
-                    <div class="not_newform">New Form</div>
-                    <div class="on_newform">Object Template</div>
-                </div> -->
                 <header class="slds-modal__header">
-                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
-                        <lightning-icon icon-name="utility:close"
-                            alternative-text="close"
-                            variant="inverse"
-                            size="small" 
-                             ></lightning-icon>
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
                         <span class="slds-assistive-text">Close</span>
                     </button>
                     <p class="popup_titel">Template</p>
                 </header>
-                
                 <div class="slds-modal__content slds-p-around_medium mainobjectdiv" id="modal-content-id-2">
                     <div class="main_box">
                         <div class="template_option_main">
                             <p class="section_title"><b>Select Template :</b></p>
                             <div class="main_box_grid">
                                 <div class="grid1 slds-grid slds-gutters">
-                                    <div class="inner-grid1 slds-col" data-name="template_1"  onclick={firstTemp}>
+                                    <div class="inner-grid1 slds-col" data-name="template_1" onclick={firstTemp}>
                                         <img src={section_One_img}>
                                     </div>
-                                    <div class="inner-grid1 slds-col" data-name="template_2"  onclick={secondTemp}>
+                                    <div class="inner-grid1 slds-col" data-name="template_2" onclick={secondTemp}>
                                         <img src={section_Two_img}>
                                     </div>
-                                    <!-- <div class="inner-grid3 slds-col"></div> -->
                                 </div>
                                 <div class="grid1 slds-grid slds-gutters">
-                                    <div class="inner-grid2 slds-col" data-name="template_3"  onclick={thirdTemp}>
+                                    <div class="inner-grid2 slds-col" data-name="template_3" onclick={thirdTemp}>
                                         <img src={section_Three_img}>
                                     </div>
                                 </div>
-                                <!-- <div class="grid1 slds-grid slds-gutters">
-                                    <div class="inner-grid1 slds-col"><img src={section_Four_img}></div>
-                                    <div class="inner-grid1 slds-col"><img src={section_Five_img}></div>
-                                    <div class="inner-grid1 slds-col"><img src={section_Six_img}></div>
-                                </div> -->
                             </div>
                         </div>
                         <div class="pop_up2_main">
@@ -216,10 +189,9 @@
                                 </div>
                             </template>
                             <div class="pop_up2" if:true={popup_2}>
+                                <!-- spinner -->
                                 <template if:true={spinnerDataTable}>
-                                    <!-- spinner -->
-                                    <div data-id="spinnerId" class="slds-spinner_container"
-                                        style="overflow: hidden;">
+                                    <div data-id="spinnerId" class="slds-spinner_container" style="overflow: hidden;">
                                         <div class="spinner-main-div">
                                             <div class="loader--ripple">
                                                 <div></div>
@@ -227,52 +199,115 @@
                                             </div>
                                         </div>
                                     </div>
-                                </template> 
+                                </template>
                                 <!-- spinner -->
                                 <div class="grid2">
                                     <template if:true={temp_One}>
                                         <div class="one">
                                             <div class="one_contener slds-align_absolute-center">
-                                                <lightning-combobox class="slds-size_2-of-6" name="object1" placeholder="Select Object" 
-                                                    value={value1} onchange={object1} options={options_object1}></lightning-combobox>
+                                                <lightning-combobox
+                                                    class="slds-is-open slds-has-flexi-truncate ligcombobox"
+                                                    name="object1" placeholder="Select Object" value={value1}
+                                                    onchange={object1} options={options_object1}>
+                                                </lightning-combobox>
                                             </div>
                                         </div>
                                     </template>
                                     <template if:true={temp_Two}>
-                                        <div class="two">
-                                            <div class="slds-wrap two_contener ">
-                                                <div class="slds-m-around_medium slds-align_absolute-center">
-                                                    <lightning-combobox class="slds-size_2-of-6" name="object2.1" placeholder="Select Object 1"
-                                                        value={value1} onchange={object1} options={options_object1}></lightning-combobox>
-                                                </div>
-                                                <div class="two_line"></div>
-                                                <div class="two_child_object slds-align_absolute-center">
-                                                    <lightning-combobox class="slds-size_1-of-6" name="object2.2" placeholder=" Select Object 2"
-                                                        value={value2} onchange={object2_1} options={options_object2}></lightning-combobox>
-                                                </div>
-                                            </div>
+                                        <div class="tf-main">
+                                            <ul>
+                                                <li>
+                                                    <ul>
+                                                        <li>
+                                                            <div class="tf-nc">
+                                                                <div class="templeat3-combobox">
+                                                                    <lightning-combobox name="object2.1"
+                                                                        variant="label-hidden" value={value1}
+                                                                        placeholder="Select Parent Object"
+                                                                        options={options_object1} onchange={object1}
+                                                                        class="slds-is-open slds-has-flexi-truncate ligcombobox testval">
+                                                                    </lightning-combobox>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="">
+                                                            <div class="tf-nc2">
+                                                                <div class="templeat3-combobox">
+                                                                    <lightning-combobox
+                                                                        class="templet3_object3 slds-is-open slds-has-flexi-truncate ligcombobox"
+                                                                        name="object2.2" placeholder="Select Child Object"
+                                                                        value={value2} onchange={object2_1}
+                                                                        onfocus={selcel_object_errormsg}
+                                                                        dropdown-alignment="bottom-left"
+                                                                        options={options_object2}>
+                                                                    </lightning-combobox>
+                                                                    <div class="sec_obj_error_main">
+                                                                        <div class="sec_obj_error"
+                                                                            if:true={sec_obj_error}>Please Select Parent Object</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </template>
                                     <template if:true={temp_Third}>
-                                        <div class="three">
-                                            <div class="slds-wrap three_contener">
-                                                <div class="slds-m-around_medium slds-align_absolute-center slds-wrap">
-                                                    <lightning-combobox class="slds-size_2-of-6 " name="object3.1" placeholder="Selected Object 1"
-                                                        value={value1} onchange={object1} options={options_object1}></lightning-combobox>
-                                                </div>
-                                                <div class="three_line_div">
-                                                    <div class="three_line_one">
-                                                    </div>
-                                                    <div class="three_line_two">
-                                                    </div>
-                                                </div>
-                                                <div class="slds-wrap slds-grid slds-align_absolute-center three_child_object">
-                                                    <lightning-combobox class="three_child_left slds-size_1-of-6" name="Object 3.2.1" placeholder="Selected Object 2"
-                                                        value={value2} onchange={object2_1} options={options_object2}></lightning-combobox>
-                                                    <div class="slds-size_1-of-6"></div>
-                                                    <lightning-combobox class="three_child_right slds-size_1-of-6" name="Object 3.2.2" placeholder="Selected Object 3"
-                                                        value={value3} onchange={object2_2} options={options_object2_2}></lightning-combobox>
-                                                </div>
+                                        <div class="tf-tree example">
+                                            <div class="tf-main">
+                                                <ul>
+                                                    <li>
+                                                        <div class="tf-nc">
+                                                            <div class="templeat3-combobox">
+                                                                <lightning-combobox
+                                                                    class="templeat3 slds-is-open slds-has-flexi-truncate ligcombobox"
+                                                                    name="object3.1" placeholder="Select Parent Object"
+                                                                    value={value1} onchange={object1}
+                                                                    options={options_object1}></lightning-combobox>
+                                                            </div>
+                                                        </div>
+                                                        <ul>
+                                                            <li>
+                                                                <div class="tf-nc">
+                                                                    <div class="templeat3-combobox">
+                                                                        <lightning-combobox
+                                                                            class="slds-is-open slds-has-flexi-truncate ligcombobox"
+                                                                            name="Object 3.2.1"
+                                                                            placeholder="Select Child Object 1"
+                                                                            value={value2} onchange={object2_1}
+                                                                            dropdown-alignment="bottom-left"
+                                                                            options={options_object2}
+                                                                            onfocus={selcel_object_errormsg}></lightning-combobox>
+                                                                        <div class="sec_obj_error_main">
+                                                                            <div class="sec_obj_error"
+                                                                                if:true={sec_obj_error}>Please Select Parent Object</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="">
+                                                                <div class="tf-nc3">
+                                                                    <div class="templeat3-combobox">
+                                                                        <lightning-combobox
+                                                                            class="templet3_object3 slds-is-open slds-has-flexi-truncate ligcombobox"
+                                                                            name="Object 3.2.2"
+                                                                            placeholder="Select Child Object 2"
+                                                                            value={value3} onchange={object2_2}
+                                                                            dropdown-alignment="bottom-left"
+                                                                            options={options_object2}
+                                                                            onfocus={tep3_selcel_object_errormsg_2}></lightning-combobox>
+                                                                        <div class="sec_obj_error_main">
+                                                                            <div class="sec_obj_error"
+                                                                                if:true={tep3_sec_obj_error_2}>Please Select Parent Object</div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </template>
@@ -284,8 +319,9 @@
                 <div class="slds-modal__footer">
                     <div class="bt-center">
                         <div class="bt">
-                            <button class="qf-standard-button cancelbtn"  value="Previous" onclick={Previouus_bt} name="Previous" >Previous</button>
-                            <button class="qf-standard-button"  value="Save" onclick={save} name="Save">Save</button>
+                            <button class="qf-standard-button cancelbtn" value="Previous" onclick={Previouus_bt}
+                                name="Previous">Previous</button>
+                            <button class="qf-standard-button" value="Save" onclick={save} name="Save">Save</button>
                         </div>
                     </div>
                 </div>
@@ -294,33 +330,4 @@
         </section>
         <div class="slds-backdrop slds-backdrop_open"></div>
     </template>
-    
-    <!-- <template if:true={objectselection}>
-        <c-object-selection></c-object-selection>
-    </template> -->
-    <!-- <template if:true={isModalOpen_2}>
-        <div>    
-        <div class="main">
-            <div class="slds-notify_container slds-is-relative">
-                  <div class="slds-notify slds-notify_toast toast_shadow" role="status">
-                        <div style=" width:1px; height:40px; border-radius: 10px;"></div>
-                        <span class="slds-icon_container slds-icon-utility-success slds-icon-utility-success  slds-no-flex slds-align-top" style="margin:5px 10px; font-size:24px;">
-                            <div style="height:26px; width:26px; background-color:rgb(252, 8, 8); border-radius:50%; color:white; margin:3px 0; padding:0 9px; font-weight:bold;">!</div>
-                        </span>
-                        <div class="slds-notify_content" style="display:block;">                        
-                            <h1 style="font-weight:bold;">Uh oh, something went wrong</h1>
-                            <h2 class="slds-text-heading_small" >Sorry,There was a problem with your submission.</h2>
-                        </div>
-                        <div class="slds-notify__close">
-                              <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick={closeModalerror} style="margin: 7px 0;">
-                                    <lightning-icon icon-name="utility:close" size="small" variant="inverse" class="my-icon"></lightning-icon>
-                                    <span class="slds-assistive-text">Close</span>
-                              </button>
-                        </div>
-                  </div>
-            </div>
-        </div>
-        </div>
-        </template> -->
-
- </template>
+</template>

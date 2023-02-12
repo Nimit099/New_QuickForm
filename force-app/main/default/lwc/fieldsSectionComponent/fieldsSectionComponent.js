@@ -1,6 +1,7 @@
 import { LightningElement,track,api } from 'lwc';
 import GetFieldsMetaData  from '@salesforce/apex/FormBuilderController.GetFieldsMetaData';
 import getFields from '@salesforce/apex/FormBuilderController.getFields';
+import ObjName from '@salesforce/apex/FormBuilderController.ObjName';
 
 export default class FieldsSectionComponent extends LightningElement {
      spinner=false;
@@ -10,6 +11,11 @@ export default class FieldsSectionComponent extends LightningElement {
      notShowField= true;
      showField = false;
      baseField=[];
+     @track ObjectName = [];
+     @track ObjectName1;
+     @track ObjectName2;
+     @track ObjectName3;
+     @track Object2icon;
     @track accfields = [];
    @track  confields = [];
     @track oppfields = [];
@@ -29,6 +35,28 @@ export default class FieldsSectionComponent extends LightningElement {
      @api formid;
      connectedCallback(){
         console.log('>>>>> '+this.formid);
+
+        ObjName({id:this.formid}).then(result=>{
+          this.ObjectName = result.split(',');
+          console.log('result name --> '+result);
+          console.log('Object name --> '+this.ObjectName+ typeof(this.ObjectName));
+          console.log('1',this.ObjectName.length);
+          if (this.ObjectName.length==2) {
+            this.ObjectName1 = this.ObjectName[0];
+            this.ObjectName2 = this.ObjectName[1];
+          }
+          if (this.ObjectName.length==3) {
+            this.ObjectName1 = this.ObjectName[0];
+            this.ObjectName2 = this.ObjectName[1];
+            this.ObjectName3 = this.ObjectName[2];
+            this.Object2icon = 'standard:'+this.ObjectName2;
+          }else{
+            this.ObjectName1 = this.ObjectName[0];
+          }
+        }).catch(error=>{
+          console.log(error);
+        })
+
         getFields({id:this.formid}).then(result => {
           let LabelList=[];
           let OnlyLabelList=[];
@@ -37,7 +65,7 @@ export default class FieldsSectionComponent extends LightningElement {
         
             for(let j=0;j<result[i].length;j++){
 
-              let label  = result[i][j].split('./.');   
+                let label  = result[i][j].split('./.');   
                 let nottakeField= false;
                 for(let k=0;k<this.storeRemovedField.length;k++){
                     if(this.storeRemovedField[k]==label[0])
@@ -48,8 +76,8 @@ export default class FieldsSectionComponent extends LightningElement {
                 }
                 if(nottakeField==false)
             {    let labelObj = {Label: label[0],
-                               Type: label[1]};
-              innerList.push(labelObj);  
+                    Type: label[1]};
+               innerList.push(labelObj);  
             }
             }
             LabelList.push(innerList);
@@ -65,10 +93,10 @@ export default class FieldsSectionComponent extends LightningElement {
             this.accfields = LabelList[0];
             if(LabelList.length!=1){
               console.log(this.accfields.length);
-            this.confields = LabelList[1];
+              this.confields = LabelList[1];
               if(LabelList.length!=2){
                 console.log(this.accfields.length);
-            this.oppfields = LabelList[2];
+               this.oppfields = LabelList[2];
               }
           
             }
@@ -99,7 +127,7 @@ export default class FieldsSectionComponent extends LightningElement {
             if(this.baseField[i].DataRecord__c == 'QFSHORTTEXT' || this.baseField[i].DataRecord__c == 'QFLONGTEXT' || this.baseField[i].DataRecord__c == 'QFDROPDOWN'||this.baseField[i].DataRecord__c == 'QFRICHTEXT' || this.baseField[i].DataRecord__c == 'QFRADIOBUTTON' || this.baseField[i].DataRecord__c == 'QFCHECKBOX' || this.baseField[i].DataRecord__c == 'QFPRICE' || this.baseField[i].DataRecord__c == 'QFNUMBER'){
               this.Essential.push(this.baseField[i]);
             }
-            if(this.baseField[i].DataRecord__c == 'QFSIGNATURE' || this.baseField[i].DataRecord__c == 'QFFILEUPLOAD' || this.baseField[i].DataRecord__c == 'QFTERMSOFSERVICE' || this.baseField[i].DataRecord__c == 'QFLINK'){
+            if(this.baseField[i].DataRecord__c == 'QFSIGNATURE' || this.baseField[i].DataRecord__c == 'QFFILEUPLOAD' || this.baseField[i].DataRecord__c == 'QFTERMSOFSERVICE' || this.baseField[i].DataRecord__c == 'QFLINK' || this.baseField[i].DataRecord__c == 'QFPAGEBREAK' ){
               this.UploadandConsent.push(this.baseField[i]);
             }
             if(this.baseField[i].DataRecord__c == 'QFDATE' || this.baseField[i].DataRecord__c == 'QFTIME' || this.baseField[i].DataRecord__c == 'QFDATETIME'){
@@ -108,7 +136,7 @@ export default class FieldsSectionComponent extends LightningElement {
             if(this.baseField[i].DataRecord__c == 'QFRATING' || this.baseField[i].DataRecord__c == 'QFEMOJIRATING' || this.baseField[i].DataRecord__c == 'QFSCALERATING' ){
               this.Rating.push(this.baseField[i]);
             }
-            if((this.baseField[i].DataRecord__c == 'QFPAGEBREAK' || this.baseField[i].DataRecord__c == 'QFLOOKUP')){
+            if( this.baseField[i].DataRecord__c == 'QFLOOKUP'){
               this.Other.push(this.baseField[i]);
             }
           }
@@ -160,6 +188,15 @@ export default class FieldsSectionComponent extends LightningElement {
           
           }
           onDragOver(event){
+            console.log('ondrop starts in ondragOver');
+            this.activeDropZone =false;
+            const custEvent = new CustomEvent(
+              'callpasstoparent', {
+                  detail: this.activeDropZone
+              });
+          this.dispatchEvent(custEvent);
+           
+        
             event.preventDefault();
           }
           @api removeField(name){
@@ -185,13 +222,13 @@ export default class FieldsSectionComponent extends LightningElement {
             this.confields = tempararyArray;
             tempararyArray = [];
             for(let i=0;i<this.oppfields.length;i++){
-
+                   
                     if(this.oppfields[i].Label!=name){
                     //  console.log(this.accfields[i].Label);
                       tempararyArray.push(this.oppfields[i]);
-          }
+                    }
             }
             this.oppfields= tempararyArray;
-          
+
           }
 }

@@ -1,17 +1,40 @@
 /* .Accord{
     height: 750px;
 } */
-.fieldname{
-    margin-top:1%; 
-    background-color: white;
+
+lightning-input{
+  --lwc-colorBorderInput: #6699cc;
+  --slds-c-input-radius-border: 15px;
 }
+
+lightning-combobox{
+  --lwc-colorBorderInput: #6699cc;
+  --slds-c-input-radius-border: 15px;
+}
+
+
 .fieldname > p{
-    color: rgb(97, 121, 199);
-    text-align: center;
+    color: rgb(0,0,0,0.56);
+    font-size:30px;
+    font-weight: 800;
+    font-family: 'Roboto';
+    line-height: 25px;
+    /* margin: 1%; */
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-bottom: 10px;
 }
 .Accord{
     height: 75vh;
 }
+
+
+.slds-color-picker__summary-button{
+  border-radius: 15%;
+  border-color: #6699cc;
+}
+
+
 .slds-scrollable_y{
     overflow-y: scroll;
     scrollbar-width: none;  /* Firefox */
@@ -20,3 +43,165 @@
 .slds-scrollable_y::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+
+.panel{
+    padding: 0% 8% 0% 8%;
+}
+
+
+
+.slds-form-element__control{
+    border-radius: 15px;
+}
+
+
+.upload {
+    --color-black-softest: #485461; /* softer black */
+      --color-black-soft: #363F48; /* softer black */
+      --color-black-hard: #2d353c; /* harder black */
+      --color-black-hardest: #21282e; /* hardest black */
+      --color-green-light: #65cca9; /* light green */
+      --color-green: #29b586; /* medium green */
+    --ease-in-out-quartic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  
+    position: relative;
+    display: inline-flex;
+    background: #485461;
+    border-radius: 10px;
+    box-shadow: 0 1.7px 1.4px rgba(0, 0, 0, 0.02),
+      0 4px 3.3px rgba(0, 0, 0, 0.028), 0 7.5px 6.3px rgba(0, 0, 0, 0.035),
+      0 13.4px 11.2px rgba(0, 0, 0, 0.042), 0 25.1px 20.9px rgba(0, 0, 0, 0.05),
+      0 60px 50px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    transform: rotate(0);
+}
+    button {
+      position: relative;
+      margin: 0;
+      font-size: 100%;
+      padding: 0 8px;
+      font-family: inherit;
+      background: none;
+      border: none;
+      border-radius: inherit;
+      outline: none;
+    }
+  
+  @keyframes button-pulse {
+    from { box-shadow: 0 0 0 0 var(--color-green-light); }
+    to { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+  }
+  
+@keyframes fade-up-out {
+    to {
+        opacity: 0;
+        transform: translateY(-40%);
+    }
+}
+  
+@keyframes fade-up-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+  
+@keyframes load-right {
+    0% { left: -100%; }
+    50% { left: 0; }
+    100% { left: 100%; }
+}
+  
+[type="file"] {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+    cursor: pointer;
+}
+  
+  
+.drop-area {
+    border: 1px solid var(--color-black-softest);
+}
+  
+  
+  /* ------------------------------
+  Styling for the rest of the page
+  ------------------------------ */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Roboto, sans-serif;
+    background: #2d353c;
+    color: #ccc;
+  }
+  
+.wrapper {
+    text-align: center;
+}
+.upload-wrapper {
+    display: inline-block;
+    margin: 2rem auto 0;
+}
+
+
+/* Cross */
+  
+  .box {
+    height: 200px;
+    width: 200px;
+    background-color: #bdc3c7;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #ecf0f1;
+  }
+  .box .cross {
+    top: 5px;
+    right: 7px;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    background-color: #bdc3c7;
+    z-index: 10;
+    opacity: 0.5;
+    position: absolute;
+    border: 2px solid #bdc3c7;
+    border-radius: 50%;
+    
+  }
+.box .cross img{
+  -webkit-transition: -webkit-transform 0.25s, opacity 0.25s;
+    -moz-transition: -moz-transform 0.25s, opacity 0.25s;
+    transition: transform 0.25s, opacity 0.25s;
+    opacity: 0.5;
+}
+
+.box .cross:hover{
+  opacity: 1;
+}
+
+  .box .formimage {
+    text-align: center;
+    font-size: 2.25em;
+    font-weight: bolder;
+    position: absolute;
+    color: #ecf0f1;
+    letter-spacing: 1px;
+    font-weight: 100;
+    font-family: "Helvetica Neue", Helvetica, Arial, Sans-serif;
+  }
+  .box .cross:hover{
+    cursor:pointer;
+  }
+  .box .cross img:hover {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    transform: rotate(270deg);
+    opacity: 1;
+  }
+  .box object {
+    margin: 30px 0 0 -70px;
+  }

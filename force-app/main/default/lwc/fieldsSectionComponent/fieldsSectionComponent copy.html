@@ -1,0 +1,144 @@
+<template>
+    <div class="toglling hideTabs" id="demo">
+        <!-- <span class="cross_span" onclick={Hidetwo_class}>&times;</span> -->
+        <div class="fieldname  slds-box slds-box_x-small" style="margin-top:1%; background-color: white;">
+            <p style="color: rgb(97, 121, 199);text-align: center;"><b>FIELDS</b></p>
+        </div>
+
+         <!-- <div class="slds-box_x-small">
+             <lightning-input id="searchKey" placeholder="Search Field" onchange={searchAction} ></lightning-input>
+         </div> -->
+
+         <template if:true={spinner1}>
+             <div id="spinnerId" class="slds-spinner_container" >
+                 <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                     <span class="slds-assistive-text">Loading...</span>
+                     <div class="slds-spinner__dot-a"></div>
+                     <div class="slds-spinner__dot-b"></div>
+                 </div>
+             </div>
+         </template>
+
+         <template if:true={notShowField}>
+         
+            <div class="Accord">
+               
+             <lightning-accordion class="slds-scrollable_y" active-section-name="A" allow-multiple-sections-open>
+                <template if:true={hasMainObj}>
+                <lightning-accordion-section  name="A" label="Main Object's Fields">
+                    
+                    <div ondragend={onDragOver}>
+                    <template for:each={accfields} for:item="items">
+                        <!-- {item} -->
+                       
+                        <div draggable="true" ondragstart={onDragStart} key={items.Label} data-record={items.Label} data-type={items.Type} class=" slds-box_xx-small fieldOutlines isSelected">
+                            <lightning-icon class="icon" icon-name="standard:account" title="account" size="small" > </lightning-icon> {items.Label}
+                        </div>
+                    </template>
+                   </div>
+                </lightning-accordion-section>
+                </template>
+                <template if:true={hasFirstChild}>
+                <lightning-accordion-section name="B" label="1st Child Object's Fields">
+                    <div ondragend={onDragOver}>
+                        <template for:each={confields} for:item="items">
+                            <!-- {item} -->
+                            <div draggable="true" ondragstart={onDragStart} key={items.Label} data-record={items.Label} data-type={items.Type} class="slds-box_xx-small fieldOutlines isSelected" >
+                                <lightning-icon class="icon" icon-name="standard:contact" title="contact" size="small"></lightning-icon> {items.Label} 
+                            </div>
+                        </template>
+                   </div>
+                </lightning-accordion-section>
+            </template>
+            <template if:true={hasSecondChild}>
+                <lightning-accordion-section name="C" label="2nd Child Object's Fields">
+                    <div ondragend={onDragOver}>
+                        <template for:each={oppfields} for:item="items">
+                            <!-- {item} -->
+                                <div draggable="true" ondragstart={onDragStart} key={items.Label} data-record={items.Label} data-type={items.Type} class="slds-box_xx-small fieldOutlines isSelected" >
+                                    <lightning-icon class="icon" icon-name="standard:opportunity" title="opportunity" size="small"></lightning-icon> {items.Label} 
+                                </div>
+                        </template>
+                    </div>
+                </lightning-accordion-section>
+            </template>
+                <lightning-accordion-section name="D" label="Other Fields" >
+
+                    <lightning-accordion active-section-name="A" allow-multiple-sections-open class="slds-scrollable_y">
+                        <lightning-accordion-section name="A" label="Contact Details">
+                            <div  ondragend={onDragOver} ondrop={MethodForOpacity}>
+                                <template  for:each={ContactDetailes} for:item="bf">
+                             
+                                    <div class="example-draggable" key= {bf.sequence__c} data-record={bf.DataRecord__c} data-type="Extra" draggable="true" ondragstart={onDragStart}>
+                                        <c-quickformfieldcomponent t-view={bf.DataRecord__c} compview="Field"></c-quickformfieldcomponent>
+                                    </div>
+                                </template>
+                         
+                            </div>
+
+                        </lightning-accordion-section>
+                
+
+                        <lightning-accordion-section name="B" label="Essentials">
+                            <div  ondragend={onDragOver} ondrop={MethodForOpacity}>
+                                <template  for:each={Essential} for:item="bf">
+                             
+                                 <div class="example-draggable" data-record={bf.DataRecord__c} key={bf.sequence__c} data-type="Extra" draggable="true" ondragstart={onDragStart}>
+                                     <c-quickformfieldcomponent t-view={bf.DataRecord__c} compview="Field" ></c-quickformfieldcomponent>
+                                 </div>
+                             </template>
+                             
+                     </div>
+         
+                 </lightning-accordion-section>
+
+                 <lightning-accordion-section name="C" label="Upload and Consent">
+                     <div  ondragend={onDragOver} ondrop={MethodForOpacity}>
+                         <template  for:each={UploadandConsent} for:item="bf">
+                             
+                                 <div class="example-draggable" data-record={bf.DataRecord__c} data-type="Extra" key={bf.sequence__c} draggable="true" ondragstart={onDragStart}>
+                                     <c-quickformfieldcomponent t-view={bf.DataRecord__c} compview="Field" ></c-quickformfieldcomponent>
+                                 </div>
+                           
+                             </template>
+                     </div>
+      
+                 </lightning-accordion-section>
+
+                 <lightning-accordion-section name="D" label="Date and Time">
+                     <div  ondragend={onDragOver} ondrop={MethodForOpacity}>
+                         <template  for:each={DateandTime} for:item="bf">
+                             
+                         
+                                 <div class="example-draggable" data-record={bf.DataRecord__c} key={bf.sequence__c} draggable="true" data-type="Extra" ondragstart={onDragStart}>
+                                     <c-quickformfieldcomponent t-view={bf.DataRecord__c} compview="Field" ></c-quickformfieldcomponent>
+                                 </div>
+                             
+                             </template>
+                     </div>
+    
+                 </lightning-accordion-section>
+
+                 <lightning-accordion-section name="E" label="Rating">
+                     <div  ondragend={onDragOver} ondrop={MethodForOpacity}>
+                         <template  for:each={Rating} for:item="bf">
+                             
+                          
+                                  <div class="example-draggable" data-record={bf.DataRecord__c} key={bf.sequence__c} data-type="Extra" draggable="true" ondragstart={onDragStart}>
+                                     <c-quickformfieldcomponent t-view={bf.DataRecord__c} compview="Field"></c-quickformfieldcomponent>
+                                 </div>
+                           
+                             </template>
+                     </div>
+         
+                 </lightning-accordion-section>
+
+                
+
+             </lightning-accordion>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </div>
+         </template>
+     </div> 
+</template>

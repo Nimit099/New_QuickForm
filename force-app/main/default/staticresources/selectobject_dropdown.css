@@ -1,0 +1,36 @@
+.slds-dropdown-trigger_click .slds-dropdown, .slds-dropdown-trigger_click:hover .slds-dropdown, .slds-dropdown-trigger--click .slds-dropdown, .slds-dropdown-trigger--click:hover .slds-dropdown {
+    max-height: 150px !important;
+}
+@media only screen and (max-width: 1440px) {
+    .ligcombobox {
+        max-height: 300px !important;
+        max-width: 150px !important;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+    .ligcombobox::-webkit-scrollbar {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1600px) {
+    .ligcombobox {
+        max-height: 300px !important;
+        max-width: 165px !important;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+    .ligcombobox::-webkit-scrollbar {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1800px) {
+    .ligcombobox {
+        max-height: 300px !important;
+        max-width: 180px !important;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+    .ligcombobox::-webkit-scrollbar {
+        display: none;
+    }
+}

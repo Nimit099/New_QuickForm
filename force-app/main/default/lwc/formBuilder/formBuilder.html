@@ -87,7 +87,7 @@
 </template>
 
 <template if:true={activeNotification}>
-    <c-notification-component  cmptype="main" form-id={FormId} id='notmcp'></c-notification-component>
+    <c-notification-component  cmptype="main" form-id={ParentMessage} id='notmcp'></c-notification-component>
 </template>
 
 <template if:true={activethankyou}>
@@ -105,31 +105,33 @@
         </div>
     </div>
 
-    
-
     <div class="child2">
 
         <!-- Main Form Div -->
 
-        <div class="addFormTitle">
-            <div class="InnerFormtitle">
-                <div class="formName">
-                    <p> {FormName}</p>
+                
+                    <div class="InnerFormtitle" style="display:flex">
+                        <div class="formName" data-record-id={ParentMessage}>{FormName}</div>
+                        <div class="slds-col slds-grid slds-wrap rename_div formName" data-name= {ParentMessage}  style ="display: none;">
+                            <lightning-input type="text" value={FormName}  onchange={renamemain} onkeypress={key}  class="rename_input"></lightning-input>
+                            <div class="right" onclick={renameMainForm} data-id={ParentMessage}><img src={right} alt=""></div>
+                            <div class="wrong" onclick={cancleRenameMainForm} data-id={ParentMessage}><img src={cross} alt="">
                 </div>
-                        <!-- <div class="formButtons">
+                        </div>
+                  
+                        <div class="formButtons">
                             <button  class="FormButtons"
-                                onclick={handleSelect} name={EditButtonName}> <img src={EditIcon} alt="edit button" class="icon">Edit Form</button>
+                                onclick={handleeditForm} name={EditButtonName} data-record={FormName} data-id={ParentMessage} > <img src={EditIcon} alt="edit button" class="icon">Rename</button>
                             <button value="new page add"  class="FormButtons"
-                                onclick={handleSelect}
+                                onclick={handleAddPage}
                                 name={EditButtonName}><img src={addIcon} alt="Add button" class="icon">Add Page</button>
-                        </div> -->
             </div>
         </div>
 
 
 
-        <div class="fieldDiv1 slds-col  slds-small-size_6-of-12  slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_9-of-12"
-            style="padding:5%; width:100%;background-color: white;display:block">
+        <div class="fieldDiv1 slds-col slds-align_absolute-center slds-small-size_6-of-12  slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_9-of-12"
+            style="padding:2%; width:100%;background-color: white; display:block;">
 
             <div class="myform" id="mainformid">
                 <template for:each={MainList} for:item="page">
@@ -138,7 +140,14 @@
                             <div style="display: flex;align-items: center;">
                                 <div>
                                     <template if:true={page.pageName}>
-                                        <div class="pagetitle1">{page.pageName}</div>
+                                                <div class="pagetitle1" data-record-id={page.pageId}>{page.pageName}</div>
+                                                <div class="slds-col slds-grid slds-wrap rename_div" data-name= {page.pageId}  style ="display: none;">
+                                                    <lightning-input type="text" value={newFormName}  onchange={rename} onkeypress={key} onclick={insideClick} class="rename_input"></lightning-input>
+                                                    <div class="right" onclick={renameForm} data-id={page.pageId}><img src={right} alt=""></div>
+                                                    <div class="wrong" onclick={cancleRenameForm} data-id={page.pageId}><img src={cross} alt="">
+                                                </div>
+                                            </div>
+                                            
                                     </template>
 
                                 </div>
@@ -151,8 +160,8 @@
                                             onclick={ondelete} prefix-icon-name="utility:delete"></lightning-menu-item>
                                     </lightning-button-menu> -->
                                     <!-- <div class="PageButtonMenu">
-                                        <button class="pageIconButton"><img class="pageIcons" src={editpageIcon} alt="Edit page"></button>
-                                        <button class="pageIconButton"><img class="pageIcons" src={DeleteIcon} alt="Delete Page"></button>
+                                        <button class="pageIconButton" data-record={page.pageName} data-id={page.pageId} onclick={editPageName}><img class="pageIcons" src={editpageIcon} alt="Edit page"></button>
+                                        <button class="pageIconButton" onclick={deletePage} data-record={page.pageId}><img class="pageIcons" src={DeleteIcon} alt="Delete Page"></button>
                                     </div> -->
                         </div>
                                 <div class="example-dropzone" ondragover={onDragOver} ondrop={onDrop}
@@ -160,26 +169,26 @@
 
                             <template for:each={page.FieldData} for:item="field">
 
-                                        <div id={field.Id} class="field" draggable="true"
+                                        <div id={field.ParentMessage} class="field" draggable="true" 
                                             data-order-id={field.Field_Order__c} data-page-record={field.Form_Page__c}
-                                            data-record={field.Id} data-ref="inner" ondragstart={onDragStart} data-record-count={fieldcount}
-                                            onclick={handleid} key={field.Id} data-field-name={field.Name}>
+                                            data-record={field.ParentMessage} data-ref="inner" ondragstart={onDragStart} data-record-count={fieldcount}
+                                            onclick={openfieldvalidation} key={field.ParentMessage} data-field-name={field.Name}>
                                             <c-quickformfieldcomponent formid={ParentMessage} t-view={field.Name} compview="Full"
                                                 disable-field="true" field-attribute="" field-attribute-value=""
-                                                field-id={field.Id} page-id={page.Id}></c-quickformfieldcomponent>
+                                                field-id={field.ParentMessage} page-id={page.ParentMessage}></c-quickformfieldcomponent>
 
                                 </div>
                             </template>
                         </div>
                                 <div class="footer">
 
-                            <template if:true={isIndexZero}>
+                                    <template if:true={page.isIndexZero}>
 
                                         <lightning-button class="nextbutton " variant="brand" label="Next" title="Next"
                                             disabled onclick={onaddpage1}></lightning-button>
                             </template>
-                            <template if:false={isIndexZero}>
-                                    <template if:true={isIndexIsNotLast}>
+                                
+                                        <template if:true={page.isIndexIsNotLast}>
 
                                             <lightning-button id={previousButton} variant="brand" label="Previous"
                                                 title="Previous" disabled onclick={onaddpage1}
@@ -188,8 +197,8 @@
                                                 disabled onclick={onaddpage1} class="btn"></lightning-button>
 
                                     </template>
-                                <template if:false={isIndexIsNotLast}>
-                                    <template if:true={isIndexLast}>
+                                        <!-- <template if:false={isIndexIsNotLast}> -->
+                                            <template if:true={page.isIndexLast}>
                                         
                                                 <lightning-button variant="brand" label="Previous" title="Previous"
                                                     disabled onclick={onaddpage1} class="btn"></lightning-button>
@@ -197,8 +206,7 @@
                                                     onclick={onaddpage1} class="btn"></lightning-button>
                                         
                                     </template>
-                                </template>
-                            </template>
+                                    
 
 
                                 </div>
@@ -211,6 +219,16 @@
         </div>
 
     </div>
+
+    <template if:true={fieldvalidationdiv}>
+        <div class="fieldvalidationdiv">
+            <c-field-validation tab={tab}></c-field-validation>
+        </div>
+    </template>
 </template>
     </div>
+
+    <template if:true={isModalOpen}>
+        <!-- <c-edit-form-details onpopupclose={modalpopupclose}></c-edit-form-details> -->
+    </template>
 </template>

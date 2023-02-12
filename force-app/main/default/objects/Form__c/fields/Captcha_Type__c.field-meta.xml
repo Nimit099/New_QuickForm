@@ -23,7 +23,7 @@
             <value>
                 <fullName>Maths_Captcha</fullName>
                 <default>false</default>
-                <label>Maths Captcha</label>
+                <label>Math Captcha</label>
             </value>
             <value>
                 <fullName>Slider_Captcha</fullName>

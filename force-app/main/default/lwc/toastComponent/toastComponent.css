@@ -47,12 +47,15 @@ img[c-toastComponent_toastComponent] {
 .toast_shadow {
     box-shadow: 1px 2px 4px 0px #888888;
     border-radius: 3px;
-    background: #bdee9e;
+    background: rgb(229, 255, 238);
 }
 .toast_shadow1 {
     box-shadow: 1px 2px 4px 0px #888888;
     border-radius: 3px;
-    background: #ef8181;
+    background: #FFCCCB;
+}
+.close_btn:hover{
+    cursor: pointer;
 }
 
 @media (max-width:500px){
