@@ -280,60 +280,6 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
         })
     }
 
-    // renderedCallback() {
-    //     console.log('inside the renderedcallBack--->>>');
-    //     console.log(this.removeObjFields.length);
-    //     this.tempararyfun();
-    //     console.log('Renderedcallback formbuilder');
-    //     getFormCSS({ id: this.ParentMessage })
-    //         .then(result => {
-    //             console.log(result);
-    //             this.getFieldCSS = result;
-    //             console.log('FormCSS->> ' + this.getFieldCSS);
-    //             let array = this.template.querySelector('.myform');
-    //             let str = this.getFieldCSS;
-    //             array.style = str;
-    //         }).catch(error => {
-    //             console.log('Error in getFormCSS ==>' + error);
-    //             console.log({ error });
-    //         })
-
-    //     getButtonCSS({ id: this.ParentMessage })
-    //         .then(result => {
-    //             console.log(result);
-    //             let str = result;
-    //             let arr = this.template.querySelectorAll('.btn1');
-    //             for (let i = 0; i < arr.length; i++) {
-    //                 const element = arr[i];
-    //                 element.style = str;
-    //             }
-    //         }).catch(error => {
-    //             console.log('Error in getButtonCSS ==>' + error);
-    //             console.log({ error });
-    //         })
-
-    //     getPageCSS({ id: this.ParentMessage })
-    //         .then(result => {
-    //             console.log(result);
-    //             this.getFieldCSS = result;
-    //             console.log('PageCSS->> ' + this.getFieldCSS);
-    //             let array = this.template.querySelectorAll('.page');
-    //             let str = this.getFieldCSS;
-    //             for (let i = 0; i < array.length; i++) {
-    //                 const element = array[i];
-    //                 console.log(i + '*--*' + element);
-    //                 element.style = str;
-    //             }
-    //             // this.spinnerDataTable = false;
-    //         }).catch(error => {
-    //             console.log('Error in getPageCSS ==>' + error);
-    //             console.log({ error });
-    //             // this.spinnerDataTable = false;
-    //         })
-
-
-    // }
-
     get isIndexZero() {
 
         if (this.index == 0) {
@@ -407,27 +353,6 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
                 element.style = this.PageCSS;
             }
         }
-  
-        
-        // this.spinnerDataTable = false;
-        // this.spinnerDataTable = false;
-        // getPageCSS({ id: this.ParentMessage })
-        //     .then(result => {
-        //         console.log(result);
-        //         this.getFieldCSS = result;
-        //         console.log('PageCSS->> ' + this.getFieldCSS);
-        //         let array = this.template.querySelectorAll('.page');
-        //         let str = this.getFieldCSS;
-        //         for (let i = 0; i < array.length; i++) {
-        //             const element = array[i];
-        //             console.log(i + '--' + element);
-        //             element.style = str;
-        //         }
-        //         this.spinnerDataTable = false;
-        //     }).catch(error => {
-        //         console.log({ error });
-        //         this.spinnerDataTable = false;
-        //     })
     }
 
     handleformcss(event) {
@@ -436,21 +361,6 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
             let array = this.template.querySelector('.myform');
                 array.style = this.fieldcss;
         }
-        // getFormCSS({ id: this.ParentMessage })
-        //     .then(result => {
-        //         console.log(result);
-        //         this.getFieldCSS = result;
-        //         console.log('FieldCSS->> ' + this.getFieldCSS);
-        //         let array = this.template.querySelector('.myform');
-        //         let str = this.getFieldCSS;
-        //         array.style = str;
-        //     }).catch(error => {
-        //         console.log({ error });
-        //     })
-        // console.log(event.detail);
-        // let str = event.detail;
-        // let array = this.template.querySelector('.myform');
-        // array.style=str;
     }
 
     handlebtnpos(event) {
