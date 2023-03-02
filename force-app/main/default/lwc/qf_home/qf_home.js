@@ -36,6 +36,7 @@ import status from '@salesforce/apex/QuickFormHome.getFormsByStatus';           
 import deleteform from '@salesforce/apex/QuickFormHome.deleteFormRecord';            // DELETE FORM
 import search from '@salesforce/apex/QuickFormHome.searchForms';                    // SEARCH FORM
 import renameform from '@salesforce/apex/QuickFormHome.renameFormRecord';             // RENAME FORM
+import CopyForm from '@salesforce/apex/QuickFormHome.CopyForm';
 // IMPORT APEX METHOD [END]
 import { NavigationMixin } from "lightning/navigation"; //For LWC Navigation
 
@@ -296,6 +297,13 @@ export default class Qf extends NavigationMixin(LightningElement) {
             attributes: {
               url: "/one/one.app#" + encodedDef
             }
+          });
+        }
+        else if(event.detail.value == 'CopyForm'){
+          CopyForm({id : event.target.dataset.id}).then(result => {
+            this.count ++;
+            this.PaginationList = result;
+            this.spinnerDataTable = false;
           });
         }
       }

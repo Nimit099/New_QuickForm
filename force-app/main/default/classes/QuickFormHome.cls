@@ -184,4 +184,98 @@ public with sharing class QuickFormHome {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled
+    public static List<Form__c> CopyForm(Id id){
+        try {
+            Integer i = 0;
+
+            Form__c selectedform = [SELECT Id, Name, All_Field_Focus__c, All_Field_Hover__c, All_Field_Styling__c, Button_CSS__c, Button_Position__c, Captcha_Type__c, Form_Description__c,
+            Form_Styling__c, FormBgID__c, Label_CSS__c, Mapped_Objects__c, Page_CSS__c, PageBgID__c, Progress_Indicator__c, Status__c FROM Form__c WHERE Id =: id Limit 1];
+
+            List<Form_Fields__c> selectedformfield = [SELECT Id, Name, 	Field_Validations__c, Field_Mapping__c, Field_Order__c, Field_Properties__c, Field_Styling__c,
+            Form__c, Form_Page__c, Mapped_Obj__c FROM Form_Fields__c WHERE Form__c =: id];
+
+            List<Form_Page__c> selectedformpage = [SELECT Id, Name, AllField_Styling__c, Form__c, Page_Number__c, Page_Styling__c FROM Form_Page__c WHERE Form__c =: id];
+
+            Form__c copyform = new Form__c(
+                Name = selectedform.Name + ' Copy',
+                All_Field_Focus__c = selectedform.All_Field_Focus__c, 
+                All_Field_Hover__c = selectedform.All_Field_Hover__c,
+                All_Field_Styling__c = selectedform.All_Field_Styling__c,
+                Button_CSS__c = selectedform.Button_CSS__c,
+                Button_Position__c = selectedform.Button_Position__c,
+                Captcha_Type__c = selectedform.Captcha_Type__c,
+                Form_Description__c = selectedform.Form_Description__c,
+                Form_Styling__c = selectedform.Form_Styling__c,
+                FormBgID__c = selectedform.FormBgID__c,
+                Label_CSS__c = selectedform.Label_CSS__c,
+                Mapped_Objects__c = selectedform.Mapped_Objects__c,
+                Page_CSS__c = selectedform.Page_CSS__c,
+                PageBgID__c = selectedform.PageBgID__c,
+                Progress_Indicator__c = selectedform.Progress_Indicator__c,
+                Status__c = selectedform.Status__c 
+            );
+            insert copyform;
+
+            
+            if([SELECT Count() FROM Thankyou_Page__c WHERE Form__c =: id ] > 0){
+                Thankyou_Page__c selectedformthankyou = [SELECT Id, Name, Email_Address__c, Form__c, See_Response__c, Thank_you_URL__c, Thankyou_Page_Type__c,
+                Thankyou_Text__c, ThankYou_Label__c FROM Thankyou_Page__c WHERE Form__c =: id Limit 1];
+
+                Thankyou_Page__c copythankyoupage = new Thankyou_Page__c(
+                    Name = selectedformthankyou.Name + ' Copy',
+                    Email_Address__c = selectedformthankyou.Email_Address__c,
+                    Form__c = copyform.Id,
+                    See_Response__c = selectedformthankyou.See_Response__c,
+                    Thank_you_URL__c = selectedformthankyou.Thank_you_URL__c,
+                    Thankyou_Page_Type__c = selectedformthankyou.Thankyou_Page_Type__c,
+                    Thankyou_Text__c = selectedformthankyou.Thankyou_Text__c,
+                    ThankYou_Label__c = selectedformthankyou.ThankYou_Label__c
+                );
+                insert copythankyoupage;
+            }
+
+            List<Form_Page__c> copypagelist = new List<Form_Page__c>();
+            for(Form_Page__c page : selectedformpage){
+                Form_Page__c copypage = new Form_Page__c(
+                    Name = page.Name + ' Copy',
+                    AllField_Styling__c = page.AllField_Styling__c,
+                    Form__c = copyform.Id,
+                    Page_Number__c = page.Page_Number__c,
+                    Page_Styling__c = page.Page_Styling__c
+                );
+                copypagelist.add(copypage);
+            }
+            insert copypagelist;
+
+            List<Form_Fields__c> copyfieldlist = new List<Form_Fields__c>();
+            Form_Fields__c copyfield = new Form_Fields__c();
+            for(Form_Page__c pages : selectedformpage){
+                for(Form_Fields__c field : selectedformfield){
+
+                    if(pages.Id == field.Form_Page__c){
+
+                        copyfield.Name = field.Name + ' Copy';
+                        copyfield.Field_Validations__c = field.Field_Validations__c;
+                        copyfield.Field_Mapping__c = field.Field_Mapping__c;
+                        copyfield.Field_Order__c = field.Field_Order__c;
+                        copyfield.Field_Properties__c = field.Field_Properties__c;
+                        copyfield.Field_Styling__c = field.Field_Styling__c;
+                        copyfield.Form__c = copyform.Id;
+                        copyfield.Form_Page__c = copypagelist[i].Id;
+                        copyfield.Mapped_Obj__c = field.Mapped_Obj__c;
+                    }
+                    i++;
+                    copyfieldlist.add(copyfield);
+                }
+            }
+            insert copyfieldlist;
+
+            
+            return  [SELECT Id,Name,Total_Submissions__c, Status__c FROM Form__c];
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 }
