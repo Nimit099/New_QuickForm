@@ -1,4 +1,4 @@
-import {LightningElement,track,api} from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import GetStyles from '@salesforce/apex/FormBuilderController.GetStyles';
 import StoreStyles from '@salesforce/apex/FormBuilderController.StoreStyles';
 import StoreLabelStyles from '@salesforce/apex/FormBuilderController.StoreLabelStyles';
@@ -120,77 +120,62 @@ export default class DesignSectionComponent extends LightningElement {
     fileData = {};
     fileData1 = {};
     showquickform = false;
-    
+
 
     //Design Drop Down Options Creation
-    get optlabelalign(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.AlignmentProp);}
-      }
-      get optlabelfontfamily(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.FontProp);}
-      }
+    get optlabelalign() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.AlignmentProp); }
+    }
+    get optlabelfontfamily() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FontProp); }
+    }
     //   get optlabelfontweight(){
     //    if(this.StylesProp!=null)
     //    {return this.optionsCreater(this.StylesProp.FontWeightProp);}
     //   }
-      get optlabelfontstyle(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.FontStyleProp);}
-      }
-      get optlabelineheight(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.FontLineHeightProp);}
-      }
-      get optbackSize(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.BgsizeProp);}
-      }
-      get optbackpagePostion(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.BgPositionProp);}
-      }
-      get optbackpageRepeat(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.BgRepeatProp);}
-      }
-     
-      get  optBackgroundPagefixposition(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.FixPosProp);}
-      }
-      get optborderStyle(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.BorderStylesProp);}
-      }
-      get optFormdirection(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.FormDirectionProp);}
-      }
-      get optformbackSize(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.BgsizeProp);}
-      
-      }
-      get optformbackpagePostion(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.BgPositionProp);}
-      
-      }
-      get optformbackpageRepeat(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.BgRepeatProp);}
-     
-      }
-      get optformbackgroundPagefixposition(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.FixPosProp);}
-      }
-      get optformborderStyle(){
-       if(this.StylesProp!=null)
-       {return this.optionsCreater(this.StylesProp.BorderStylesProp);}
-      }
+    get optlabelfontstyle() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FontStyleProp); }
+    }
+    get optlabelineheight() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FontLineHeightProp); }
+    }
+    get optbackSize() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.BgsizeProp); }
+    }
+    get optbackpagePostion() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.BgPositionProp); }
+    }
+    get optbackpageRepeat() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.BgRepeatProp); }
+    }
+
+    get optBackgroundPagefixposition() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FixPosProp); }
+    }
+    get optborderStyle() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.BorderStylesProp); }
+    }
+    get optFormdirection() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FormDirectionProp); }
+    }
+    get optformbackSize() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.BgsizeProp); }
+
+    }
+    get optformbackpagePostion() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.BgPositionProp); }
+
+    }
+    get optformbackpageRepeat() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.BgRepeatProp); }
+
+    }
+    get optformbackgroundPagefixposition() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FixPosProp); }
+    }
+    get optformborderStyle() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.BorderStylesProp); }
+    }
 
 
     get optinputfontweight() {
@@ -201,45 +186,38 @@ export default class DesignSectionComponent extends LightningElement {
         }
 
     }
-    
-    get optinputfontstyle(){
-        if(this.StylesProp!=null)
-        {return this.optionsCreater(this.StylesProp.FontStyleProp);}
-       }
-       get optinputlineheight(){
-        if(this.StylesProp!=null)
-        {return this.optionsCreater(this.StylesProp.FontLineHeightProp);}
-       }
-       get optbtnborderstyle(){
-        if(this.StylesProp!=null)
-        {return this.optionsCreater(this.StylesProp.BorderStylesProp);}
-       }
-       get optbtnJustify(){
-        if(this.StylesProp!=null)
-        {return this.optionsCreater(this.StylesProp.AlignmentProp);}
-       }
-       get optbuttonfontfamily(){
-        if(this.StylesProp!=null)
-        {return this.optionsCreater(this.StylesProp.FontProp);}
-      
-       }
+
+    get optinputfontstyle() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FontStyleProp); }
+    }
+    get optinputlineheight() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FontLineHeightProp); }
+    }
+    get optbtnborderstyle() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.BorderStylesProp); }
+    }
+    get optbtnJustify() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.AlignmentProp); }
+    }
+    get optbuttonfontfamily() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FontProp); }
+
+    }
     //    get optbuttonfontweight(){
     //     if(this.StylesProp!=null)
     //     {return this.optionsCreater(this.StylesProp.FontWeightProp);}
-      
-    //    }
-       get optbuttonfontstyle(){
-        if(this.StylesProp!=null)
-        {return this.optionsCreater(this.StylesProp.FontStyleProp);}
-       
-       }
-       get optinputfontfamily(){
-        if(this.StylesProp!=null)
-        {return this.optionsCreater(this.StylesProp.FontProp);}
-      
-       }
 
-    renderedCallback(){
+    //    }
+    get optbuttonfontstyle() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FontStyleProp); }
+
+    }
+    get optinputfontfamily() {
+        if (this.StylesProp != null) { return this.optionsCreater(this.StylesProp.FontProp); }
+
+    }
+
+    renderedCallback() {
         loadStyle(this, designcss);
     }
 
@@ -257,7 +235,7 @@ export default class DesignSectionComponent extends LightningElement {
         });
         console.log('Event:-- ' + cssevent2);
         this.dispatchEvent(cssevent2);
-        
+
         const cssevent3 = new CustomEvent("getbuttoncss", {
             detail: Array[0]
         });
@@ -265,8 +243,8 @@ export default class DesignSectionComponent extends LightningElement {
         this.dispatchEvent(cssevent2);
         //get Styles Metadata
         GetStyles({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 console.log('GetStyles called');
                 this.StylesProp = result;
@@ -276,8 +254,8 @@ export default class DesignSectionComponent extends LightningElement {
             })
 
         getBGImages({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 console.log('bgimage --> ' + result);
                 let str = String(result);
@@ -311,8 +289,8 @@ export default class DesignSectionComponent extends LightningElement {
 
     FormCSS() {
         getFormCSS({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 console.log('getfieldCSS formwidth' + result);
                 let str = result;
@@ -374,8 +352,8 @@ export default class DesignSectionComponent extends LightningElement {
 
     PageCSS() {
         getPageCSS({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 console.log('pagecss --> ' + result);
                 let str = result;
@@ -442,8 +420,8 @@ export default class DesignSectionComponent extends LightningElement {
 
     LabelCSS() {
         getLabelCSS({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 console.log('labelcss --> ' + result);
                 console.log('getfieldCSS formwidth' + result);
@@ -501,8 +479,8 @@ export default class DesignSectionComponent extends LightningElement {
 
     FieldCSS() {
         getFieldCSS({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 console.log('fieldcss --> ' + result);
                 let str = result;
@@ -580,8 +558,8 @@ export default class DesignSectionComponent extends LightningElement {
 
     ButtonCSS() {
         getButtonCSS({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 console.log('buttoncss --> ' + result);
                 let str = result;
@@ -671,8 +649,8 @@ export default class DesignSectionComponent extends LightningElement {
 
     HoverCSS() {
         getHoverCSS({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 let str = result;
 
@@ -702,8 +680,8 @@ export default class DesignSectionComponent extends LightningElement {
 
     FocusCSS() {
         getFocusCSS({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 let str = result;
 
@@ -834,8 +812,8 @@ export default class DesignSectionComponent extends LightningElement {
         this.dispatchEvent(imageevent);
         console.log('remove form bg image');
         RemoveFormImage({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 this.fileData1 = null;
                 console.log(result);
@@ -858,8 +836,8 @@ export default class DesignSectionComponent extends LightningElement {
         this.dispatchEvent(imageevent);
         console.log('remove page bg image');
         RemovePageImage({
-                id: this.recordid
-            })
+            id: this.recordid
+        })
             .then(result => {
                 this.fileData = null;
                 console.log(result);
@@ -903,9 +881,9 @@ export default class DesignSectionComponent extends LightningElement {
         console.log(value);
         let str = Name + value + ';';
         StoreHoverStyles({
-                Value: str,
-                id: this.recordid
-            })
+            Value: str,
+            id: this.recordid
+        })
             .then(result => {
                 console.log(result);
                 const cssevent = new CustomEvent("hovercss", {
@@ -926,9 +904,9 @@ export default class DesignSectionComponent extends LightningElement {
         console.log(value);
         let str = Name + value + ';';
         StoreFocusStyles({
-                Value: str,
-                id: this.recordid
-            })
+            Value: str,
+            id: this.recordid
+        })
             .then(result => {
                 console.log(result);
                 const cssevent = new CustomEvent("focuscss", {
@@ -958,9 +936,9 @@ export default class DesignSectionComponent extends LightningElement {
         console.log('value->' + value);
         let str = Name + value + ';';
         StoreFormStyles({
-                Value: str,
-                id: this.recordid
-            })
+            Value: str,
+            id: this.recordid
+        })
             .then(result => {
                 console.log(result);
                 const cssevent = new CustomEvent("getformcss", {
@@ -987,9 +965,9 @@ export default class DesignSectionComponent extends LightningElement {
         console.log('value->' + value);
         let str = Name + value + ';';
         StorePageStyles({
-                Value: str,
-                id: this.recordid
-            })
+            Value: str,
+            id: this.recordid
+        })
             .then(result => {
                 console.log(result);
                 const cssevent = new CustomEvent("getpagecss", {
@@ -1013,9 +991,9 @@ export default class DesignSectionComponent extends LightningElement {
         console.log('value->' + value);
         let str = Name + value + ';';
         StoreLabelStyles({
-                Value: str,
-                id: this.recordid
-            })
+            Value: str,
+            id: this.recordid
+        })
             .then(result => {
                 console.log(result);
                 const cssevent = new CustomEvent("getlabelcss", {
@@ -1051,9 +1029,9 @@ export default class DesignSectionComponent extends LightningElement {
         if (Name == 'font-size:' || Name == 'border-width:' || Name == 'border-radius:' || Name == 'padding2' || Name == 'padding1' || Name == 'border-style:' || Name == 'font-family:' || Name == 'font-weight:' || Name == 'font-style:') {
 
             StoreHoverStyles({
-                    Value: str,
-                    id: this.recordid
-                })
+                Value: str,
+                id: this.recordid
+            })
                 .then(result => {
                     console.log(result);
                 }).catch(error => {
@@ -1061,9 +1039,9 @@ export default class DesignSectionComponent extends LightningElement {
                 })
 
             StoreFocusStyles({
-                    Value: str,
-                    id: this.recordid
-                })
+                Value: str,
+                id: this.recordid
+            })
                 .then(result => {
                     console.log(result);
                 }).catch(error => {
@@ -1072,9 +1050,9 @@ export default class DesignSectionComponent extends LightningElement {
         }
         console.log('OUTPUT : ', str);
         StoreStyles({
-                Value: str,
-                id: this.recordid
-            })
+            Value: str,
+            id: this.recordid
+        })
             .then(result => {
                 console.log(result);
                 const cssevent = new CustomEvent("getnewcss", {
@@ -1095,9 +1073,9 @@ export default class DesignSectionComponent extends LightningElement {
         if (Name == 'justify-content:') {
             str = Name + value + ';';
             StoreBtnposition({
-                    Value: str,
-                    id: this.recordid
-                })
+                Value: str,
+                id: this.recordid
+            })
                 .then(result => {
                     console.log(result);
                     const cssevent = new CustomEvent("btnposition", {
@@ -1124,9 +1102,9 @@ export default class DesignSectionComponent extends LightningElement {
             }
             console.log('OUTPUT : ', str);
             StoreBtnStyles({
-                    Value: str,
-                    id: this.recordid
-                })
+                Value: str,
+                id: this.recordid
+            })
                 .then(result => {
                     console.log(result);
                     const cssevent = new CustomEvent("getbuttoncss", {

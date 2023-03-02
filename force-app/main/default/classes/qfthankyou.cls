@@ -37,7 +37,7 @@ public with sharing class qfthankyou {
     // # Description: Used to Update or insert thank you page 
     // =================================== -->
        @AuraEnabled
-   public static string insertrecord(String picklist, String label, String classtext, String formId, String url, Id currentthankyouid){
+   public static string insertrecord(String Name,String picklist, String label, String classtext, String formId, String url, Id currentthankyouid){
         try {
             
             // Thankyou_Page__c tp = [SELECT Id FROM Thankyou_Page__c WHERE Form__c =:formId LIMIT 1];
@@ -45,7 +45,7 @@ public with sharing class qfthankyou {
 
             // }
             // if(String.isNotBlank(classtext)){
-                Thankyou_Page__c insertrecord = new Thankyou_Page__c( Form__c = formId, ThankYou_Label__c = label, Thank_you_URL__c = url, Thankyou_Text__c = classtext, Thankyou_Page_Type__c = picklist, Name = 'Thank you', Id = currentthankyouid ); 
+                Thankyou_Page__c insertrecord = new Thankyou_Page__c( Name = Name, Form__c = formId, ThankYou_Label__c = label, Thank_you_URL__c = url, Thankyou_Text__c = classtext, Thankyou_Page_Type__c = picklist, Id = currentthankyouid ); 
                 Database.upsert(insertrecord);
             // }
             // else{

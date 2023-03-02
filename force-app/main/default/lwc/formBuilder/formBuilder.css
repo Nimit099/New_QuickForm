@@ -271,6 +271,7 @@ div.child2 {
     display: flex;
     flex-direction: row;
     justify-content: var(--btnJustify, center);
+    gap: 20px;
 }
 
 .footer {
@@ -2195,10 +2196,107 @@ img {
 
 }
 
+.newclass {
+    justify-content: center !important;
+    align-items: center !important;
+    width: 40% !important;
+}
+
+.deletecontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 7px 28px rgb(0 0 0 / 25%) !important;
+    border-radius: 25px;
+    width: 70%;
+    background-color: white;
+    position: absolute;
+    top: 36%;
+}
+
+.deleteicon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #6699CC;
+    width: 101px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.confirm-message {
+    font-size: x-large;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    align-items: flex-end;
+    padding-top: 20px;
+    padding-bottom: 4px;
+}
+
+.deletedescription {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.deletefooter {
+    height: 70px;
+    padding: inherit;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+}
+
+.no-btn {
+    height: 35px;
+    width: 130px;
+    border-radius: 101px;
+    justify-content: center;
+    border-color: #E6E7E9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 17px;
+    color: black;
+    background-color: #DEDEDE;
+}
+
+.yes-btn {
+    height: 35px;
+    width: 130px;
+    border-radius: 101px;
+    justify-content: center;
+    background: rgb(102, 153, 204) !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 17px;
+    color: white;
+    overflow: hidden;
+    --webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+}
+
+.imgclass {
+    height: 70% !important;
+    width: 70% !important;
+}
+
+.spinnerclass {
+    overflow: hidden;
+    border-radius: 20px;
+}
 
 /* @media only screen and (min-width:1920px) {
     
 }  */
 .fieldvalidationdiv {
     display: none;
+}
+
+.btn1{
+    padding-left: 0%;
 }

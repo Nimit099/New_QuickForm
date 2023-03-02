@@ -40,10 +40,10 @@ export default class Quickformfieldcomponent extends LightningElement {
     count;
     @track Address = 'Address';
     @track onfocus = false;
-    @track getFieldCSS1;
-    @track getLabelCSS1;
+    @api getFieldCSS1;
+    @api getLabelCSS1;
     @api hovercssproperty;
-    focuscssproperty;
+    @api focuscssproperty;
     @api labelvalue;
     @api labelcheck;
     @api salutationvalue;
@@ -53,159 +53,211 @@ export default class Quickformfieldcomponent extends LightningElement {
     @api placeholder;
     @api fieldtype;
     @api termsAndConditionValue;
+    @api fcss;
+    @api labelcss;
+    @track selectedfield = '';
 
-    connectedCallback() {
-        getScaleRating()
-            .then(result => {
-                this.scaleRating = result;
-                console.log(result);
-            }).catch(err => {
-                console.log(err);
-            })
-        console.log('c callback ');
+    connectedCallback(){
+       
+    }
+    renderedCallback(){
+        try {
+    
+            console.log('ok janu');
+            let array = this.template.querySelectorAll('.slds-input');
+            let str = this.fcss;
+            console.log(this.fcss + 'split');
+            let Arr = str.split(';color:');
+            let Arr2 = Arr[1].split(';');
+            let pcolor = Arr2[0];
+            for (let i = 0; i < array.length; i++) {
+                const element = array[i];
+                element.style = str;
+                element.style.setProperty("--c", pcolor);
+            }
+   
+            array = this.template.querySelectorAll('.flabel');
+            str = this.labelcss;
+            for (let i = 0; i < array.length; i++) {
+                const element = array[i];
+                element.style = 'display:flex;' + str;
+            }
+            let array2 = this.template.querySelectorAll('.slds-popover--tooltip ');
+            let str2 = ((this.labelcss.split('margin-top:'))[1].split(';'))[0];
+            for (let j = 0; j < array2.length; j++) {
+                const element = array2[j];
+                element.style = 'margin:top:' + str2;
+            }
+        } catch (error) {
+            console.log('fielderror' + error);
+        }        
+}
+    showpen(event) {
+        if(event.currentTarget.dataset.id != this.selectedfield){
+            this.template.querySelector("input[data-id ="+event.currentTarget.dataset.id+"]").style=this.hovercssproperty; 
+            }
+        }
+        
+    hidepen(event) {
+        if(event.currentTarget.dataset.id != this.selectedfield){
+            this.template.querySelector("input[data-id ="+event.currentTarget.dataset.id+"]").style=this.fcss;
+        } 
 
-        this.onfocus = false;
-        // getHoverCSS({ id: this.formid })
-        //     .then(result => {
-        //         console.log(result);
-        //         console.log('FieldCSS->> ' + result);
-        //         this.hovercssproperty = result;
-        //     }).catch(error => {
-        //         console.log({ error });
-        //     })
+    }
 
-        getFocusCSS({ id: this.formid })
-            .then(result => {
-                console.log(result);
-                this.focuscssproperty = result;
-            }).catch(error => {
-                console.log({ error });
-            })
+    @api
+    fieldcssupdate(fields ,fcss){
+        this.fcss = fcss;
+        for(let i = 0; i < fields.length; i++){
+            console.log(fcss);
+            console.log(fields[i]);
+           var arr = this.template.querySelectorAll("input");
+            for(let k =0; k < arr.length; k++){
+                const element = arr[i];
+                    element.style = fcss;
+            }
+        }
+        // this.fcss = css;
+        // console.log(this.fcss);
+        // let array = this.template.querySelectorAll("input");
+        // console.log(array.length + 'lenght');
+        // let str = this.fcss;
+        // let Arr = str.split(';color:');
+        // let Arr2 = Arr[1].split(';');
+        // let pcolor = Arr2[0];
+        // for (let i = 0; i < array.length; i++) {
+        //     const element = array[i];
+        //     element.style = str;
+        //     element.style.setProperty("--c", pcolor);
+        // }
+
     }
     
-    renderedCallback() {
-        console.log('quickformfield rendered callback!');
-        console.log('formid --> ' + this.formid);
-        getFieldCSS({ id: this.formid })
-            .then(result => {
-                console.log(result);
-                this.getFieldCSS1 = result;
-                console.log('FieldCSS->> ' + this.getFieldCSS1);
-                console.log(this.template.querySelectorAll('.slds-input'));
-                console.log(this.template.querySelectorAll('.areatext'));
-                let array = this.template.querySelectorAll('.slds-input');
-                console.log(array.length);
-                let str = this.getFieldCSS1;
-                let Arr = str.split(';color:');
-                let Arr2 = Arr[1].split(';');
-                let pcolor = Arr2[0];
-                for (let i = 0; i < array.length; i++) {
-                    const element = array[i];
-                    element.style = str;
-                    element.style.setProperty("--c", pcolor);
-                }
-                this.template.querySelector('select').style = str;
-            }).catch(error => {
-                console.log('quickformfield --> ' + { error });
-            })
+    // connectedCallback() {
+    //     getScaleRating()
+    //         .then(result => {
+    //             this.scaleRating = result;
+    //             console.log(result);
+    //         }).catch(err => {
+    //             console.log(err);
+    //         })
+    //     console.log('c callback ');
 
-        getHoverCSS({ id: this.formid })
-            .then(result => {
-                console.log(result);
-                console.log('FieldCSS->> ' + result);
-                this.hovercssproperty = result;
-            }).catch(error => {
-                console.log({ error });
-            })
+    //     this.onfocus = false;
+    // }
 
-        getFocusCSS({ id: this.formid })
-            .then(result => {
-                console.log(result);
-                this.focuscssproperty = result;
-            }).catch(error => {
-                console.log({ error });
-            })
+    // renderedCallback() {
+    //     console.log('quickformfield rendered callback!');
+    //     console.log('formid --> ' + this.formid);
+    //     getFieldCSS({ id: this.formid })
+    //         .then(result => {
+    //             console.log(result);
+    //             this.getFieldCSS1 = result;
+    //             console.log('FieldCSS->> ' + this.getFieldCSS1);
+    //             console.log(this.template.querySelectorAll('.slds-input'));
+    //             console.log(this.template.querySelectorAll('.areatext'));
+    //             let array = this.template.querySelectorAll('.slds-input');
+    //             console.log(array.length);
+    //             let str = this.getFieldCSS1;
+    //             let Arr = str.split(';color:');
+    //             let Arr2 = Arr[1].split(';');
+    //             let pcolor = Arr2[0];
+    //             for (let i = 0; i < array.length; i++) {
+    //                 const element = array[i];
+    //                 element.style = str;
+    //                 element.style.setProperty("--c", pcolor);
+    //             }
+    //             this.template.querySelector('select').style = str;
+    //         }).catch(error => {
+    //             console.log('quickformfield --> ' + { error });
+    //         })
+
+    //     getLabelCSS({ id: this.formid })
+    //         .then(result => {
+    //             console.log(result);
+    //             this.getLabelCSS1 = result;
+    //             console.log('FieldCSS->> ' + this.getLabelCSS1);
+    //             console.log(this.template.querySelectorAll('.flabel'));
+    //             let array = this.template.querySelectorAll('.flabel');
+    //             console.log(array.length);
+    //             let str = this.getLabelCSS1;
+    //             for (let i = 0; i < array.length; i++) {
+    //                 const element = array[i];
+    //                 element.style = 'display:flex;' + str;
+    //             }
+    //             let array2 = this.template.querySelectorAll('.slds-popover--tooltip ');
+    //             console.log(array2.length);
+    //             let str2 = ((this.getLabelCSS1.split('margin-top:'))[1].split(';'))[0];
+    //             for (let j = 0; j < array2.length; j++) {
+    //                 const element = array2[j];
+    //                 element.style = 'margin:top:' + str2;
+    //             }
+    //             const event1 = CustomEvent('startsppiner');
+    //             this.dispatchEvent(event1);
+    //         }).catch(error => {
+    //             console.log({ error });
+    //             const event1 = CustomEvent('startsppiner');
+    //             this.dispatchEvent(event1);
+    //         })
+
+    // }
+
+    // @api FieldCSSUpdate(CSSString) {
+    //     try {
+    //         console.log('FieldCSS->> ' + CSSString);
+    //         console.log(this.template.querySelectorAll('.slds-input'));
+    //         let array = this.template.querySelectorAll('.slds-input');
+    //         console.log(array.length);
+    //         let str = '';
+    //         if (CSSString == undefined || CSSString == null || CSSString == '') {
+    //             str = this.getFieldCSS1;
+    //         } else {
+    //             str = CSSString;
+    //         }
+    //         let Arr = str.split(';color:');
+    //         let Arr2 = Arr[1].split(';');
+    //         let pcolor = Arr2[0];
+    //         for (let i = 0; i < array.length; i++) {
+    //             const element = array[i];
+    //             element.style = str;
+    //             element.style.setProperty("--c", pcolor);
+    //         }
+    //         this.template.querySelector('select').style = str;
+    //     } catch (error) {
+    //         console.log("In the catch block ==> Method :** FieldCSSUpdate ** || LWC:** quickformfieldcomponent ** ==>", { error });
+    //         console.log('above error ==>' + error);
+    //     }
+
+    // }
+
+    // @api LabelCSSUpdate(CSSString) {
+    //     getLabelCSS({ id: this.formid })
+    //         .then(result => {
+    //             console.log(result);
+    //             this.getLabelCSS1 = result;
+    //             console.log('FieldCSS->> ' + this.getLabelCSS1);
+    //             console.log(this.template.querySelectorAll('.flabel'));
+    //             let array = this.template.querySelectorAll('.flabel');
+    //             console.log(array.length);
+    //             let str = this.getLabelCSS1;
+    //             for (let i = 0; i < array.length; i++) {
+    //                 const element = array[i];
+    //                 element.style = 'display:flex;' + str;
+    //             }
+    //             let array2 = this.template.querySelectorAll('.slds-popover--tooltip');
+    //             console.log(array2.length);
+    //             let str2 = ((this.getLabelCSS1.split('margin-top:'))[1].split(';'))[0];
+    //             for (let j = 0; j < array2.length; j++) {
+    //                 const element = array2[j];
+    //                 element.style = 'margin:top:' + str2;
+    //             }
+    //         }).catch(error => {
+    //             console.log({ error });
+    //         })
+    // }
 
 
-        getLabelCSS({ id: this.formid })
-            .then(result => {
-                console.log(result);
-                this.getLabelCSS1 = result;
-                console.log('FieldCSS->> ' + this.getLabelCSS1);
-                console.log(this.template.querySelectorAll('.flabel'));
-                let array = this.template.querySelectorAll('.flabel');
-                console.log(array.length);
-                let str = this.getLabelCSS1;
-                for (let i = 0; i < array.length; i++) {
-                    const element = array[i];
-                    element.style = 'display:flex;' + str;
-                }
-                let array2 = this.template.querySelectorAll('.slds-popover--tooltip ');
-                console.log(array2.length);
-                let str2 = ((this.getLabelCSS1.split('margin-top:'))[1].split(';'))[0];
-                for (let j = 0; j < array2.length; j++) {
-                    const element = array2[j];
-                    element.style = 'margin:top:' + str2;
-                }
-                const event1 = CustomEvent('startsppiner');
-                this.dispatchEvent(event1);
-            }).catch(error => {
-                console.log({ error });
-                const event1 = CustomEvent('startsppiner');
-                this.dispatchEvent(event1);
-            })
-
-    }
-
-    @api FieldCSSUpdate(CSSString) {
-
-        console.log('FieldCSS->> ' + CSSString);
-        console.log(this.template.querySelectorAll('.slds-input'));
-        let array = this.template.querySelectorAll('.slds-input');
-                console.log(array.length);
-        let str = '';
-        if (CSSString == undefined || CSSString == null || CSSString == '') {
-            str = this.getFieldCSS1;
-        } else {
-            str = CSSString;
-        }
-                let Arr = str.split(';color:');
-                let Arr2 = Arr[1].split(';');
-                let pcolor = Arr2[0];
-                for (let i = 0; i < array.length; i++) {
-                    const element = array[i];
-                    element.style = str;
-                    element.style.setProperty("--c", pcolor);
-                }
-                this.template.querySelector('select').style = str;
-
-    }
-
-    @api LabelCSSUpdate(CSSString) {
-        getLabelCSS({ id: this.formid })
-            .then(result => {
-                console.log(result);
-                this.getLabelCSS1 = result;
-                console.log('FieldCSS->> ' + this.getLabelCSS1);
-                console.log(this.template.querySelectorAll('.flabel'));
-                let array = this.template.querySelectorAll('.flabel');
-                console.log(array.length);
-                let str = this.getLabelCSS1;
-                for (let i = 0; i < array.length; i++) {
-                    const element = array[i];
-                    element.style = 'display:flex;' + str;
-                }
-                let array2 = this.template.querySelectorAll('.slds-popover--tooltip');
-                console.log(array2.length);
-                let str2 = ((this.getLabelCSS1.split('margin-top:'))[1].split(';'))[0];
-                for (let j = 0; j < array2.length; j++) {
-                    const element = array2[j];
-                    element.style = 'margin:top:' + str2;
-                }
-            }).catch(error => {
-                console.log({ error });
-            })
-    }
+    
 
     @api handleeffect(type, property) {
         if (type == 'hover') {
@@ -217,46 +269,62 @@ export default class Quickformfieldcomponent extends LightningElement {
     }
 
     handlehover(event) {
-        // console.log(this.template.querySelectorAll('input'));
-        // let array = this.template.querySelectorAll('input');
-        // console.log(array.length);
-        let str = this.hovercssproperty;
-        if (this.onfocus) {
-            this.handlefocus(event)
-        } else {
-            event.target.style = str;
-        }
+
+        // console.log('onhover hovercssproperty --> '+this.hovercssproperty);
+        // let str = this.hovercssproperty;
+        // console.log('onhover str --> '+str);
+        // if (this.onfocus) {
+        //     this.handlefocus(event)
+        // } else {
+        //     event.target.style = str;
+        // }
 
     }
 
     handlefocus(event) {
-        console.log('handlefocus ***');
-        console.log('this.onfocus --> ', this.onfocus);
-        console.log('FieldCSS->> ' + this.focuscssproperty);
-        let str = this.focuscssproperty;
-        event.target.style = str;
-        this.onfocus = true;
-        console.log('this.onfocus --> ', this.onfocus);
-    }
+        if(this.selectedfield != event.currentTarget.dataset.id ){
+        this.selectedfield = event.currentTarget.dataset.id;
+        console.log('selecee' + this.selectedfield);
+        this.template.querySelector("input[data-id ="+event.currentTarget.dataset.id+"]").style=this.focuscssproperty; 
+        }
+        else{
+            let array = this.template.querySelectorAll('.slds-input');
+            let str = this.fcss;
+            console.log(this.fcss + 'split');
+            let Arr = str.split(';color:');
+            let Arr2 = Arr[1].split(';');
+            let pcolor = Arr2[0];
+            for (let i = 0; i < array.length; i++) {
+                const element = array[i];
+                element.style = str;
+                element.style.setProperty("--c", pcolor);
+            }
 
-    handleblur(event) {
-        console.log('Blur On Field');
-        console.log(event);
-        console.log('this.onfocus --> ', this.onfocus);
-        if (this.onfocus) {
-            this.handlefocus(event);
-        } else {
-            this.FieldCSSUpdate(this.getFieldCSS1)
+            this.selectedfield = '';
         }
     }
 
-    handleblur1(event) {
-        console.log('Blur On Field');
-        console.log(event);
-        console.log('this.onfocus --> ', this.onfocus);
-        this.onfocus = false;
-        this.FieldCSSUpdate(this.getFieldCSS1)
+    handleblur(event) {
+        let array = this.template.querySelectorAll('.slds-input');
+        let str = this.fcss;
+        console.log(this.fcss + 'split');
+        let Arr = str.split(';color:');
+        let Arr2 = Arr[1].split(';');
+        let pcolor = Arr2[0];
+        for (let i = 0; i < array.length; i++) {
+            const element = array[i];
+            element.style = str;
+            element.style.setProperty("--c", pcolor);
+        }
     }
+
+    // handleblur1(event) {
+    //     console.log('Blur On Field');
+    //     console.log(event);
+    //     console.log('this.onfocus --> ', this.onfocus);
+    //     this.onfocus = false;
+    //     this.FieldCSSUpdate(this.getFieldCSS1)
+    // }
 
     get CheckBoxOp() {
         return [

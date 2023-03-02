@@ -9,7 +9,7 @@
     <!-- =========[Start Popup Modal] =======================-->
     <!-- [Text Box] -->
     <template if:true={spinner}>
-        <div data-id = "spinnerId" class="slds-spinner_container" style="overflow: hidden;">
+        <div data-id = "spinnerId" class="slds-spinner_container spinnercont">
             <div class="spinner-main-div">
                 <div class="loader--ripple">
                     <div></div>
@@ -17,160 +17,6 @@
                 </div>
             </div>
         </div>
-    </template>
-
-    <template if:true = {trued1}>
-    <!-- <aura:if isTrue="{!v.showPopupTextBox}"> -->
-
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="publish-modal__container slds-modal__container">
-                <!-- Modal/Popup Box Header Starts here-->
-                <header class="slds-modal__header">
-                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Text</h2>
-                </header>
-                <!--Modal/Popup Box Body Starts here-->
-                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <p>This section allows you to link your form to text</p>
-                    <div>
-                        <i>Publish forms or surveys through text <a href="" target="_blank"> Text </a></i>
-                    </div>
-                </div>
-                <!--Modal/Popup Box Footer Starts here-->
-                <footer class="slds-modal__footer">
-                    <lightning-button variant="brand" label="Cancel" title="Cancel"  class="boxNoButton" ></lightning-button>
-                </footer>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-    <!-- </aura:if> -->
-    </template>
-
-    <!-- [Image box] -->
-    <template if:true = {trued2}>
-    <!-- <aura:if isTrue="{!v.showPopupImageBox}"> -->
-
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="slds-modal__container publish-modal__container">
-                <!-- Modal/Popup Box Header Starts here-->
-                <header class="slds-modal__header">
-                    <h2  class="slds-text-heading_medium slds-hyphenate">Image</h2>
-                </header>
-                <!--Modal/Popup Box Body Starts here-->
-                <div class="slds-modal__content slds-p-around_medium" >
-                    <p>This section allows you to link your form to Image.
-                        <i>Publish forms or surveys through images 
-                        <a href="" target="_blank"> <img src="" width="50" title="click it" style="vertical-align: -webkit-baseline-middle;" /></a>
-                        </i>
-                    </p>
-                </div>
-                <!--Modal/Popup Box Footer Starts here-->
-                <footer class="slds-modal__footer">
-                    <lightning-button variant="brand" label="Cancel" title="Cancel"  class="boxNoButton" ></lightning-button>
-                </footer>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-    <!-- </aura:if> -->
-    </template>
-
-    <!-- [Iframe box] -->
-    <!-- <aura:if isTrue="{!v.showIframeModal}"> -->
-    <template if:true={trued3}>
-
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="iframe-modal__container slds-modal__container">
-                <!--Modal/Popup Box Body Starts here-->
-                <div class="iframe_modal__content slds-modal__content slds-p-around_medium">
-                    <iframe data-id="vframe" class="iframe" src="" frameborder='0' style="width:100% ; height:100%" ></iframe>
-
-                </div>
-                <!--Modal/Popup Box Footer Starts here-->
-                <footer class="slds-modal__footer">
-                    <lightning-button variant="brand" label="Cancel" title="Cancel" class="boxNoButton" ></lightning-button>
-                </footer>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-    </template>
-    <!-- </aura:if> -->
-
-    <!-- [Text link box] -->
-    <template if:true={trued4}>
-    <!-- <aura:if isTrue="{!v.showPopupTextLinkBox}"> -->
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="slds-modal__container publish-modal__container">
-                <!-- Modal/Popup Box Header Starts here-->
-                <header class="slds-modal__header">
-                    <h2  class="slds-text-heading_medium slds-hyphenate">Text Link</h2>
-                </header>
-                <!--Modal/Popup Box Body Starts here-->
-                <div class="slds-modal__content slds-p-around_medium">
-                    <p>Lightbox is a JavaScript library that lets you display different elements on the page. This way of publishing your form using text link.
-                        <span onclick={k} style="color:blue; text-decoration:underline; cursor:pointer">Text Link </span>
-                    </p>
-                </div>
-                <!--Modal/Popup Box Footer Starts here-->
-                <footer class="slds-modal__footer">
-                    <lightning-button variant="brand" label="Cancel" title="Cancel" onclick={k} class="boxNoButton" ></lightning-button>
-                </footer>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-    </template>
-    <!-- </aura:if> -->
-
-
-
-    <!-- [Image link box] -->
-    <template if:true={trued5}>
-    <!-- <aura:if isTrue="{!v.showPopupImageLinkBox}"> -->
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="slds-modal__container publish-modal__container">
-                <!-- Modal/Popup Box Header Starts here-->
-                <header class="slds-modal__header">
-                    <h2 class="slds-text-heading_medium slds-hyphenate"> Image Link</h2>
-                </header>
-                <!--Modal/Popup Box Body Starts here-->
-                <div class="slds-modal__content slds-p-around_medium" >
-                    <p>Lightbox is a JavaScript library that lets you display different elements on the page. This way of publishing your form using image.
-                        <img src="" width="50" title="click it" onclick={k} style="vertical-align: -webkit-baseline-middle; cursor:pointer" />
-                    </p>
-                </div>
-                <!--Modal/Popup Box Footer Starts here-->
-                <footer class="slds-modal__footer">
-                    <lightning-button variant="brand" label="Cancel" title="Cancel" onclick={k} class="boxNoButton" ></lightning-button>
-                </footer>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-    </template>
-    <!-- </aura:if> -->
-
-    <!-- [Auto popup box ]-->
-    <!-- <aura:if isTrue="{!v.showAutoPopupBox}"> -->
-        <template if:true={trued6}>
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="iframe-modal__container slds-modal__container">
-                <!--Modal/Popup Box Body Starts here-->
-                <div class="iframe_modal__content slds-modal__content slds-p-around_medium" >
-                    <iframe data-id="vframe" class="iframe" src="" scrolling="yes" frameborder='0' style="width:100% ; height:100%" ></iframe>
-
-                </div>
-                <!--Modal/Popup Box Footer Starts here-->
-                <footer class="slds-modal__footer">
-                    <lightning-button variant="brand" label="Cancel" title="Cancel" onclick={k} class="boxNoButton" ></lightning-button>
-                </footer>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-</template>
-    <!-- </aura:if> -->
-
-    <!-- [Floating button] -->
-    <!-- <aura:if isTrue="{!v.showPopupFloatingButtonBox}"> -->
-        <template if:true={trued61}>
-        <button id="myBtn" class="myBtn" onclick={k}> <span> + </span > </button>
-    <!-- </aura:if> -->
     </template>
     <!-- ======================[End of popup modal]====================== -->
 
@@ -186,19 +32,16 @@
             </div>
             <!-- [Checkboxes] -->
             <div class="publishCheckboxes">
-                <lightning-radio-group class='checkBoxes' onchange={handleRadioChange}  name="radioGroup" options={option} value={publishment_value} data-name='aura' type="radio" ></lightning-radio-group>
-                <!-- <lightning-radio-group name="radioGroup" onchange={k} options={option} value={} type="radio" ></lightning-radio-group> -->
-                <!-- <input type="radio" name="" value={option} style="margin-right: 5px;" > -->
+                <lightning-radio-group class='checkBoxes' onchange={handleRadioChange}  name="radioGroup" options={option} value={publishment_value} data-name='aura' type="radio" ></lightning-radio-group>                
             </div> 
             <!-- [Start light box accordions] -->
-            <!-- <aura:if isTrue="{!v.showLightBoxCode}"> -->
-                <template if:true={trued7}>
+        
+            <template if:true={lightBoxOpt}>
                 <div class="lightBoxChexboxes">
                     <div class="lightBoxAcc" style={text_b_color} onclick={handleLightBoxChange} data-id='textLink' id="textLink">Text Link</div>
                     <div class="lightBoxAcc" style={img_b_color} onclick={handleLightBoxChange} data-id='imageLink' id="imageLink"> Image Link</div>
                     <div class="lightBoxAcc" style={auto_b_color} onclick={handleLightBoxChange} data-id='autoPopup' id="autoPopup">Auto popup</div>
                     <div class="lightBoxAcc" style={floating_b_color} onclick={handleLightBoxChange} data-id='floatingBtn' id="floatingBtn">Floating Button</div>
-
                 </div>
             </template>
             <!-- [End light box accordions] -->
@@ -220,62 +63,55 @@
             </div>
 
             <!-- [Form URL and copy button to copy url directly to clipboard] -->
-            <!-- <aura:if isTrue="{!v.site_deactivate}"> -->
-                <template if:true={trued8}>
-                    <div class="formlink ">
-                        <!-- <lightning-input type="link" data-id="urlinput" value={testurl} id="myInput" readonly={trued} class="inputBox"></lightning-input> -->
-                        <input type="link" data-id="urlinput" value={testurl} id="myInput" readonly={trued} class="inputBox" />
-                        <img src={copy_Icon} class="iconsImage" id="menuItems" title='copy' onclick={copyTextFieldHelper} data-id="buttonId" />
-                        <span class="urlCopied" aria-hidden="true"><b>Copied</b></span>
-                    </div>
-                </template>
+           
+            <template if:true={formSiteURL}>
+                <div class="formlink ">
+                    <input type="link" data-id="urlinput" value={formurl} id="myInput" readonly={readonly} class="inputBox" />
+                    <img src={copy_Icon} class="iconsImage" id="menuItems" title='copy' onclick={copyTextFieldHelper} data-id="buttonId" />
+                    <span class="urlCopied" aria-hidden="true"><b>Copied</b></span>
+                </div>
+            </template>
 
             <!-- [Aura code, copy button , description etc... ] -->
-            <!-- <aura:if isTrue="{!v.showAuraCode}"> -->
-                <template if:true={trued9}>
-                <!-- [Publish your form using aura component] -->
+         
+            <template if:true={usingAura}>
+            <!-- [Publish your form using aura component] -->
                 <div class="publishUsing slds-m-top_medium">
                     <h2>Publish Using Aura Component</h2>
                 </div>
-                <!-- [Description ] -->
+            <!-- [Description ] -->
                 <div class="introCodeText slds-m-top_medium">
                     <p>There are various ways to publish forms or surveys, according to your requirements. This section offers the options of linking your form through Aura Component</p>
                 </div>
-                <!-- [Aura component code] -->
+            <!-- [Aura component code] -->
                 <lightning-layout-item>
                     <div class="copyCodeSection_1">
-                    <div data-id="overview" class="codeCopySection slds-p-around_large slds-m-top_medium">
-                        <div style='padding-bottom: 20px;'>
-                            &lt; aura:component implements="forceCommunity:availableForAllPageTypes" access="global" &gt;
-                            <br />
-                            <div style='text-align:left; padding-left:15px'>
-                                &lt;iframe src={testurl} transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
-                                <br />&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
-                                <br />&lt;/iframe&gt;
+                        <div data-id="overview" class="codeCopySection slds-p-around_large slds-m-top_medium copyCodeSection_12">
+                            <div class="divtag">
+                                &lt; aura:component implements="forceCommunity:availableForAllPageTypes" access="global" &gt;
+                                <br />
+                                <div class="divtag1">
+                                    &lt;iframe src={formurl} transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
+                                    <br />&lt;/iframe&gt;
+                                </div>
+                                &lt;/aura:component &gt;
                             </div>
-                            &lt;/aura:component &gt;
+                        </div>
+                    
+                        <div class="bt-center">
+                            <div class="bt divtag2">
+                                <input class="std-btn" type="button" value="Copy Code" onclick={copyDivToClipboard_1} name="Copy Code" /> 
+                                <span data-id="test" class="copiedtext1" aria-hidden="true">Copied</span>
+                            </div>
                         </div>
                     </div>
-                    <!-- <lightning:button variant="brand" label="Copy Code" title="Copy Code" onclick="{!c.copyCode}" class="runcodeicon slds-m-vertical_medium" />
-                    <span class="copiedtext" aria-hidden="true">Copied</span> -->
-                    <div class="bt-center">
-                        <div class="bt" style="display: flex; flex-direction: row;">
-                            <input class="std-btn" type="button" value="Copy Code" onclick={copyDivToClipboard_1} name="Copy Code" /> 
-                            <span data-id="test" class="copiedtext1" aria-hidden="true">Copied</span>
-                        </div>
-                    </div>
-                </div>
                 </lightning-layout-item>
-
-
-
-
-
-                </template>
+            </template>
 
             <!--[Lwc code , copy button , description etc...]-->
-            <!-- <aura:if isTrue="{!v.showLwcCode}"> -->
-            <template if:true={trued10}>
+       
+            <template if:true={usingLWC}>
                 <!-- [Publish your form using Ligtning web  component] -->
                 <div class="publishUsing slds-m-top_medium">
                     <h2>Publish Using lwc Component</h2>
@@ -286,32 +122,30 @@
                 </div>
                 <!-- [Lightning Component code] -->
                 <div class="copyCodeSection_2">
-                    <div class="codeCopySection slds-p-around_large slds-m-top_medium">
-                        <div  style='padding-bottom: 20px;'>
+                    <div class="codeCopySection slds-p-around_large slds-m-top_medium copyCodeSection_22">
+                        <div class="divtag">
                             &lt;lightning-layout-item&gt; <br />
                             <div class="Publish_lwc_Component_code">
-                                &lt;iframe src="{testurl}" transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
-                                <br />&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
+                                &lt;iframe src="{formurl}" transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
                                 <br />&lt;/iframe&gt;
                             </div>
                             &lt;/lightning-layout-item&gt;
                         </div>
                     </div>
-                    <!-- <lightning-button variant="brand" label="Copy Code" title="Copy Code" onclick={k} class="runcodeicon slds-m-vertical_medium"></lightning-button>
-                    <span class="copiedtext" aria-hidden="true">Copied</span> -->
+                    
                     <div class="bt-center">
-                        <div class="bt" style="display: flex; flex-direction: row;">
-                            <input class="std-btn" type="button" value="Copy" name="Copy"  onclick={copyDivToClipboard_2} /> 
+                        <div class="bt divtag2">
+                            <input class="std-btn" type="button" value="Copy Code" name="Copy"  onclick={copyDivToClipboard_2} /> 
                             <span data-id="lwccode" class="copiedtext2" aria-hidden="true">Copied</span>
                         </div>
                     </div>
-                </div>
-            <!-- </aura:if> -->
+                </div>   
             </template>
 
             <!--[Iframe code , copy button , description etc...]-->
-            <!-- <aura:if isTrue="{!v.showIframeCode}"> -->
-            <template if:true={trued11}>
+           
+            <template if:true={formIFrame}>
                 <!-- [Publish your form using Iframe] -->
                 <div class="publishUsing slds-m-top_medium">
                     <h2>Publish Using IFrame </h2>
@@ -322,104 +156,27 @@
                 </div>
                 <!-- [Iframe code] -->
                 <div class="copyCodeSection_3">
-                    <div class=" codeCopySection iframeCode  slds-p-around_large slds-m-top_medium">
+                    <div class=" codeCopySection iframeCode  slds-p-around_large slds-m-top_medium copyCodeSection_32">
                         <p id="copyIframe">
-                            &lt;iframe src="{testurl}" transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
-                            <br />&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
+                            &lt;iframe src="{formurl}" transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
+                            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
                             <br />&lt;/iframe&gt;
                         </p>
                     </div>
                     <div class="bt-center">
-                        <div class="bt" style="display: flex; flex-direction: row;">
-                            <input class="std-btn" type="button" value="Copy" onclick={copyDivToClipboard_3} name="Copy" /> 
+                        <div class="bt divtag2">
+                            <input class="std-btn" type="button" value="Copy Code" onclick={copyDivToClipboard_3} name="Copy" /> 
                             <span class="copiedtext3" aria-hidden="true">Copied</span>
                         </div>
                     </div>
                     
-                </div>
-                
-            <!-- </aura:if> -->
+                </div>         
             </template>
-
-            <!--[Link to form using text and image section]-->
-            <!-- <aura:if isTrue="{!v.showLinkToFormCode}"> -->
-            <template if:true={trued12}>
-                <!-- [Publish your form by link it to text or image] -->
-                <div class="publishUsing slds-m-top_medium">
-                    <h2>Publish Using Link to Form </h2>
-                </div>
-                <!-- [Description] -->
-                <div class="introCodeText slds-m-top_medium ">
-                    <p>There are various ways to publish forms or surveys, according to your requirements. This section offers the options of linking your form through text or images.</p>
-                </div>
-                <!-- [Code] -->
-                <div class="  slds-m-top_medium linkToFormCode">
-                    <div class='linkToFormText'>
-                        <h2>Text</h2>
-
-                        <!-- <p class="para">
-                            &lt;a href="https://www.google.com/search?q=image+url+generator&rlz=1C1CHBF_enIN929IN931&oq=image+&aqs=chrome.1.69i57j35i39l2j0i433i512j0i131i433i512j69i60l3.4894j0j7&sourceid=chrome&ie=UTF-8" target="_blank" &gt;Text &lt;/a&gt;
-                        </p> -->
-
-                        <!-- <div class="copyCodeSection">
-                            <div class="codeCopySection slds-p-around_large slds-m-top_medium" id="iframeLink"> -->
-                        <!-- <div class="codeCopySection slds-p-around_large slds-m-top_medium" >
-                            <div style='padding-bottom: 20px;'>
-                                &lt; aura:component implements="forceCommunity:availableForAllPageTypes" access="global" &gt;
-                                <br />
-                                <div style='text-align:left; padding-left:15px'>
-                                    &lt;iframe src={} transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
-                                    <br />&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
-                                    <br />&lt;/iframe&gt;
-                                </div>
-                                &lt;/aura:component &gt;
-                            </div>
-                        </div> -->
-
-                        <div class="linkToForm  slds-p-around_large slds-m-top_medium" style="background: #ebebeb;margin: 10px 15px;padding: 10px;">
-                            <p class="textlink">
-                                <!-- <div style='padding-bottom: 20px;'> -->
-                                    &lt;a href="{testurl}" target="_blank" &gt;Text &lt;/a&gt;
-                                <!-- </div>     -->
-                            </p>
-                        </div>
-
-                        <!-- <lightning-button label="Run Code" variant="brand" onclick={k} class="runcodeicon" ></lightning-button> -->
-                        <div class="bt-center">
-                            <div class="bt">
-                                <input class="std-btn" type="button" value="Run Code" name="Copy" onclick={copyDivToClipboard_4} /> 
-                                <!-- <span class="copiedtext4" aria-hidden="true">Copied</span> -->
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class='linkToFormText'>
-                        <h2>Image</h2>
-                        <!-- <p class="para"> &lt;a href="{}" target="_blank"href="{}" target="_blank"&gt; &lt;img src="https://cdn-main.123contactform.com/images3/contactbutton2.png" &gt; &lt;/a&gt;</p> -->
-                        <div class=" linkToForm slds-p-around_large slds-m-top_medium" style="background: #ebebeb;margin: 10px 15px;padding: 10px;">
-                            <p class="imagelink">
-                                &lt;a href="{testurl}" target="_blank" &gt;Text &lt;/a&gt;
-                            </p>
-                        </div>
-                        <!-- <lightning-button label="Run Code" variant="brand" onclick={k} class="runcodeicon" ></lightning-button> -->
-                        <div class="bt-center">
-                            <div class="bt">
-                                <input class="std-btn" type="button" value="Run Code" name="Copy"  onclick={copyDivToClipboard_5}/> 
-                                <!-- <span class="copiedtext5" aria-hidden="true">Copied</span> -->
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            <!-- </aura:if> -->
-            </template>
-
             
 
             <!-- [QR code] -->
-            <!-- <aura:if isTrue="{!v.qrCode}"> -->
-            <template if:true={trued18}>
+
+            <template if:true={formQRCode}>
                 <!-- [Publish your form by link it to text or image] -->
                 <div class="publishUsing slds-m-top_medium">
                     <h2>Publish Using QR </h2>
@@ -432,31 +189,19 @@
                 <div class="center">
                     <div class="bt-center">
                         <div class="bt">
-                            <input class="std-btn" type="button" value="Show QR" name="Show QR" onclick={qrGenerate}/> 
-                            <!-- <span class="copiedtext6" aria-hidden="true">Copied</span> -->
+                            <input class="std-btn" type="button" value="Show QR" name="Show QR" onclick={qrGenerate}/>                           
                         </div>
-                    </div>
-                    <!-- <div class="form">
-
-                        <div class="form-element">
-                            <lightning-button variant="brand" label="Show QR" title="Show QR" onclick={k} class="runcodeicon slds-m-vertical_medium" ></lightning-button>
-                            
-                        </div>
-                    </div> -->
-                    <div class="qrcode2" id="qrcode2" style="height:200px;width:200px"></div>
-                    <!-- <div class="qr-img codeCopySectionQr">
-                        <img src="" />
-
-                    </div> -->
+                    </div>                   
+                    <div class="qrcode2" id="qrcode2"></div>                   
                 </div>
             </template>
-            <!-- </aura:if> -->
+ 
 
 
 
             <!--[lightbox checkbox]-->
-            <!-- <aura:if isTrue="{!v.showLightBoxCode}"> -->
-            <template if:true={trued13}>
+           
+            <template if:true={formLightBox}>
                 <!-- [Publish your form by link it to text or image] -->
                 <div class="publishUsing slds-m-top_medium">
                     <h2>Publish Using Lightbox</h2>
@@ -467,10 +212,9 @@
                 </div>
                 <!-- [HTML , Css and Js code] -->
                 <div class="slds-m-top_medium">
-                    <template if:true={trued14}>
-                    <!-- <aura:if isTrue="{!v.showLightBoxTextLinkCode}"> -->
 
-                        <div class="lightBoxSection" style="gap: 10px;">
+                    <template if:true={formTextLink}>                   
+                        <div class="lightBoxSection">
                             <div class=" code slds-grid" >
                                 <div class=" slds-col slds-size_1-of-1 slds-small-size_1-of-1	slds-medium-size_4-of-12 slds-large-size_4-of-12 subcode">
                                     <div class="mainHeading">
@@ -479,8 +223,7 @@
                                             <h1><b>Html:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k} ></lightning-button-icon>
-
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
                                     </div>
                                     <div class="codestyle" id="copytext">
                                         <br /> &lt;p id="myBtn" &gt; Text Link &lt;/p &gt;
@@ -488,7 +231,7 @@
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="modal-content"&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="close">&times;&lt;/span&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
-                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{testurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
+                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{formurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
                                         <br /> &lt;/div&gt;
                                     </div>
@@ -501,7 +244,7 @@
                                             <lightning-button-icon data-id="text2" class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon>
                                             <h1><b>Css:</b></h1>
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k} ></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
 
                                     </div>
 
@@ -578,10 +321,10 @@
 
                                             <h1><b>JavaScript:</b></h1>
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k} ></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
 
                                     </div>
-                                    <!-- <hr style="margin:8px" /> -->
+                                 
 
                                     <div class="codestyle" id="copytext3">
                                         <br /> // Get the modal
@@ -612,14 +355,13 @@
                                 </div>
                             </div>
 
-                            <!-- <lightning-button variant="brand" label="Run Code" title="Click to Open" onclick={k} class="runcodeicon" style="display: flex; justify-content: center;"></lightning-button> -->
-                            <input class="std-btn" type="button" value="Run Code" name="Copy" onclick={k} style="margin-right: auto;margin-left: auto;"/>
+                            
                         </div>
-                    <!-- </aura:if> -->
+                 
                     </template>
-                    <!-- <aura:if isTrue="{!v.showLightBoxImageLinkCode}"> -->
-                    <template if:true={trued15}>
-                        <div class="lightBoxSection" style="gap: 10px;">
+                   
+                    <template if:true={formImageLink}>
+                        <div class="lightBoxSection">
                             <div class="code slds-grid" >
                                 <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode ">
                                     <div class="mainHeading">
@@ -628,7 +370,7 @@
                                             <h1><b>Html:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k} ></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
 
                                     </div>
 
@@ -638,7 +380,7 @@
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="modal-content"&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="close">&times; &lt;/span&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
-                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{testurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
+                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{formurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
                                         <br /> &lt;/div&gt;
                                     </div>
@@ -654,7 +396,7 @@
                                             <h1><b>Css:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k}></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc}></lightning-button-icon>
 
                                     </div>
                                     <div class="codestyle" id="copytext5">
@@ -719,7 +461,7 @@
                                             <h1><b>JavaScript:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k}></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc}></lightning-button-icon>
 
                                     </div>
                                     <div class="codestyle" id="copytext6">
@@ -750,15 +492,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <lightning-button variant="brand" label="Run Code" title="Click to Open" onclick={k} class="runcodeicon" style="display: flex; justify-content: center;"></lightning-button> -->
-                            <input class="std-btn" type="button" value="Run Code" name="Copy" onclick={k} style="margin-right: auto;margin-left: auto;"/>
                         </div>
                     </template>
-                    <!-- </aura:if> -->
+                  
 
-                    <template if:true={trued16}>
-                    <!-- <aura:if isTrue="{!v.showLightBoxAutoPopupCode}"> -->
-                        <div class="lightBoxSection" style="gap: 10px;">
+                    <template if:true={formAutoPopup}>
+                        <div class="lightBoxSection">
                             <div class="code slds-grid" >
                                 <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode">
 
@@ -769,7 +508,7 @@
                                             <h1><b>Html:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k} ></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
 
                                     </div>
                                     <div class="codestyle" id="copytext7">
@@ -778,7 +517,7 @@
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="modal-content"&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="close">&times;&lt;/span&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
-                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{testurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
+                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{formurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
                                         <br /> &lt;/div&gt;
                                     </div>
@@ -793,7 +532,7 @@
 
                                         </div>
 
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k} ></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
 
                                     </div>
                                     <div class="codestyle" id="copytext8">
@@ -861,7 +600,7 @@
 
                                         </div>
 
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k} ></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
 
                                     </div>
                                     <div class="codestyle" id="copytext9">
@@ -893,15 +632,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <lightning-button variant="brand" label="Run Code" title="Click to Open" onclick={k} class="runcodeicon" style="display: flex; justify-content: center;"></lightning-button> -->
-                            <input class="std-btn" type="button" value="Run Code" name="Copy" onclick={k} style="margin-right: auto;margin-left: auto;" />
                         </div>
-                    <!-- </aura:if> -->
+      
                     </template>
 
-                    <!-- <aura:if isTrue="{!v.showLightBoxFloatingCode}"> -->
-                    <template if:true={trued17}>
-                        <div class="lightBoxSection" style="gap: 10px;">
+                 
+                    <template if:true={floatingButton}>
+                        <div class="lightBoxSection">
                             <div class="code slds-grid " >
                                 <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode">
                                     <div class="mainHeading">
@@ -909,7 +646,7 @@
                                             <lightning-button-icon class="codeIcons" icon-name="utility:insert_tag_field" variant="border-filled" size="small" alternative-text="Html" title="Html" ></lightning-button-icon>
                                             <h1><b>Html:</b></h1>
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k} ></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
                                     </div>
 
                                     <div class="codestyle" id="copytext10">
@@ -918,7 +655,7 @@
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="modal-content"&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="close">&times; &lt;/span&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
-                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{testurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
+                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{formurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
                                         <br /> &lt;/div&gt;
                                     </div>
@@ -930,7 +667,7 @@
                                             <lightning-button-icon class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon>
                                             <h1><b>Css:</b></h1>
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k}></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc}></lightning-button-icon>
                                     </div>
                                     <div class="codestyle" id="copytext11">
                                         <br /> body <br />{ <br />font-family: Arial, Helvetica, sans-serif; <br />}
@@ -1021,7 +758,7 @@
 
                                         </div>
 
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={k} ></lightning-button-icon>
+                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
 
                                     </div>
                                     <div class="codestyle" id="copytext12">
@@ -1052,21 +789,11 @@
                                         <br /> }
                                     </div>
                                 </div>
-                            </div>
-                            <!-- <lightning-button variant="brand" label="Run Code" title="Click to Open" onclick={k} class="runcodeicon" style="display: flex; justify-content: center;"></lightning-button> -->
-                            <input class="std-btn" type="button" value="Run Code" name="Copy" onclick={k} style="margin-right: auto;margin-left: auto;" />
-
+                            </div>                          
                         </div>
-                    </template>
-                    <!-- </aura:if> -->
-                    
+                    </template>                    
                 </div>
             </template>
-            <!-- </aura:if> -->
-
-
-
-
         </div>
        
         <!-- =====================[End Right bar]================================== -->

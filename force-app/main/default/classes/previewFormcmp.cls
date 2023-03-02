@@ -4,7 +4,7 @@ public with sharing class previewFormcmp {
     public static Form__c formdetails(Id id){
         try{
         Form__c nform = [SELECT Id,Progress_Indicator__c,Captcha_Type__c,Button_CSS__c,Button_Position__c,
-        Page_CSS__c,Form_Styling__c  FROM Form__c WHERE Id =: id];
+        Page_CSS__c,Form_Styling__c, All_Field_Hover__c, All_Field_Focus__c,All_Field_Styling__c,Label_CSS__c  FROM Form__c WHERE Id =: id];
         return nform;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

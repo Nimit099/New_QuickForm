@@ -1,7 +1,7 @@
 <template>
-        
+
     <c-toast-component></c-toast-component>
-<div class="fieldvalidationbody">
+    <div class="fieldvalidationbody">
         <template if:true={spinnerDataTable}>
             <div data-id="spinnerId" class="slds-spinner_container spinnerclass">
                 <div class="spinner-main-div">
@@ -11,537 +11,558 @@
                     </div>
                 </div>
             </div>
-        </template> 
-            <div class="fieldLabel">
-                {fieldName}
-            </div>
-            <div class="fieldvalidationbtnmaindiv">
-                <div class="fieldvalidationbtndiv">
-                    <div class="attributeButton">
-                        <div class="btnDiv" data-title="Close" title="Close" onclick={validatingbtnhandle}>
+        </template>
+        <div class="fieldLabel">
+            {fieldName}
+        </div>
+        <div class="fieldvalidationbtnmaindiv">
+            <div class="fieldvalidationbtndiv">
+                <div class="attributeButton">
+                    <div class="btnDiv" data-title="Close" title="Close" onclick={validatingbtnhandle}>
                         <img src={fieldcancel} alt="" class="validationicon">
-                        </div>
-                        <div class="btnDiv" data-title="Delete" title="Delete" onclick={validatingbtnhandle}>
-                            <img src={fielddelete} alt="" class="validationicon">
-                        </div>
-                        <div class="btnDiv" data-title="Save" data-name={fieldName} title="Save" onclick={validatingbtnhandle}>
-                            <img src={fieldsave} alt="" class="validationicon">
-                        </div>
-                        <div class="btnDiv" data-title="Copy" title="Copy" onclick={validatingbtnhandle}>
-                            <img src={fieldduplicate} alt="" class="validationicon">
-                        </div>
                     </div>
+                    <div class="btnDiv" data-title="Delete" title="Delete" onclick={validatingbtnhandle}>
+                        <img src={fielddelete} alt="" class="validationicon">
+                    </div>
+                    <div class="btnDiv" data-title="Save" data-name={fieldName} title="Save"
+                        onclick={validatingbtnhandle}>
+                        <img src={fieldsave} alt="" class="validationicon">
+                    </div>
+                    <div class="btnDiv" data-title="Copy" title="Copy" onclick={validatingbtnhandle}>
+                        <img src={fieldduplicate} alt="" class="validationicon">
+                    </div>
+                </div>
 
+                <div class="togglebox">
+                    <label> Label Visibility</label>
+                    <label class="switch">
+                        <input type="checkbox" data-title="Label" checked={labelcheck} onchange={handlevalidation} />
+                        <small></small>
+                    </label>
+                </div>
+                <template if:true={labelcheck}>
+                    <div class="styletext">
+
+                        <lightning-input label="Label" data-title="Label" value={labelvalue}
+                            onchange={validatingvalue}></lightning-input>
+                    </div>
+                </template>
+                <div class="togglebox">
+                    <label>Helptext Visibility</label>
+                    <label class="switch">
+                        <input type="checkbox" data-title="HelpText" checked={helptextcheck}
+                            onchange={handlevalidation} />
+                        <small></small>
+                    </label>
+                </div>
+                <template if:true={helptextcheck}>
+                    <div class="styletext">
+                        <lightning-input label="Helptext" data-title="HelpText" value={helptext}
+                            onchange={validatingvalue}></lightning-input>
+                    </div>
+                </template>
+                <div class="textlabel">Validation</div>
+
+                <div class="togglebox requiredfield">
+                    <label>Required Field</label>
+                    <label class="switch">
+                        <input type="checkbox" data-title="Require" checked={isRequiredcheck} onchange={isRequired} />
+                        <small></small>
+                    </label>
+                </div>
+                <div class="togglebox">
+                    <label>Disable Field</label>
+                    <label class="switch">
+                        <input type="checkbox" data-title="Disable" checked={isdisabledcheck} onchange={isdisabled} />
+                        <small></small>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <template for:each={field.data} for:item="fields">
+            <div key={fields.Name} title={fields.Name}>
+                <template if:true={fields.QFSHORTTEXT}>
+                    <div class="slider">
+                        <lightning-slider label="Min no of character" value={minimumvalue} min="0" max="256"
+                            onchange={slider} data-title="Minimum"></lightning-slider>
+                    </div>
+                    <div class="slider">
+                        <lightning-slider label="Max no of character" value={maximumvalue} min="0" max="256"
+                            onchange={slider} data-title="Maximum"></lightning-slider>
+                    </div>
+                    <div class="resetbtn" onclick={slider} data-title="Reset">
+                        <p class="resettext"> Reset Character Limit </p>
+                    </div>
+                    <div class="textlabel">Options</div>
                     <div class="togglebox">
-                        <label> Label Visibility</label>
+                        <label>Add Placeholder text </label>
                         <label class="switch">
-                            <input type="checkbox"
-                                data-title="Label" 
-                                checked={labelcheck}
-                                onchange={handlevalidation}
-                                />
+                            <input type="checkbox" data-title="PlaceHolder" checked={placeholdercheck}
+                                onchange={handlevalidation} />
                             <small></small>
                         </label>
                     </div>
-                    <template if:true={labelcheck}>
-                        <div class="styletext">
-                            
-                            <lightning-input label="Label" data-title="Label" value={labelvalue} onchange={validatingvalue} ></lightning-input>
+                    <template if:true={placeholdercheck}>
+                        <div class="plaintext">
+                            <lightning-input label="Place Holder" data-title="PlaceHolder" value={placeholdervalue}
+                                onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={fields.QFLONGTEXT}>
+                    <div class="slider">
+                        <lightning-slider label="Min no of character" value={minimumvalue} min="0" max="256"
+                            onchange={slider} data-title="Minimum"></lightning-slider>
+                    </div>
+                    <div class="slider">
+                        <lightning-slider label="Max no of character" value={maximumvalue} min="0" max="256"
+                            onchange={slider} data-title="Maximum"></lightning-slider>
+                    </div>
+                    <div class="resetbtn" onclick={slider} data-title="Reset">
+                        <p class="resettext"> Reset Character Limit </p>
+                    </div>
+                    <div class="textlabel">Options</div>
+                    <div class="togglebox">
+                        <label>Add Placeholder text </label>
+                        <label class="switch">
+                            <input type="checkbox" data-title="PlaceHolder" checked={placeholdercheck}
+                                onchange={handlevalidation} />
+                            <small></small>
+                        </label>
+                    </div>
+                    <template if:true={placeholdercheck}>
+                        <div class="plaintext">
+                            <lightning-input data-title="PlaceHolder" value={placeholdervalue}
+                                onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
+                        </div>
+                    </template>
+
+
+                </template>
+
+                <!-- DropDown Validation -->
+                <template if:true={fields.QFDROPDOWN}>
+                    <div class="fieldLabel">
+                        DropDown
+                    </div>
+                    <div class="textlabel">Options</div>
+                    <div class="togglebox">
+                        <lightning-accordion type="toggle" label="Add Placeholder text:" checked={}
+                            message-toggle-active="" message-toggle-inactive=""></lightning-accordion>
+                    </div>
+                    <template if:true={dropdownchoices}>
+                        <div class="plaintext">
+                            <lightning-input variant="label-hidden" value={}></lightning-input>
                         </div>
                     </template>
                     <div class="togglebox">
-                        <label>Helptext Visibility</label>
-                        <label class="switch">
-                            <input type="checkbox"
-                                data-title="HelpText" 
-                                checked={helptextcheck}
-                                onchange={handlevalidation}
-                                />
-                            <small></small>
-                        </label>
+                        <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active=""
+                            message-toggle-inactive=""></lightning-input>
                     </div>
-                    <template if:true={helptextcheck}>
-                        <div class="styletext">
-                            <lightning-input label="Helptext" data-title="HelpText" value={helptext} onchange={validatingvalue}></lightning-input>
-                        </div>
-                    </template>
-                    <div class="textlabel">Validation</div>
+                    <div class="textlabel">Choices</div>
+                    <div class="Item">
+                        <lightning-input class="slds-size_5-of-6" variant="label-hidden" value={}></lightning-input>
+                        <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium" name={}
+                            onclick={handledelete}></lightning-button-icon>
+                    </div>
+                    <div class="Itembutton">
+                        <lightning-button icon-name="utility:add" title="Add" onclick={addvalue}></lightning-button>
+                    </div>
+                </template>
 
-                    <div class="togglebox requiredfield">
-                        <label>Required Field</label>
-                        <label class="switch">
-                            <input type="checkbox"
-                                data-title="Require" 
-                                checked={isRequiredcheck}
-                                onchange={isRequired}
-                                />
-                            <small></small>
-                        </label>
+                <!-- Radio Button -->
+                <template if:true={fields.QFRADIOBUTTON}>
+                    <div class="textlabel">Choices</div>
+                    <div class="salutationdiv">
+                        <template for:each={salutations} for:item="fields">
+                            <div class="Item" key={fields.id}>
+                                <lightning-input class="slds-size_5-of-6" variant="label-hidden" data-id={fields.id}
+                                    value={fields.salutation} onchange={salutationvalues}></lightning-input>
+                                <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium"
+                                    data-id={fields.id} onclick={deletesalutation}></lightning-button-icon>
+                            </div>
+                        </template>
+                        <div class="Itembutton">
+                            <lightning-button icon-name="utility:add" title="Add"
+                                onclick={addsalutation}></lightning-button>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- CheckBox -->
+                <template if:true={fields.QFCHECKBOX}>
+                    <div class="textlabel">Choices</div>
+                    <div class="salutationdiv">
+                        <template for:each={salutations} for:item="fields">
+                            <div class="Item" key={fields.id}>
+                                <lightning-input class="slds-size_5-of-6" variant="label-hidden" data-id={fields.id}
+                                    value={fields.salutation} onchange={salutationvalues}></lightning-input>
+                                <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium"
+                                    data-id={fields.id} onclick={deletesalutation}></lightning-button-icon>
+                            </div>
+                        </template>
+                        <div class="Itembutton">
+                            <lightning-button icon-name="utility:add" title="Add"
+                                onclick={addsalutation}></lightning-button>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Number -->
+                <template if:true={fields.QFNUMBER}>
+
+                    <div class="textlabel">Options</div>
+
+                    <div class="styletext">
+                        <lightning-input type="number" label="Minimum Value" data-title="Minimum" value={minimumvalue}
+                            onchange={validatingvalue}></lightning-input>
+                    </div>
+                    <div class="styletext">
+                        <lightning-input type="number" label="Maximum Value" data-title="Maximum" value={maximumvalue}
+                            onchange={validatingvalue}></lightning-input>
+                    </div>
+
+                    <div class="resetbtn" onclick={slider} data-title="Reset">
+                        <p class="resettext"> Reset Character Limit </p>
                     </div>
                     <div class="togglebox">
-                        <label>Disable Field</label>
+                        <label>Add Placeholder text </label>
                         <label class="switch">
-                            <input type="checkbox"
-                                data-title="Disable" 
-                                checked={isdisabledcheck}
-                                onchange={isdisabled}
-                                />
+                            <input type="checkbox" data-title="PlaceHolder" checked={placeholdercheck}
+                                onchange={handlevalidation} />
                             <small></small>
                         </label>
                     </div>
-                </div>
-            </div>
+                    <template if:true={placeholdercheck}>
+                        <div class="plaintext">
+                            <lightning-input data-title="PlaceHolder" value={placeholdervalue}
+                                onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
+                        </div>
+                    </template>
+                </template>
 
-    <template for:each={field.data} for:item="fields">
-        <div key={fields.Name} title={fields.Name}>
-        <template if:true={fields.QFSHORTTEXT}>
-            <div class="slider">
-                <lightning-slider label="Min no of character" value={minimumvalue} min="0" max="256" onchange={slider} data-title="Minimum"></lightning-slider>
-            </div>
-            <div class="slider">
-                <lightning-slider label="Max no of character" value={maximumvalue} min="0" max="256" onchange={slider} data-title="Maximum"></lightning-slider>
-            </div>
-            <div class="resetbtn" onclick={slider} data-title="Reset">
-                <p class="resettext">  Reset Character Limit </p>
-            </div>
-            <div class="textlabel">Options</div>
-            <div class="togglebox">
-                <label>Add Placeholder text </label>
-                <label class="switch">
-                    <input type="checkbox"
-                        data-title="PlaceHolder" 
-                        checked={placeholdercheck}
-                        onchange={handlevalidation}
-                        />
-                    <small></small>
-                </label>
-            </div>
-            <template if:true={placeholdercheck}>
-                <div class="plaintext">
-                    <lightning-input label = "Place Holder" data-title="PlaceHolder" value={placeholdervalue} onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
-                </div>
-            </template>
-        </template>
+                <!-- Email-Id -->
+                <template if:true={fields.QFEMAILID}>
+                    <div class="slider">
+                        <lightning-slider label="Min no of character" value={minimumvalue} min="0" max="256"
+                            onchange={slider} data-title="Minimum"></lightning-slider>
+                    </div>
+                    <div class="slider">
+                        <lightning-slider label="Max no of character" value={maximumvalue} min="0" max="256"
+                            onchange={slider} data-title="Maximum"></lightning-slider>
+                    </div>
+                    <div class="resetbtn" onclick={slider} data-title="Reset">
+                        <p class="resettext"> Reset Character Limit </p>
+                    </div>
+                    <div class="textlabel">Options</div>
+                    <div class="togglebox">
+                        <label>Add Placeholder text </label>
+                        <label class="switch">
+                            <input type="checkbox" data-title="PlaceHolder" checked={placeholdercheck}
+                                onchange={handlevalidation} />
+                            <small></small>
+                        </label>
+                    </div>
+                    <template if:true={placeholdercheck}>
+                        <div class="plaintext">
+                            <lightning-input variant="label-hidden" value={placeholdervalue} onchange={validatingvalue}
+                                data-title="PlaceHolder" placeholder="Place Holder"></lightning-input>
+                        </div>
+                    </template>
 
-        <template if:true={fields.QFLONGTEXT}>
-            <div class="slider">
-                <lightning-slider label="Min no of character" value={minimumvalue} min="0" max="256" onchange={slider} data-title="Minimum"></lightning-slider>
-            </div>
-            <div class="slider">
-                <lightning-slider label="Max no of character" value={maximumvalue} min="0" max="256" onchange={slider} data-title="Maximum"></lightning-slider>
-            </div>
-            <div class="resetbtn" onclick={slider} data-title="Reset">
-                <p class="resettext">  Reset Character Limit </p>
-            </div>
-            <div class="textlabel">Options</div>
-            <div class="togglebox">
-                <label>Add Placeholder text </label>
-                <label class="switch">
-                    <input type="checkbox"
-                        data-title="PlaceHolder" 
-                        checked={placeholdercheck}
-                        onchange={handlevalidation}
-                        />
-                    <small></small>
-                </label>
-            </div>
-            <template if:true={placeholdercheck}>
-                <div class="plaintext">
-                    <lightning-input data-title="PlaceHolder" value={placeholdervalue} onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
-                </div>
-            </template>
-               
-  
-        </template>
 
-            <!-- DropDown Validation -->
-        <template if:true={fields.QFDROPDOWN}>
-            <div class="fieldLabel">
-                DropDown
-            </div>
-            <div class="textlabel">Options</div>
-            <div class="togglebox">
-                <lightning-accordion type="toggle" label="Add Placeholder text:" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-accordion>
-            </div>
-            <template if:true={dropdownchoices}>
-                <div class="plaintext">
-                    <lightning-input variant="label-hidden" value={}></lightning-input>
-                </div>
-            </template>
-            <div class="togglebox">
-                <lightning-input type="toggle" label="Disable Field" checked={} message-toggle-active="" message-toggle-inactive="" ></lightning-input>
-            </div>
-            <div class="textlabel">Choices</div>
-                <div class="Item">
-                    <lightning-input class="slds-size_5-of-6" variant="label-hidden" value={} ></lightning-input>
-                    <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium" name={} onclick={handledelete} ></lightning-button-icon>
-                </div>
-            <div class="Itembutton">
-                <lightning-button icon-name="utility:add" title="Add" onclick={addvalue}></lightning-button>
-            </div>
-        </template>
+                </template>
 
-            <!-- Radio Button -->
-        <template if:true={fields.QFRADIOBUTTON}>             
-            <div class="textlabel">Choices</div>
-                <div class="salutationdiv">
-                <template for:each={salutations} for:item="fields">
-                    <div class="Item" key={fields.id}>
-                        <lightning-input class="slds-size_5-of-6" variant="label-hidden" data-id={fields.id} value={fields.salutation} onchange={salutationvalues}></lightning-input>
-                        <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium" data-id={fields.id}  onclick={deletesalutation}></lightning-button-icon>
+                <!-- PRICE -->
+                <template if:true={fields.QFPRICE}>
+                    <div class="plaintext">
+                        <lightning-combobox name="progress" label="Decimal" value={decimal} placeholder="Decimal"
+                            options={showdecimal} onchange={handlevalidation} data-title="Decimal"></lightning-combobox>
+                    </div>
+                    <div class="textlabel">Options</div>
+                    <div class="togglebox">
+                        <label>Add Placeholder text </label>
+                        <label class="switch">
+                            <input type="checkbox" data-title="PlaceHolder" checked={placeholdercheck}
+                                onchange={handlevalidation} />
+                            <small></small>
+                        </label>
+                    </div>
+                    <template if:true={placeholdercheck}>
+                        <div class="plaintext">
+                            <lightning-input variant="label-hidden" value={placeholdervalue} data-title="PlaceHolder"
+                                onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
+                        </div>
+                    </template>
+
+                </template>
+
+                <!-- FULL NAME -->
+                <template if:true={fields.QFFULLNAME}>
+                    <div class="textlabel">Salutation</div>
+                    <div class="salutationdiv">
+                        <template for:each={salutations} for:item="fields">
+                            <div class="Item" key={fields.id}>
+                                <lightning-input class="slds-size_5-of-6" variant="label-hidden" data-id={fields.id}
+                                    value={fields.salutation} onchange={salutationvalues}></lightning-input>
+                                <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium"
+                                    data-id={fields.id} onclick={deletesalutation}></lightning-button-icon>
+                            </div>
+                        </template>
+                        <div class="Itembutton">
+                            <lightning-button icon-name="utility:add" title="Add"
+                                onclick={addsalutation}></lightning-button>
+                        </div>
                     </div>
                 </template>
-                <div class="Itembutton">
-                    <lightning-button icon-name="utility:add" title="Add" onclick={addsalutation}></lightning-button>
-                </div>
-            </div>
-        </template>
 
-            <!-- CheckBox -->
-        <template if:true={fields.QFCHECKBOX}>               
-            <div class="textlabel">Choices</div>
-            <div class="salutationdiv">
-                <template for:each={salutations} for:item="fields">
-                    <div class="Item" key={fields.id}>
-                        <lightning-input class="slds-size_5-of-6" variant="label-hidden" data-id={fields.id} value={fields.salutation} onchange={salutationvalues}></lightning-input>
-                        <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium" data-id={fields.id}  onclick={deletesalutation}></lightning-button-icon>
+                <!-- NAME -->
+                <template if:true={fields.QFNAME}>
+                    <div class="textlabel">Options</div>
+                    <div class="togglebox">
+                        <label>Add Placeholder text </label>
+                        <label class="switch">
+                            <input type="checkbox" data-title="PlaceHolder" checked={placeholdercheck}
+                                onchange={handlevalidation} />
+                            <small></small>
+                        </label>
+                    </div>
+                    <template if:true={placeholdercheck}>
+                        <div class="plaintext">
+                            <lightning-input variant="label-hidden" value={placeholdervalue} data-title="PlaceHolder"
+                                onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
+                        </div>
+                    </template>
+
+                </template>
+
+                <!-- PHONE -->
+                <template if:true={fields.QFPHONE}>
+                    <div class="textlabel">Options</div>
+                    <div class="togglebox">
+                        <label>Add Placeholder text </label>
+                        <label class="switch">
+                            <input type="checkbox" data-title="PlaceHolder" checked={placeholdercheck}
+                                onchange={handlevalidation} />
+                            <small></small>
+                        </label>
+                    </div>
+                    <template if:true={placeholdercheck}>
+                        <div class="plaintext">
+                            <lightning-input variant="label" label="Placeholder Text" value={placeholdervalue}
+                                onchange={validatingvalue} data-title="PlaceHolder"
+                                placeholder="Place Holder"></lightning-input>
+                        </div>
+                    </template>
+
+
+                </template>
+
+                <!-- DATE -->
+                <template if:true={fields.QFDATE}>
+                    <div class="textlabel">Options</div>
+                    <div class="styletext">
+                        <lightning-input type="date" label="Minimum Value" data-title="MinimumDate" value={minimumdate}
+                            onchange={validatingvalue}></lightning-input>
+                    </div>
+                    <div class="styletext">
+                        <lightning-input type="date" label="Maximum Value" data-title="MaximumDate" value={maximumdate}
+                            onchange={validatingvalue}></lightning-input>
                     </div>
                 </template>
-                <div class="Itembutton">
-                    <lightning-button icon-name="utility:add" title="Add" onclick={addsalutation}></lightning-button>
-                </div>
-            </div>
-        </template>
 
-            <!-- Number -->
-        <template if:true={fields.QFNUMBER}>
-           
-            <div class="textlabel">Options</div>
-        
-                <div class="styletext">
-                    <lightning-input type="number" label="Minimum Value" data-title="Minimum" value={minimumvalue} onchange={validatingvalue} ></lightning-input>
-                </div> 
-                <div class="styletext">
-                    <lightning-input type="number" label="Maximum Value" data-title="Maximum" value={maximumvalue} onchange={validatingvalue} ></lightning-input>
-                </div>
-
-                <div class="resetbtn" onclick={slider} data-title="Reset">
-                  <p class="resettext">  Reset Character Limit </p>
-                </div>
-            <div class="togglebox">
-                <label>Add Placeholder text </label>
-                <label class="switch">
-                    <input type="checkbox"
-                        data-title="PlaceHolder" 
-                        checked={placeholdercheck}
-                        onchange={handlevalidation}
-                        />
-                    <small></small>
-                </label>
-            </div>
-            <template if:true={placeholdercheck}>
-                <div class="plaintext">
-                    <lightning-input data-title="PlaceHolder" value={placeholdervalue} onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
-                </div>
-            </template>
-        </template>
-
-            <!-- Email-Id -->
-        <template if:true={fields.QFEMAILID}>
-            <div class="slider">
-                <lightning-slider label="Min no of character" value={minimumvalue} min="0" max="256" onchange={slider} data-title="Minimum"></lightning-slider>
-            </div>
-            <div class="slider">
-                <lightning-slider label="Max no of character" value={maximumvalue} min="0" max="256" onchange={slider} data-title="Maximum"></lightning-slider>
-            </div>
-            <div class="resetbtn" onclick={slider} data-title="Reset">
-                <p class="resettext">  Reset Character Limit </p>
-            </div>            
-            <div class="textlabel">Options</div>
-            <div class="togglebox">
-                <label>Add Placeholder text </label>
-                <label class="switch">
-                    <input type="checkbox"
-                        data-title="PlaceHolder" 
-                        checked={placeholdercheck}
-                        onchange={handlevalidation}
-                        />
-                    <small></small>
-                </label>
-            </div>
-            <template if:true={placeholdercheck}>
-                <div class="plaintext">
-                    <lightning-input variant="label-hidden" value={placeholdervalue} onchange={validatingvalue} data-title="PlaceHolder" placeholder="Place Holder"></lightning-input>
-                </div>
-            </template>
-               
-
-        </template>
-
-            <!-- PRICE -->
-        <template if:true={fields.QFPRICE}>
-            <div class="plaintext">
-                <lightning-combobox
-                        name="progress"
-                        label="Decimal"
-                        value={decimal}
-                        placeholder="Decimal"
-                        options={showdecimal}
-                        onchange={handlevalidation}
-                        data-title="Decimal" ></lightning-combobox>
-            </div>
-            <div class="textlabel">Options</div>
-            <div class="togglebox">
-                <label>Add Placeholder text </label>
-                <label class="switch">
-                    <input type="checkbox"
-                        data-title="PlaceHolder" 
-                        checked={placeholdercheck}
-                        onchange={handlevalidation}
-                        />
-                    <small></small>
-                </label>
-            </div>
-            <template if:true={placeholdercheck}>
-                <div class="plaintext">
-                    <lightning-input variant="label-hidden" value={placeholdervalue} data-title="PlaceHolder" onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
-                </div>
-            </template>
-               
-        </template>
-
-            <!-- FULL NAME -->
-        <template if:true={fields.QFFULLNAME}>
-            <div class="textlabel">Salutation</div>
-            <div class="salutationdiv">
-                <template for:each={salutations} for:item="fields">
-                    <div class="Item" key={fields.id}>
-                        <lightning-input class="slds-size_5-of-6" variant="label-hidden" data-id={fields.id} value={fields.salutation} onchange={salutationvalues}></lightning-input>
-                        <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium" data-id={fields.id}  onclick={deletesalutation}></lightning-button-icon>
+                <!-- TIME -->
+                <template if:true={fields.QFTIME}>
+                    <div class="textlabel">Options</div>
+                    <div class="styletext">
+                        <lightning-input type="time" label="Minimum Value" data-title="MinimumDate" value={minimumdate}
+                            onchange={validatingvalue}></lightning-input>
+                    </div>
+                    <div class="styletext">
+                        <lightning-input type="time" label="Maximum Value" data-title="MaximumDate" value={maximumdate}
+                            onchange={validatingvalue}></lightning-input>
                     </div>
                 </template>
-                <div class="Itembutton">
-                    <lightning-button icon-name="utility:add" title="Add" onclick={addsalutation}></lightning-button>
-                </div>
-            </div>
-        </template>
 
-            <!-- NAME -->
-        <template if:true={fields.QFNAME}>
-            <div class="textlabel">Options</div>
-            <div class="togglebox">
-                <label>Add Placeholder text </label>
-                <label class="switch">
-                    <input type="checkbox"
-                        data-title="PlaceHolder" 
-                        checked={placeholdercheck}
-                        onchange={handlevalidation}
-                        />
-                    <small></small>
-                </label>
-            </div>
-            <template if:true={placeholdercheck}>
-                <div class="plaintext">
-                    <lightning-input variant="label-hidden" value={placeholdervalue} data-title="PlaceHolder" onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
-                </div>
-            </template>
-               
-        </template>
+                <!-- DATE/TIME -->
+                <template if:true={fields.QFDATETIME}>
 
-        <!-- PHONE -->
-        <template if:true={fields.QFPHONE}>
-            <div class="textlabel">Options</div>
-            <div class="togglebox">
-                <label>Add Placeholder text </label>
-                <label class="switch">
-                    <input type="checkbox"
-                        data-title="PlaceHolder" 
-                        checked={placeholdercheck}
-                        onchange={handlevalidation}
-                        />
-                    <small></small>
-                </label>
-            </div>
-            <template if:true={placeholdercheck}>
-                <div class="plaintext">
-                    <lightning-input variant="label" label="Placeholder Text" value={placeholdervalue} onchange={validatingvalue} data-title="PlaceHolder" placeholder="Place Holder"></lightning-input>
-                </div>
-            </template>
-               
-              
-        </template>
+                    <div class="textlabel">Options</div>
+                    <div class="styletext">
+                        <lightning-input type="datetime" label="Minimum Value" data-title="MinimumDate"
+                            value={minimumdate} onchange={validatingvalue}></lightning-input>
+                    </div>
+                    <div class="styletext">
+                        <lightning-input type="datetime" label="Maximum Value" data-title="MaximumDate"
+                            value={maximumdate} onchange={validatingvalue}></lightning-input>
+                    </div>
 
-            <!-- DATE -->
-        <template if:true={fields.QFDATE}>
-            <div class="textlabel">Options</div>
-            <div class="styletext">
-                <lightning-input type="date" label="Minimum Value" data-title="MinimumDate" value={minimumdate} onchange={validatingvalue} ></lightning-input>
-            </div>
-            <div class="styletext">
-                <lightning-input type="date" label="Maximum Value" data-title="MaximumDate" value={maximumdate} onchange={validatingvalue} ></lightning-input>
-            </div>
-        </template>
+                </template>
 
-            <!-- TIME -->
-        <template if:true={fields.QFTIME}>
-            <div class="textlabel">Options</div>
-                <div class="styletext">
-                    <lightning-input type="time" label="Minimum Value" data-title="MinimumDate" value={minimumdate} onchange={validatingvalue} ></lightning-input>
-                </div>
-                <div class="styletext">
-                    <lightning-input type="time" label="Maximum Value" data-title="MaximumDate" value={maximumdate} onchange={validatingvalue} ></lightning-input>
-                </div>
-        </template>
-
-            <!-- DATE/TIME -->
-        <template if:true={fields.QFDATETIME}>
-           
-            <div class="textlabel">Options</div>
-                <div class="styletext">
-                    <lightning-input type="datetime" label="Minimum Value" data-title="MinimumDate" value={minimumdate} onchange={validatingvalue} ></lightning-input>
-                </div>
-                <div class="styletext">
-                    <lightning-input type="datetime" label="Maximum Value" data-title="MaximumDate" value={maximumdate} onchange={validatingvalue} ></lightning-input>
-                </div>
-
-        </template>
-
-            <!-- Scale Rating -->
-        <template if:true={fields.QFSCALERATING}>
-            <div class="textlabel">Option Choices</div>
-                <div class="salutationdiv">
-                <template for:each={salutations} for:item="fields">
-                    <div class="Item" key={fields.id}>
-                        <lightning-input class="slds-size_5-of-6" variant="label-hidden" data-id={fields.id} value={fields.salutation} onchange={salutationvalues}></lightning-input>
-                        <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium" data-id={fields.id}  onclick={deletesalutation}></lightning-button-icon>
+                <!-- Scale Rating -->
+                <template if:true={fields.QFSCALERATING}>
+                    <div class="textlabel">Option Choices</div>
+                    <div class="salutationdiv">
+                        <template for:each={salutations} for:item="fields">
+                            <div class="Item" key={fields.id}>
+                                <lightning-input class="slds-size_5-of-6" variant="label-hidden" data-id={fields.id}
+                                    value={fields.salutation} onchange={salutationvalues}></lightning-input>
+                                <lightning-button-icon class="slds-size_1-of-6" icon-name="utility:delete" size="medium"
+                                    data-id={fields.id} onclick={deletesalutation}></lightning-button-icon>
+                            </div>
+                        </template>
+                        <div class="Itembutton">
+                            <lightning-button icon-name="utility:add" title="Add"
+                                onclick={addsalutation}></lightning-button>
+                        </div>
                     </div>
                 </template>
-                <div class="Itembutton">
-                    <lightning-button icon-name="utility:add" title="Add" onclick={addsalutation}></lightning-button>
-                </div>
-            </div>
-        </template>
 
-            <!-- Terms of Service -->
-        <template if:true={fields.QFTERMSOFSERVICE}>
-            <div class="textlabel">Options</div>
-               
-            <div class="richstyle">
-                <lightning-button class="richbutton" label="Edit Agreement Text" onclick={handlevalidation} data-title="RichText" ></lightning-button>
-            </div>
-            <template if:true={richtextinput}>
-                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-                    <div class="slds-modal__container">
-                        <header class="slds-modal__header">
-                            <lightning-button-icon icon-name="utility:close" onclick={closerichtext} alternative-text="close" variant="bare-inverse" class="slds-modal__close"></lightning-button-icon>
-                            <h2 data-id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">HTML Block</h2>
-                        </header>
+                <!-- Terms of Service -->
+                <template if:true={fields.QFTERMSOFSERVICE}>
+                    <div class="textlabel">Options</div>
 
-                        <lightning-tabset variant="scoped">
-                            <lightning-tab label="Edit Rich Text">
-                                <lightning-input-rich-text formats="['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
-                                'header', 'color', 'background']" value={Richtextvalue} data-id="editor" placeholder="Type something" onchange={RichTextData}></lightning-input-rich-text>
-                            </lightning-tab>
-                            <lightning-tab label="Edit HTML Text">
-                                <lightning-textarea label="HTML Text" value={Richtextvalue} name="Html" onchange={RichTextData}></lightning-textarea>
-                            </lightning-tab>
-                            <lightning-tab label="Output">
-                                <lightning-formatted-rich-text value={Richtextvalue}></lightning-formatted-rich-text>
-                            </lightning-tab>
-                        </lightning-tabset>
-                        <footer class="slds-modal__footer">
-                            <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={closerichtext}></lightning-button>
-                            <lightning-button variant="brand" label="OK" title="OK" onclick={closerichtext}></lightning-button>
-                        </footer>
+                    <div class="richstyle">
+                        <lightning-button class="richbutton" label="Edit Agreement Text" onclick={handlevalidation}
+                            data-title="RichText"></lightning-button>
                     </div>
-                </section>
-                <div class="slds-backdrop slds-backdrop_open"></div>
-            </template>
-        </template>
+                    <template if:true={richtextinput}>
+                        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <header class="slds-modal__header">
+                                    <lightning-button-icon icon-name="utility:close" onclick={closerichtext}
+                                        alternative-text="close" variant="bare-inverse"
+                                        class="slds-modal__close"></lightning-button-icon>
+                                    <h2 data-id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">HTML
+                                        Block</h2>
+                                </header>
 
-            <!-- LINK -->
-        <template if:true={fields.QFLINK}>
-            <div class="slider">
-                <lightning-slider label="Min no of character" value={minimumvalue} min="0" max="256" onchange={slider} data-title="Minimum"></lightning-slider>
-            </div>
-            <div class="slider">
-                <lightning-slider label="Max no of character" value={maximumvalue} min="0" max="256" onchange={slider} data-title="Maximum"></lightning-slider>
-            </div>
-            <div class="resetbtn" onclick={slider} data-title="Reset">
-                <p class="resettext">  Reset Character Limit </p>
-            </div>
-            <div class="textlabel">Options</div>
-            <div class="togglebox">
-                <label>Add Placeholder text </label>
-                <label class="switch">
-                    <input type="checkbox"
-                        data-title="PlaceHolder" 
-                        checked={placeholdercheck}
-                        onchange={handlevalidation}
-                        />
-                    <small></small>
-                </label>
-            </div>
-            <template if:true={placeholdercheck}>
-                <div class="plaintext">
-                    <lightning-input label = "Place Holder" data-title="PlaceHolder" value={placeholdervalue} onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
-                </div>
-            </template>
-        </template>
+                                <lightning-tabset variant="scoped">
+                                    <lightning-tab label="Edit Rich Text">
+                                        <lightning-input-rich-text formats="['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
+                                'header', 'color', 'background']" value={Richtextvalue} data-id="editor"
+                                            placeholder="Type something"
+                                            onchange={RichTextData}></lightning-input-rich-text>
+                                    </lightning-tab>
+                                    <lightning-tab label="Edit HTML Text">
+                                        <lightning-textarea label="HTML Text" value={Richtextvalue} name="Html"
+                                            onchange={RichTextData}></lightning-textarea>
+                                    </lightning-tab>
+                                    <lightning-tab label="Output">
+                                        <lightning-formatted-rich-text
+                                            value={Richtextvalue}></lightning-formatted-rich-text>
+                                    </lightning-tab>
+                                </lightning-tabset>
+                                <footer class="slds-modal__footer">
+                                    <lightning-button variant="neutral" label="Cancel" title="Cancel"
+                                        onclick={closerichtext}></lightning-button>
+                                    <lightning-button variant="brand" label="OK" title="OK"
+                                        onclick={closerichtext}></lightning-button>
+                                </footer>
+                            </div>
+                        </section>
+                        <div class="slds-backdrop slds-backdrop_open"></div>
+                    </template>
+                </template>
 
-            <!-- RichText -->
-        <template if:true={fields.QFRICHTEXT}>
-            <div class="richstyle">
-                <lightning-button  label="Edit RichText" onclick={handlevalidation} data-title="RichText"></lightning-button>
-            </div>
-            <template if:true={richtextinput}>
-                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-                    <div class="slds-modal__container">
-                        <header class="slds-modal__header">
-                            <lightning-button-icon icon-name="utility:close" onclick={closerichtext} alternative-text="close" variant="bare-inverse" class="slds-modal__close"></lightning-button-icon>
-                            <h2 data-id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">HTML Block</h2>
-                        </header>
-
-                        <lightning-tabset variant="scoped">
-                            <lightning-tab label="Edit Rich Text">
-                                <lightning-input-rich-text formats="['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
-                                'header', 'color', 'background']" value={Richtextvalue} data-id="editor" placeholder="Type something" onchange={RichTextData}></lightning-input-rich-text>
-                            </lightning-tab>
-                            <lightning-tab label="Edit HTML Text">
-                                <lightning-textarea label="HTML Text" value={Richtextvalue} name="Html" onchange={RichTextData}></lightning-textarea>
-                            </lightning-tab>
-                            <lightning-tab label="Output">
-                                <lightning-formatted-rich-text value={Richtextvalue}></lightning-formatted-rich-text>
-                            </lightning-tab>
-                        </lightning-tabset>
-                        <footer class="slds-modal__footer">
-                            <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={closerichtext}></lightning-button>
-                            <lightning-button variant="brand" label="OK" title="OK" onclick={closerichtext}></lightning-button>
-                        </footer>
+                <!-- LINK -->
+                <template if:true={fields.QFLINK}>
+                    <div class="slider">
+                        <lightning-slider label="Min no of character" value={minimumvalue} min="0" max="256"
+                            onchange={slider} data-title="Minimum"></lightning-slider>
                     </div>
-                </section>
-                <div class="slds-backdrop slds-backdrop_open"></div>
-            </template>
-        </template>
+                    <div class="slider">
+                        <lightning-slider label="Max no of character" value={maximumvalue} min="0" max="256"
+                            onchange={slider} data-title="Maximum"></lightning-slider>
+                    </div>
+                    <div class="resetbtn" onclick={slider} data-title="Reset">
+                        <p class="resettext"> Reset Character Limit </p>
+                    </div>
+                    <div class="textlabel">Options</div>
+                    <div class="togglebox">
+                        <label>Add Placeholder text </label>
+                        <label class="switch">
+                            <input type="checkbox" data-title="PlaceHolder" checked={placeholdercheck}
+                                onchange={handlevalidation} />
+                            <small></small>
+                        </label>
+                    </div>
+                    <template if:true={placeholdercheck}>
+                        <div class="plaintext">
+                            <lightning-input label="Place Holder" data-title="PlaceHolder" value={placeholdervalue}
+                                onchange={validatingvalue} placeholder="Place Holder"></lightning-input>
+                        </div>
+                    </template>
+                </template>
 
-            <!-- Look Up -->
-        <template if:true={fields.QFLOOKUP}>
-            <div class="fieldLabel">
-                Look Up Field
-            </div>
-            <!-- <c-field-validationbtn  ></c-field-validationbtn> -->
-            <div class="textlabel">Object Selection</div>
-            <div class="styletext">
-                <lightning-select data-id="SobjectList" label="Select Object" name="SobjectList" value={defvalue} onchange={selectObject}>
-                    <option>Select Object</option>
-                    <!-- <aura:iteration items={allObject} var="field1">
+                <!-- RichText -->
+                <template if:true={fields.QFRICHTEXT}>
+                    <div class="richstyle">
+                        <lightning-button label="Edit RichText" onclick={handlevalidation}
+                            data-title="RichText"></lightning-button>
+                    </div>
+                    <template if:true={richtextinput}>
+                        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <header class="slds-modal__header">
+                                    <lightning-button-icon icon-name="utility:close" onclick={closerichtext}
+                                        alternative-text="close" variant="bare-inverse"
+                                        class="slds-modal__close"></lightning-button-icon>
+                                    <h2 data-id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">HTML
+                                        Block</h2>
+                                </header>
+
+                                <lightning-tabset variant="scoped">
+                                    <lightning-tab label="Edit Rich Text">
+                                        <lightning-input-rich-text formats="['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
+                                'header', 'color', 'background']" value={Richtextvalue} data-id="editor"
+                                            placeholder="Type something"
+                                            onchange={RichTextData}></lightning-input-rich-text>
+                                    </lightning-tab>
+                                    <lightning-tab label="Edit HTML Text">
+                                        <lightning-textarea label="HTML Text" value={Richtextvalue} name="Html"
+                                            onchange={RichTextData}></lightning-textarea>
+                                    </lightning-tab>
+                                    <lightning-tab label="Output">
+                                        <lightning-formatted-rich-text
+                                            value={Richtextvalue}></lightning-formatted-rich-text>
+                                    </lightning-tab>
+                                </lightning-tabset>
+                                <footer class="slds-modal__footer">
+                                    <lightning-button variant="neutral" label="Cancel" title="Cancel"
+                                        onclick={closerichtext}></lightning-button>
+                                    <lightning-button variant="brand" label="OK" title="OK"
+                                        onclick={closerichtext}></lightning-button>
+                                </footer>
+                            </div>
+                        </section>
+                        <div class="slds-backdrop slds-backdrop_open"></div>
+                    </template>
+                </template>
+
+                <!-- Look Up -->
+                <template if:true={fields.QFLOOKUP}>
+                    <div class="fieldLabel">
+                        Look Up Field
+                    </div>
+                    <!-- <c-field-validationbtn  ></c-field-validationbtn> -->
+                    <div class="textlabel">Object Selection</div>
+                    <div class="styletext">
+                        <lightning-select data-id="SobjectList" label="Select Object" name="SobjectList"
+                            value={defvalue} onchange={selectObject}>
+                            <option>Select Object</option>
+                            <!-- <aura:iteration items={allObject} var="field1">
                         <option text={field1.label} value={field1.value}>
                     </aura:iteration> -->
-                </lightning-select>
+                        </lightning-select>
+                    </div>
+                </template>
             </div>
         </template>
+
     </div>
-</template>
-   
-</div>
 </template>

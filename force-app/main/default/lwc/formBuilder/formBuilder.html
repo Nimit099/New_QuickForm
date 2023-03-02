@@ -194,7 +194,7 @@
                                         <button class="pageIconButton" data-record={page.pageName} data-id={page.pageId}
                                             onclick={openmodal2}><img class="pageIcons" src={editpageIcon}
                                                 alt="Edit page"></button>
-                                        <button class="pageIconButton" onclick={deletePage}
+                                        <button class="pageIconButton" onclick={handleDeleteAction}
                                             data-record={page.pageId}><img class="pageIcons" src={DeleteIcon}
                                                 alt="Delete Page"></button>
                                     </div>
@@ -204,11 +204,11 @@
 
                                     <template for:each={page.FieldData} for:item="field">
 
-                                         <div id={field.Id} class="field" draggable="true"
+                                        <div id={field.Id} class="field" draggable="true"
                                             data-order-id={field.Field_Order__c} data-page-record={field.Form_Page__c}
                                             data-record={field.Id} data-ref="inner" ondragstart={onDragStart}
                                             data-record-count={fieldcount} onclick={openfieldvalidation} key={field.Id}
-                                            data-field-name={field.Name} data-field-id={field.Id} data-id={field.Id} >
+                                            data-field-name={field.Name} data-field-id={field.Id} data-id={field.Id}>
                                             <c-quickformfieldcomponent formid={ParentMessage} t-view={field.Name}
                                                 compview="Full" disable-field="true" field-attribute=""
                                                 field-attribute-value="" field-id={field.Id}
@@ -224,7 +224,8 @@
                                                 placeholder={field.Field_Validations__c.Placeholder}
                                                 fieldtype={field.Field_Validations__c.fieldtype}
                                                 terms-and-condition-value={field.Field_Validations__c.Richtext}
-                                                hovercssproperty={hovercssproperty}></c-quickformfieldcomponent>
+                                                fcss={fcss} hoverhovercssproperty ={hovercss} focuscssproperty ={focuscss}
+                                                labelcss={labelcss}></c-quickformfieldcomponent>
 
                                         </div>
                                         <!-- <div id={field.ParentMessage} class="field" draggable="true"
@@ -300,7 +301,8 @@
 
             <!-- <template if:true={fieldvalidationdiv}> -->
             <div class="fieldvalidationdiv">
-                <c-field-validation onupdatefields={afterfielddelete} onclosevalidation={closevalidation}></c-field-validation>
+                <c-field-validation onupdatefields={afterfielddelete}
+                    onclosevalidation={closevalidation}></c-field-validation>
             </div>
             <!-- </template> -->
 
@@ -595,6 +597,47 @@
     </template>
 
     <!-- ========================= [page Modal End ] ========================= -->
+
+    <template if:true={deletepopup}>
+        <template if:true={spinnerdelete}>
+            <div data-id="spinnerId" class="slds-spinner_container spinnerclass">
+                <div class="spinner-main-div">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Edited as per sheet(qf_home.html - 6) -->
+        <!-- The below code displays a modal popup for confirming deletion with "Yes" and "No" options.-->
+
+        <div class="deletepopup">
+            <section role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true"
+                aria-describedby="ModalBody" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container newclass">
+                    <div class=" slds-p-around_large deletecontent" data-id="ModalBody">
+                        <div class="deleteicon">
+                            <img class="imgclass" src={bin} alt="">
+                        </div>
+                        <div class="confirm-message">
+                            Do you want to delete?
+                        </div>
+                        <div class="deletedescription">
+                            <p> This process cannot be undone ! </p>
+                        </div>
+                        <div class="deletefooter">
+                            <button class="slds-button no-btn" onclick={deleteno}>
+                                <p class="no-text">No</p>
+                            </button>
+                            <button class="slds-button yes-btn" onclick={deleteyes}>
+                                <p class="yes-text">Yes</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </template>
 
 
 

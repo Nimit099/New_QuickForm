@@ -93,6 +93,7 @@ export default class NotificationComponent extends LightningElement {
 
 
     connectedCallback(){
+        console.log('Nnotification');
         this.get_records();
     }
 
@@ -545,15 +546,16 @@ isEmailValid(email) {
             this.email_msg = false;
             this.selectedValuesMap.set(value, value);
             this.selectedValues = [...this.selectedValuesMap.keys()];
+            this.template.querySelector('lightning-input.input2').value = "";
             console.log('selectedValues kvjdfbkdsvj :- ',this.selectedValues);
         }
     }
-   this.template.querySelector('lightning-input.input2').value = "";
+
 }
 
 
     handleKeyPress(event) {
-        if (event.keyCode === 13 || event.keyCode === 44 || event.keyCode === 32 ) {
+        if (event.keyCode === 13 || event.keyCode === 44 || event.keyCode === 32 ) { // there is no key of 44
             this.create_pill_to(event);
         }
     }

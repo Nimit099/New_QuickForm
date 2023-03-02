@@ -4,7 +4,7 @@
     margin: auto 5% auto 0%;
     padding: 3%;
     /* background-color: #FFFFFF; */
-    border-radius: 28px;
+    /* border-radius: 0px; */
     overflow: hidden;
 }
 .tab-menu ul{
@@ -21,7 +21,7 @@
     color: rgb(0, 0, 0);
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 18px;
    
 }
 .tab-menu ul li a.active-tab{
@@ -43,7 +43,8 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    border-radius: 28px;
+    top: 0%;
+    /* border-radius: 0px; */
 }
  .sizebox{
     margin:auto; 
@@ -52,7 +53,7 @@
     height: 90% !important;
     background-color: white;
     /* border-radius: 28px !important; */
-    border-radius: 28px !important;
+    border-radius: 15px !important;
 }
  .gridbox{
     height: 100% !important;  
@@ -426,7 +427,7 @@
   .resourcediv{
     border-left: 1px solid gray; 
     background-color: #3E77AE;
-    border-radius: 28px; 
+    border-radius: 15px; 
     margin-top: 20px; 
     margin-bottom: 20px; 
     right: 20px; 
@@ -781,6 +782,7 @@
         position: absolute;
         height: 100%;
         width: 100%;
+        top: 0%;
     }
      .sizebox{
         margin:auto; 
@@ -964,6 +966,7 @@
         position: absolute;
         height: 100%;
         width: 100%;
+        top: 0%;
     }
      .s-wrap11 .s-content11 {
         margin: 0;

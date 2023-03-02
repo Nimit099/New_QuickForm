@@ -1,92 +1,100 @@
-<template>    
-<c-toast-component></c-toast-component>
-<template if:true={spinnerDataTable}>
-    <div data-id="spinnerId" class="slds-spinner_container"
-        style="overflow: hidden;">
-        <div class="spinner-main-div">
-            <div class="loader--ripple">
-                <div></div>
-                <div></div>
+<template>
+    <c-toast-component></c-toast-component>
+    <template if:true={spinnerDataTable}>
+        <div data-id="spinnerId" class="slds-spinner_container" style="overflow: hidden;">
+            <div class="spinner-main-div">
+                <div class="loader--ripple">
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
         </div>
-    </div>
-</template> 
-<template if:false={activepreview}>
-<button onclick={backhome} class="backbutton"><img src={BackButton} alt=""> <p>Home Page</p></button>
-</template>
-<div class="fieldDiv1">
-    <div class="mainbody">
+    </template>
+    <template if:false={activepreview}>
+        <button onclick={backhome} class="backbutton"><img src={BackButton} alt="">
+            <p>Home Page</p>
+        </button>
+    </template>
+    <div class="fieldDiv1">
+        <div class="mainbody">
 
-        <div class="myform" id="mainformid">
-            <div class="progressindicator">
-                <template if:true={Progressbarvalue}>
-                    <c-progress-indicator></c-progress-indicator>
-                </template>
-            </div>
-            <div class="page" id={page.pageId}>
-                <div class="pagetitle">
-                    <div style="display: flex;align-items: center;">
-                        <div>
-                            <template if:true={page.pageName}>
-                                <div class="pagetitle1">{page.pageName}</div>
+            <div class="myform" id="mainformid">
+                <div class="progressindicator">
+                    <template if:true={Progressbarvalue}>
+                        <c-progress-indicator></c-progress-indicator>
+                    </template>
+                </div>
+                <div class="page" id={page.pageId}>
+                    <div class="pagetitle">
+                        <div style="display: flex;align-items: center;">
+                            <div>
+                                <template if:true={page.pageName}>
+                                    <div class="pagetitle1">{page.pageName}</div>
+                                </template>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="example-dropzone" data-page-record={page.pageId}>
+
+                        <template for:each={page.FieldData} for:item="field">
+
+                            <div id={field.formid} class="field"  data-order-id={field.Field_Order__c}
+                                data-page-record={field.Form_Page__c} data-record={field.formid} data-ref="inner"
+                                 data-record-count={fieldcount} onclick={openfieldvalidation}
+                                key={field.formid} data-field-name={field.Name} data-id={field.Id}>
+
+                                <c-quickformfieldcomponent formid={formid} t-view={field.Name} compview="Full"
+                                    disable-field="true" field-attribute="" field-attribute-value="" field-id={field.Id}
+                                    page-id={page.formid} is-reqired={field.Field_Validations__c.isRequired}
+                                    helptextcheck={field.Field_Validations__c.isHelptext}
+                                    labelcheck={field.Field_Validations__c.isLabel}
+                                    labelvalue={field.Field_Validations__c.Label}
+                                    helptextvalue={field.Field_Validations__c.HelpText}
+                                    salutationvalue={field.Field_Validations__c.Salutation}
+                                    isdisabled={field.Field_Validations__c.isDisabled}
+                                    placeholder={field.Field_Validations__c.Placeholder}
+                                    fieldtype={field.Field_Validations__c.Fieldtype}></c-quickformfieldcomponent>
+
+                            </div>
+                        </template>
+                        <div class="field captchafield">
+                            <template if:true={isIndexLast}>
+                                <c-captcha-type oncaptchaverification={verifycaptcha}
+                                    captypetypes={captchavalue}></c-captcha-type>
                             </template>
-                            
                         </div>
                     </div>
-                    
-                </div>
-                <div class="example-dropzone" data-page-record={page.pageId}>
-                    
-                    <template for:each={page.FieldData} for:item="field">
-                        
-                        <div id={field.formid} class="field" draggable="true" 
-                        data-order-id={field.Field_Order__c} data-page-record={field.Form_Page__c}
-                        data-record={field.formid} data-ref="inner" ondragstart={onDragStart} data-record-count={fieldcount}
-                        onclick={openfieldvalidation} key={field.formid} data-field-name={field.Name} data-id={field.Id}>
-                      
-                         <c-quickformfieldcomponent formid={formid} t-view={field.Name} compview="Full"
-                         disable-field="true" field-attribute="" field-attribute-value=""
-                         field-id={field.Id} page-id={page.formid} is-reqired ={field.Field_Validations__c.isRequired} helptextcheck={field.Field_Validations__c.isHelptext}
-                         labelcheck={field.Field_Validations__c.isLabel} labelvalue={field.Field_Validations__c.Label} helptextvalue={field.Field_Validations__c.HelpText}
-                         salutationvalue={field.Field_Validations__c.Salutation} isdisabled ={field.Field_Validations__c.isDisabled} placeholder={field.Field_Validations__c.Placeholder} fieldtype ={field.Field_Validations__c.Fieldtype}></c-quickformfieldcomponent>
+                    <div class="footer">
 
-                        </div>
-                </template>
-                <div class="field captchafield">
-                    <template if:true={isIndexLast}>
-                        <c-captcha-type oncaptchaverification={verifycaptcha} captypetypes={captchavalue}></c-captcha-type>
-                    </template>
+                        <template if:true={isIndexZero}>
+                            <template if:false={isIndexLast}>
+                                <button data-name="next" variant="brand" label="Next" title="Next"
+                                    onclick={handlepagination} class="btn1">Next</button>
+                            </template>
+                            <template if:true={isIndexLast}>
+                                <button variant="brand" label="Submit" title="Submit" onclick={handlepagination}
+                                    class="btn1" data-name="submit">Submit</button>
+                            </template>
+                        </template>
+
+                        <template if:false={isIndexZero}>
+                            <button data-name="previous" variant="brand" label="Previous" title="Previous"
+                                onclick={handlepagination} class="btn1">Previous</button>
+
+                            <template if:false={isIndexLast}>
+                                <button data-name="next" variant="brand" label="Next" title="Next"
+                                    onclick={handlepagination} class="btn1">Next</button>
+                            </template>
+                            <template if:true={isIndexLast}>
+                                <button variant="brand" label="Submit" title="Submit" onclick={handlepagination}
+                                    class="btn1" data-name="submit">Submit</button>
+                            </template>
+                        </template>
+                    </div>
                 </div>
-            </div>
-            <div class="footer">
-                
-                <template if:true={isIndexZero}>
-                    <template if:false={isIndexLast}>
-                        <button data-name = "next" variant="brand" label="Next" title="Next"
-                        onclick={handlepagination} class="btn1">Next</button>
-                    </template>
-                    <template if:true={isIndexLast}>
-                        <button variant="brand" label="Submit" title="Submit" 
-                        onclick={handlepagination} class="btn1" data-name = "submit">Submit</button>
-                    </template>
-                </template>
-                
-                <template if:false={isIndexZero}>
-                    <button data-name = "previous" variant="brand" label="Previous"
-                    title="Previous"  onclick={handlepagination} class="btn1">Previous</button>  
-                    
-                    <template if:false={isIndexLast}>
-                        <button data-name = "next" variant="brand" label="Next" title="Next"
-                        onclick={handlepagination} class="btn1">Next</button>
-                    </template>
-                    <template if:true={isIndexLast}>
-                        <button variant="brand" label="Submit" title="Submit" 
-                        onclick={handlepagination} class="btn1" data-name = "submit">Submit</button>
-                    </template>
-                </template>
             </div>
         </div>
     </div>
-</div>
-</div>
 </template>

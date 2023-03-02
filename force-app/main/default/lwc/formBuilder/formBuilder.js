@@ -34,7 +34,7 @@ import cross from '@salesforce/resourceUrl/cross';
 import dropHere from '@salesforce/resourceUrl/dropHere'
 import deletePage from '@salesforce/apex/FormBuilderController.deletePage';
 import { NavigationMixin } from "lightning/navigation";
-
+import iconsZip from '@salesforce/resourceUrl/Iconfolder';
 // edit form part imports 
 import Objects_Type from "@salesforce/apex/customMetadata.f_Get_Types";
 import getCaptchatype from '@salesforce/apex/customMetadata.getCaptchatype'; //import get getCaptchatype method from custom Metadata apex class
@@ -48,6 +48,7 @@ import editFormSubmit from '@salesforce/apex/FormBuilderController.editFormSubmi
 // Importing Apec Metods
 import reOrderField from '@salesforce/apex/FormBuilderController.reOrderField';
 
+
 import formdetails from '@salesforce/apex/previewFormcmp.formdetails';
 import formfielddetails from '@salesforce/apex/previewFormcmp.formfielddetails';
 import formpagedetails from '@salesforce/apex/previewFormcmp.formpagedetails';
@@ -55,7 +56,7 @@ import formpagedetails from '@salesforce/apex/previewFormcmp.formpagedetails';
 export default class FormBuilder extends NavigationMixin(LightningElement) {
 
 
-    @track spinnerDataTable = true;
+    @track spinnerDataTable = false;
 
     //     icons        // 
     // @track homeIcon = HomeIcon;
@@ -104,7 +105,7 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
     //dropzone variables
     count = 0;
     @track activeDesignsidebar = false;
-    @track activesidebar = true;
+    @track activesidebar = false;
     @track activeNotification = false;
     @track activethankyou = false;
     @track activepreview = false;
@@ -131,12 +132,17 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
     @track isReorderingDrag = false;
     @track startFielId = '';
 
-    @track hovercssproperty;
+    @track hovercss;
+    @track focuscss;
+    @track fieldcss;
 
+  
     @track buttonscss;
     @track PageCSS;
     @track fieldcss;
     @track buttonpostition;
+    @track fcss;
+    @track labelcss;
 
     connectedCallback() {
         this.spinnerDataTable = true;
@@ -147,8 +153,12 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
             this.fieldcss = result.Form_Styling__c;
             this.buttonscss = result.Button_CSS__c;
             this.buttonpostition = result.Button_Position__c;
-            this.buttonscss = this.buttonscss.concat(this.buttonpostition);
             this.PageCSS = result.Page_CSS__c;
+            this.hovercss = result.All_Field_Hover__c;
+            this.focuscss = result.All_Field_Focus__c
+            this.fcss = result.All_Field_Styling__c;
+            this.labelcss = result.Label_CSS__c
+            console.log(this.fcss + 'fcsss');
             let array;
 
             // FormCss
@@ -226,59 +236,120 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
     }
 
 
-    
-    FormData(){
-        try{
+    // connectedCallback() {
 
-           
-        } catch (error) {
-            console.log(error + 'preview Error');
-        }
-    }
-    FieldsData(){
-    
-    }
+    //     this.spinnerDataTable = true;
+    //     this.activesidebar = true;
+    //     // this.reloadform();
+
+    // }
+
+    // reloadform() {
+    //     GetFormPage({ Form_Id: this.ParentMessage })
+    //         .then(result => {
+    //             console.log('get form page called');
+    //             this.PageList = result;
+    //             console.log('this-->>');
+    //             console.log('*** pageList ==>', result);
+    //             console.log(this.PageList[0].Name);
+    //             console.log(this.PageList.length);
+
+    //         }).catch(error => {
+    //             console.log(error);
+    //         });
+    //     getFieldsRecords({ id: this.ParentMessage })
+    //         .then(result => {
+    //             console.log('whyyyy');
+    //             console.log('*** FieldList ==>', result);
+    //             this.FieldList = result;
+    //             this.setPageField(result);
+    //             if (this.tab == 'tab-2') {
+    //                 var allDiv = this.template.querySelector('.tab-2');
+    //                 allDiv.style = 'background-color: #8EBFF0;padding: 12%;border-radius: 50%;';
+    //             }
+    //             console.log(this.FieldList.length);
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //             var allDiv = this.template.querySelector('.tab-2');
+    //             allDiv.style = 'background-color: #8EBFF0;padding: 12%;border-radius: 50%;';
+    //         });
+
+    //     getHoverCSS({ id: this.ParentMessage })
+    //         .then(result => {
+    //             console.log(result);
+    //             console.log('HoverCSS->> ' + result);
+    //             this.hovercss = result;
+    //         }).catch(error => {
+    //             console.log({ error });
+    //         })
+
+    //     getFocusCSS({ id: this.ParentMessage })
+    //         .then(result => {
+    //             console.log(result);
+    //             this.focuscss = result;
+    //         }).catch(error => {
+    //             console.log({ error });
+    //         })
+    //         if(this.tab == 'tab-2'){
+    //             this.activesidebar = true;
+    //         }
+
+    // }
+
+    // renderedCallback() {
+    //     console.log('inside the renderedcallBack--->>>');
+    //     console.log(this.removeObjFields.length);
+    //     this.tempararyfun();
+    //     console.log('Renderedcallback formbuilder');
+    //     getFormCSS({ id: this.ParentMessage })
+    //         .then(result => {
+    //             console.log(result);
+    //             this.getFieldCSS = result;
+    //             console.log('FormCSS->> ' + this.getFieldCSS);
+    //             let array = this.template.querySelector('.myform');
+    //             let str = this.getFieldCSS;
+    //             array.style = str;
+    //         }).catch(error => {
+    //             console.log('Error in getFormCSS ==>' + error);
+    //             console.log({ error });
+    //         })
+
+    //     getButtonCSS({ id: this.ParentMessage })
+    //         .then(result => {
+    //             console.log(result);
+    //             let str = result;
+    //             let arr = this.template.querySelectorAll('.btn1');
+    //             for (let i = 0; i < arr.length; i++) {
+    //                 const element = arr[i];
+    //                 element.style = str;
+    //             }
+    //         }).catch(error => {
+    //             console.log('Error in getButtonCSS ==>' + error);
+    //             console.log({ error });
+    //         })
+
+    //     getPageCSS({ id: this.ParentMessage })
+    //         .then(result => {
+    //             console.log(result);
+    //             this.getFieldCSS = result;
+    //             console.log('PageCSS->> ' + this.getFieldCSS);
+    //             let array = this.template.querySelectorAll('.page');
+    //             let str = this.getFieldCSS;
+    //             for (let i = 0; i < array.length; i++) {
+    //                 const element = array[i];
+    //                 console.log(i + '*--*' + element);
+    //                 element.style = str;
+    //             }
+    //             // this.spinnerDataTable = false;
+    //         }).catch(error => {
+    //             console.log('Error in getPageCSS ==>' + error);
+    //             console.log({ error });
+    //             // this.spinnerDataTable = false;
+    //         })
 
 
-
-
-    reloadform(){
-        GetFormPage({ Form_Id: this.ParentMessage })
-        .then(result => {
-            console.log('get form page called');
-            this.PageList = result;
-            console.log('this-->>');
-            console.log('*** pageList ==>', result);
-            console.log(this.PageList[0].Name);
-            console.log(this.PageList.length);
-
-        }).catch(error => {
-            console.log(error);
-        });
-    getFieldsRecords({ id: this.ParentMessage })
-        .then(result => {
-            console.log('whyyyy');
-            console.log('*** FieldList ==>', result);
-            this.FieldList = result;
-            this.setPageField(result);
-            if(this.tab == 'tab-2'){
-            var allDiv = this.template.querySelector('.tab-2');
-            allDiv.style = 'background-color: #8EBFF0;padding: 12%;border-radius: 50%;';
-            }
-            console.log(this.FieldList.length);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-        getHoverCSS({ id: this.formid })
-        .then(result => {
-            console.log(result);
-            console.log('HoverCSS->> ' + result);
-            this.hovercssproperty = result;
-        }).catch(error => {
-            console.log({ error });
-        })
-    }
+    // }
 
     get isIndexZero() {
 
@@ -344,6 +415,7 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
         console.log('After handlelabelCSS');
     }
 
+  
     handlepagecss(event) {
         if(event.detail != null){
             this.PageCSS = event.detail;
@@ -387,21 +459,20 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
             element.style = str;
         }
     }
-
     handlenewCSS(event) {
-        
-        this.newCSS = event.detail;
-        console.log(event.detail);
-        console.log('newCSSSS->> ' + this.newCSS);
-        console.log(this.template.querySelectorAll("c-quickformfieldcomponent"));
-        let Arr = this.template.querySelectorAll("c-quickformfieldcomponent");
-        for (let i = 0; i < Arr.length; i++) {
-            const element = Arr[i];
-            console.log(i + '--' + element);
-            element.FieldCSSUpdate(this.newCSS);
+        try {
+            this.fcss = event.detail;
+            getFieldsRecords({ id: this.ParentMessage })
+            .then(result => {
+               this.template.querySelector('c-quickformfieldcomponent').fieldcssupdate(result, this.fcss);
+
+            }) 
+    
+           
+        } catch (error) {
+            console.log("In the catch block ==> Method :** FieldCSSUpdate ** || LWC:** quickformfieldcomponent ** ==>", { error });
+            console.log('above error ==>' + error);
         }
-        // this.template.querySelector("c-quickformfieldcomponent").FieldCSSUpdate(this.newCSS);
-        console.log('After handlenewCSS');
     }
 
 
@@ -460,9 +531,11 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
                     this.template.querySelector('.fieldvalidationdiv').style = "display:none;";
                     this.fieldvalidationdiv = false;
                 }
-                if(this.activesidebar == false){
-                this.spinnerDataTable = true;
+                if (this.activesidebar == false) {
+                    this.spinnerDataTable = true;
                 }
+                // this.activeDropZone = true
+
                 this.activesidebar = true;
                 this.activeDesignsidebar = false;
                 this.activeNotification = false;
@@ -600,7 +673,7 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
             //     console.log('in else condition');
             //     event.dataTransfer.setData('text/plain', JSON.stringify(SenddataObj));
             // }
-            
+
             event.dataTransfer.setData('text/plain', JSON.stringify(event.target.dataset));
 
         } catch (error) {
@@ -624,7 +697,7 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
                 .then((result) => {
                     console.log("*** result from apex class ==>", result);
                     this.setPageField(result);
-                    
+
                 })
                 .catch((error) => {
                     console.log('*** Error From reOrderField ==>');
@@ -632,7 +705,7 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
                     // this.spinnerDataTable = false;
                 });
             // this.spinnerDataTable = false;
-            
+
         } else {
             var dropzone = this.template.querySelectorAll('.example-dropzone');
             for (let i = 0; i < dropzone.length; i++) {
@@ -731,7 +804,7 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
 
                 console.log('both methods are called and finish');
             }
-            
+
         }
     }
 
@@ -820,109 +893,109 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
 
     setPageField(fieldList) {
         try {
-        console.log('in set PageField');
-        let outerlist = [];
-        let isIndexZero = false;
-        let islast = false;
-        let isnotlast = false;
-        for (let i = 0; i < this.PageList.length; i++) {
-            let innerlist = [];
-            if (i == 0) {
-                isIndexZero = true;
-            } else if (i == this.PageList.length - 1) {
-                islast = true;
-            } else if (i != this.PageList.length - 1) {
-                isnotlast = true;
-            }
-            for (let j = 0; j < fieldList.length; j++) {
-                if (this.PageList[i].Id == fieldList[j].Form_Page__c) {
-                    console.log('inside inner loop');
-                    let fieldofObj = fieldList[j].Name.split(',');
-                    let fieldtype;
-                    if (fieldofObj[1] == 'Extra') {
-                        fieldtype = false;
-                    } else {
-                        fieldtype = true;
-                    }
-                    console.log(fieldtype + 'fieldtpys');
-                    console.log('in setpage field----->' + fieldofObj);
-                    if (fieldofObj.length == 2) {
-                        console.log(fieldofObj.length);
-                        if (fieldofObj[1] != 'Extra' && fieldofObj[1] != undefined && fieldofObj[1] != 'undefined') {
-                            console.log(fieldofObj[0]);
-                            this.removeObjFields.push(fieldofObj[0]);
+            console.log('in set PageField');
+            let outerlist = [];
+            let isIndexZero = false;
+            let islast = false;
+            let isnotlast = false;
+            for (let i = 0; i < this.PageList.length; i++) {
+                let innerlist = [];
+                if (i == 0) {
+                    isIndexZero = true;
+                } else if (i == this.PageList.length - 1) {
+                    islast = true;
+                } else if (i != this.PageList.length - 1) {
+                    isnotlast = true;
+                }
+                for (let j = 0; j < fieldList.length; j++) {
+                    if (this.PageList[i].Id == fieldList[j].Form_Page__c) {
+                        console.log('inside inner loop');
+                        let fieldofObj = fieldList[j].Name.split(',');
+                        let fieldtype;
+                        if (fieldofObj[1] == 'Extra') {
+                            fieldtype = false;
+                        } else {
+                            fieldtype = true;
                         }
-                    }
-
-                    let isdisabledcheck;
-                    let isRequiredcheck;
-                    let labelcheck;
-                    let helptextcheck;
-                    let placeholdercheck;
-                    let prefixcheck;
-                    let prefixvalue;
-                    let labelvalue;
-                    let helptext;
-                    let placeholdervalue;
-                    let salutationvalue = [];
-                    let Richtext;
-
-                    if (fieldList[j].Field_Validations__c) {
-                        fieldList[j].Field_Validations__c = fieldList[j].Field_Validations__c.split('?$`~');
-                        for (let i = 0; i < fieldList[j].Field_Validations__c.length; i++) {
-                            fieldList[j].Field_Validations__c[i] = fieldList[j].Field_Validations__c[i].split('<!@!>');
-                            let labels = fieldList[j].Field_Validations__c[i][0];
-                            let value = fieldList[j].Field_Validations__c[i][1];
-
-                            if (labels == 'isRequired') {
-                                isRequiredcheck = JSON.parse(value);
-                            } else if (labels == 'isDisabled') {
-                                isdisabledcheck = JSON.parse(value);
-                            } else if (labels == 'isLabel') {
-                                labelcheck = JSON.parse(value);
-                            } else if (labels == 'isHelpText') {
-                                helptextcheck = JSON.parse(value);
-                            } else if (labels == 'isPlaceholder') {
-                                placeholdercheck = JSON.parse(value);
-                            } else if (labels == 'isPrefix') {
-                                prefixcheck = JSON.parse(value);
-                            } else if (labels == 'Prefix') {
-                                prefixvalue = value;
-                            } else if (labels == 'Label') {
-                                labelvalue = value;
-                            } else if (labels == 'HelpText') {
-                                helptext = value;
-                            } else if (labels == 'Placeholder') {
-                                placeholdervalue = value;
-                            } else if (labels == 'Salutation') {
-                                salutationvalue.push(value);
-                            }else if (labels == 'Richtext') {
-                                Richtext = value;
+                        console.log(fieldtype + 'fieldtpys');
+                        console.log('in setpage field----->' + fieldofObj);
+                        if (fieldofObj.length == 2) {
+                            console.log(fieldofObj.length);
+                            if (fieldofObj[1] != 'Extra' && fieldofObj[1] != undefined && fieldofObj[1] != 'undefined') {
+                                console.log(fieldofObj[0]);
+                                this.removeObjFields.push(fieldofObj[0]);
                             }
                         }
-                        fieldList[j].Field_Validations__c = ({
-                            isRequired: isRequiredcheck, isDisabled: isdisabledcheck, isLabel: labelcheck, isHelptext: helptextcheck, isPlaceholder: placeholdercheck,
-                            isPrefix: prefixcheck, Prefix: prefixvalue, Label: labelvalue, HelpText: helptext, Placeholder: placeholdervalue, Salutation: salutationvalue, fieldtype: fieldtype, Richtext: Richtext
-                        });
-                    }
-                    innerlist.push(fieldList[j]);
-                }
-            }
 
-            let temp = { pageName: this.PageList[i].Name, pageId: this.PageList[i].Id, isIndexZero: isIndexZero, isIndexLast: islast, isIndexIsNotLast: isnotlast, FieldData: innerlist };
-            isIndexZero = false;
-            islast = false;
-            isnotlast = false;
-            outerlist.push(temp);
-        }
-        this.MainList = outerlist;
+                        let isdisabledcheck;
+                        let isRequiredcheck;
+                        let labelcheck;
+                        let helptextcheck;
+                        let placeholdercheck;
+                        let prefixcheck;
+                        let prefixvalue;
+                        let labelvalue;
+                        let helptext;
+                        let placeholdervalue;
+                        let salutationvalue = [];
+                        let Richtext;
+
+                        if (fieldList[j].Field_Validations__c) {
+                            fieldList[j].Field_Validations__c = fieldList[j].Field_Validations__c.split('?$`~');
+                            for (let i = 0; i < fieldList[j].Field_Validations__c.length; i++) {
+                                fieldList[j].Field_Validations__c[i] = fieldList[j].Field_Validations__c[i].split('<!@!>');
+                                let labels = fieldList[j].Field_Validations__c[i][0];
+                                let value = fieldList[j].Field_Validations__c[i][1];
+
+                                if (labels == 'isRequired') {
+                                    isRequiredcheck = JSON.parse(value);
+                                } else if (labels == 'isDisabled') {
+                                    isdisabledcheck = JSON.parse(value);
+                                } else if (labels == 'isLabel') {
+                                    labelcheck = JSON.parse(value);
+                                } else if (labels == 'isHelpText') {
+                                    helptextcheck = JSON.parse(value);
+                                } else if (labels == 'isPlaceholder') {
+                                    placeholdercheck = JSON.parse(value);
+                                } else if (labels == 'isPrefix') {
+                                    prefixcheck = JSON.parse(value);
+                                } else if (labels == 'Prefix') {
+                                    prefixvalue = value;
+                                } else if (labels == 'Label') {
+                                    labelvalue = value;
+                                } else if (labels == 'HelpText') {
+                                    helptext = value;
+                                } else if (labels == 'Placeholder') {
+                                    placeholdervalue = value;
+                                } else if (labels == 'Salutation') {
+                                    salutationvalue.push(value);
+                                } else if (labels == 'Richtext') {
+                                    Richtext = value;
+                                }
+                            }
+                            fieldList[j].Field_Validations__c = ({
+                                isRequired: isRequiredcheck, isDisabled: isdisabledcheck, isLabel: labelcheck, isHelptext: helptextcheck, isPlaceholder: placeholdercheck,
+                                isPrefix: prefixcheck, Prefix: prefixvalue, Label: labelvalue, HelpText: helptext, Placeholder: placeholdervalue, Salutation: salutationvalue, fieldtype: fieldtype, Richtext: Richtext
+                            });
+                        }
+                        innerlist.push(fieldList[j]);
+                    }
+                }
+
+                let temp = { pageName: this.PageList[i].Name, pageId: this.PageList[i].Id, isIndexZero: isIndexZero, isIndexLast: islast, isIndexIsNotLast: isnotlast, FieldData: innerlist };
+                isIndexZero = false;
+                islast = false;
+                isnotlast = false;
+                outerlist.push(temp);
+            }
+            this.MainList = outerlist;
             // console.log('***Main List ==>', JSON.stringify(outerlist));
             console.log('***Main List ==>', JSON.stringify(this.MainList));
             console.log('before renderedCallback');
         } catch (error) {
             console.log("In the catch block ==> Method :** handleAddPage ** || LWC:** formBuilder ** ==>", { error });
             console.log('above error ==>' + error);
-    }
+        }
 
     }
 
@@ -1040,13 +1113,13 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
 
     handleAddPage() {
         try {
-        console.log('total pages--------->' + this.PageList.length);
-        console.log('handle add page............');
-        this.isModalOpen1 = true;
+            console.log('total pages--------->' + this.PageList.length);
+            console.log('handle add page............');
+            this.isModalOpen1 = true;
         } catch (error) {
             console.log("In the catch block ==> Method :** handleAddPage ** || LWC:** formBuilder ** ==>", { error });
             console.log('above error ==>' + error);
-    }
+        }
     }
 
     pageeeee
@@ -1144,17 +1217,17 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
 
     handleValidation1() {
         try {
-        let nameCmp1 = this.template.querySelector(".nameCls1");
-        if (!nameCmp1.value || nameCmp1.value.trim().length == 0) {
-            console.log('test for form titel');
-            nameCmp1.setCustomValidity("Page Title is required");
-        } else {
-            nameCmp1.setCustomValidity(""); // clear previous value
-            // this.formdetails = false;
-            // this.objectselection = true;
-            this.handlecreatePage();
-        }
-        nameCmp1.reportValidity();
+            let nameCmp1 = this.template.querySelector(".nameCls1");
+            if (!nameCmp1.value || nameCmp1.value.trim().length == 0) {
+                console.log('test for form titel');
+                nameCmp1.setCustomValidity("Page Title is required");
+            } else {
+                nameCmp1.setCustomValidity(""); // clear previous value
+                // this.formdetails = false;
+                // this.objectselection = true;
+                this.handlecreatePage();
+            }
+            nameCmp1.reportValidity();
         } catch (error) {
             console.log("In the catch block ==> Method :** handleValidation1 ** || LWC:** formBuilder ** ==>", { error });
             console.log('above error ==>' + error);
@@ -1177,25 +1250,25 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
 
     handlecreatePage() {
         try {
-        console.log('total pages--------->' + this.PageList.length);
-        createPage({ pageNumber: this.pagenumber, totalPages: this.PageList.length, formId: this.ParentMessage, pagename: this.pagetitle }).then(result => {
-            this.FieldList = result.fieldList;
-            console.log('inside the result in page break-->');
-            console.log(result);
-            this.PageList = result.pageList;
-            this.setPageField(result.fieldList);
-            // this.showToast('Form Page create Successfully','success');
-            let toast_error_msg = 'Form Page create Successfully';
-            this.error_toast = true;
-            this.template.querySelector('c-toast-component').showToast('success', toast_error_msg, 3000);
-        }).catch(err => {
-            console.log({ err });
-            let toast_error_msg = 'Error while creating page, Please try again later';
-            this.error_toast = true;
-            this.template.querySelector('c-toast-component').showToast('error', toast_error_msg, 3000);
-        })
-        this.isModalOpen1 = false;
-        this.handleModalClose();
+            console.log('total pages--------->' + this.PageList.length);
+            createPage({ pageNumber: this.pagenumber, totalPages: this.PageList.length, formId: this.ParentMessage, pagename: this.pagetitle }).then(result => {
+                this.FieldList = result.fieldList;
+                console.log('inside the result in page break-->');
+                console.log(result);
+                this.PageList = result.pageList;
+                this.setPageField(result.fieldList);
+                // this.showToast('Form Page create Successfully','success');
+                let toast_error_msg = 'Form Page create Successfully';
+                this.error_toast = true;
+                this.template.querySelector('c-toast-component').showToast('success', toast_error_msg, 3000);
+            }).catch(err => {
+                console.log({ err });
+                let toast_error_msg = 'Error while creating page, Please try again later';
+                this.error_toast = true;
+                this.template.querySelector('c-toast-component').showToast('error', toast_error_msg, 3000);
+            })
+            this.isModalOpen1 = false;
+            this.handleModalClose();
 
         } catch (error) {
             console.log("In the catch block ==> Method :** handlecreatePage ** || LWC:** formBuilder ** ==>", { error });
@@ -1226,9 +1299,10 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
             this.PageList = result.pageList;
             this.setPageField(result.fieldList);
             if (pagelength) {
-                this.showToast('sorry page can not deleted', 'fail')
+                this.template.querySelector('c-toast-component').showToast('error', 'You cannot delete the page', 3000);
+
             } else {
-                this.showToast('page Delete successfully');
+                this.template.querySelector('c-toast-component').showToast('success', 'Page deleted successfully', 3000);
             }
         })
     }
@@ -1440,6 +1514,15 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
         this.activeDesignsidebar = false
         this.fieldvalidationdiv = true;
         this.template.querySelector('.fieldvalidationdiv').style = "display:block;";
+        var array = this.template.querySelectorAll('.field');
+        for (let index = 0; index < array.length; index++) {
+            const element = array[index];
+            if (event.currentTarget.dataset.id == element.dataset.id) {
+                element.style = "background-color:rgba(210,201,201,0.4); border-radius:4px";
+            } else {
+                element.style = "background-color:none;";
+            }
+        }
         this.template.querySelector('c-field-validation').openvalidation(this.tab, this.fieldId, this.fieldName);
     }
     closevalidation(event) {
@@ -1448,27 +1531,29 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
         this.activeNotification = false;
         this.activethankyou = false;
         this.fieldvalidationdiv = false;
-        this.template.querySelector('.fieldvalidationdiv').style = "display:none;";
-        if(this.tab == 'tab-2'){
-            this.activesidebar = true;
-        }
-        else if(this.tab == 'tab-3'){
-            this.activeDesignsidebar = true;
-        }
 
         getFieldsRecords({ id: this.ParentMessage })
         .then(result => {
             this.FieldList = result;
             this.setPageField(result);
-            if(this.tab == 'tab-2'){
+        }) 
+
+        // this.reloadform();
+        if (this.tab == 'tab-2') {
             var allDiv = this.template.querySelector('.tab-2');
             allDiv.style = 'background-color: #8EBFF0;padding: 12%;border-radius: 50%;';
-            }
-            this.spinnerDataTable = false;
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            this.activesidebar = true;
+        }
+        else if (this.tab == 'tab-3') {
+            this.activeDesignsidebar = true;
+        }
+
+        this.template.querySelector('.fieldvalidationdiv').style = "display:none;";
+        var array = this.template.querySelectorAll('.field');
+        for (let index = 0; index < array.length; index++) {
+            const element = array[index];
+            element.style = "background-color:none;";
+        }
     }
     afterfielddelete(event) {
         console.log('after delete event --> ' + event.detail);
@@ -1481,5 +1566,80 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
             console.log('element :- ' + element);
             element.AddField(name);
         }
+    }
+
+    bin = iconsZip + '/Iconfolder/bin.png';
+    deletepopup = false;
+    pageIds;
+    handleDeleteAction(event) {
+        this.pageIds = event.currentTarget.dataset.record
+        this.deletepopup = true;
+        // this.spinnerdelete = true;
+    }
+    deleteyes() {
+        this.deletepopup = false;
+        // this.spinnerDataTable = true;
+        deletePage({ FormId: this.ParentMessage, PageId: this.pageIds }).then(result => {
+            this.FieldList = result.fieldList;
+            console.log('inside the result in page break-->');
+            console.log(result);
+            var pagelength = result.pageList.length == this.PageList.length;
+            this.PageList = result.pageList;
+            this.setPageField(result.fieldList);
+            if (pagelength) {
+                let toast_error_msg = 'Error while deleting the page, Please try again later';
+                this.error_toast = true;
+                this.template.querySelector('c-toast-component').showToast('error', toast_error_msg, 3000);
+            }
+            else {
+                let toast_error_msg = 'Page is successfully deleted';
+                this.error_toast = true;
+                this.template.querySelector('c-toast-component').showToast('success', toast_error_msg, 3000);
+            }
+        })
+        // try {
+        //   deleteform({id : this.formId, searchkey : this.searchkey}).then(result => {
+        //     console.log(this.formId);
+        //     this.PaginationList = result;
+        //     this.count -= 1;
+        //     if (this.count === 0) {
+        //       this.bNoRecordsFound = false;
+        //     }
+        //     this.spinnerdelete = false;              
+        //     this.spinnerDataTable = false;
+        //     let toast_error_msg = 'Form is successfully deleted';
+        //     this.error_toast = true;
+        //     this.template.querySelector('c-toast-component').showToast('success',toast_error_msg,3000);
+        //   });
+
+        // } 
+        // catch (error) {
+        //   console.error(error);
+        //   this.spinnerDataTable = false;
+        //   let toast_error_msg = 'Error while deleting the form, Please try again later';
+        //   this.error_toast = true;
+        //   this.template.querySelector('c-toast-component').showToast('error',toast_error_msg,3000);
+        // }
+    }
+    //   deletePage(event){
+    //     console.log('deleting---------------->' + event.currentTarget.dataset.record);
+    //   deletePage({FormId:this.ParentMessage,PageId:event.currentTarget.dataset.record}).then(result=>{
+    //     this.FieldList = result.fieldList;
+    //     console.log('inside the result in page break-->');
+    //     console.log(result);
+    //     var pagelength = result.pageList.length==this.PageList.length;
+    //     this.PageList = result.pageList;
+    //     this.setPageField(result.fieldList);
+    //     if(pagelength){
+    //         this.showToast('sorry page can not deleted','fail')
+    //     }
+    //     else{
+    //      this.showToast('page Delete successfully');}
+    //   })
+    // }
+
+    deleteno() {
+        this.deletepopup = false;
+        this.error_toast = false;
     }
 }

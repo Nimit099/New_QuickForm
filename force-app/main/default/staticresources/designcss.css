@@ -7,3 +7,15 @@
     border-radius: 14px;
     border-color: #6699cc;
 }
+.combocls .slds-dropdown-trigger_click .slds-dropdown {
+    max-height: 150px !important;
+}
+
+.slds-swatch{
+    border: 1px solid black;
+    border-radius: 4px;
+}
+.colorpickercls .slds-color-picker__selector.slds-popover {
+    /* top: 572px !important; */
+    position: relative !important;
+}

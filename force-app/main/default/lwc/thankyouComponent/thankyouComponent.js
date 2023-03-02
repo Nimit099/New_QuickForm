@@ -51,7 +51,7 @@ export default class ThankyouComponent extends LightningElement {
 // =================================== -->
     connectedCallback(){
         this.spinner = true;
-        console.log('OUTPUT : ',this.currentformid);
+        console.log('OUTPUT Thank: ',this.formname);
         getrecords({currentformid : this.currentformid}).then(result => {
             this.label = result.ThankYou_Label__c;
             this.changelabel = result.ThankYou_Label__c;
@@ -167,7 +167,7 @@ export default class ThankyouComponent extends LightningElement {
            const regexp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/ ;
             if (regexp.test(this.url))
             { 
-                records({picklist : this.picklist,label : this.label, classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => {
+                records({Name : this.formname,picklist : this.picklist,label : this.label, classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => {
                     this.spinner = false;
                 }).then(result =>{
                     this.check_thankyou_record();
@@ -184,7 +184,7 @@ export default class ThankyouComponent extends LightningElement {
             }
         }
         else{
-        records({picklist : this.picklist,label : this.label, classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => { 
+        records({Name : this.formname,picklist : this.picklist,label : this.label, classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => { 
             this.spinner = false;
         }).then(result =>{
             this.check_thankyou_record();

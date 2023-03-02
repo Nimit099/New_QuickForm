@@ -7,21 +7,59 @@
                         <img src={Logo}>
                     </div>
                     <div class="quickbot_header_body">
-                        <div class="quickbot_text">{header}</div>
+                        <!-- <div class="quickbot_text">{header}</div> -->
+                        <div class="quickbot_text">Quick Bot</div>
                         <img src={Cross} class="cross_img" onclick={quickboe_close}>
+                        
                     </div>
                 </div>
             </div>
+            <!-- <div class="quickbot_header_igdiv1">
+                <img src={Logo}>
+            </div>
+            <div class="Wel_message">
+                <p>Hello!! Welcome to the Quick Bot. <br> Please fill below form for your query.</p>
+            </div> -->
             <div class="QuickBotBody">
-                <lightning-input type="text" placeholder="Enter your Name here" label="Name" value={quickbotname} onchange={Quickbot_name} class="quickbot_input" required></lightning-input>
-                <lightning-input type="text" label="Email" placeholder="Enter your email address here" value={quickbotemail} onchange={Quickbot_email} class="quickbot_input" required></lightning-input>
-                <div class="email_error_msg" if:false={email_msg}>Please Enter Valid Email
-                    Details..!</div>
+                <div class="main_wel">
+                    <template if:true={wel_message}>    
+                        <template if:true={first_icon}>
+                            <div class="quickbot_header_igdiv1">
+                                <img src={Logo}>
+                            </div>
+                        </template>    
+                        <div class="Wel_message">
+                            <p>Hello!!<span>&#128075;</span> Welcome to the Quick Bot. <br> Please fill below form for your query.</p>
+                        </div>
+                    </template>    
+                </div>    
+                <div class="form_message">
+                    <template if:true={feedback_form}>    
+                        <div class="quickbot_header_igdiv2">
+                                <img src={Logo}>
+                        </div>
+                        <div class="Wel_message">
+                        <!-- <div class="form"> -->
+                            <lightning-input type="text" placeholder="Enter Your Name" label="Name" value={quickbotname} onchange={Quickbot_name} class="quickbot_input" required></lightning-input>
+                            <lightning-input type="text" label="Email" placeholder="Enter Your Email" value={quickbotemail} onchange={Quickbot_email} class="quickbot_input" required></lightning-input>
+                            <div class="email_error_msg" if:false={email_msg}>Please Enter Valid Email
+                                Details..!</div>
 
-                <lightning-input type="text" label="Subject" placeholder="Enter your Subject here" value={quickbotsubject} onchange={Quickbot_subject} class="quickbot_input"></lightning-input>
-                <lightning-textarea label="Message" placeholder="Enter your message here" value={quickbotmessage} onchange={Quickbot_message} class="quickbot_message" required></lightning-textarea>
-                <!-- <textarea label="Message" placeholder="Enter your message here" value={quickbotmessage} onchange={Quickbot_message} class="quickbot_message"></textarea> -->
-                <div class="quickbot_button" onclick={quickbot_Submit}><span>Submit</span></div>
+                            <lightning-input type="text" label="Subject" placeholder="Enter Your Subject" value={quickbotsubject} onchange={Quickbot_subject} class="quickbot_input"></lightning-input>
+                            <lightning-textarea label="Message" placeholder="Enter your Message" value={quickbotmessage} onchange={Quickbot_message} class="quickbot_message" required></lightning-textarea>
+                            <!-- <textarea label="Message" placeholder="Enter your message here" value={quickbotmessage} onchange={Quickbot_message} class="quickbot_message"></textarea> -->
+                            <div class="quickbot_button" onclick={quickbot_Submit}><span>Submit</span></div>
+                        </div>
+                    </template>    
+                </div>
+                <!-- typing spinner  -->
+                <template if:true={spinnerdatatable}>
+                    <div class="load">
+                        <div class="progress"></div>
+                        <div class="progress"></div>
+                        <div class="progress"></div>
+                    </div>
+                </template>
             </div>
             <div class="QuickBotFooter">
                 Powered by <span class="Owner">Mv Clouds</span>

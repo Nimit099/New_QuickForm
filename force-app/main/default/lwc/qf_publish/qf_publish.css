@@ -1,7 +1,8 @@
-.Publish_lwc_Component_code{
-    text-align:left; 
-    padding-left:15px
+.Publish_lwc_Component_code {
+    text-align: left;
+    padding-left: 20px
 }
+
 .spinner-main-div {
     height: 100%;
     width: 100%;
@@ -10,15 +11,14 @@
     justify-content: center;
 }
 
- .loader--ripple {
+.loader--ripple {
     display: inline-block;
     position: relative;
     height: 100px;
     width: 100px;
-
 }
 
- .loader--ripple div {
+.loader--ripple div {
     position: absolute;
     animation: loader--ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
     border: 4px solid;
@@ -26,7 +26,7 @@
     opacity: 1;
 }
 
- .loader--ripple div:nth-child(2) {
+.loader--ripple div:nth-child(2) {
     animation-delay: -0.5s;
 }
 
@@ -48,30 +48,15 @@
     }
 }
 
- .loader--ripple div {
+.loader--ripple div {
     border-color: #00539f;
 
- }
-
-.MainComponent {
-    /* overflow-y: scroll; */
-    background-color: white;
- 
-    overflow-y: scroll;
-    height: 100%;
-    overflow: hidden;
-    border-radius:28px;
-    width: 84vh;
- 
-   
-    
 }
 
-.slds-vertical-tabs__link{
-    background-color: #6699CC;
-}.std-btn{
+.std-btn {
     height: 34px;
     width: 110px;
+    margin-left: 60px;
     margin-right: 15px;
     border-radius: 30px;
     background-color: #6699CC;
@@ -80,24 +65,22 @@
     border: none;
 }
 
-.bt-center{
+.bt-center {
     background-color: #ffffff;
     width: 100%;
-    padding: var(--lwc-spacingMedium,1rem);
+    padding: var(--lwc-spacingMedium, 1rem);
 }
 
-.bt{
-    /* width: 100%; */
+.bt {
     background-color: #ffffff;
     width: 250px;
     margin-right: auto;
     margin-left: auto;
-
 }
 
-.qrcode2{
-    height:200px;
-    width:200px;
+.qrcode2 {
+    height: 200px;
+    width: 200px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -106,25 +89,21 @@
     padding: 30px 0 0 16px;
 }
 
-   .checkBoxes,
-   .iconsImage {
+.checkBoxes,
+.iconsImage {
     cursor: pointer;
-    /* border-bottom: var(--lwc); */
 }
 
-.checkBoxes .slds-form-element__control .slds-radio{
-    /* border-bottom: var(--lwc-BorderBottom, 1px solid lightgray); */
+.checkBoxes .slds-form-element__control .slds-radio {
     border-bottom: 1px solid lightgrey !important;
-    /* padding: var(--lwc-Padding, 18px 10px 18px 0px); */
     padding: 18px 10px 18px 0px !important;
-    /* padding: 18px 10px 18px 0px !important; */
 }
 
-   .publishCheckboxes .slds-form-element__control .slds-radio:last-child {
+.publishCheckboxes .slds-form-element__control .slds-radio:last-child {
     border: none
 }
 
-   .leftPanelTitle {
+.leftPanelTitle {
     text-transform: capitalize;
     color: rgba(0, 0, 0, 0.56);
     padding: 41px 0 0 16px;
@@ -132,7 +111,7 @@
     font-size: 24px
 }
 
-   .lightBoxChexboxes {
+.lightBoxChexboxes {
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -141,7 +120,7 @@
     align-items: center;
 }
 
-   .lightBoxAcc {
+.lightBoxAcc {
     margin: 5px 0px;
     background-color: white;
     cursor: pointer;
@@ -153,49 +132,14 @@
     width: 85%;
 }
 
-   .PublishForm {
+.PublishForm {
     background-color: white;
     width: 80%;
     height: 100vh;
     padding: 0 6%;
-    /* margin: auto; */
 }
 
-.std-btn{
-    height: 34px;
-    width: 110px;
-    margin-left: 60px;
-    border-radius: 30px;
-    background-color: #6699CC;
-    font-size: 15px;
-    color: #ffffff;
-    border: none;
-}
-
-.bt-center{
-    background-color: #ffffff;
-    width: 100%;
-    padding: var(--lwc-spacingMedium,1rem);
-}
-
-.bt{
-    /* width: 100%; */
-    background-color: #ffffff;
-    width: 250px;
-    margin-right: auto;
-    margin-left: auto;
-
-}
-
-   .showModalSection .slds-modal__container {
-    max-width: 45%;
-}
-
-   .showModalSection .slds-modal__content {
-    height: 20rem;
-}
-
-   .formlink {
+.formlink {
     font-size: 1.4rem;
     font-weight: bold;
     display: flex;
@@ -203,7 +147,7 @@
     align-items: center;
 }
 
-   .inputBox {
+.inputBox {
     background: #FFFFFF;
     box-shadow: 0px 2px 2px rgb(0 0 0 / 25%);
     border-radius: 10px;
@@ -230,64 +174,28 @@
     justify-content: center;
 }
 
-   .codeCopySection::-webkit-scrollbar {
+.codeCopySection::-webkit-scrollbar {
     display: none;
 }
 
-   /* .runcodeicon {
-    border: none;
-    border-radius: 10px;
-    background-color: #6699CC;
-    display: flex;
-    margin: 2% auto;
-} */
-
-   .slds-button__icon {
+.slds-button__icon {
     fill: #6699cc;
 }
 
-   .copiedtext,.copiedtext1,.copiedtext2,.copiedtext3,.copiedtext5,
-   .copiedUrl {
-    /* position: absolute;
-    left: 25%;
-    top: 49%;
-    right: 0; */
+.copiedtext,
+.copiedtext1,
+.copiedtext2,
+.copiedtext3 {
     text-align: center;
     opacity: 0;
-    /* transform: translateY(-1em); */
     color: #000;
-    /* transition: all .500s; */
     opacity: 1;
-    /* transform: translateY(13em); */
-    display: none;
-    color: #6699CC;
-    font-size: 1rem;
-}
-.copiedtext4{
-    position: absolute;
-    left: 40%;
-    top: 40%;
-    right: 0%;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(-1em);
-    color: #000;
-    transition: all .500s;
-    opacity: 1;
-    transform: translateY(13em);
     display: none;
     color: #6699CC;
     font-size: 1rem;
 }
 
-   /* .slds-form-element__control .slds-radio {
-    border-bottom: 1px solid lightgray;
-    padding: 18px 10px 18px 0px
-} */
-
-
-
-   .LeftBar {
+.LeftBar {
     background-color: rgba(242, 242, 242, 0.76);
     position: relative;
     height: 100vh;
@@ -296,30 +204,22 @@
     padding-bottom: 10rem;
 }
 
-   .LeftBar::-webkit-scrollbar {
+.LeftBar::-webkit-scrollbar {
     display: none;
 }
 
-   .EditForm {
-    width: 80%;
-    left: 20%;
-    position: relative;
-    background-color: #FEFEFE;
-    height: 100%;
-}
-
-   .formLinkTitle {
+.formLinkTitle {
     font-weight: bold;
     font-size: 1.5rem;
     height: 10%;
     padding: 41px 0 0 0px;
 }
 
-   .linkText {
+.linkText {
     height: 2%;
 }
 
-   .formlink {
+.formlink {
     font-size: 1.4rem;
     font-weight: bold;
     display: flex;
@@ -327,7 +227,7 @@
     align-items: center;
 }
 
-   .iconsImage {
+.iconsImage {
     width: 32px;
     background: #FFFFFF;
     margin: 0px 0px 0px 10px;
@@ -336,7 +236,7 @@
     padding: 7px;
 }
 
-   .publishUsing {
+.publishUsing {
     font-size: 1.4rem;
     height: 4%;
     font-weight: bold;
@@ -345,11 +245,7 @@
     align-items: center;
 }
 
-   .publishUsingText {
-    height: 3%;
-}
-
-   .inputBox {
+.inputBox {
     background: #FFFFFF;
     box-shadow: 0px 2px 2px rgb(0 0 0 / 25%);
     border-radius: 10px;
@@ -360,49 +256,30 @@
     padding: 1% 0.7%;
 }
 
-   .copyIcon:focus {
+.copyIcon:focus {
     border: none;
 }
 
-   .codeCopySection::-webkit-scrollbar {
+.codeCopySection::-webkit-scrollbar {
     display: none;
 }
 
-   .publishFormMain {
-    width: 85%;
-    height: 100%;
-    margin: auto;
-}
-
-   .iframeCode {
+.iframeCode {
     background: #ebebeb;
     border-radius: 15px;
     height: 40%;
-    line-height: 4em;
+    line-height: 3em;
     padding: 10px 25px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-   .publishCheckboxes {
+.publishCheckboxes {
     padding: 30px 0 0 16px;
 }
 
-   .copyCodeButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-   .copyCodeButton button {
-    border-radius: 10px;
-    border: none;
-    background-color: #6699CC;
-    width: 10%;
-}
-
-   .lightBoxChexboxes {
+.lightBoxChexboxes {
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -411,19 +288,7 @@
     align-items: center;
 }
 
-   .linkToFormText .para {
-    background: #EBEBEB;
-    margin: 10px 15px;
-    padding: 10px;
-}
-
-   .linkToFormText h2 {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #6699CC;
-}
-
-   .lightBoxAcc {
+.lightBoxAcc {
     margin: 5px 0px;
     background-color: white;
     cursor: pointer;
@@ -435,33 +300,28 @@
     width: 85%;
 }
 
-   .publishCheckboxes .slds-form-element__control .slds-radio:last-child {
+.publishCheckboxes .slds-form-element__control .slds-radio:last-child {
     border: none
-}
-
-   .qr-code {
-    max-width: 200px;
-    margin: 10px;
 }
 
 
 /*copy code*/
 
-   .code {
+.code {
     background-color: white;
 }
 
-   .mainHeading {
+.mainHeading {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
 }
 
-   .copyIcon {
+.copyIcon {
     border: none;
 }
 
-   .codestyle {
+.codestyle {
     padding-left: 0.9rem;
     padding-left: 0.9rem;
     background-color: #f0f0f0;
@@ -470,39 +330,31 @@
     background-color: #f0f0f0;
 }
 
-   .codestyle::-webkit-scrollbar {
+.codestyle::-webkit-scrollbar {
     display: none;
 }
 
-   .mainHeading {
+.mainHeading {
     background-color: #f0f0f0;
 }
 
-   .subcodeJs,
-   .subcodeCss {
+.subcodeJs,
+.subcodeCss {
     margin: 0px 0 0 10px;
 }
 
-   .verticalTab .publishTab.slds-vertical-tabs__content {
+.verticalTab .publishTab.slds-vertical-tabs__content {
     height: 100vh;
     padding-bottom: 10rem;
     overflow: hidden;
     overflow-y: scroll;
 }
 
-   .verticalTab .publishTab.slds-vertical-tabs__content::-webkit-scrollbar {
+.verticalTab .publishTab.slds-vertical-tabs__content::-webkit-scrollbar {
     display: none;
 }
 
-   /* .runcodeicon {
-    border: none;
-    border-radius: 10px;
-    background-color: #6699CC;
-    display: flex;
-    margin: 2% auto;
-} */
-
-   .urlCopied {
+.urlCopied {
     position: relative;
     top: -30px;
     left: -36PX;
@@ -511,178 +363,21 @@
     display: none;
 }
 
-   .subcode::-webkit-scrollbar {
+.subcode::-webkit-scrollbar {
     display: none;
 }
 
-   .code::-webkit-scrollbar {
+.code::-webkit-scrollbar {
     display: none;
 }
 
-   .heading {
+.heading {
     display: flex;
     margin: 10px 0 0 10px;
     align-items: center;
 }
 
-   .heading .slds-button_icon-small {
-    background: white;
-    border: none;
-}
-
-   .copiedUrl {
-    position: absolute;
-    top: -38px;
-    left: 35px;
-    display: none;
-}
-
-   .slds-popover_tooltip {
-    background-color: #6699CC;
-}
-
-   .publishComponent {
-    position: relative;
-    width: 100%;
-}
-
-
-/* The Modal (background) */
-
-  .confirmBox {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    display: flex;
-    z-index: 1000;
-}
-
-   .mainPublish {
-    position: relative;
-    width: 25%;
-    height: 30%;
-    margin: auto;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-
-/* === */
-
-  .slds-modal {
-    position: absolute !important;
-}
-
-   .publish-modal__container {
-    width: 30% !important;
-}
-
-   .slds-modal__header {
-    background: #6699CC !important;
-    font-size: 2rem !important;
-    font-weight: 500 !important;
-    color: white !important;
-}
-
-   .slds-modal__content {
-    font-size: medium;
-    font-weight: 400;
-    text-align: center;
-}
-
-   .iframe_modal__content {
-    height: 80% !important;
-}
-
-   .iframe-modal__container {
-    width: 60% !important;
-    max-width: 100%;
-    min-width: 50%;
-}
-
-   .slds-modal__footer {
-    background-color: #fff !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top-style: none;
-}
-
-   .publishBoxTitle {
-    width: 100%;
-    background: #6699CC;
-    height: 20%;
-    color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-   .publishBoxContent {
-    height: 60%;
-    color: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* padding: 10px 10px 0px 10px; */
-    font-size: medium;
-    font-weight: 400;
-    padding: 5% 7%;
-}
-
-   .publishBoxButton {
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-   .boxContentIframe {
-    height: 80%;
-    color: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 10px 0px 10px;
-}
-
-   .MainIframe {
-    position: relative;
-    width: 60%;
-    height: 65%;
-    margin: auto;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-   .boxYesButton,
-   .boxNoButton {
-    border-radius: 7px;
-    border: navajowhite;
-    width: 6rem;
-    height: 1.7rem;
-    font-size: medium;
-    font-weight: 400;
-}
-
-   .boxYesButton {
-    background: #6699CC;
-    color: white;
-}
-
-   .boxNoButton {
-    background-color: #E6E7E9;
-    color: black;
-}
-
-  .myBtn {
+.myBtn {
     position: absolute;
     bottom: 12px;
     right: 12px;
@@ -698,7 +393,7 @@
     cursor: pointer;
 }
 
-  .myBtn span {
+.myBtn span {
     display: flex;
     width: 100%;
     height: 100%;
@@ -707,122 +402,41 @@
     transition: transform 0.5s ease;
 }
 
-   .boxContentIframe .iframe {
-    width: 100vw;
-    height: 100vh;
-}
-
-   .codeIcons {
+.codeIcons {
     margin-right: 10px;
 }
 
-   .mainPublishLightBox {
-    position: relative;
-    width: 30%;
-    height: 30%;
-    margin: auto;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-   .lightBoxSection {
-    /* height: 16rem; */
+.lightBoxSection {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-   .pm-ftr-rm-div {
-    height: 70px;
-    padding: inherit;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-   .pm-dtl {
-    font-size: medium;
-    font-weight: 400;
-    align-items: center;
-}
-
-   .pm-ttl {
-    font-size: medium;
-    font-weight: 400;
-    align-items: center;
-    padding: inherit;
+    gap: 10px;
 }
 
 @media only screen and (max-width:1669px) {
-       .iframeCode {
+    .iframeCode {
         line-height: 3rem;
     }
 }
 
 @media only screen and (max-width:1550px) {
-       .iframeCode {
+    .iframeCode {
         line-height: 3rem;
     }
-       .LeftBar {
+
+    .LeftBar {
         width: 20%;
     }
-       .PublishForm {
+
+    .PublishForm {
         width: 80%;
     }
 }
 
 @media only screen and (max-width:1400px) {
-       .publish-modal__container {
-        width: 40% !important;
-    }
-       .mainPublishLightBox {
-        position: relative;
-        width: 40%;
-        height: 50%;
-        margin: auto;
-        flex-direction: column;
-        background-color: white;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
-       .MainIframe {
-        position: relative;
-        width: 70%;
-        height: 80%;
-        margin: auto;
-        flex-direction: column;
-        background-color: white;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
-       .editFormContent {
-        height: 20%;
-    }
-       .verticalTab {
-        width: 30%;
-    }
-       .EditForm {
-        width: 70%;
-        left: 30%
-    }
-       .formTitle {
-        margin-bottom: 3%;
-        margin-top: 3%;
-    }
-       .formTitleHeader {
-        font-size: 1.5rem;
-    }
-       .fieldDiv2 {
-        display: none;
-        left: 46px;
-        width: 27%;
-        z-index: 10;
-        scroll-behavior: smooth;
-        overflow: scroll;
-        overflow: scroll;
-        height: 100vh;
-        padding: 0 0 10rem 0;
-    }
-    .codeCopySection,.iframeCode {
+
+    .codeCopySection,
+    .iframeCode {
         background: #EBEBEB;
         border-radius: 15px;
         height: 12rem;
@@ -830,176 +444,114 @@
         display: flex;
         justify-content: center;
     }
-    .linkToForm{
-        background: #EBEBEB;
-        border-radius: 15px;
-        height: 3rem;
-        line-height: 2em;
-        display: flex;
-        justify-content: center; 
-    }
-    .linkToForm p{
-        padding-bottom: 20px;
-    }
-    /* .codeCopySection{
-        background: #EBEBEB;
-        border-radius: 15px;
-        line-height: 3em;
-        overflow: hidden;
-        overflow-y: scroll;
-        height: 40%;
-        display: flex;
-        justify-content: center;
-    }
-    .codeCopySection::-webkit-scrollbar {
-        display: none;
-    } */
-       .codeCopySectionQr {
-        border-radius: 15px;
-        height: 10rem;
-        line-height: 2em;
-        display: flex;
-        justify-content: center;
-    }
-       .lightBoxSection {
+
+    .lightBoxSection {
         height: 16rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
-    }
-       .copyCodeButton button {
-        border-radius: 10px;
-        border: none;
-        background-color: #6699CC;
-        width: 15%;
+        gap: 10px;
     }
 
-    .linkToFormText{
-        height: 40%;
-        position: relative;
-    }
-
-       .linkToFormText .para {
-        background: #EBEBEB;
-        margin: 5px 10px;
-        padding: 10px;
-    }
-       .linkToFormText h2 {
-        font-size: 1.3em;
-        font-weight: bold;
-        color: #6699CC;
-    }
-       .linkToFormCode {
-        overflow: hidden;
-        /* height: 30%; */
-        height: 50%;
-        overflow-y: scroll;
-    }
-       .linkToFormCode::-webkit-scrollbar {
-        display: none;
-    }
-       .codestyle {
+    .codestyle {
         height: 10.5rem;
     }
-       .formlink {
+
+    .formlink {
         font-weight: normal;
         height: 10%;
     }
-       /* .copiedtext,
-       .copiedUrl {
-        position: absolute;
-        left: 0;
-        top: -6%;
-        right: 0;
+
+    .copiedtext,
+    .copiedtext1,
+    .copiedtext2,
+    .copiedtext3 {
         text-align: center;
         opacity: 0;
-        transform: translateY(-1em);
         color: #000;
-        transition: all .500s;
         opacity: 1;
-        transform: translateY(13em);
         display: none;
         color: #6699CC;
-        font-size: 16px;
-    } */
-    .copiedtext,.copiedtext1,.copiedtext2,.copiedtext3,.copiedtext4,.copiedtext5,
-   .copiedUrl {
-   /* position: absolute;
-    left: 40%;
-    top: 45%;
-    right: 0%; */
-    text-align: center;
-    opacity: 0;
-    /* transform: translateY(-1em); */
-    color: #000;
-    /* transition: all .500s; */
-    opacity: 1;
-    /* transform: translateY(13em); */
-    display: none;
-    color: #6699CC;
-    font-size: 1rem;
-}
-.copiedtext4{
-    position: absolute;
-    left: 40%;
-    top: 45%;
-    right: 0%;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(-1em);
-    color: #000;
-    transition: all .500s;
-    opacity: 1;
-    transform: translateY(13em);
-    display: none;
-    color: #6699CC;
-    font-size: 1rem;
+        font-size: 1rem;
+    }
 
-}
-
-       .leftPanelTitle {
+    .leftPanelTitle {
         padding: 30px 0 0 16px;
     }
-       .formLinkTitle {
+
+    .formLinkTitle {
         height: 13%;
         padding: 30px 0 0 0px;
     }
-       .linkText {
+
+    .linkText {
         height: 5%;
     }
-       .PublishForm {
+
+    .PublishForm {
         width: 77%;
         padding: 0 5%;
     }
-       .LeftBar {
+
+    .LeftBar {
         width: 23%;
     }
-       .publishUsing {
+
+    .publishUsing {
         height: 2%;
     }
-    .introCodeText {
-        /* display: none; */
-    }
-       .mainPublish {
-        position: relative;
-        width: 35%;
-        height: 40%;
-        margin: auto;
-        flex-direction: column;
-        background-color: white;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
+
 }
 
 @media only screen and (max-width:1102px) {
-       .LeftBar {
+    .LeftBar {
         width: 26%;
     }
-       .PublishForm {
+
+    .PublishForm {
         width: 74%;
     }
 }
-.checkBoxes .slds-form-element__control .slds-radio{
+
+.checkBoxes .slds-form-element__control .slds-radio {
     border-bottom: 1px solid lightgray;
     padding: 18px 10px 18px 0;
+}
+
+.spinnercont {
+    overflow: hidden;
+}
+
+.imgtag {
+    vertical-align: -webkit-baseline-middle;
+}
+
+.iframetag {
+    width: 100%;
+    height: 100%
+}
+
+.spantag {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer
+}
+
+.imgtag1 {
+    vertical-align: -webkit-baseline-middle;
+    cursor: pointer
+}
+
+.divtag {
+    padding-bottom: 20px;
+}
+
+.divtag1 {
+    text-align: left;
+    padding-left: 20px
+}
+
+.divtag2 {
+    display: flex;
+    flex-direction: row;
 }

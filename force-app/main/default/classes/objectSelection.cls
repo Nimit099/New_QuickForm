@@ -160,6 +160,13 @@ public with sharing class objectSelection {
                 pageNum++;
             }
             Database.insert(FormPages);
+
+            Thankyou_Page__c thankyoupage = new Thankyou_Page__c(
+                Name = form.Name,
+                Form__c = form.Id,
+                Thankyou_Page_Type__c = 'None'
+            );
+            insert thankyoupage;
             return form.Id;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

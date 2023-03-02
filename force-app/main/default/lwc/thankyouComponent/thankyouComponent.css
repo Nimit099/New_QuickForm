@@ -1,277 +1,282 @@
 .thanksMainDiv {
-    height: 100%;
-    display: flex;
+  height: 100%;
+  display: flex;
 }
 
-  .thanksChoice {
-    width: 20%;
-    height: 100%;
-    background-color: #F5F5F5;
-    padding: 1%;
-    overflow: auto;
-    font-family: 'Roboto',sans-serif;
+.thanksChoice {
+  width: 20%;
+  height: 100%;
+  background-color: #F5F5F5;
+  padding: 1%;
+  overflow: auto;
+  font-family: 'Roboto', sans-serif;
 }
 
-  .thanksChoice::-webkit-scrollbar {
-    display: none;
+.thanksChoice::-webkit-scrollbar {
+  display: none;
 }
 
-  .thanksLabelDiv {
-    margin: 7% 0;
-    font-size: 30px;
-    font-weight: 600;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.56);
+.thanksLabelDiv {
+  margin: 7% 0;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.56);
 }
 
-  .hrLine {
-    border-top: 2px solid #ccc;
-    margin: 4% 0 4% 3%;
+.hrLine {
+  border-top: 2px solid #ccc;
+  margin: 4% 0 4% 3%;
 }
 
-  .form-control {
-    display: none;
+.form-control {
+  display: none;
 }
 
-  .form-check {
-    margin-left: 5%;
-    font-size: 16px;
+.form-check {
+  margin-left: 5%;
+  font-size: 16px;
 }
 
-  .thanks-option {
-    padding-top: 2px;
-    margin-right: 5px;
-    display: flex;
-    gap: 10px
+.thanks-option {
+  padding-top: 2px;
+  margin-right: 5px;
+  display: flex;
+  gap: 10px
 }
 
-  .thanks-optiondiv {
-    display: flex;
+.thanks-optiondiv {
+  display: flex;
 }
 
-  .thankyouinput {
-    margin-top: -15px;
-    margin-bottom: 5px;
-    width: 100%;
-    min-height: 30px;
+.thankyouinput {
+  margin-top: -15px;
+  margin-bottom: 5px;
+  width: 100%;
+  min-height: 30px;
 }
 
-  .thankyouinput-rich {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 100%;
-    min-height: 30px;
+.thankyouinput-rich {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  min-height: 30px;
 }
 
-  .thanksPreviewDiv {
-    width: 80%;
-    height: 100%;
-    background-color: #E5E5E5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.thanksPreviewDiv {
+  width: 80%;
+  height: 100%;
+  background-color: #E5E5E5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-  .thanksPreview {
-    height: 95%;
-    width: 80%;
-    background-color: #fff;
-    margin: auto;
-    border: 1px solid #000000;
-    box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 28px;
-    overflow: scroll;
-  }
-
-  .thanksEditButton {
-    width: 100%;
-    display: flex;
-    height: 15%;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 1%;
+.thanksPreview {
+  height: 95%;
+  width: 80%;
+  background-color: #fff;
+  margin: auto;
+  border: 1px solid #000000;
+  box-shadow: 4px 4px 5px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 28px;
+  overflow: scroll;
 }
 
-  .thanksEditButton .slds-button {
-    padding: 2px 29px;
-    font-size: 1rem;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    border: none;
+.thanksEditButton {
+  width: 100%;
+  display: flex;
+  height: 15%;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1%;
 }
 
-  .editBtn {
-    margin: 0% 10% 0px 0px!important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.thanksEditButton .slds-button {
+  padding: 2px 29px;
+  font-size: 1rem;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: none;
 }
 
-  .imgDiv {
-    height: 60%;
-    width: fit-content;
-    margin: auto;
-    padding: 10% 10% 0 12%;
+.editBtn {
+  margin: 0% 10% 0px 0px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-  .txtstyle {
-    padding: 10px;
-    text-align: center;
-    font-size: 16px;
+.imgDiv {
+  height: 60%;
+  width: fit-content;
+  margin: auto;
+  padding: 10% 10% 0 12%;
 }
 
-  .saveButton {
-    display: flex;
-    height: 15%;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 1%;
+.txtstyle {
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
 }
 
-  .saveBtn,
-  .cancelBtn {
-    border: none;
-    font-family: 'Roboto',sans-serif;
-    font-size: 17px;
-    width: 160px;
-    height: 35px;
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    border-radius: 58px;
+.saveButton {
+  display: flex;
+  height: 15%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1%;
 }
 
-  .saveBtn {
-    background-color: #6699CC;
-    color: #fff;
+.saveBtn,
+.cancelBtn {
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+  width: 160px;
+  height: 35px;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  border-radius: 58px;
 }
 
-  .cancelBtn {
-    background-color: #d5d2d2;
-    text-align: center;
+.saveBtn {
+  background-color: #6699CC;
+  color: #fff;
+}
+
+.cancelBtn {
+  background-color: #d5d2d2;
+  text-align: center;
 }
 
 
 /* Richtext Model Start */
 
-  .richtextModel {
-    background-color: rgb(255 255 255 / 75%);
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: space-evenly;
+.richtextModel {
+  background-color: rgb(255 255 255 / 75%);
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-  .richtextModel .richtextMainDiv {
-    width: 45%;
+.richtextModel .richtextMainDiv {
+  width: 45%;
 }
 
-  .richtextModel .richtextDiv {
-    background: #fff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 28px;
+.richtextModel .richtextDiv {
+  background: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 28px;
 }
 
-  .richtextModel .richtextLabel {
-    height: 60px;
-    background: #6699cc;
-    padding: 7px;
-    font-size: 30px;
-    font-weight: 500;
-    border-top-left-radius: 28px;
-    border-top-right-radius: 28px;
-    color: #fff;
-    text-align: center;
-    font-family: 'Roboto',sans-serif;
+.richtextModel .richtextLabel {
+  height: 60px;
+  background: #6699cc;
+  padding: 7px;
+  font-size: 30px;
+  font-weight: 500;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  color: #fff;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
-  .richtextModel .richtextContent {
-    min-height: 260px;
+.richtextModel .richtextContent {
+  min-height: 260px;
 }
 
-  .richtextModel .richtextTab,
-  .richtextModel .htmlTab {
-    border: none;
-    --sds-c-textarea-sizing-min-height: initial;
+.richtextModel .richtextTab,
+.richtextModel .htmlTab {
+  border: none;
+  --sds-c-textarea-sizing-min-height: initial;
 }
 
-  .richtextModel .slds-tabs_scoped__nav {
-    border-right: none;
-    border-left: none;
+.richtextModel .slds-tabs_scoped__nav {
+  border-right: none;
+  border-left: none;
 }
 
-  .richtextModel .richtextButtonDiv {
-    height: 50px;
+.richtextModel .richtextButtonDiv {
+  height: 50px;
 }
 
-  .richtextModel .richtextButton {
-    width: fit-content;
-    margin: auto;
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+.richtextModel .richtextButton {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-  .richtextModel .saveModelButton {
-    background: #6699CC;
-    color: #fff;
-    width: 100px;
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    border-radius: 28px;
-    font-size: medium;
-    font-weight: 400;
-    border: 0;
-    height: 35px;
-    width: 130px;
-    font-family: 'Roboto',sans-serif;
+.richtextModel .saveModelButton {
+  background: #6699CC;
+  color: #fff;
+  width: 100px;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  border-radius: 28px;
+  font-size: medium;
+  font-weight: 400;
+  border: 0;
+  height: 35px;
+  width: 130px;
+  font-family: 'Roboto', sans-serif;
 }
 
-  .richtextModel .cancelModelButton {
-    background: #DEDEDE;
-    color: #000;
-    width: 100px;
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    border-radius: 28px;
-    font-size: medium;
-    font-weight: 400;
-    border: 0;
-    height: 35px;
-    width: 130px;
-    font-family: 'Roboto',sans-serif;
+.richtextModel .cancelModelButton {
+  background: #DEDEDE;
+  color: #000;
+  width: 100px;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  border-radius: 28px;
+  font-size: medium;
+  font-weight: 400;
+  border: 0;
+  height: 35px;
+  width: 130px;
+  font-family: 'Roboto', sans-serif;
 }
 
-  .form-check .slds-dropdown_left {
-    right: auto;
+.form-check .slds-dropdown_left {
+  right: auto;
 }
+
 .thanksPreview::-webkit-scrollbar {
   width: 0;
   background: transparent;
 }
+
 /* Richtext Model End */
 
-  .slds-notify_container .slds-icon-utility-success {
-    --sds-c-icon-color-foreground: rgb(36, 146, 3);
+.slds-notify_container .slds-icon-utility-success {
+  --sds-c-icon-color-foreground: rgb(36, 146, 3);
 }
 
 @media only screen and (max-width:1600px) {
-      .thanksChoice {
-        width: 24%;
-    }
+  .thanksChoice {
+    width: 24%;
+  }
 
-      .thanksPreviewDiv {
-        width: 76%;
-    }
-    .richtextModel .richtextMainDiv {
-      width: 55%;
-    }
-    .editBtn{
-      margin: 0 !important;
-    }
+  .thanksPreviewDiv {
+    width: 76%;
+  }
+
+  .richtextModel .richtextMainDiv {
+    width: 55%;
+  }
+
+  .editBtn {
+    margin: 0 !important;
+  }
 }
+
 /* 
 @media only screen and (max-width:1400px) {
   .saveBtn,
@@ -280,61 +285,67 @@
   }
 } */
 @media only screen and (max-height:800px) {
+
   .saveBtn,
   .cancelBtn {
-   /* height: 46%; */
+    /* height: 46%; */
   }
 }
-@media only screen and (max-width:1300px) {
-      .thanksChoice {
-        width: 27%;
-    }
 
-      .thanksPreviewDiv {
-        width: 73%;
-    }
+@media only screen and (max-width:1300px) {
+  .thanksChoice {
+    width: 27%;
+  }
+
+  .thanksPreviewDiv {
+    width: 73%;
+  }
 }
 
 @media only screen and (max-width:1100px) {
-      .thanksChoice {
-        width: 30%;
-    }
+  .thanksChoice {
+    width: 30%;
+  }
 
-      .thanksPreviewDiv {
-        width: 70%;
-    }
+  .thanksPreviewDiv {
+    width: 70%;
+  }
 }
 
 
-.thanksMainDiv .editlabel{
+.thanksMainDiv .editlabel {
   opacity: 1 !important;
-    visibility: visible;
-    transition: transform var(--lwc-durationQuickly,0.1s) linear,opacity var(--lwc-durationQuickly,0.1s) linear;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 9001;
+  visibility: visible;
+  transition: transform var(--lwc-durationQuickly, 0.1s) linear, opacity var(--lwc-durationQuickly, 0.1s) linear;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9001;
 }
-.penicon{
+
+.penicon {
   width: 17px;
 }
-.htmlTab{
+
+.htmlTab {
   display: flex;
   flex-direction: column;
 }
-lightning-tabset{
+
+lightning-tabset {
   --lwc-borderRadiusMedium: 0rem !important;
 }
-.htmlhead{
+
+.htmlhead {
   font-weight: 600;
 }
 
 @media only screen and (max-height:800px) {
-      .thanksEditButton {
-        padding: 2% 10% 0 0;
-    }
+  .thanksEditButton {
+    padding: 2% 10% 0 0;
+  }
 }
 
 .spinner-main-div {
@@ -368,19 +379,19 @@ lightning-tabset{
 
 @keyframes loader--ripple {
   0% {
-      top: 50px;
-      left: 50px;
-      opacity: 1;
-      height: 0;
-      width: 0;
+    top: 50px;
+    left: 50px;
+    opacity: 1;
+    height: 0;
+    width: 0;
   }
 
   100% {
-      top: -1px;
-      left: -1px;
-      opacity: 0;
-      height: 100px;
-      width: 100px;
+    top: -1px;
+    left: -1px;
+    opacity: 0;
+    height: 100px;
+    width: 100px;
   }
 }
 
@@ -388,22 +399,23 @@ lightning-tabset{
   border-color: #00539f;
 }
 
-.maintext{
+.maintext {
   overflow-wrap: break-word;
   padding: 0 5% !important;
-  text-align: center; 
+  text-align: center;
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
   white-space: break-spaces;
 }
 
-.spinner{
+.spinner {
   overflow: hidden;
 }
 
-.imgDiv .img{
+.imgDiv .img {
   height: 100%;
 }
-.thanksPreview_div{
+
+.thanksPreview_div {
   padding: 10px;
 }

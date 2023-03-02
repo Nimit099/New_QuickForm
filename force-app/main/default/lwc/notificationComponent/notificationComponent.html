@@ -42,7 +42,7 @@
                                         <lightning-input class="input2" variant="label-hidden" id="to" type="text"
                                             placeholder="Enter Email" onkeyup={handleInputChange} onfocusout={create_pill_to} onchange={handlechange}
                                             onkeypress={handleKeyPress}
-                                            onblur={handleKeyPress}></lightning-input>
+                                            onblur={handleKeyPress} value={inputValue}></lightning-input>
                                         <div class="email_error_msg" if:true={email_msg}>Please Enter Valid Email
                                             Details..!</div>
                                         <div class="notification_pill">
@@ -65,7 +65,7 @@
                 </div>
                 <div if:true={open_addcc} class="slds-grid slds-wrap">
                     <div class="slds-col slds-size_2-of-12">
-                        <div class="input_label">Add CC</div>
+                        <div class="input_label">Add Cc</div>
                     </div>
                     <div class="slds-col slds-size_10-of-12">
                         <div class="">
@@ -98,7 +98,7 @@
                             <div if:true={open_addcc_label} class="addcc_addbcc" onclick={open_add_cc}><img
                                     class="puls_icon" src={pulsicon_img}> Add Cc</div>
                             <div if:true={open_addbcc_label} class="addcc_addbcc" onclick={open_add_bcc}><img
-                                    class="puls_icon" src={pulsicon_img}> Add bcc</div>
+                                    class="puls_icon" src={pulsicon_img}> Add Bcc</div>
                         </div>
                     </div>
                     <div class="slds-col slds-size_10-of-12">

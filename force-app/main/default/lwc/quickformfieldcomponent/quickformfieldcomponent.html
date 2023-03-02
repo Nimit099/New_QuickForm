@@ -262,7 +262,7 @@
                                 </label>
                             </template>
                             <label class="slds-form-element__label">
-                                 <span class="flabel">{labelvalue}</span>
+                                {labelvalue} NImit
                             </label>
                             <template if:true={helptextcheck}>
                                 <lightning-helptext class="helptxt" content={helptextvalue}></lightning-helptext>
@@ -270,9 +270,13 @@
                         </div>
                     </template>
                     <div class="slds-form-element__control">
-                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                        <!-- <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                             onblur={handleblur1} placeholder={placeholder} type={FieldType} value=""
-                            onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                            onclick={OnFieldClick} class="slds-input" disabled={isdisabled} /> -->
+
+                            <input onmouseover={showpen} onmouseleave={hidepen} 
+                            onblur={handleblur1} placeholder={placeholder} type={FieldType} value=""
+                            onclick={OnFieldClick} class="slds-input fieldcss" disabled={isdisabled} data-id={fieldId} />
                     </div>
 
                 </label>
@@ -291,7 +295,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -318,7 +322,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -368,7 +372,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -395,7 +399,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                         <label>
                             <template if:true={helptextcheck}>
@@ -456,7 +460,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
 
@@ -481,7 +485,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -534,7 +538,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
 
@@ -564,7 +568,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -592,7 +596,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -616,7 +620,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -646,7 +650,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -670,7 +674,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -696,7 +700,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -721,7 +725,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -745,7 +749,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <template if:true={helptextcheck}>
@@ -769,7 +773,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <div class="starrating">
@@ -811,7 +815,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <div class="rateEmoji1" id={PageId}>
@@ -856,7 +860,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <div class="scaleRating" id={PageId}>
@@ -903,7 +907,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <div id={PageId} style="display: flex;">
@@ -928,7 +932,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
@@ -950,7 +954,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <div onclick={handleid} id={PageId} onload={signInit}>
@@ -982,7 +986,7 @@
                             </label>
                         </template>
                         <label class="slds-form-element__label ">
-                             <span class="flabel">{labelvalue}</span>
+                            {labelvalue}
                         </label>
                     </template>
                     <div class="outrichstyle" onclick={OnFieldClick}>

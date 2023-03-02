@@ -1,11 +1,12 @@
-.Quickbot_maincontaner{
+.Quickbot_maincontaner {
     display: block;
     position: fixed;
     bottom: 15px;
     right: 20px;
     z-index: 2;
 }
-.Quickbot_contaner{
+
+.Quickbot_contaner {
     height: 70vh;
     width: 370px;
     background-color: white;
@@ -15,32 +16,170 @@
     box-shadow: 0px 2px 5px silver;
 }
 
-.quickbot_header{
+.Wel_message {
+    border: 1px solid #6699CC;
+    background-color: #f1f1f1;
+    border-radius: 16px 16px 16px 0px;
+    padding: 10px;
+    /* margin: 10px 0; */
+    margin: 10px 0px 10px 50px;
+}
+
+.Wel_message p {
+    font-weight: 500;
+}
+
+.quickbot_input {
+    font-weight: 500;
+}
+
+.quickbot_message {
+    font-weight: 500;
+}
+
+.main_wel {
+    height: auto;
+    width: auto;
+    position: relative;
+}
+
+.form_message {
+    height: auto;
+    width: auto;
+    position: relative;
+}
+
+.form {
+    border: 1px solid black;
+}
+
+/* message  */
+/* end message  */
+
+/* typing spinner  */
+.load {
+    position: relative;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    float: left;
+    margin-left: 25px;
+}
+
+.progress {
+    top: 50%;
+    left: -80%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    content: '';
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    background: #6699CC;
+    animation: loading_492 1s ease infinite;
+    animation-delay: 1s;
+}
+
+@keyframes loading_492 {
+    0% {
+        width: 0%;
+        height: 0%;
+    }
+
+    50% {
+        width: 99%;
+        height: 99%;
+    }
+
+    100% {
+        width: 0%;
+        height: 0%;
+    }
+}
+
+.progress:nth-child(2) {
+    left: 50%;
+    animation-delay: 1.3s;
+}
+
+.progress:nth-child(3) {
+    left: 180%;
+    animation-delay: 1.7s;
+}
+
+/* end tying  */
+
+.quickbot_header {
     background-color: #6699CC;
-    border-radius: 16px 16px 0 0 ;
+    border-radius: 16px 16px 0 0;
     width: 100%;
-    height: 100px;
+    height: 90px;
     display: flex;
     align-items: center;
 }
 
-.quickbot_header_title{
+.quickbot_header_title {
     display: flex;
     width: 100%;
-    padding: 20px 0 0 24px;
+    padding: 18px 20px 20px 18px;
     height: 100%;
     margin: 20px 0;
 }
-.quickbot_header_igdiv{
+
+.quickbot_header_igdiv {
     background-color: #2153F9;
-    height: 60px;
+    height: 55px;
     width: 60px;
-    border-radius: 24px;
+    border-radius: 16px;
     display: flex;
     padding: 12px 11px 10px 11px;
 }
 
-.quickbot_header_igdiv img{
+.quickbot_header_igdiv1 {
+    float: left;
+    background-color: #2153F9;
+    height: 37px;
+    width: 37px;
+    border-radius: 14px 14px 14px 0px;
+    /* margin-top: 30px; */
+    margin-right: 20px;
+    /* margin-left: 10px; */
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    padding: 12px 10px 10px 10px;
+}
+
+.quickbot_header_igdiv1 img {
+    height: 125%;
+    width: 125%;
+}
+
+.quickbot_header_igdiv2 {
+    float: left;
+    background-color: #2153F9;
+    height: 37px;
+    width: 37px;
+    border-radius: 14px 14px 14px 0px;
+    /* margin-top: 113%; */
+    margin-right: 20px;
+    /* margin-left: 10px; */
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    padding: 12px 10px 10px 10px;
+}
+
+.quickbot_header_igdiv2 img {
+    height: 125%;
+    width: 125%;
+}
+
+/* .form_message{
+    display: flex;
+} */
+
+.quickbot_header_igdiv img {
     width: 38px;
 }
 
@@ -52,7 +191,7 @@
     cursor: pointer;
 }
 
-.quickbot_text{
+.quickbot_text {
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
@@ -60,12 +199,19 @@
     color: #FFFFFF;
 }
 
-.QuickBotBody{
+.QuickBotBody {
     width: 90%;
     align-self: end;
-    margin: auto auto 36px auto;
+    margin: auto auto 20px auto;
+    /* overflow: hidden; */
+    overflow-y: auto;
 }
-.QuickBotFooter{
+
+.QuickBotBody::-webkit-scrollbar {
+    display: none;
+}
+
+.QuickBotFooter {
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
@@ -80,7 +226,7 @@
     color: #A8A5A5;
 }
 
-.Owner{
+.Owner {
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
@@ -90,16 +236,17 @@
     margin-left: 5px;
     color: #6699CC;
 }
-.email_error_msg{
+
+.email_error_msg {
     color: #ff0000;
 }
 
-.quickbot_message{
+.quickbot_message {
     width: 100%;
-    --sds-c-textarea-sizing-min-height:150px;
+    --sds-c-textarea-sizing-min-height: 150px;
 }
 
-.quickbot_button{
+.quickbot_button {
     height: 40px;
     color: #FFFFFF;
     background-color: #6699CC;
@@ -115,19 +262,61 @@
     font-style: normal;
     cursor: pointer;
 }
-.quickbot_header_body{
+
+.quickbot_header_body {
     display: flex;
     padding: 5px 0 0 10px;
     justify-content: space-between;
     width: -webkit-fill-available;
 }
 
-@media screen and (max-width:1400px){
-    .QuickBotBody{
+@media screen and (max-width:1400px) {
+    .QuickBotBody {
         margin: auto auto 8px auto;
     }
-    .quickbot_message{
+
+    .quickbot_message {
         width: 100%;
-        --sds-c-textarea-sizing-min-height:0vh !important;
+        --sds-c-textarea-sizing-min-height: 0vh !important;
+    }
+}
+
+@media screen and (max-width:1536px) {
+    .QuickBotBody {
+        margin: auto auto 8px auto;
+    }
+
+    /* .Quickbot_contaner{
+        height: 84vh;
+        width: 370px;
+        background-color: white;
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 2px 5px silver;
+    } */
+}
+
+@media only screen and (min-width:1000px) and (max-width:1440px) {
+    .Quickbot_contaner {
+        height: 73vh;
+        width: 370px;
+        background-color: white;
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 2px 5px silver;
+    }
+}
+
+@media only screen and (max-width:1650px) and (min-width:1441px) {
+    .Quickbot_contaner {
+        height: 84vh;
+        width: 370px;
+        background-color: white;
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 2px 5px silver;
     }
 }

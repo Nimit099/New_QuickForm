@@ -1,4 +1,4 @@
-import { LightningElement,track,api } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 
 // import GetFormPage from '@salesforce/apex/FormBuilderController.GetFormPage'; // Form Page 
 // import getFieldsRecords from '@salesforce/apex/FormBuilderController.getFieldsRecords'; // Form Field
@@ -15,7 +15,7 @@ import BackButton from '@salesforce/resourceUrl/BackButton';
 
 import { NavigationMixin } from "lightning/navigation";
 
-export default class PreviewFormCmp  extends NavigationMixin(LightningElement) {
+export default class PreviewFormCmp extends NavigationMixin(LightningElement) {
 
     BackButton = BackButton;
 
@@ -35,21 +35,21 @@ export default class PreviewFormCmp  extends NavigationMixin(LightningElement) {
     @track PageCSS;
     @api activepreview;
 
-    renderedCallback(){
-        if(this.Mainlist.length > 0 ){
+    renderedCallback() {
+        if (this.Mainlist.length > 0) {
             let value;
             let arr = this.template.querySelectorAll('.btn1');
-            for (let i = 0; i < arr.length; i++){
+            for (let i = 0; i < arr.length; i++) {
                 const element = arr[i];
-                element.style = this.buttonscss; 
+                element.style = this.buttonscss;
             }
             let buttoncss = this.buttonscss.split(';');
-            for(let i = 0; i < buttoncss.length; i++){
+            for (let i = 0; i < buttoncss.length; i++) {
                 buttoncss[i] = buttoncss[i].split(':');
                 let label = buttoncss[i][0];
-            
-                if(label == 'justify-content'){
-                    value = 'justify-content:'+buttoncss[i][1];
+
+                if (label == 'justify-content') {
+                    value = 'justify-content:' + buttoncss[i][1];
                 }
             }
             let Arr = this.template.querySelectorAll(".footer");
@@ -64,92 +64,92 @@ export default class PreviewFormCmp  extends NavigationMixin(LightningElement) {
         this.FormData();
     }
 
-    FormData(){
-        try{
+    FormData() {
+        try {
             this.spinnerDataTable = true;
-            formdetails({id:this.formid})
-            .then(result =>{
-                this.Progressbarvalue = result.Progress_Indicator__c;
-                this.captchavalue = result.Captcha_Type__c;
-                this.getFieldCSS = result.Form_Styling__c;
-                this.buttonscss = result.Button_CSS__c;
-                this.buttonscss = this.buttonscss.concat(result.Button_Position__c);
-                this.PageCSS = result.Page_CSS__c;
-                let array;
-                let value;
+            formdetails({ id: this.formid })
+                .then(result => {
+                    this.Progressbarvalue = result.Progress_Indicator__c;
+                    this.captchavalue = result.Captcha_Type__c;
+                    this.getFieldCSS = result.Form_Styling__c;
+                    this.buttonscss = result.Button_CSS__c;
+                    this.buttonscss = this.buttonscss.concat(result.Button_Position__c);
+                    this.PageCSS = result.Page_CSS__c;
+                    let array;
+                    let value;
 
-                // FormCss
-                array = this.template.querySelector('.myform');
-                array.style=this.getFieldCSS;
+                    // FormCss
+                    array = this.template.querySelector('.myform');
+                    array.style = this.getFieldCSS;
 
-                //PageCss
-                array = this.template.querySelectorAll('.page');
-                for (let i = 0; i < array.length; i++) {
-                    const element = array[i];
-                    element.style = this.PageCSS;
-                }
-                
-                //ButtonCss
-                array = this.template.querySelectorAll('.btn1');
-                for (let i = 0; i < array.length; i++){
-                    const element = array[i];
-                    element.style = this.buttonscss; 
-                }
-                let buttoncss = this.buttonscss.split(';');
-                for(let i = 0; i < buttoncss.length; i++){
-                    buttoncss[i] = buttoncss[i].split(':');
-                    let label = buttoncss[i][0];
-                
-                    if(label == 'justify-content'){
-                        value = 'justify-content:'+buttoncss[i][1];
+                    //PageCss
+                    array = this.template.querySelectorAll('.page');
+                    for (let i = 0; i < array.length; i++) {
+                        const element = array[i];
+                        element.style = this.PageCSS;
                     }
-                }
 
-                //ButtonPosition
-                array = this.template.querySelectorAll(".footer");
+                    //ButtonCss
+                    array = this.template.querySelectorAll('.btn1');
+                    for (let i = 0; i < array.length; i++) {
+                        const element = array[i];
+                        element.style = this.buttonscss;
+                    }
+                    let buttoncss = this.buttonscss.split(';');
+                    for (let i = 0; i < buttoncss.length; i++) {
+                        buttoncss[i] = buttoncss[i].split(':');
+                        let label = buttoncss[i][0];
+
+                        if (label == 'justify-content') {
+                            value = 'justify-content:' + buttoncss[i][1];
+                        }
+                    }
+
+                    //ButtonPosition
+                    array = this.template.querySelectorAll(".footer");
                     for (let i = 0; i < array.length; i++) {
                         const element = array[i];
                         element.style = value;
                     }
 
-                this.PageData();
-            }); 
+                    this.PageData();
+                });
         } catch (error) {
             console.log(error + 'preview Error');
             this.spinnerDataTable = false;
         }
     }
 
-    PageData(){
-        try{
-            formpagedetails({id:this.formid})
-            .then(result =>{
-                //PageData
-                this.PageList = result;
-                this.FieldsData();
-            });
-        }  catch (error) {
+    PageData() {
+        try {
+            formpagedetails({ id: this.formid })
+                .then(result => {
+                    //PageData
+                    this.PageList = result;
+                    this.FieldsData();
+                });
+        } catch (error) {
             console.log(error + 'preview Error');
             this.spinnerDataTable = false;
         }
     }
 
-    FieldsData(){
-        try{
-            formfielddetails({id:this.formid})
-            .then(result =>{
-                // FieldsData
-                this.setPageField(result);
-            }); 
+    FieldsData() {
+        try {
+            formfielddetails({ id: this.formid })
+                .then(result => {
+                    // FieldsData
+                    this.setPageField(result);
+                });
         } catch (error) {
-            console.log(error+ 'preview Error');
+            console.log(error + 'preview Error');
             this.spinnerDataTable = false;
         }
     }
 
 
     setPageField(fieldList) {
-        try{
+        try {
             let outerlist = [];
             let innerlist = [];
             let fieldtype;
@@ -177,49 +177,51 @@ export default class PreviewFormCmp  extends NavigationMixin(LightningElement) {
                         let salutationvalue = [];
 
                         fieldList[j].Field_Validations__c = fieldList[j].Field_Validations__c.split('?$`~');
-                        for(let i =0; i< fieldList[j].Field_Validations__c.length; i++){
-                            fieldList[j].Field_Validations__c[i] =  fieldList[j].Field_Validations__c[i].split('<!@!>');
+                        for (let i = 0; i < fieldList[j].Field_Validations__c.length; i++) {
+                            fieldList[j].Field_Validations__c[i] = fieldList[j].Field_Validations__c[i].split('<!@!>');
                             let labels = fieldList[j].Field_Validations__c[i][0];
                             let value = fieldList[j].Field_Validations__c[i][1];
 
-                            if(labels == 'isRequired'){
+                            if (labels == 'isRequired') {
                                 isRequiredcheck = JSON.parse(value);
                             }
-                            else if(labels == 'isDisabled'){
+                            else if (labels == 'isDisabled') {
                                 isdisabledcheck = JSON.parse(value);
                             }
-                            else if(labels == 'isLabel'){
+                            else if (labels == 'isLabel') {
                                 labelcheck = JSON.parse(value);
                             }
-                            else if(labels == 'isHelpText'){
+                            else if (labels == 'isHelpText') {
                                 helptextcheck = JSON.parse(value);
                             }
-                            else if(labels == 'isPlaceholder'){
+                            else if (labels == 'isPlaceholder') {
                                 placeholdercheck = JSON.parse(value);
                             }
-                            else if(labels == 'isPrefix'){
+                            else if (labels == 'isPrefix') {
                                 prefixcheck = JSON.parse(value);
                             }
-                            else if(labels == 'Prefix'){
+                            else if (labels == 'Prefix') {
                                 prefixvalue = value;
                             }
-                            else if(labels == 'Label'){
+                            else if (labels == 'Label') {
                                 labelvalue = value;
                             }
-                            else if(labels == 'HelpText'){
+                            else if (labels == 'HelpText') {
                                 helptext = value;
                             }
-                            else if(labels == 'Placeholder'){
+                            else if (labels == 'Placeholder') {
                                 placeholdervalue = value;
                             }
-                            else if(labels == 'Salutation'){
+                            else if (labels == 'Salutation') {
                                 salutationvalue.push(value);
                             }
-                            
+
                         }
-                        fieldList[j].Field_Validations__c = ({isRequired: isRequiredcheck, isDisabled : isdisabledcheck, isLabel : labelcheck, isHelptext :helptextcheck, isPlaceholder : placeholdercheck, 
-                        isPrefix : prefixcheck,  Prefix : prefixvalue, Label: labelvalue, HelpText : helptext, Placeholder : placeholdervalue , Salutation : salutationvalue, Fieldtype : fieldtype});
-                    
+                        fieldList[j].Field_Validations__c = ({
+                            isRequired: isRequiredcheck, isDisabled: isdisabledcheck, isLabel: labelcheck, isHelptext: helptextcheck, isPlaceholder: placeholdercheck,
+                            isPrefix: prefixcheck, Prefix: prefixvalue, Label: labelvalue, HelpText: helptext, Placeholder: placeholdervalue, Salutation: salutationvalue, Fieldtype: fieldtype
+                        });
+
                         innerlist.push(fieldList[j]);
                     }
                 }
@@ -229,19 +231,19 @@ export default class PreviewFormCmp  extends NavigationMixin(LightningElement) {
             this.Mainlist = outerlist;
             this.page = outerlist[0];
 
-            if(this.pageindex == this.PageList.length){
+            if (this.pageindex == this.PageList.length) {
                 this.isIndexZero = true;
                 this.isIndexLast = true;
             }
-            this.template.querySelector('c-progress-indicator').calculation(this.Progressbarvalue,this.pageindex, this.PageList.length);
             this.spinnerDataTable = false;
-        }  catch (error) {
-            console.log(error+ 'preview Error');
+            this.template.querySelector('c-progress-indicator').calculation(this.Progressbarvalue, this.pageindex, this.PageList.length);
+        } catch (error) {
+            console.log(error + 'preview Error');
             this.spinnerDataTable = false;
         }
     }
 
-    backhome(event){
+    backhome(event) {
         let cmpDef = {
             componentDef: "c:qf_home"
         };
@@ -254,79 +256,78 @@ export default class PreviewFormCmp  extends NavigationMixin(LightningElement) {
         });
     }
 
-    handlepagination(event){
-        this.spinnerDataTable = true;
-        if(event.currentTarget.dataset.name == 'previous'){
-            if(this.pageindex == 1){ 
-                this.isIndexZero = true;              
-            }
-            else if(this.PageList.length  > this.pageindex){
-                this.pageindex--;  
-                if(this.pageindex == 1){
-                    this.isIndexLast = false;
-                    this.isIndexZero = true;
-                }
-            }
-            else if(this.PageList.length  == this.pageindex){
-                this.pageindex--;               
-                this.isIndexLast = false;
-                if(this.pageindex == 1){
-                    this.isIndexLast = false;
-                    this.isIndexZero = true;
-                }
-            }
-            this.page = this.Mainlist[this.pageindex - 1]; 
-            this.template.querySelector('c-progress-indicator').calculation(this.Progressbarvalue,this.pageindex, this.PageList.length);
-            
-        }
-        else if(event.currentTarget.dataset.name == 'next'){
-            if(this.pageindex == 1){ 
+    handlepagination(event) {
 
-                if(this.pageindex == this.PageList.length){
+        if (event.currentTarget.dataset.name == 'previous') {
+            if (this.pageindex == 1) {
+                this.isIndexZero = true;
+            }
+            else if (this.PageList.length > this.pageindex) {
+                this.pageindex--;
+                if (this.pageindex == 1) {
+                    this.isIndexLast = false;
+                    this.isIndexZero = true;
+                }
+            }
+            else if (this.PageList.length == this.pageindex) {
+                this.pageindex--;
+                this.isIndexLast = false;
+                if (this.pageindex == 1) {
+                    this.isIndexLast = false;
+                    this.isIndexZero = true;
+                }
+            }
+            this.page = this.Mainlist[this.pageindex - 1];
+            this.template.querySelector('c-progress-indicator').calculation(this.Progressbarvalue, this.pageindex, this.PageList.length);
+
+        }
+        else if (event.currentTarget.dataset.name == 'next') {
+            if (this.pageindex == 1) {
+
+                if (this.pageindex == this.PageList.length) {
                     this.isIndexZero = false;
                     this.isIndexLast = true;
                 }
-                else{
+                else {
                     this.pageindex++;
                     this.isIndexZero = false;
                     this.isIndexLast = false;
-                    if(this.pageindex == this.PageList.length){
+                    if (this.pageindex == this.PageList.length) {
                         this.isIndexLast = true;
                     }
-                }              
+                }
             }
-            else if(this.PageList.length  > this.pageindex){
-                this.pageindex++;               
-                if(this.pageindex == this.PageList.length ){
+            else if (this.PageList.length > this.pageindex) {
+                this.pageindex++;
+                if (this.pageindex == this.PageList.length) {
                     this.isIndexLast = true;
                 }
-                else{
+                else {
                     this.isIndexLast = false;
                 }
             }
-            else if(this.PageList.length == this.pageindex){
+            else if (this.PageList.length == this.pageindex) {
             }
-            this.page = this.Mainlist[this.pageindex - 1]; 
-            this.template.querySelector('c-progress-indicator').calculation(this.Progressbarvalue,this.pageindex, this.PageList.length);
+            this.page = this.Mainlist[this.pageindex - 1];
+            this.template.querySelector('c-progress-indicator').calculation(this.Progressbarvalue, this.pageindex, this.PageList.length);
         }
 
-        else if(event.currentTarget.dataset.name == 'submit'){
-            
-            if(this.verify == true){
+        else if (event.currentTarget.dataset.name == 'submit') {
+
+            if (this.verify == true) {
             }
-            else if(this.verify == false){
+            else if (this.verify == false) {
                 let toast_error_msg = 'Invalid Captcha';
-                this.template.querySelector('c-toast-component').showToast('error',toast_error_msg,3000);
+                this.template.querySelector('c-toast-component').showToast('error', toast_error_msg, 3000);
             }
             else {
                 let toast_error_msg = 'Please Verify Captcha';
-                this.template.querySelector('c-toast-component').showToast('error',toast_error_msg,3000);
+                this.template.querySelector('c-toast-component').showToast('error', toast_error_msg, 3000);
             }
         }
-        this.spinnerDataTable = false;
     }
 
-    verifycaptcha(event){
+    verifycaptcha(event) {
         this.verify = event.detail;
     }
 }
