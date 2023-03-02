@@ -16,14 +16,6 @@ label.slds-checkbox_toggle.slds-grid>* {
     align-items: center;
 }
 
-.textlabel {
-    background-color: #d5d5d5;
-    color: black;
-    font-size: 14px;
-    text-align: center;
-    margin: 15px 10px 15px 10px;
-}
-
 .resetcharacter {
     width: 94%;
     margin: 7px 0px 7px 8px;
@@ -45,7 +37,9 @@ label.slds-checkbox_toggle.slds-grid>* {
 }
 
 .togglebox {
-    margin: 11px 10px 11px 10px;
+    margin: 11px 10px 0px 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
  .slds-input {
@@ -57,7 +51,7 @@ label.slds-checkbox_toggle.slds-grid>* {
 }
 
 .styletext {
-    margin: 7px 10px 7px 10px;
+    margin: 0px 10px 7px 10px;
 }
 
 .styletext .slds-form-element__label {
@@ -117,7 +111,7 @@ label.slds-checkbox_toggle.slds-grid>* {
     text-transform: capitalize;
     text-align: center;
     color: rgba(0, 0, 0, 0.56);
-    padding: 10% 0 3% 0;
+    padding: 5% 0 5% 0;
     font-weight: bold;
     font-size: 24px
 }
@@ -135,11 +129,12 @@ label.slds-checkbox_toggle.slds-grid>* {
 
  .btnDiv {
     margin: 2% 5%;
+    cursor: pointer;
 }
 .fieldvalidationbody{
     /* width: 21%; */
     background-color: #F5F5F5;
-    height: 84vh;
+    height: 88vh;
     overflow-y: scroll;
 }
 .fieldvalidationbody::-webkit-scrollbar {
@@ -163,22 +158,183 @@ label.slds-checkbox_toggle.slds-grid>* {
     align-items: center;
 }
 .fieldvalidationbtndiv{
-    width: 96%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 .fieldvalidationbtnmaindiv{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
 }
 .textlabel{
-    background-color:#d5d5d5;
-    text-align: center;
+    font-size: 14px;
+    margin: 15px 10px 15px 10px;
+    background: #D6D4D4;
+    border-radius: 4px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.validationicon{
+    cursor: pointer;
+}
+.resetbtn{
+    width: 95%;
+    height: 3vh;
+    border: 1px solid black;
+    background: white;
+    margin: auto;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.resettext{
+    padding: auto;
+}
+.requiredfield{
+    margin: 0px 10px 0px 10px;
+}
+
+
+.switch input {
+    display: none;
+}
+
+ .switch small {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    border: 2px solid grey;
+    width: 48px;
+    height: 24px;
+}
+
+ .switch small:after {
+    /* content: "Inactive"; */
+    position: absolute;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    width: 100%;
+    left: 0px;
+    text-align: right;
+    padding: 1px 5px;
+    box-sizing: border-box;
+    line-height: 18px;
+}
+
+ .switch small:before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #6699CC;
+    border-radius: 50%;
+    left: 4px;
+    transition: .3s;
+    box-shadow: -3px 0 3px rgb(0 0 0 / 10%);
+}
+
+ .switch input:checked~small {
+    transition: .3s;
+    background: #6699CC;
+    border: 2px solid grey;
+}
+
+ .switch input:checked~small:before {
+    transform: translate(46px, 0px);
+    transition: .3s;
+    left: -20px;
+    right: 49px;
+    background-color: white;
+}
+
+ .switch input:checked~small:after {
+    content: "";
+    text-align: left;
+    padding-left: 10px;
+}
+:host {
+    --sds-c-slider-track-color-background: white;
+    --sds-c-slider-thumb-color-foreground: #6699CC;
+}
+/* =========================     Spinner Sarts      =========================== */
+
+.spinnerclass{
+    overflow: hidden;
+    border-radius:20px;
+}
+
+ .spinner-main-div {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+ .loader--ripple {
+    display: inline-block;
+    position: relative;
+    height: 100px;
+    width: 100px;
+
+}
+
+ .loader--ripple div {
+    position: absolute;
+    animation: loader--ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    border: 4px solid;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+ .loader--ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes loader--ripple {
+    0% {
+        top: 50px;
+        left: 50px;
+        opacity: 1;
+        height: 0;
+        width: 0;
+    }
+
+    100% {
+        top: -1px;
+        left: -1px;
+        opacity: 0;
+        height: 100px;
+        width: 100px;
+    }
+}
+
+ .loader--ripple div {
+    border-color: #00539f;
+}
+.salutationdiv{
+    margin: 0% 0% 0px 3%;
+}
+/* =========================     Spinner Ends      =========================== */
+
 @media screen and (max-width: 1600px) {
     .btnDiv{
         width: 45px;
         height: 45px;
+    }
+    .fieldvalidationbody{
+        height: 85vh;
+    }
+    .togglebox{
+        padding-bottom: 7px;
     }
 }

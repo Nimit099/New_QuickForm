@@ -12,6 +12,7 @@ import { LightningElement, api } from 'lwc';
 import thankyoulogo from '@salesforce/resourceUrl/Thankyoulogo';
 import whitepen from '@salesforce/resourceUrl/whitepen';
 import records from '@salesforce/apex/qfthankyou.insertrecord';
+import getrecordslist from '@salesforce/apex/qfthankyou.getrecordslist';
 import getrecords from '@salesforce/apex/qfthankyou.getthankyoupage';
 
 export default class ThankyouComponent extends LightningElement {
@@ -40,7 +41,6 @@ export default class ThankyouComponent extends LightningElement {
     ThankYou_RichText;
     classtext;
     spinner;
-    @api previewthankyou;
     
 
 // <!-- ===================================
@@ -51,22 +51,18 @@ export default class ThankyouComponent extends LightningElement {
 // =================================== -->
     connectedCallback(){
         this.spinner = true;
-        console.log(this.previewthankyou + '-----------------------> connectedcallback');
-       
+        console.log('OUTPUT : ',this.currentformid);
         getrecords({currentformid : this.currentformid}).then(result => {
             this.label = result.ThankYou_Label__c;
             this.changelabel = result.ThankYou_Label__c;
             this.currentthankyouid = result.Id;
             console.log(this.label);
-            if(this.previewthankyou == true){
-                console.log('preview');
-                this.template.querySelector('.thanksPreviewDiv').style='background-color:transparent;';
-                this.template.querySelector('.thanksMainDiv').style='justify-content:center;';
-    
-            }
+            console.log('calsstext ==>' ,this.classtext);
+            console.log('ID   ==>',this.currentformid);
             if(result.Thankyou_Page_Type__c == 'Show Text'){
             this.text = result.Thankyou_Text__c;
             this.textfunc();
+            console.log('you a');
            }
             else if(result.Thankyou_Page_Type__c == 'Redirect to a webpage'){
             this.url = result.Thank_you_URL__c;
@@ -87,7 +83,8 @@ export default class ThankyouComponent extends LightningElement {
            else if(result.Thankyou_Page_Type__c == 'Show report of User data'){
            this.reportfunc();  
         }
-        })
+        this.spinner = false;
+    })
         .catch(error => {
             this.spinner = false;
 		})
@@ -146,6 +143,7 @@ export default class ThankyouComponent extends LightningElement {
         }
         else if(event.target.name == 'text'){
             this.text = event.target.value;
+            console.log(event.target.value);
             this.classtext = this.text;
         }
         else if(event.target.name == 'richtext'){
@@ -163,12 +161,18 @@ export default class ThankyouComponent extends LightningElement {
 // =================================== -->
     saveThanksData(){
         this.spinner = true;
+        
+        
         if( this.ThankYou_URL == true || this.Redirect_Text_And_URL == true){
            const regexp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/ ;
             if (regexp.test(this.url))
             { 
                 records({picklist : this.picklist,label : this.label, classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => {
                     this.spinner = false;
+                }).then(result =>{
+                    this.check_thankyou_record();
+                }).catch(error =>{
+                    console.log('error into the records inserted');
                 })
               return true;
             }
@@ -177,14 +181,19 @@ export default class ThankyouComponent extends LightningElement {
                 this.spinner = false;
                 this.error_toast = true;
                 this.template.querySelector('c-toast-component').showToast('Error',toast_error_msg,3000);
-
             }
         }
         else{
         records({picklist : this.picklist,label : this.label, classtext :this.classtext,formId : this.currentformid, url : this.url , currentthankyouid : this.currentthankyouid}).then(result => { 
             this.spinner = false;
+        }).then(result =>{
+            this.check_thankyou_record();
+        }).catch(error =>{
+            console.log('error into the records inserted');
         })
+
         }
+        
     }
 
 
@@ -302,11 +311,13 @@ export default class ThankyouComponent extends LightningElement {
         this.label = this.changelabel
     }
 
-    previewthankyoucomp(formid, previewthankyou){
-        this.currentformid = formid;
-        this.previewthankyou = previewthankyou;
-
-        console.log(this.previewthankyou + '-----------------------> previewthankyou');
-        this.connectedCallback();
+    check_thankyou_record(){
+        getrecordslist({currentformid : this.currentformid}).then(result => {
+            this.currentthankyouid = result.Id;
+            console.log('ID   ==>',this.currentformid);
+        }).catch(error => {
+            console.log('getrecordslist error   ==>',error);
+            this.spinner = false;
+        })
     }
 }

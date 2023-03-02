@@ -1,8 +1,15 @@
 <template>
- <div class="MainComponent">
+
+    <!-- ============== error toast=========== -->
+    <template if:true={error_toast}>
+        <c-toast-component></c-toast-component>
+    </template>
+    <!-- ============== error toast=========== -->
+
+    <div class="MainComponent">
+        <!-- spinner -->
         <template if:true={spinnerDataTable}>
-            <div data-id="spinnerId" class="slds-spinner_container"
-                style="overflow: hidden;">
+            <div data-id="spinnerId" class="slds-spinner_container" style="overflow: hidden;">
                 <div class="spinner-main-div">
                     <div class="loader--ripple">
                         <div></div>
@@ -10,148 +17,172 @@
                     </div>
                 </div>
             </div>
-        </template> 
-   
-                        <div class="bar child1">
-            <div class="sidebar" data-name="home" id="Tab-1" data-title="tab-1" onclick={handleActive}>
-                                <div class="home_icon"><img src={homeIcon} alt=""></div>
-                <div class="home_text">
-                    <p style="font-size:xx-small;">Home</p>
-                            </div>
-            </div>
-            <div class="sidebar fieldtab" data-name="field" id="Tab-2" data-title="tab-2" onclick={handleActive}>
-                                <div class="field_icon"><img src={fieldicon} alt=""></div>
-                <div class="field_text">
-                    <p style="font-size:xx-small;">Field</p>
-                            </div>
-            </div>
-            <div class="sidebar" data-name="design" id="Tab-3" data-title="tab-3" onclick={handleActive}>
-                                <div class="design_icon"><img src={designIcon} alt=""></div>
-                <div class="desgin_text">
-                    <p style="font-size:xx-small;">Design</p>
-                            </div>
-            </div>
-            <div class="sidebar" data-name="notification" id="Tab-4" data-title="tab-4" onclick={handleActive}>
-                                <div class="notification_icon"><img src={notificationicon} alt=""></div>
-                <div class="notification_text">
-                    <p style="font-size:xx-small;">Notification</p>
-                            </div>
-            </div>
-            <div class="sidebar" data-name="thankyou" id="Tab-5" data-title="tab-5" onclick={handleActive}>
-                                <div class="thankyou_icon"><img src={thankyouicon} alt=""></div>
-                <div class="thankyou_text">
-                    <p style="font-size:xx-small;">Thankyou</p>
-                            </div>
-            </div>
-            <!-- <div class="sidebar" data-name="object" id="Tab-6" data-title="tab-6" onclick={handleActive}>
-                                <div class="object_icon"><img src={object} alt=""></div>
-                <div class="object_text">
-                    <p style="font-size:xx-small;">Object</p>
-                            </div>
-            </div> -->
-            <div class="sidebar" data-name="preview" id="Tab-7" data-title="tab-7" onclick={handleActive}>
-                                <div class="preview_icon"><img src={previewIcon} alt=""></div>
-                <div class="preview_text">
-                    <p style="font-size:xx-small;">Preview</p>
-                            </div>
-            </div>
-            <div class="sidebar" data-name="publish" id="Tab-8" data-title="tab-8" onclick={handleActive}>
-                                <div class="publish_icon"><img src={publishIcon} alt=""></div>
-                <div class="publish_text">
-                    <p style="font-size:xx-small;">Publish</p>
+        </template>
+        <!-- spinner -->
+
+        <div class="bar child1">
+            <div class='barchild' data-name="home" id="tab-1" data-title="tab-1" onclick={handleActive}>
+                <div class="home_icon sidebar hometab">
+                    <div class="image-tab tab-1"><img src={homeIcon} alt=""></div>
                 </div>
-                            </div>
-                        </div>
-            
-    <!-- <div class="slds-grid" onmouseover={SetOpacity} > -->
+                <div class="home_text">
+                    <p style="font-size:12px; margin-bottom:15%;">Home</p>
+                </div>
+            </div>
+            <div class='barchild' data-name="field" id="tab-2" data-title="tab-2" onclick={handleActive}>
+                <div class="field_icon sidebar fieldtab">
+                    <div class="image-tab tab-2"><img src={fieldicon} alt=""></div>
+                </div>
+                <div class="field_text">
+                    <p style="font-size:12px; margin-bottom:15%;">Field</p>
+                </div>
+            </div>
+            <div class='barchild' data-name="design" id="tab-3" data-title="tab-3" onclick={handleActive}>
+                <div class="design_icon sidebar">
+                    <div class="image-tab tab-3"><img src={designIcon} alt=""></div>
+                </div>
+                <div class="desgin_text">
+                    <p style="font-size:12px; margin-bottom:15%;">Design</p>
+                </div>
+            </div>
+            <div class='barchild' data-name="notification" id="tab-4" data-title="tab-4" onclick={handleActive}>
+                <div class="notification_icon sidebar">
+                    <div class="image-tab tab-4"><img src={notificationicon} alt=""></div>
+                </div>
+                <div class="notification_text">
+                    <p style="font-size:12px; margin-bottom:15%;">Notification</p>
+                </div>
+            </div>
+            <div class='barchild' data-name="thankyou" id="tab-5" data-title="tab-5" onclick={handleActive}>
+                <div class="thankyou_icon sidebar">
+                    <div class="image-tab tab-5"><img src={thankyouicon} alt=""></div>
+                </div>
+                <div class="thankyou_text">
+                    <p style="font-size:12px; margin-bottom:15%;">Thankyou</p>
+                </div>
+            </div>
+            <div class='barchild' data-name="preview" id="tab-7" data-title="tab-7" onclick={handleActive}>
+                <div class="preview_icon sidebar">
+                    <div class="image-tab tab-7"><img src={previewIcon} alt=""></div>
+                </div>
+                <div class="preview_text">
+                    <p style="font-size:12px; margin-bottom:15%;">Preview</p>
+                </div>
+            </div>
+            <div class='barchild' data-name="publish" id="tab-8" data-title="tab-8" onclick={handleActive}>
+                <div class="publish_icon sidebar">
+                    <div class="image-tab tab-8"><img src={publishIcon} alt=""></div>
+                </div>
+                <div class="publish_text">
+                    <p style="font-size:12px; margin-bottom:15%;">Publish</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="slds-grid" onmouseover={SetOpacity} > -->
         <!-- <div class="" style="background-color: white; position:fixed; width:100%; height:10%; z-index:100000">Test </div> -->
 
         <!-- Vertical Tab Div  -->
-        <!-- <div class="main slds-size_1-of-1 slds-small-size_6-of-12  slds-medium-size_4-of-12 slds-large-size_3-of-12"> -->
+        <!-- <div class="main slds-size_1-of-1 slds-12px-size_6-of-12  slds-medium-size_4-of-12 slds-large-size_3-of-12"> -->
 
 
-        
-    <!-- </div> -->
-<!-- </div> -->
 
-<template if:true={activesidebar}>
-<div class="child3">
-    <c-fields-section-component formid={ParentMessage} oncallpasstoparent={passToParent}></c-fields-section-component>
-</div>
-</template>
+        <!-- </div> -->
+        <!-- </div> -->
 
-<template if:true={activeDesignsidebar}>
-    <div class="child3">
-        <c-design-section-component ongetnewcss={handlenewCSS} ongetpagecss={handlepagecss} ongetlabelcss={handlelabelcss} ongetformcss={handleformcss} recordid={ParentMessage}></c-design-section-component>
-    </div>
-</template>
-
-<template if:true={activeNotification}>
-    <c-notification-component  cmptype="main" form-id={ParentMessage} id='notmcp'></c-notification-component>
-</template>
-
-<template if:true={activethankyou}>
-    <c-thankyou-component currentformid={ParentMessage} formname={FormName} cmptype="main" form-id={FormId} id='thkmcp'></c-thankyou-component>
-</template>
-
-<template if:true={activepreview}>
-    <c-preview-form-cmp formid={ParentMessage} activepreview ={activepreview}></c-preview-form-cmp>
-</template>
-
-<template if:true={activeDropZone}>
-    <div class="showtabs2">
-        <div class="objects">
-            <c-object-mapping form-id={ParentMessage} id="objcmp"></c-object-mapping>
-        </div>
-    </div>
-
-    <div class="child2">
-
-        <!-- Main Form Div -->
-
-                
-                    <div class="InnerFormtitle" style="display:flex">
-                        <div class="formName" data-record-id={ParentMessage}>{FormName}</div>
-                        <div class="slds-col slds-grid slds-wrap rename_div formName" data-name= {ParentMessage}  style ="display: none;">
-                            <lightning-input type="text" value={FormName}  onchange={renamemain} onkeypress={key}  class="rename_input"></lightning-input>
-                            <div class="right" onclick={renameMainForm} data-id={ParentMessage}><img src={right} alt=""></div>
-                            <div class="wrong" onclick={cancleRenameMainForm} data-id={ParentMessage}><img src={cross} alt="">
-                </div>
-                        </div>
-                  
-                        <div class="formButtons">
-                            <button  class="FormButtons"
-                                onclick={handleeditForm} name={EditButtonName} data-record={FormName} data-id={ParentMessage} > <img src={EditIcon} alt="edit button" class="icon">Rename</button>
-                            <button value="new page add"  class="FormButtons"
-                                onclick={handleAddPage}
-                                name={EditButtonName}><img src={addIcon} alt="Add button" class="icon">Add Page</button>
+        <template if:true={activesidebar}>
+            <div class="child3">
+                <c-fields-section-component class="childref" formid={ParentMessage} oncallpasstoparent={passToParent}
+                    onstopspinner={stopspinner}></c-fields-section-component>
             </div>
-        </div>
+        </template>
 
+        <template if:true={activeDesignsidebar}>
+            <div class="child3">
+                <c-design-section-component ongetnewcss={handlenewCSS} ongetpagecss={handlepagecss}
+                    ongetlabelcss={handlelabelcss} ongetformcss={handleformcss} onhovercss={handlehovercss}
+                    onfocuscss={handlefocuscss} onimagespinner={startspinner} onbtnposition={handlebtnpos}
+                    ongetbuttoncss={handlebtncss} recordid={ParentMessage}></c-design-section-component>
+            </div>
+        </template>
 
+        <template if:true={activeNotification}>
+            <c-notification-component cmptype="main" form_id={ParentMessage} id='notmcp'></c-notification-component>
+        </template>
 
-        <div class="fieldDiv1 slds-col slds-align_absolute-center slds-small-size_6-of-12  slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_9-of-12"
-            style="padding:2%; width:100%;background-color: white; display:block;">
+        <template if:true={activethankyou}>
+            <c-thankyou-component currentformid={ParentMessage} formname={FormName} cmptype="main" form-id={FormId}
+                id='thkmcp'></c-thankyou-component>
+        </template>
 
-            <div class="myform" id="mainformid">
-                <template for:each={MainList} for:item="page">
-                    <div class="page" id={page.pageId} key={page.pageId}>
-                        <div class="pagetitle">
-                            <div style="display: flex;align-items: center;">
-                                <div>
-                                    <template if:true={page.pageName}>
-                                                <div class="pagetitle1" data-record-id={page.pageId}>{page.pageName}</div>
-                                                <div class="slds-col slds-grid slds-wrap rename_div" data-name= {page.pageId}  style ="display: none;">
-                                                    <lightning-input type="text" value={newFormName}  onchange={rename} onkeypress={key} onclick={insideClick} class="rename_input"></lightning-input>
-                                                    <div class="right" onclick={renameForm} data-id={page.pageId}><img src={right} alt=""></div>
-                                                    <div class="wrong" onclick={cancleRenameForm} data-id={page.pageId}><img src={cross} alt="">
+        <template if:true={activepreview}>
+            <c-preview-form-cmp formid={ParentMessage} activepreview={activepreview}></c-preview-form-cmp>
+        </template>
+
+        <template if:true={activeqf_publish}>
+            <c-qf_publish currentformid={ParentMessage}></c-qf_publish>
+        </template>
+
+        <template if:true={activeDropZone}>
+            <div class="showtabs2">
+                <div class="objects">
+                    <c-object-mapping form-id={ParentMessage} id="objcmp"></c-object-mapping>
+                </div>
+            </div>
+
+            <div class="child2">
+
+                <!-- Main Form Div -->
+                <div class="InnerFormtitle">
+                    <div class="formName" data-record-id={ParentMessage}>{FormName}</div>
+                    <div class="slds-col slds-grid slds-wrap rename_div formName" data-name={ParentMessage}
+                        style="display: none;">
+                        <lightning-input type="text" value={FormName} onchange={renamemain} onkeypress={key}
+                            class="rename_input"></lightning-input>
+                        <div class="right" onclick={renameMainForm} data-id={ParentMessage}><img src={right} alt="">
+                        </div>
+                        <div class="wrong" onclick={cancleRenameMainForm} data-id={ParentMessage}><img src={cross}
+                                alt="">
+                        </div>
+                    </div>
+
+                    <div class="formButtons">
+                        <button class="FormButtons" onclick={handleeditForm} name={EditButtonName}
+                            data-record={FormName} data-id={ParentMessage}> <img src={EditIcon} alt="edit button"
+                                class="icon">Edit Form</button>
+                        <button value="new page add" class="FormButtons" onclick={handleAddPage}
+                            name={EditButtonName}><img src={addIcon} alt="Add button" class="icon">Add Page</button>
+                    </div>
+                </div>
+
+                <div class="fieldDiv1 slds-align_absolute-center slds-col slds-small-size_6-of-12  slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_9-of-12"
+                    style="padding:2%; width:100%;background-color: white;">
+
+                    <div class="myform" id="mainformid">
+                        <template for:each={MainList} for:item="page">
+                            <div class="page" id={page.pageId} key={page.pageId}>
+                                <div class="pagetitle">
+                                    <div style="display: flex;align-items: center;">
+                                        <div>
+                                            <template if:true={page.pageName}>
+                                                <div class="pagetitle1" data-record-id={page.pageId}>{page.pageName}
                                                 </div>
-                                            </div>
-                                            
-                                    </template>
+                                                <div class="slds-col slds-grid slds-wrap rename_div"
+                                                    data-name={page.pageId} style="display: none;">
+                                                    <lightning-input type="text" value={newFormName} onchange={rename}
+                                                        onkeypress={key} onclick={insideClick}
+                                                        class="rename_input"></lightning-input>
+                                                    <div class="right" onclick={renameForm} data-id={page.pageId}><img
+                                                            src={right} alt=""></div>
+                                                    <div class="wrong" onclick={cancleRenameForm} data-id={page.pageId}>
+                                                        <img src={cross} alt="">
+                                                    </div>
+                                                </div>
 
-                                </div>
-                            </div>
+                                            </template>
+
+                                        </div>
+                                    </div>
                                     <!-- <lightning-button-menu class="pageButtonMenu slds-dropdown_left"
                                         alternative-text="Show menu" onselect={handleSelectPage} name={page.pageName}>
                                 <lightning-menu-item id={page.pageId} value="edit" label="Edit Page"
@@ -159,76 +190,413 @@
                                 <lightning-menu-item id={page.pageId} value="delete" label="Delete Page"
                                             onclick={ondelete} prefix-icon-name="utility:delete"></lightning-menu-item>
                                     </lightning-button-menu> -->
-                                    <!-- <div class="PageButtonMenu">
-                                        <button class="pageIconButton" data-record={page.pageName} data-id={page.pageId} onclick={editPageName}><img class="pageIcons" src={editpageIcon} alt="Edit page"></button>
-                                        <button class="pageIconButton" onclick={deletePage} data-record={page.pageId}><img class="pageIcons" src={DeleteIcon} alt="Delete Page"></button>
-                                    </div> -->
-                        </div>
+                                    <div class="PageButtonMenu">
+                                        <button class="pageIconButton" data-record={page.pageName} data-id={page.pageId}
+                                            onclick={openmodal2}><img class="pageIcons" src={editpageIcon}
+                                                alt="Edit page"></button>
+                                        <button class="pageIconButton" onclick={deletePage}
+                                            data-record={page.pageId}><img class="pageIcons" src={DeleteIcon}
+                                                alt="Delete Page"></button>
+                                    </div>
+                                </div>
                                 <div class="example-dropzone" ondragover={onDragOver} ondrop={onDrop}
                                     ondragleave={dragLeave} ondragenter={dragEnter} data-page-record={page.pageId}>
 
-                            <template for:each={page.FieldData} for:item="field">
+                                    <template for:each={page.FieldData} for:item="field">
 
-                                        <div id={field.ParentMessage} class="field" draggable="true" 
+                                         <div id={field.Id} class="field" draggable="true"
                                             data-order-id={field.Field_Order__c} data-page-record={field.Form_Page__c}
-                                            data-record={field.ParentMessage} data-ref="inner" ondragstart={onDragStart} data-record-count={fieldcount}
-                                            onclick={openfieldvalidation} key={field.ParentMessage} data-field-name={field.Name} data-id={field.Id}>
-                                            <c-quickformfieldcomponent formid={ParentMessage} t-view={field.Name} compview="Full"
-                                                disable-field="true" field-attribute="" field-attribute-value=""
-                                                field-id={field.ParentMessage} page-id={page.ParentMessage}></c-quickformfieldcomponent>
+                                            data-record={field.Id} data-ref="inner" ondragstart={onDragStart}
+                                            data-record-count={fieldcount} onclick={openfieldvalidation} key={field.Id}
+                                            data-field-name={field.Name} data-field-id={field.Id} data-id={field.Id} >
+                                            <c-quickformfieldcomponent formid={ParentMessage} t-view={field.Name}
+                                                compview="Full" disable-field="true" field-attribute=""
+                                                field-attribute-value="" field-id={field.Id}
+                                                page-id={page.ParentMessage} data-field-id={field.Id}
+                                                onstartsppiner={stopspinner}
+                                                is-reqired={field.Field_Validations__c.isRequired}
+                                                helptextcheck={field.Field_Validations__c.isHelptext}
+                                                labelcheck={field.Field_Validations__c.isLabel}
+                                                labelvalue={field.Field_Validations__c.Label}
+                                                helptextvalue={field.Field_Validations__c.HelpText}
+                                                salutationvalue={field.Field_Validations__c.Salutation}
+                                                isdisabled={field.Field_Validations__c.isDisabled}
+                                                placeholder={field.Field_Validations__c.Placeholder}
+                                                fieldtype={field.Field_Validations__c.fieldtype}
+                                                terms-and-condition-value={field.Field_Validations__c.Richtext}
+                                                hovercssproperty={hovercssproperty}></c-quickformfieldcomponent>
 
+                                        </div>
+                                        <!-- <div id={field.ParentMessage} class="field" draggable="true"
+                                            data-order-id={field.Field_Order__c} data-page-record={field.Form_Page__c}
+                                            data-record={field.ParentMessage} data-ref="inner" ondragstart={onDragStart}
+                                            data-record-count={fieldcount} onclick={openfieldvalidation}
+                                            key={field.ParentMessage} data-field-name={field.Name} data-id={field.Id} data-field-id={field.Id}>
+                                            <c-quickformfieldcomponent formid={ParentMessage} t-view={field.Name}
+                                                compview="Full" disable-field="true" field-attribute=""
+                                                field-attribute-value="" field-id={field.ParentMessage}
+                                                page-id={page.ParentMessage} 
+                                                data-field-id={field.Id}
+                                                is-reqired={field.Field_Validations__c.isRequired}
+                                                helptextcheck={field.Field_Validations__c.isHelptext}
+                                                labelcheck={field.Field_Validations__c.isLabel}
+                                                labelvalue={field.Field_Validations__c.Label}
+                                                helptextvalue={field.Field_Validations__c.HelpText}
+                                                salutationvalue={field.Field_Validations__c.Salutation}
+                                                isdisabled={field.Field_Validations__c.isDisabled}
+                                                placeholder={field.Field_Validations__c.Placeholder}
+                                                fieldtype={field.Field_Validations__c.Fieldtype}
+                                                onstartsppiner={stopspinner}></c-quickformfieldcomponent>
+
+                                        </div> -->
+                                    </template>
                                 </div>
-                            </template>
-                        </div>
                                 <div class="footer">
 
                                     <template if:true={page.isIndexZero}>
 
-                                        <lightning-button class="nextbutton " variant="brand" label="Next" title="Next"
-                                            disabled onclick={onaddpage1}></lightning-button>
-                            </template>
-                                
-                                        <template if:true={page.isIndexIsNotLast}>
+                                        <!-- <button class="nextbutton " variant="brand" value="Next" title="Next"
+                                            onclick={onaddpage1}>Submit</button> -->
+                                        <template if:false={isIndexLast}>
+                                            <button data-name="next" variant="brand" title="Next" onclick={onaddpage1}
+                                                class="btn1">Next</button>
+                                        </template>
+                                        <template if:true={isIndexLast}>
+                                            <button variant="brand" title="Submit" onclick={onaddpage1} class="btn1"
+                                                data-name="submit">Submit</button>
+                                        </template>
+                                    </template>
 
-                                            <lightning-button id={previousButton} variant="brand" label="Previous"
-                                                title="Previous" disabled onclick={onaddpage1}
-                                            class="btn"></lightning-button>
-                                            <lightning-button id={nextButton} variant="brand" label="Next" title="Next"
-                                                disabled onclick={onaddpage1} class="btn"></lightning-button>
+                                    <template if:true={page.isIndexIsNotLast}>
+
+                                        <button id={previousButton} variant="brand" value="Previous" title="Previous"
+                                            onclick={onaddpage1} class="btn1">Previous</button>
+                                        <button id={nextButton} variant="brand" value="Next" title="Next"
+                                            onclick={onaddpage1} class="btn1">Next</button>
 
                                     </template>
-                                        <!-- <template if:false={isIndexIsNotLast}> -->
-                                            <template if:true={page.isIndexLast}>
-                                        
-                                                <lightning-button variant="brand" label="Previous" title="Previous"
-                                                    disabled onclick={onaddpage1} class="btn"></lightning-button>
-                                                <lightning-button variant="brand" label="Submit" title="Submit" disabled
-                                                    onclick={onaddpage1} class="btn"></lightning-button>
-                                        
+                                    <!-- <template if:false={isIndexIsNotLast}> -->
+                                    <template if:true={page.isIndexLast}>
+
+                                        <button variant="brand" value="Previous" title="Previous" onclick={onaddpage1}
+                                            class="btn1">Previous</button>
+                                        <button variant="brand" value="Submit" title="Submit" onclick={onaddpage1}
+                                            class="btn1">Submit</button>
+
                                     </template>
-                                    
+
 
 
                                 </div>
+                            </div>
+
+                        </template>
+
+                        <!-- End Main form div -->
                     </div>
+                </div>
 
-                </template>
-
-                <!-- End Main form div -->
             </div>
-        </div>
 
+            <!-- <template if:true={fieldvalidationdiv}> -->
+            <div class="fieldvalidationdiv">
+                <c-field-validation onupdatefields={afterfielddelete} onclosevalidation={closevalidation}></c-field-validation>
+            </div>
+            <!-- </template> -->
+
+        </template>
     </div>
 
-    <template if:true={fieldvalidationdiv}>
-        <div class="fieldvalidationdiv">
-            <c-field-validation tab={tab} field-id={fieldId} field-name={fieldName}  onclosevalidation={closevalidation} ></c-field-validation>
-        </div>
-    </template>
-</template>
-    </div>
+
+    <!-- ------------------------------------------------------------------------------------------- -->
 
     <template if:true={isModalOpen}>
-        <!-- <c-edit-form-details onpopupclose={modalpopupclose}></c-edit-form-details> -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <p class="popup_titel">Edit Form</p>
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </header>
+
+                <div class="slds-modal__content  newform_body" id="modal-content-id-2">
+                    <div class="form-details-input">
+
+
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label"><abbr>*</abbr>Form Title</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+
+                                    <lightning-input class="nameCls" variant="label-hidden" type="text"
+                                        onchange={changeFormTitle} name="form_title" value={formtitle}
+                                        required="true"></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label">Progress Indicator <lightning-helptext
+                                            variant="label-hidden"
+                                            content="To display the form using the Progress bar or Steps"></lightning-helptext></label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-combobox name="ProgressIndicator" value={Progressbarvalue}
+                                        variant="label-hidden" placeholder="Select Progress Indicator"
+                                        options={TypeOptions} onchange={changeProgressIndicator} class="slds-is-open">
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label">Captcha Type <lightning-helptext
+                                            content="Choose a captcha type to display a generic test to the user to determine whether or not they are human."></lightning-helptext></label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-combobox name="CaptchaType" variant="label-hidden"
+                                        value={captchTypeparent} placeholder="Select Captcha Type"
+                                        options={TypeOptions_2} onchange={changeCaptchaType} class="slds-is-open">
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label">Description</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <textarea variant="label-hidden" name="description" onchange={changeDescription}
+                                        class="desc"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="captcha_progressbar_preview_main">
+                        <div if:true={ispreview_show_msg} class="preview_show_msg_progress_bar">
+                            <p>Select Progress Indicator</p>
+                        </div>
+                        <div if:true={pi} class="progressbar_preview">
+                            <div class="captcha_progressbar_preview_main_titel">Progress Indicator :</div>
+                            <div class="preview_box_progressbar">
+                                <div class="prog-bar-width">
+                                    <c-progress-indicator progress={Progressbarvalue}></c-progress-indicator>
+                                </div>
+                            </div>
+                        </div>
+                        <div if:true={testtest} class="preview_show_msg_captcha">
+                            <p>Select Captcha Type</p>
+                        </div>
+                        <div if:true={ct} class="captcha_preview">
+
+                            <div class="captcha_progressbar_preview_main_titel">Captcha Type :</div>
+
+                            <div class="preview_box_captcha">
+                                <c-captcha-type captypetypes={captchTypeparent}></c-captcha-type>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-modal__footer">
+                    <div class="bt-center">
+                        <div class="bt">
+                            <button class="qf-standard-button cancelbtn" value="Cancel" onclick={closeModal}
+                                name="Cancel">Cancel</button>
+                            <button class="qf-standard-button" value="Next" name="Next"
+                                onclick={handleValidation}>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
     </template>
+
+    <!-- ------------------------------------------------------ -->
+    <!--=========================[ page Modal ] ========================= -->
+    <template if:true={isModalOpen1}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container" style="width:40% !important;">
+
+                <header class="slds-modal__header">
+                    <p class="popup_titel">Add Page</p>
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeModal1}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </header>
+
+                <div class="slds-modal__content" id="modal-content-id-1" style="height:20%;">
+                    <div class="form-details-input"
+                        style="margin-left: 9%; gap: 20px; width:80%; justify-content: center; align-items: center;">
+
+
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label"><abbr>*</abbr>Page Title <lightning-helptext
+                                            variant="label-hidden"
+                                            content="To display the page title"></lightning-helptext></label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+
+                                    <lightning-input class="nameCls1" variant="label-hidden" type="text"
+                                        onchange={changePageTitle} name="page_title" value={pagetitle}
+                                        required="true"></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label">Page Number <lightning-helptext
+                                            variant="label-hidden"
+                                            content="To place the new page on any index number. "></lightning-helptext></label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-input variant="label-hidden" type="number" onchange={changePageNo}
+                                        name="page_number" value={pagenumber}></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <div class="bt-center">
+                        <div class="bt">
+                            <button class="qf-standard-button cancelbtn" value="Cancel" onclick={closeModal1}
+                                name="Cancel">Cancel</button>
+                            <button class="qf-standard-button" value="Next" name="Next" onclick={handleValidation1}>Add
+                                Page</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <div aura:id="ModalBackdrop" class="slds-backdrop"></div> -->
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!-- ========================= [page Modal End ] ========================= -->
+
+    <!--=========================[ page Modal ] ========================= -->
+    <template if:true={isModalOpen2}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container" style="width:40% !important;">
+
+                <header class="slds-modal__header">
+                    <p class="popup_titel">Edit Page</p>
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeModal2}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </header>
+
+                <div class="slds-modal__content" id="modal-content-id-3" style="height:20%;">
+                    <div class="form-details-input"
+                        style="margin-left: 9%; gap: 20px; width:80%;justify-content: center;align-items: center;">
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label"><abbr>*</abbr>Page Title<lightning-helptext
+                                            variant="label-hidden"
+                                            content="To display the page title"></lightning-helptext></label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+
+                                    <lightning-input class="nameCls2" variant="label-hidden" type="text"
+                                        onchange={changePageTitle2} name="page_title" value={pagetitle2}
+                                        required="true"></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input_field">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <label class="input_field-label">Page Number<lightning-helptext
+                                            variant="label-hidden"
+                                            content="To place the new page on any index number. "></lightning-helptext></label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    :
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-input class="" variant="label-hidden" type="number"
+                                        onchange={changePageNo2} name="page_number"
+                                        value={pagenumber2}></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <div class="bt-center">
+                        <div class="bt">
+                            <button class="qf-standard-button cancelbtn" value="Cancel" onclick={closeModal2}
+                                name="Cancel">Cancel</button>
+                            <button class="qf-standard-button" value="Next" name="Next" onclick={handleValidation2}>Edit
+                                Page</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <div aura:id="ModalBackdrop" class="slds-backdrop"></div> -->
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!-- ========================= [page Modal End ] ========================= -->
+
+
+
+
 </template>

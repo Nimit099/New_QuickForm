@@ -1,0 +1,5 @@
+@media screen and (max-width:1400px){
+    .slds-textarea{
+        height: 50px !important;
+    }
+}

@@ -4,8 +4,18 @@
         <c-toast-component></c-toast-component>
         </template>
         <!-- ============== error toast=========== -->
-    <template if:true={spinner}>
-        <div data-id = "spinnerId" class="slds-spinner_container" style="overflow: hidden;">
+        <template if:true={spinner}>
+            <div data-id="spinnerId" class="slds-spinner_container spinnerclass">
+                <div class="spinner-main-div">
+                    <div class="loader--ripple">
+                       <div></div>
+                       <div></div>
+                    </div>
+                </div>
+            </div>
+        </template> 
+    <!-- <template if:true={spinner}>
+        <div data-id = "spinnerId" class="slds-spinner_container spinner">
             <div class="spinner-main-div">
                 <div class="loader--ripple">
                     <div></div>
@@ -13,9 +23,8 @@
                 </div>
             </div>
         </div>
-    </template>
+    </template> -->
     <div class="thanksMainDiv">
-        <template if:false={previewthankyou}>
         <!-- <template if:true={editlabelcheck}>
         <section data-id="Modal" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true" aria-describedby="ModalBody" class="slds-modal editlabel" onclick={hideFolderList}>
             <div class="richtextModel">
@@ -76,9 +85,9 @@
                         </div>
                         <lightning-helptext class="helptxt" content="The text you enter below will be displayed on the Thank You page of the form. This page is displayed after the form is submitted." ></lightning-helptext>
                     </div>
-                    <div class="form-control thankyouinput text" id="Input1">
+                    <div class="form-control thankyouinput text thankyouinput_text" id="Input1">
                         <div id="demo"></div>
-                        <lightning-textarea class="thankyouinput" value= {text} onchange={input} name="text"></lightning-textarea>
+                        <lightning-textarea class="thankyouinput" value= {text} onchange={input} type="text" name="text" style="--sds-c-textarea-sizing-min-height:100px;"></lightning-textarea>
                     </div>
                 </div>
                 <div class="hrLine"></div>
@@ -104,7 +113,7 @@
                         <lightning-helptext class="helptxt" content="When this option is enabled, users see the Thank You page after submission, which contains the redirect link. Specify the Thank You message and the redirect URL below." ></lightning-helptext>
                     </div>
                     <div class="form-control thankyouinput text_url" id="Input3">
-                        <lightning-textarea class="thankyouinput" value={text} name="text" onchange={input}></lightning-textarea>
+                        <lightning-textarea class="thankyouinput thankyouinput_text" value={text} name="text" onchange={input} style="--sds-c-textarea-sizing-min-height:100px;"></lightning-textarea>
                         <lightning-input data-id="ThanksURL2" type="url" value={url} name="url" class="thankyouinput" placeholder="Put Your Redirect Link" onchange={input} ></lightning-input>
                     </div>
                 </div>
@@ -134,15 +143,12 @@
                 </div>
             </div>
         </div>
-    </template>
-
         <div class="thanksPreviewDiv">
      
-            <template if:false={previewthankyou}>
                 <div class="thanksEditButton">
                     <button label="Edit Text" icon-position="left" onclick={editlabel} class="saveBtn editBtn"> <img src={whitepen} alt="" class="penicon"> Edit Label</button>
                 </div>
-            </template>
+
 
                 <template if:true={editlabelcheck}>
                     <!-- <section data-id="Modal" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true" aria-describedby="ModalBody" class="slds-modal editlabel" onclick={hideFolderList}> -->
@@ -181,35 +187,33 @@
                         </div>
                     <!-- </section> -->
                     </template>
-             
+
+
 
 
                 <div class="thanksPreview">
                     <div class="imgDiv">
-                        <img style="height: 100%;" src={thankyoulogo} />
+                        <img class="img" src={thankyoulogo} />
                     </div>
-                    <div style="padding: 10px;">
+                    <div class="thanksPreview_div">
                         <lightning-formatted-rich-text value={label} ></lightning-formatted-rich-text>
                     </div>
                     <template if:true={textcheck}>
                         
-                        <div style="padding: 10px; text-align: center;">
+                        <div class="maintext">
                             {text}
                         </div>
                     </template>
                     <template if:true={richtextcheck}>
-                        <div style="padding: 10px;">
+                        <div class="thanksPreview_div">
                             <lightning-formatted-rich-text value={richtext} ></lightning-formatted-rich-text>
                         </div>
                     </template>
                 </div>
-
-            <template if:false={previewthankyou}>
                 <div class="saveButton">
                     <button class="cancelBtn" onclick={cancelThanksData}>Cancel</button>
                     <button class="saveBtn" onclick={saveThanksData}>Save</button>                   
-                </div>
-            </template>
+            </div>
         </div>
     </div>
 </template>

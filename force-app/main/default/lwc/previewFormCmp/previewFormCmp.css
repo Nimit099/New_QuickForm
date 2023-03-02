@@ -483,11 +483,7 @@ border-radius: 28px;
     padding-top: 4%;
     display: flex;
     justify-content: center;
-    overflow-y: scroll;
 }
-.fieldDiv1::-webkit-scrollbar {
-    display: none;
-  }
 .progressindicator{
     position: relative;
     top: 3%;
@@ -496,7 +492,7 @@ border-radius: 28px;
 
 }
 .captchafield{
-    height: 5vh;
+    /* height: 5vh; */
 }
 .backbutton{
     width: 160px;

@@ -1,0 +1,15 @@
+<template>
+	<button onclick={showError}>Show Error Pop-Up</button>
+	
+	<template if:true={show}>
+        <div id="error-container" class="error-container">
+            <div class="error-box">
+                <span class="close" onclick={hideError}>&times;</span>
+                <p>Error Message Goes Here</p>
+            </div>
+        </div>
+    </template>
+        
+
+
+</template>

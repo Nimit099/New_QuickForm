@@ -14,6 +14,26 @@
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.39);
 }
+.puls_icon{
+    height: 16px;
+    width: 16px;
+}
+.addcc_addbcc{
+    font-weight: 400;
+    margin: 5px 10px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+        
+
+.addcc_addbcc:hover{
+     cursor: pointer;
+}
+.addcc_addbcc_main{
+    display: flex;
+}
 c-email-input {
     border-top-style: hidden;
     border-right-style: hidden;
@@ -50,15 +70,16 @@ abbr{
 }
 .input_outerbox {
     width: 85%;
-    height: 55%;
+    height: 61%;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid;
     border-radius: 28px;
-    margin-top: 3%;
+    margin-top: 1%;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     overflow: scroll;
     overflow-x: hidden;
+    display: flex;
 }
 ::-webkit-scrollbar {
     width: 10px;
@@ -67,12 +88,13 @@ abbr{
 .input_section{
     width: 90%;
     /* height: 80%; */
+    padding-top: 2%;
     padding-bottom: 2%;
     margin-left: auto;
     margin-right: auto;
-    
+    margin: auto;
 }
-.slds-grid.slds-wrap {
+.input_section .slds-grid.slds-wrap {
     margin-top: 2%;
 }
 .input_box{
@@ -90,7 +112,7 @@ abbr{
     background-color: #ffffff;
     width: 100%;
     padding: var(--lwc-spacingMedium,1rem);
-    margin-top: 1%;
+    /* margin-top: 1%; */
 }
 .bt{
     /* width: 100%; */
@@ -280,3 +302,49 @@ lightning-button{
     position: absolute;
 }
 /* =========================     Spinner Sarts      =========================== */
+
+
+
+
+.input {
+    /* border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: solid; */
+    height: 1.875rem;
+    border: 1px solid;
+    border-color: #dddbda;
+    background-color: hidden;
+    width: 100%;
+}
+.pill{
+    border-radius: 4px !important;
+    /* margin: 5px !important; */
+   --sds-c-pill-color-background : #6699CC !important;
+   --sds-c-pill-top-margin: 5px;
+    color: white;
+}
+
+.email_error_msg{
+    color: #ff0000;
+}
+/* .slds-pill{
+    border-radius: 4px !important;
+    margin: 5px !important;
+   --sds-c-pill-color-background : #6699CC !important;
+    color: white;
+}
+.slds-pill_container{
+    border-radius: 4px !important;
+    margin: 5px !important;
+    --sds-c-pill-color-background : #6699CC !important;
+    color: white;
+
+} */
+.input:focus {
+    outline-width: 0;
+}
+
+.msg{
+    --sds-c-textarea-sizing-min-height: initial;
+}

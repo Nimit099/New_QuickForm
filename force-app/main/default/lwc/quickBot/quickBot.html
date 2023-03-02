@@ -1,0 +1,34 @@
+<template>
+    <div class="Quickbot_maincontaner">
+        <div class="Quickbot_contaner" style={bgimg}>
+            <div class="quickbot_header">
+                <div class="quickbot_header_title">
+                    <div class="quickbot_header_igdiv">
+                        <img src={Logo}>
+                    </div>
+                    <div class="quickbot_header_body">
+                        <div class="quickbot_text">{header}</div>
+                        <img src={Cross} class="cross_img" onclick={quickboe_close}>
+                    </div>
+                </div>
+            </div>
+            <div class="QuickBotBody">
+                <lightning-input type="text" placeholder="Enter your Name here" label="Name" value={quickbotname} onchange={Quickbot_name} class="quickbot_input" required></lightning-input>
+                <lightning-input type="text" label="Email" placeholder="Enter your email address here" value={quickbotemail} onchange={Quickbot_email} class="quickbot_input" required></lightning-input>
+                <div class="email_error_msg" if:false={email_msg}>Please Enter Valid Email
+                    Details..!</div>
+
+                <lightning-input type="text" label="Subject" placeholder="Enter your Subject here" value={quickbotsubject} onchange={Quickbot_subject} class="quickbot_input"></lightning-input>
+                <lightning-textarea label="Message" placeholder="Enter your message here" value={quickbotmessage} onchange={Quickbot_message} class="quickbot_message" required></lightning-textarea>
+                <!-- <textarea label="Message" placeholder="Enter your message here" value={quickbotmessage} onchange={Quickbot_message} class="quickbot_message"></textarea> -->
+                <div class="quickbot_button" onclick={quickbot_Submit}><span>Submit</span></div>
+            </div>
+            <div class="QuickBotFooter">
+                Powered by <span class="Owner">Mv Clouds</span>
+            </div>
+        </div>
+        <template if:true={error_toast}>
+            <c-toast-component></c-toast-component>
+        </template>
+    </div>
+</template>

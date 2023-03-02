@@ -23,25 +23,30 @@ public with sharing class notificationInsertData {
         }
     }
     @AuraEnabled
-    public static void updated(Notification__c updatelist){
+    public static Notification__c  updated(Notification__c updatelist){
         System.debug('list :- ' + updatelist);
         try{
             System.debug('test :- '+updatelist.Id );
-            List<Notification__c> records = [SELECT Id FROM Notification__c WHERE Id =: updatelist.Id ];
-            for (Notification__c record : records)
-            {
-                record.To_Recipients__c = updatelist.To_Recipients__c;
-                System.debug('To_Recipients__c :- '+updatelist.To_Recipients__c);
-                record.CC_Recipients__c = updatelist.CC_Recipients__c;
-                record.Subject__c = updatelist.Subject__c;
-                record.Email_Body__c = updatelist.Email_Body__c;
-                record.Attachment__c = updatelist.Attachment__c;
-            }
-            update records;
+            // List<Notification__c> records = [SELECT Id FROM Notification__c WHERE Id =: updatelist.Id ];
+            Notification__c record = [SELECT Id FROM Notification__c WHERE Id =: updatelist.Id ];
+
+            // for (Notification__c record : records)
+            // {
+            record.To_Recipients__c = updatelist.To_Recipients__c;
+            System.debug('To_Recipients__c :- '+updatelist.To_Recipients__c);
+            record.CC_Recipients__c = updatelist.CC_Recipients__c;
+            record.Subject__c = updatelist.Subject__c;
+            record.Email_Body__c = updatelist.Email_Body__c;
+            record.Attachment__c = updatelist.Attachment__c;
+            record.BCC_Recipients__c = updatelist.BCC_Recipients__c;
+            // }
+            update record;
+            return record;
 
         }
         catch (Exception e) {
             System.debug('error --> '+e);
+            return null;
         }
         
         // try {
@@ -56,14 +61,10 @@ public with sharing class notificationInsertData {
         //     System.debug('error --> '+e);
         // }
     }
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static List<Notification__c> getContactList(String form_id){
-        System.debug('test log to get data');
-        List<Notification__c> testnew = [SELECT Id,Attachment__c, CC_Recipients__c, Email_Body__c, To_Recipients__c,Subject__c FROM Notification__c WHERE Form__c =: form_id];
-        System.debug(testnew);
-        return testnew;
-        // return[
-        //     SELECT Id,Attachment__c, CC_Recipients__c, Email_Body__c, To_Recipients__c,Subject__c FROM Notification__c WHERE Form__c =: form_id
-        // ];
+        return[
+            SELECT Attachment__c, CC_Recipients__c, Email_Body__c, To_Recipients__c,ID,Subject__c,BCC_Recipients__c FROM Notification__c WHERE Form__c =: form_id
+        ];
     }
 }

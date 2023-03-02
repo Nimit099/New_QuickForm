@@ -1,29 +1,13 @@
-.slds-pill {
+.notification_pill .slds-pill {
     margin-right: 5px;
     margin-top: 5px;
 }
-.slds-pill:hover {
+.notification_pill .slds-pill:hover {
     --slds-c-pill-color-background: #6699CC !important;
 }
-/* .slds-button[c-emailinput_emailinput], .slds-button[c-emailinput_emailinput] {
-    --slds-c-button-color-border: var(--slds-c-button-color-border-hover);
-    --slds-c-button-color-background: var(--slds-c-button-color-background-hover);
-    color: #ffffff;
-}
-.slds-button:hover[c-emailinput_emailinput], .slds-button:focus[c-emailinput_emailinput] {
-    --slds-c-button-color-border: var(--slds-c-button-color-border-hover);
-    --slds-c-button-color-background: var(--slds-c-button-color-background-hover);
-    color: #ffffff;
-} */
-.slds-button_icon-bare, .slds-button--icon-bare {
-    line-height: var(--lwc-lineHeightReset,1);
-    vertical-align: middle;
-    color: var(--lwc-colorTextIconDefault,rgb(116, 116, 116));
-    color: white;
-}
-.slds-button_icon-bare:hover, .slds-button--icon-bare:hover {
-    line-height: var(--lwc-lineHeightReset,1);
-    vertical-align: middle;
-    color: var(--lwc-colorTextIconDefault,rgb(116, 116, 116));
-    color: white;
+
+.notification_pill .slds-pill__remove svg {
+    width: var(--lwc-squareIconXxSmallContent,.875rem);
+    color: #FFFFFF;
+    height: var(--lwc-squareIconXxSmallContent,.875rem);
 }

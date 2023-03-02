@@ -6,30 +6,42 @@
     /* overscroll-behavior: none; */
     overflow-x: hidden;
     overflow-y: scroll;
-    scrollbar-width: none;  /* Firefox */
+    scrollbar-width: none;
+    /* Firefox */
     /* box-shadow: 10px 10px 10px 10px; */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
 }
 
+.main::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
 
-.main::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
-.OtherFields{
+.OtherFields {
     overflow-y: scroll;
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
 }
-.OtherFields::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+
+.OtherFields::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
 }
-.slds-scrollable_y{
+
+.slds-scrollable_y {
     overflow-y: scroll;
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
 }
-.slds-scrollable_y::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+
+.slds-scrollable_y::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
 }
 
 .slds-icon {
@@ -38,14 +50,15 @@
     fill: #6699cc;
     background-color: #ffffff;
 }
+
 .icon {
     margin-right: 6px !important;
     padding: 0 !important;
 }
 
-.fieldname > p{
-    color: rgb(0,0,0,0.56);
-    font-size:30px;
+.fieldname>p {
+    color: rgb(0, 0, 0, 0.56);
+    font-size: 30px;
     font-weight: 800;
     font-family: 'Roboto';
     line-height: 25px;
@@ -55,7 +68,7 @@
     margin-bottom: 10px;
 }
 
-.Accord{
+.Accord {
     height: 75vh;
 }
 

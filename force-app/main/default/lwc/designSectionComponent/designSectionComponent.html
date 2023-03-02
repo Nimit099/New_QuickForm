@@ -1,5 +1,16 @@
 <template>
+    <template if:true={spinnerdatatable}>
+        <div data-id = "spinnerId" class="slds-spinner_container" style="overflow: hidden;">
+            <div class="spinner-main-div">
+                <div class="loader--ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </template>
     <div class="fieldDiv" id="demo1">
+        
         <div class="fieldname" >
             <p><b>DESIGN</b></p>
         </div>
@@ -12,11 +23,7 @@
             <div class="slds-col accclass " style="overflow-y: scroll;">
                  <lightning-accordion-section name="A" label="Form" class="accordion slds-scrollable_y">
                 <div class="panel">
-                    <lightning-input type="number" min="0" max="100" data-id="formwidth" aura:id="input-id-01"  value={formWidth} label="Form Width (%)" data-name="width:" onchange={handleFormCss} ></lightning-input>
-                    <lightning-input type="number" data-id="formheader" name="Header padding" min="0" max="100" value={headpadding} label="Header Padding (%)" data-name="padding-top:" onchange={handleFormCss}  ></lightning-input>
-                    <lightning-input type="number" data-id="formfooter" name="Footer Padding" min="0" max="100" value={footpadding} label="Footer Padding (%)" data-name="padding-bottom:" onchange={handleFormCss}  ></lightning-input>
-                    <lightning-input type="number" data-id="formleftpadding" name="Left Padding" min="0" max="100" value={leftpadding} label="Left Padding (%)" data-name="padding-left:" onchange={handleFormCss}  ></lightning-input>
-                    <lightning-input type="number" data-id="formrightpadding" name="Right padding" min="0" max="100" value={rightpadding} label="Right Padding (%)" data-name="padding-right:" onchange={handleFormCss} ></lightning-input>
+                    <lightning-input type="number" data-id="formwidth" max-length="3" min-length="1" aura:id="input-id-01"  value={formWidth} label="Form Width (%)" data-name="width:" onchange={handleFormCss} ></lightning-input>
                     <!-- <lightning-combobox name="Form direction" data-id="formdirection" label="Form direction" options={optFormdirection} value={formdir} data-name="width:" onchange={handlFormeCss}  ></lightning-combobox> -->
                     <lightning-input type="color" data-id="formbgcolor" label="Background-color" name="color" value={colorpicker} data-name="background-color:" onchange={handleFormCss} class="slds-color-picker__custom-inputs" ></lightning-input>
                     
@@ -29,9 +36,8 @@
                         <div class="slds-m-top_small slds-m-bottom_small slds-align_absolute-center">
                             <div class="box">                                
                                 <div class="cross" onclick={removeFormBackground}><img src={cross} alt=""></div>
-                              <img class="formimage" src={formimageurl} alt="" />
+                              <img class="pageimage" src={formimageurl} alt="" />
                           </div>
-                        
                         <!-- <img class="formimage" src={formimageurl} alt="" style="display: block; width:60%;" > -->
                     </div>
                         <!-- <lightning-button variant="brand-outline" label="Remove" onclick={removeFormBackground} title="titleName" class="slds-m-top--medium" ></lightning-button> -->
@@ -39,7 +45,21 @@
                         <lightning-combobox label="Background position" value={formbackpagePostion} options={optformbackpagePostion} data-name="background-position:" onchange={handleFormCss} ></lightning-combobox>
                         <lightning-combobox label="Background repeat" value={formbackpageRepeat} options={optformbackpageRepeat} data-name="background-repeat:" onchange={handleFormCss} ></lightning-combobox>
                         <lightning-combobox label="Background fix position" value={formbackgroundPagefixposition} data-name="background-attachment:" options={optformbackgroundPagefixposition} onchange={handleFormCss} class="slds-m-bottom_medium" ></lightning-combobox>
+                    
                     </template>
+                    <h2 class="slds-m-top-medium">Form Padding(%):</h2>
+                    <label for="Topperc" class="slds-align_absolute-center" style="font-size: 12px;">Top</label>
+                    <lightning-input id="Topperc" class="topp slds-align_absolute-center" variant="label-hidden" style="width:25%; " type="number" data-id="formheader" name="Header padding" min="0" max="100" value={headpadding} label="Top (%)" data-name="padding-top:" onchange={handleFormCss}  ></lightning-input>
+                    <div class="paddingdiv">
+                        <label for="Footer" class="slds-align_absolute-center" style="font-size: 12px;">Left&nbsp;</label>
+                        <lightning-input id="Leftperc" class="leftp" variant="label-hidden" style="width:75%; display:inline-block;" type="number" data-id="formleftpadding" name="Left Padding" min="0" max="100" value={leftpadding} label="Left(%)" data-name="padding-left:" onchange={handleFormCss}  ></lightning-input>
+                        <div class="plus"></div>
+                        <lightning-input id="Rightperc" class="rightp" variant="label-hidden" style="width:75%; display:inline-block;" type="number" data-id="formrightpadding" name="Right padding" min="0" max="100" value={rightpadding} label="Right(%)" data-name="padding-right:" onchange={handleFormCss} ></lightning-input>
+                        <label for="Footer" class="slds-align_absolute-center" style="font-size: 12px;">&nbsp;Right</label>
+                    </div>
+                    <lightning-input id="Bottomperc" class="footp slds-align_absolute-center" variant="label-hidden" style="width:25%" type="number" data-id="formfooter" name="Footer Padding" min="0" max="100" value={footpadding} data-name="padding-bottom:" onchange={handleFormCss}  ></lightning-input>
+                    <label for="Bottomperc" class="slds-align_absolute-center" style="font-size: 12px;">Bottom</label>
+                    
                     
                 </div>
                 </lightning-accordion-section>
@@ -77,15 +97,15 @@
             </lightning-accordion-section>
                 <lightning-accordion-section class="accordion slds-scrollable_y" name="C" label="Label">
                 <div class="panel">
-                    <lightning-combobox label="Alignment" value={labelalign} data-name="align-content:" options={optlabelalign} onchange={handleLabelCss} ></lightning-combobox>
+                    <lightning-combobox label="Alignment" value={labelalign} data-name="justify-content:" options={optlabelalign} onchange={handleLabelCss} ></lightning-combobox>
                     <lightning-combobox label="Font" value={labelfontfamily} data-name="font-family:" options={optlabelfontfamily} onchange={handleLabelCss} ></lightning-combobox>
-                    <lightning-combobox label="Font weight" value={labelfontweight} data-name="font-weight:" options={optlabelfontweight} onchange={handleLabelCss} ></lightning-combobox>
+                    <lightning-combobox label="Font weight" value={labelfontweight} data-name="font-weight:" options={optinputfontweight} onchange={handleLabelCss} ></lightning-combobox>
                     <lightning-combobox label="Font style" value={labelfontstyle} data-name="font-style:" options={optlabelfontstyle} onchange={handleLabelCss} ></lightning-combobox>
-                    <lightning-input type="text" value={labelfontsize} data-name="font-size:" label="Font size (px)" onchange={handleLabelCss} ></lightning-input>
-                    <lightning-combobox label="Font line height" data-name="height:" value={labelineheight} options={optlabelineheight} onchange={handleLabelCss} ></lightning-combobox>
+                    <lightning-input type="number" value={labelfontsize} data-name="font-size:" label="Font size (px)" onchange={handleLabelCss} ></lightning-input>
+                    <lightning-combobox label="Font line height" data-name="line-height:" value={labelineheight} options={optlabelineheight} onchange={handleLabelCss} ></lightning-combobox>
                     <lightning-input type="color" value={labelcolor} data-name="color:" label="Color" onchange={handleLabelCss} ></lightning-input>
-                    <lightning-input type="text" value={labeltopmargin} data-name="margin-top:" label="Top margin (px)" onchange={handleLabelCss} ></lightning-input>
-                    <lightning-input type="text" value={labelbottommargin} data-name="margin-bottom:" label="Bottom margin (px)" class="slds-m-bottom_medium" onchange={handleLabelCss} ></lightning-input>
+                    <lightning-input type="number" value={labeltopmargin} data-name="margin-top:" label="Top margin (px)" onchange={handleLabelCss} ></lightning-input>
+                    <lightning-input type="number" value={labelbottommargin} data-name="margin-bottom:" label="Bottom margin (px)" class="slds-m-bottom_medium" onchange={handleLabelCss} ></lightning-input>
                 </div>
             </lightning-accordion-section>
             <lightning-accordion-section class="accordion slds-scrollable_y" name="D" label="Input">
@@ -95,40 +115,40 @@
                     <lightning-input type="color" label="Background" value={bgInput} data-name="background-color:" onchange={handleFieldCss} ></lightning-input>
                     <lightning-input type="color" label="Border" value={borderInput} data-name="border-color:"  onchange={handleFieldCss} ></lightning-input>
                     <lightning-combobox name="Border style" label="Border style" value={borderStyle} options={optborderStyle} data-name="border-style:" onchange={handleFieldCss} ></lightning-combobox>
-                    <lightning-input type="text" label="Border thickness (px)" value={borderWidth} data-name="border-width:" onchange={handleFieldCss} ></lightning-input>
-                    <lightning-input type="text" label="Border radius (px)" value={borderRadius} data-name="border-radius:" onchange={handleFieldCss} ></lightning-input>
-                    <lightning-combobox name="Font" label="Font" options={optinputfontfamily} value={inputfontfamily} data-name="font-family:" onchange={handleFieldCss} ></lightning-combobox>
-                    <lightning-combobox label="Font weight" value={inputfontweight} options={optinputfontweight} data-name="font-weight:" onchange={handleFieldCss} ></lightning-combobox>
-                    <lightning-combobox label="Font style" value={inputfontstyle} options={optinputfontstyle} data-name="font-style:" onchange={handleFieldCss} ></lightning-combobox>
-                    <lightning-input type="number" label="Font size (px)" value={inputfontsize} data-name="font-size:" onchange={handleFieldCss} ></lightning-input>
-                    <lightning-combobox label="Font line height" value={inputlineheight} options={optinputlineheight} data-name="height:" onchange={handleFieldCss} ></lightning-combobox>
+                    <lightning-input type="number" label="Border thickness (px)" value={borderWidth} data-name="border-width:" onchange={handleFieldCss} ></lightning-input>
+                    <lightning-input type="number" label="Border radius (px)" value={borderRadius} data-name="border-radius:" onchange={handleFieldCss} ></lightning-input>
                     <lightning-input type="color" label="Text color" value={bordertextcolor} data-name="color:" onchange={handleFieldCss} ></lightning-input>
-                    <lightning-input type="text" label="Horizontal padding (px)" value={inputHpadding} data-name="padding1" onchange={handleFieldCss} ></lightning-input>
-                    <lightning-input type="text" label="Vertical padding (px)" value={inputVpadding} onchange={handleFieldCss} data-name="padding2" class="slds-m-bottom_medium" ></lightning-input>
+                    <lightning-combobox label="Font" options={optlabelfontfamily} value={inputfontfamily} data-name="font-family:" onchange={handleFieldCss} ></lightning-combobox>
+                    <lightning-combobox label="Font weight" value={labelfontweight} options={optinputfontweight} data-name="font-weight:" onchange={handleFieldCss} ></lightning-combobox>
+                    <lightning-combobox label="Font style" value={labelfontstyle} options={optinputfontstyle} data-name="font-style:" onchange={handleFieldCss} ></lightning-combobox>
+                    <lightning-input type="number" label="Font size (px)" value={inputfontsize} data-name="font-size:" onchange={handleFieldCss} ></lightning-input>
+                    <lightning-combobox label="Font line height" value={inputlineheight} options={optinputlineheight} data-name="line-height:" onchange={handleFieldCss} ></lightning-combobox>
+                    <!-- <lightning-input type="number" label="Horizontal padding (px)" value={inputHpadding} data-name="padding1" onchange={handleFieldCss} ></lightning-input>
+                    <lightning-input type="number" label="Vertical padding (px)" value={inputVpadding} onchange={handleFieldCss} data-name="padding2" class="slds-m-bottom_medium" ></lightning-input> -->
                 </div>
             </lightning-accordion-section> 
             <lightning-accordion-section class="accordion slds-scrollable_y" name='E' label="Button">
                 
                 <div class="panel">
-                    <lightning-combobox label="Alignment" value={btnJustify} options={optbtnJustify} onchange={handleCss} class="slds-m-bottom_medium" ></lightning-combobox>
+                    <lightning-combobox label="Alignment" value={btnJustify} options={optbtnJustify} data-name="justify-content:" onchange={handleButtonCss} class="slds-m-bottom_medium" ></lightning-combobox>
 
-                    <lightning-input type="color" label="Text Color" value={btnTextColor} onchange={handleCss} ></lightning-input>
+                    <lightning-input type="color" label="Text Color" value={btnTextColor} data-name="color:" onchange={handleButtonCss} ></lightning-input>
 
 
-                    <lightning-input type="color" label="Background Color" data-name="BackgroundColor" value={btnBgColor} onchange={handleCss} ></lightning-input>
-                    <lightning-input type="color" label="Border color" value={btncolor} onchange={handleCss} ></lightning-input>
-                    <lightning-combobox label="Border style" value={btnborderstyle} options={optbtnborderstyle} onchange={handleCss} ></lightning-combobox>
-                    <lightning-input type="text" label="Border thickness (px)" value={btnborderwidth} onchange={handleCss} ></lightning-input>
-                    <lightning-input type="text" label="Border radius (px)" onchange={handleCss} value={btnborderradius} ></lightning-input>
-                    <lightning-combobox label="Font" value={buttonfontfamily} options={optbuttonfontfamily} onchange={handleCss} ></lightning-combobox>
-                    <lightning-combobox label="Font weight" value={buttonfontweight} options={optbuttonfontweight} onchange={handleCss} ></lightning-combobox>
-                    <lightning-combobox label="Font style" value={buttonfontstyle} options={optbuttonfontstyle} onchange={handleCss} ></lightning-combobox>
-                    <lightning-input type="text" value={buttonfontsize} label="Font size (px)" onchange={handleCss} ></lightning-input>
+                    <lightning-input type="color" label="Background Color" data-name="background-color:" value={btnBgColor} onchange={handleButtonCss} ></lightning-input>
+                    <lightning-input type="color" label="Border color" value={btncolor} data-name="border-color:" onchange={handleButtonCss} ></lightning-input>
+                    <lightning-combobox label="Border style" value={btnborderstyle} options={optbtnborderstyle} data-name="border-style:" onchange={handleButtonCss} ></lightning-combobox>
+                    <lightning-input type="number" label="Border thickness (px)" value={btnborderwidth} data-name="border-width:" onchange={handleButtonCss} ></lightning-input>
+                    <lightning-input type="number" label="Border radius (px)" onchange={handleButtonCss} data-name="border-radius:" value={btnborderradius} ></lightning-input>
+                    <lightning-combobox label="Font" value={buttonfontfamily} options={optbuttonfontfamily} data-name="font-family:" onchange={handleButtonCss} ></lightning-combobox>
+                    <lightning-combobox label="Font weight" value={buttonfontweight} options={optinputfontweight} data-name="font-weight:" onchange={handleButtonCss} ></lightning-combobox>
+                    <lightning-combobox label="Font style" value={buttonfontstyle} options={optbuttonfontstyle} data-name="font-style:" onchange={handleButtonCss} ></lightning-combobox>
+                    <lightning-input type="number" value={buttonfontsize} label="Font size (px)" onchange={handleButtonCss} data-name="font-size:" ></lightning-input>
 
-                    <lightning-input type="text" label="Width (px)" onchange={handleCss} value={btnWidth} ></lightning-input>
-                    <lightning-input type="text" label="Height (px)" onchange={handleCss} value={btnHeight} ></lightning-input>
-                    <lightning-input type="text" label="Horizontal Padding (px)" onchange={handleCss} value={btnHorizontalPadding} ></lightning-input>
-                    <lightning-input type="text" label="Vertical Padding (px)" onchange={handleCss} value={btnVerticalPadding} class="slds-m-bottom_medium" ></lightning-input>
+                    <lightning-input type="number" label="Width (px)" onchange={handleButtonCss} value={btnWidth} data-name="width:" ></lightning-input>
+                    <lightning-input type="number" label="Height (px)" onchange={handleButtonCss} value={btnHeight} data-name="height:" ></lightning-input>
+                    <!-- <lightning-input type="number" label="Horizontal Padding (px)" onchange={handleButtonCss} value={btnHorizontalPadding} data-name="padding1:" ></lightning-input>
+                    <lightning-input type="number" label="Vertical Padding (px)" onchange={handleButtonCss} value={btnVerticalPadding} data-name="padding2:" ></lightning-input> -->
 
 
                 </div>
@@ -139,7 +159,7 @@
                     <lightning-input type="color" label="Input background" value={fieldhoverbg} data-name="background-color:" onchange={handlefieldhover} ></lightning-input>
                     <lightning-input type="color" label="Input border" value={fieldhoverborderColor} data-name="border-color:" onchange={handlefieldhover} ></lightning-input>
                     <lightning-input type="color" label="Input text color" value={fieldhovercolor} data-name="color:" onchange={handlefieldhover} class="hoverTextColor" ></lightning-input>
-                    <lightning-input type="color" label="Label color" value={hoverlabelcolor} data-name="lcolor:" onchange={handlefieldhover} id="label_popup" class="hoverLabelColor slds-m-bottom_medium" ></lightning-input>
+                    <!-- <lightning-input type="color" label="Label color" value={hoverlabelcolor} data-name="lcolor:" onchange={handlefieldhover} id="label_popup" class="hoverLabelColor slds-m-bottom_medium" ></lightning-input> -->
                 </div>
             </lightning-accordion-section>
             <lightning-accordion-section class="accordion slds-scrollable_y" name="G" label="Field Focus">
@@ -148,10 +168,10 @@
                     <lightning-input type="color" label="Input background" value={fieldfocusbg} data-name="background-color:" onchange={handlefieldfocus} ></lightning-input>
                     <lightning-input type="color" label="Input border" value={fieldfocusborderColor} data-name="border-color:" onchange={handlefieldfocus} class="colorBarFocusInputBorder" ></lightning-input>
                     <lightning-input type="color" label="Input text color" value={fieldfocuscolor} data-name="color:" onchange={handlefieldfocus} class="colorBarFocusInput" ></lightning-input>
-                    <lightning-input type="color" label="Label color" value={focuslabelcolor} data-name="lcolor:" onchange={handlefieldfocus} class="slds-m-bottom_medium colorBar" ></lightning-input>
+                    <!-- <lightning-input type="color" label="Label color" value={focuslabelcolor} data-name="lcolor:" onchange={handlefieldfocus} class="slds-m-bottom_medium colorBar" ></lightning-input> -->
                 </div>
             </lightning-accordion-section> 
-            <lightning-accordion-section class="accordion slds-scrollable_y" name="H" label="Choices">
+            <!-- <lightning-accordion-section class="accordion slds-scrollable_y" name="H" label="Choices">
                 
                 <div class="panel">
                     <lightning-input type="text" label="Radio width (px)" value={radiowidth} onchange={handleCss} ></lightning-input>
@@ -161,7 +181,7 @@
                     <lightning-input type="text" label="Checkbox height (px)" value={checkheight} onchange={handleCss} ></lightning-input>
                     <lightning-input type="text" label="Checkbox right margin (px)" value={checkmargintop} onchange={handleCss} class="slds-m-bottom_medium" ></lightning-input>
                 </div>
-            </lightning-accordion-section>
+            </lightning-accordion-section> -->
 
             </div>
             </lightning-accordion>

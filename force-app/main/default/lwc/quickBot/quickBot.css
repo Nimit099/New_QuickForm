@@ -1,0 +1,133 @@
+.Quickbot_maincontaner{
+    display: block;
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    z-index: 2;
+}
+.Quickbot_contaner{
+    height: 70vh;
+    width: 370px;
+    background-color: white;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 2px 5px silver;
+}
+
+.quickbot_header{
+    background-color: #6699CC;
+    border-radius: 16px 16px 0 0 ;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.quickbot_header_title{
+    display: flex;
+    width: 100%;
+    padding: 20px 0 0 24px;
+    height: 100%;
+    margin: 20px 0;
+}
+.quickbot_header_igdiv{
+    background-color: #2153F9;
+    height: 60px;
+    width: 60px;
+    border-radius: 24px;
+    display: flex;
+    padding: 12px 11px 10px 11px;
+}
+
+.quickbot_header_igdiv img{
+    width: 38px;
+}
+
+.cross_img {
+    height: 20px;
+    width: 20px;
+    margin-top: 8px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.quickbot_text{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+
+.QuickBotBody{
+    width: 90%;
+    align-self: end;
+    margin: auto auto 36px auto;
+}
+.QuickBotFooter{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    background-color: #EBEBEB;
+    border-radius: 0 0 16px 16px;
+    height: 37px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #A8A5A5;
+}
+
+.Owner{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    color: #6699CC;
+}
+.email_error_msg{
+    color: #ff0000;
+}
+
+.quickbot_message{
+    width: 100%;
+    --sds-c-textarea-sizing-min-height:150px;
+}
+
+.quickbot_button{
+    height: 40px;
+    color: #FFFFFF;
+    background-color: #6699CC;
+    font-weight: 400;
+    line-height: 25px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 12px;
+    border-radius: 14px;
+    font-style: normal;
+    cursor: pointer;
+}
+.quickbot_header_body{
+    display: flex;
+    padding: 5px 0 0 10px;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+}
+
+@media screen and (max-width:1400px){
+    .QuickBotBody{
+        margin: auto auto 8px auto;
+    }
+    .quickbot_message{
+        width: 100%;
+        --sds-c-textarea-sizing-min-height:0vh !important;
+    }
+}
