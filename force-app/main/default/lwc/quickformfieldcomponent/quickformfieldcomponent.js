@@ -115,6 +115,8 @@ export default class Quickformfieldcomponent extends LightningElement {
             for(let k =0; k < arr.length; k++){
                 const element = arr[i];
                     element.style = fcss;
+
+                    
             }
         }
         // this.fcss = css;

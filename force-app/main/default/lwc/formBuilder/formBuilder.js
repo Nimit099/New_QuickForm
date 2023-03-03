@@ -157,7 +157,7 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
             this.hovercss = result.All_Field_Hover__c;
             this.focuscss = result.All_Field_Focus__c
             this.fcss = result.All_Field_Styling__c;
-            this.labelcss = result.Label_CSS__c
+            this.labelcss = result.Label_CSS__c;
             console.log(this.fcss + 'fcsss');
             let array;
 
@@ -458,6 +458,7 @@ export default class FormBuilder extends NavigationMixin(LightningElement) {
             const element = Arr[i];
             element.style = str;
         }
+
     }
     handlenewCSS(event) {
         try {
