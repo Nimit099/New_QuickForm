@@ -99,6 +99,41 @@ export default class Quickformfieldcomponent extends LightningElement {
     @track updatedlabelcss = this.labelcss;
     usricon = true;
     reficon;
+    @api minimum;
+    @api maximum;
+    @api minimumtime;
+    @api maximumtime;
+    @api minimumdatetime;
+    @api maximumdatetime;
+    @api minimumdate;
+    @api maximumdate;
+    @track FieldListname = [];
+    @api fieldmapping;
+    @api firstobjvallist = {};
+    @api secondobjvallist = {};
+    @api thirdobjvallist = {};
+    @api extobjvallist = {};
+    @track fullName = {
+        'salutation': '',
+        'f_name': '',
+        's_name': ''
+    };
+    @track Address = {
+        'street': '',
+        'city': '',
+        'state': '',
+        'zipcode': '',
+        'country': ''
+    };
+    @api formobject;
+    @track fildval = '';
+    @api validation;
+    @track check_vali_next = true;
+    @track chexk_val_list = [];
+    // @track FullName;
+    // @track error_validation_json = {};
+    // error_josn_key_list = new Set();
+    // @track error_josn_key_list=[];
 
     connectedCallback() {
         this.fieldstype = this.tView.split(',')[1];
@@ -119,6 +154,9 @@ export default class Quickformfieldcomponent extends LightningElement {
             })
 
         this.onfocus = false;
+        console.log('fieldmapping --> ' + this.fieldmapping);
+        console.log('validation :- ', JSON.stringify(this.validation));
+
     }
 
     renderedCallback() {
@@ -163,38 +201,9 @@ export default class Quickformfieldcomponent extends LightningElement {
             console.log('fielderror' + error);
         }
 
-
-        // getLabelCSS({
-        //         id: this.formid
-        //     })
-        //     .then(result => {
-        //         if (result != undefined) {
-        //             this.getLabelCSS1 = result;
-        //             let array = this.template.querySelectorAll('.flabel');
-        //             let str = this.getLabelCSS1;
-        //             for (let i = 0; i < array.length; i++) {
-        //                 const element = array[i];
-        //                 element.style = 'display:flex;' + str;
-        //             }
-        //             let array2 = this.template.querySelectorAll('.slds-popover--tooltip ');
-        //             let str2 = ((this.getLabelCSS1.split('margin-top:'))[1].split(';'))[0];
-        //             for (let j = 0; j < array2.length; j++) {
-        //                 const element = array2[j];
-        //                 element.style = 'margin:top:' + str2;
-        //             }
-        //             const event1 = CustomEvent('startsppiner');
-        //             this.dispatchEvent(event1);
-        //         }
-        //     }).catch(error => {
-        //         console.log({
-        //             error
-        //         });
-        //         const event1 = CustomEvent('startsppiner');
-        //         this.dispatchEvent(event1);
-        //     })
-
+        //Label css using style property
         try {
-            console.log('rendered callback label css -->> '+this.labelcss);
+            console.log('rendered callback label css -->> ' + this.labelcss);
             if (this.labelcss != undefined) {
                 this.updatedlabelcss = this.labelcss;
                 let array = this.template.querySelectorAll('.flabel');
@@ -221,42 +230,105 @@ export default class Quickformfieldcomponent extends LightningElement {
                         this.dispatchEvent(event1);
         }
                 
+        this.apply_val(); //add by yash
 
     }
 
-    @api FieldCSSUpdate(CSSString) {
-        if (CSSString != undefined) {
-            try {
-                this.updatedfieldcss = CSSString;
-                let array = this.template.querySelectorAll('.slds-input');
-                let str = '';
-                if (CSSString == undefined || CSSString == null || CSSString == '') {
-                    if (this.fieldcss != undefined) {
-                        str = this.fieldcss;
-                    }
-                } else {
-                    str = CSSString;
-                }
-                if (str != undefined) {
-                    let Arr = str.split(';color:');
-                    let Arr2 = Arr[1].split(';');
-                    let pcolor = Arr2[0];
-                    if (pcolor != undefined || pcolor != null) {
-                        for (let i = 0; i < array.length; i++) {
-                            const element = array[i];
-                            element.style = str;
-                            element.style.setProperty("--c", pcolor);
-                        }
+        // add by yash
+    apply_val() {
+        try {
+            var tempararyList = this.fieldmapping.split('<!@!>');
+            let fildname = tempararyList[0];
+            let fildobject = tempararyList[1];
+            console.log('fildobject :----', fildobject);
+            console.log('testtetet :- ', fildname);
+            let frst_map_obj = this.firstobjvallist.sobjectType;
+            let second_map_obj = this.secondobjvallist.sobjectType;
+            let third_map_obj = this.thirdobjvallist.sobjectType;
+            let forth_map_obj = this.extobjvallist.sobjectType;
+            console.log('forth_map_obj :- ', forth_map_obj);
+            if (fildobject == frst_map_obj) {
+                var obj_one_lst = [];
+                obj_one_lst = Object.keys(this.firstobjvallist);
+                for (let i = 0; i < obj_one_lst.length; i++) {
+                    if (obj_one_lst[i] == fildname) {
+                        this.fildval = this.firstobjvallist[obj_one_lst[i]];
                     }
                 }
-                // this.template.querySelector('select').style = str;
-            } catch (error) {
-                console.log("In the catch block ==> Method :** FieldCSSUpdate ** || LWC:** quickformfieldcomponent ** ==>", {
-                    error
-                });
-                console.log('above error ==>' + error);
+            } else if (fildobject == second_map_obj) {
+                var obj_two_lst = [];
+                obj_two_lst = Object.keys(this.secondobjvallist);
+                for (let i = 0; i < obj_two_lst.length; i++) {
+                    if (obj_two_lst[i] == fildname) {
+                        this.fildval = this.secondobjvallist[obj_two_lst[i]];
+                    }
+                }
+            } else if (fildobject == third_map_obj) {
+                var obj_three_lst = [];
+                obj_three_lst = Object.keys(this.thirdobjvallist);
+                for (let i = 0; i < obj_three_lst.length; i++) {
+                    if (obj_three_lst[i] == fildname) {
+                        this.fildval = this.thirdobjvallist[obj_three_lst[i]];
+                    }
+                }
+            } else {
+                var ex_obj_lst = [];
+                ex_obj_lst = Object.keys(this.extobjvallist);
+                console.log('test 4 a :- ', JSON.stringify(ex_obj_lst));
+                for (let i = 0; i < ex_obj_lst.length; i++) {
+                    console.log('u r in loop');
+                    if (ex_obj_lst[i] == fildname) {
+                        console.log('u r fild is valid');
+                        console.log('ex_obj_lst[i]', ex_obj_lst[i]);
+                        this.fildval = this.extobjvallist[ex_obj_lst[i]];
+                        console.log('fild val -----', this.fildval);
+                    }
+                }
+
             }
+        } catch (error) {
+            console.log("In the catch block ==> Method :** apply_val ** || LWC:** quickformfieldcomponent ** ==>", {
+                error
+            });
+            console.log('above error ==>' + error);
         }
+    }
+    // clos add by yash
+
+
+    @api FieldCSSUpdate(CSSString) {
+        // if (CSSString != undefined) {
+        //     try {
+        //         this.updatedfieldcss = CSSString;
+        //         let array = this.template.querySelectorAll('.slds-input');
+        //         let str = '';
+        //         if (CSSString == undefined || CSSString == null || CSSString == '') {
+        //             if (this.fieldcss != undefined) {
+        //                 str = this.fieldcss;
+        //             }
+        //         } else {
+        //             str = CSSString;
+        //         }
+        //         if (str != undefined) {
+        //             let Arr = str.split(';color:');
+        //             let Arr2 = Arr[1].split(';');
+        //             let pcolor = Arr2[0];
+        //             if (pcolor != undefined || pcolor != null) {
+        //                 for (let i = 0; i < array.length; i++) {
+        //                     const element = array[i];
+        //                     element.style = str;
+        //                     element.style.setProperty("--c", pcolor);
+        //                 }
+        //             }
+        //         }
+        //         // this.template.querySelector('select').style = str;
+        //     } catch (error) {
+        //         console.log("In the catch block ==> Method :** FieldCSSUpdate ** || LWC:** quickformfieldcomponent ** ==>", {
+        //             error
+        //         });
+        //         console.log('above error ==>' + error);
+        //     }
+        // }
     }
 
     @api LabelCSSUpdate(CSSString) {
@@ -275,7 +347,7 @@ export default class Quickformfieldcomponent extends LightningElement {
                 if (str2 != undefined) {
                     for (let j = 0; j < array2.length; j++) {
                         const element = array2[j];
-                        element.style = 'margin:top:' + str2 +';margin-bottom:' + str3;
+                        element.style = 'margin:top:' + str2 + ';margin-bottom:' + str3;
                     }
                 }
             }
@@ -657,7 +729,6 @@ export default class Quickformfieldcomponent extends LightningElement {
         }
     }
 
-
     emojiRatingValue(event) {
         try {
             var emojiValue = event.target.value;
@@ -1034,4 +1105,491 @@ export default class Quickformfieldcomponent extends LightningElement {
         this.template.querySelector('span[class="clearref"]').style.display = 'none';
         this.searchkey = '';
     }
+// add by yash/
+OnFieldClick(event) {
+    console.log('test by tyash for val :- ', this.validation.Field_Validations__c);
+    console.log('u r in onchange : ');
+    console.log('OUTPUT OnFieldClick : ', event.target.dataset.name);
+    let key = event.target.dataset.name;
+    console.log(' mini :- ', this.minimum);
+    console.log(' mini :- ', this.maximum);
+    console.log('key OUTPUT : ', key);
+    let vale = event.target.value;
+    let fild_teye = event.target.type;
+    console.log('tey OUTPUT : ', fild_teye);
+    console.log('vale OUTPUT : ', vale);
+    if (fild_teye == 'text') {
+        if (this.minimum > vale.length) {
+            // alert('pls enter min chater');
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            console.log('** error variable ===>' + JSON.stringify(error));
+            console.log('** error variable 1 ===>' + error.textContent);
+            error.textContent = 'Please enter a minimum ' + this.minimum + ' chater. ';
+            error.style.color = "red";
+            this.check_vali_next = false;
+            console.log('yash stru :- ', JSON.stringify(this.error_validation_json));
+            const cssevent2 = new CustomEvent("nextbtval", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent2);
+        } else {
+            let splitparetan = '<!@!>';
+            let fulldata = key + splitparetan + vale;
+            console.log('fulldata OUTPUT : ', fulldata);
+            const cssevent1 = new CustomEvent("passfieldvalue", {
+                detail: fulldata
+            });
+            this.dispatchEvent(cssevent1);
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            error.textContent = ""
+            this.check_vali_next = true;
+            const cssevent3 = new CustomEvent("nextbtvaltrue", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent3);
+        }
+    } else if (fild_teye == 'number') {
+        let min_val = event.target.min;
+        console.log(' min_val :- ', min_val);
+        let max_val = event.target.max;
+        console.log(' max_val :- ', max_val);
+        console.log(' max_val 11111:- ', this.minimum);
+        console.log(' max_val 22222:- ', this.maximum);
+        if (parseInt(this.minimum) > parseInt(vale) || parseInt(this.maximum) < parseInt(vale)) {
+            // alert('hey');
+            // let max_val =  event.target.min;
+            // console.log(' max_val :- ',max_val);
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            console.log('** error variable ===>' + JSON.stringify(error));
+            console.log('** error variable 1 ===>' + error.textContent);
+            error.textContent = "Please enter a velue between " + this.minimum + ' to ' + this.maximum;
+            error.style.color = "red";
+            console.log('yash stru :- ', JSON.stringify(this.error_validation_json));
+            const cssevent2 = new CustomEvent("nextbtval", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent2);
+        } else {
+            console.log('u r in num');
+            let splitparetan = '<!@!>';
+            let fulldata = key + splitparetan + vale;
+            console.log('fulldata OUTPUT : ', fulldata);
+            const cssevent1 = new CustomEvent("passfieldvalue", {
+                detail: fulldata
+            });
+            this.dispatchEvent(cssevent1);
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            error.textContent = ""
+            this.check_vali_next = true;
+            const cssevent3 = new CustomEvent("nextbtvaltrue", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent3);
+        }
+        // alert('enter min val');
+
+    } else if (fild_teye == 'date') {
+        // alert('y r in date val');
+        let min = event.target.min;
+        console.log('min val :- ', min);
+        let max = event.target.max;
+        if(min != '' && max !=''){
+            if (vale < min || vale > max) {
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                console.log('** error variable ===>' + JSON.stringify(error));
+                console.log('** error variable 1 ===>' + error.textContent);
+                error.textContent = "Please enter a date betwin ", min, ' to ', max;
+                error.style.color = "red";
+                this.check_vali_next = false;
+                const cssevent2 = new CustomEvent("nextbtval", {
+                    detail: key
+                });
+                this.dispatchEvent(cssevent2);
+            } else {
+                let splitparetan = '<!@!>';
+                let fulldata = key + splitparetan + vale;
+                console.log('fulldata OUTPUT : ', fulldata);
+                const cssevent1 = new CustomEvent("passfieldvalue", {
+                    detail: fulldata
+                });
+                this.dispatchEvent(cssevent1);
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                error.textContent = ""
+                this.check_vali_next = true;
+                const cssevent3 = new CustomEvent("nextbtvaltrue", {
+                    detail: key
+                });
+                this.dispatchEvent(cssevent3);
+            }
+        }
+        else if(min != '' && max ==''){
+            if(min <= vale){
+                alert('y r in only min');
+                let splitparetan = '<!@!>';
+                let fulldata = key + splitparetan + vale;
+                console.log('fulldata OUTPUT : ', fulldata);
+                const cssevent1 = new CustomEvent("passfieldvalue", {
+                    detail: fulldata
+                });
+                this.dispatchEvent(cssevent1);
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                error.textContent = ""
+                this.check_vali_next = true;
+                const cssevent3 = new CustomEvent("nextbtvaltrue", {
+                    detail: key
+                });
+                this.dispatchEvent(cssevent3);
+            }
+            else{
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                console.log('** error variable ===>' + JSON.stringify(error));
+                console.log('** error variable 1 ===>' + error.textContent);
+                error.textContent = "Please enter a date after to ", min;
+                error.style.color = "red";
+                this.check_vali_next = false;
+                const cssevent2 = new CustomEvent("nextbtval", {
+                    detail: key
+                });
+                this.dispatchEvent(cssevent2);
+            }
+        }
+        else if(min == '' && max !=''){
+            if(max >= vale){
+                alert('y r in only max');
+                let splitparetan = '<!@!>';
+                let fulldata = key + splitparetan + vale;
+                console.log('fulldata OUTPUT : ', fulldata);
+                const cssevent1 = new CustomEvent("passfieldvalue", {
+                    detail: fulldata
+                });
+                this.dispatchEvent(cssevent1);
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                error.textContent = ""
+                this.check_vali_next = true;
+                const cssevent3 = new CustomEvent("nextbtvaltrue", {
+                    detail: key
+                });
+                this.dispatchEvent(cssevent3);
+            }
+            else{
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                console.log('** error variable ===>' + JSON.stringify(error));
+                console.log('** error variable 1 ===>' + error.textContent);
+                error.textContent = "Please enter a date a bove to ", max;
+                error.style.color = "red";
+                this.check_vali_next = false;
+                const cssevent2 = new CustomEvent("nextbtval", {
+                    detail: key
+                });
+                this.dispatchEvent(cssevent2);
+            }
+        }
+        else{
+            let splitparetan = '<!@!>';
+            let fulldata = key + splitparetan + vale;
+            console.log('fulldata OUTPUT : ', fulldata);
+            const cssevent1 = new CustomEvent("passfieldvalue", {
+                detail: fulldata
+            });
+            this.dispatchEvent(cssevent1);
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            error.textContent = ""
+            this.check_vali_next = true;
+            const cssevent3 = new CustomEvent("nextbtvaltrue", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent3);
+
+        }
+    } else if (fild_teye == 'datetime') {
+        // alert('y r in datetime val');
+    } else if (fild_teye == 'time') {
+        let min_time = event.target.min;
+        console.log('min val :- ', min_time);
+        let max_time = event.target.max;
+        console.log('max val :- ', max_time);
+        let min_timeArr = min_time.split(':');
+        console.log('min_time[0]', min_timeArr[0]);
+        console.log('min_time[1]', min_timeArr[1]);
+        let max_timeArr = max_time.split(':');
+        console.log('max_time[0]', max_timeArr[0]);
+        console.log('max_time[1]', max_timeArr[1]);
+        let val_timeArr = vale.split(':');
+        console.log('val_time[0]', val_timeArr[0]);
+        console.log('val_time[1]', val_timeArr[1]);
+        if (min_timeArr[0] <= val_timeArr[0] && max_timeArr[0] >= val_timeArr[0]) {
+            if (min_timeArr[0] == val_timeArr[0]) {
+                if (min_timeArr[1] <= val_timeArr[1]) {
+                    alert('u r in two');
+                    let splitparetan = '<!@!>';
+                    let fulldata = key + splitparetan + vale;
+                    console.log('fulldata OUTPUT : ', fulldata);
+                    var error = this.template.querySelector(`[data-id="${key}"]`)
+                    error.textContent = ""
+                    this.check_vali_next = true;
+                    const cssevent3 = new CustomEvent("nextbtvaltrue", {detail: key});
+                    this.dispatchEvent(cssevent3);
+                    const cssevent1 = new CustomEvent("passfieldvalue", {detail: fulldata});
+                    this.dispatchEvent(cssevent1);
+
+                }
+            } else if (max_timeArr[0] == val_timeArr[0]) {
+                if (max_timeArr[1] >= val_timeArr[1]) {
+                    let splitparetan = '<!@!>';
+                    let fulldata = key + splitparetan + vale;
+                    console.log('fulldata OUTPUT : ', fulldata);
+                    var error = this.template.querySelector(`[data-id="${key}"]`)
+                    error.textContent = ""
+                    this.check_vali_next = true;
+                    const cssevent1 = new CustomEvent("passfieldvalue", {detail: fulldata});
+                    this.dispatchEvent(cssevent1);
+                    const cssevent3 = new CustomEvent("nextbtvaltrue", {detail: key});
+                    this.dispatchEvent(cssevent3);
+                }
+            } else {
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                console.log('** error variable ===>' + JSON.stringify(error));
+                console.log('** error variable 1 ===>' + error.textContent);
+                error.textContent = "Please enter a time between " + min_time + ' to ' + max_time;
+                error.style.color = "red";
+                alert(' json lenth :- 1  ', json_len);
+                this.check_vali_next = false;
+                const cssevent2 = new CustomEvent("nextbtval", {detail: key});
+                this.dispatchEvent(cssevent2);
+
+            }
+        } else {
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            console.log('** error variable ===>' + JSON.stringify(error));
+            console.log('** error variable 1 ===>' + error.textContent);
+            error.textContent = "Please enter a time between " + min_time + ' to ' + max_time;
+            error.style.color = "red";
+            const cssevent2 = new CustomEvent("nextbtval", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent2);
+        }
+    }
+    else if (fild_teye == 'email'){
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(vale.match(mailformat)){
+            if (this.minimum > vale.length) {
+                // alert('pls enter min chater');
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                console.log('** error variable ===>' + JSON.stringify(error));
+                console.log('** error variable 1 ===>' + error.textContent);
+                error.textContent = 'Please enter a minimum ' + this.minimum + ' chater. ';
+                error.style.color = "red";
+                this.check_vali_next = false;
+                console.log('yash stru :- ', JSON.stringify(this.error_validation_json));
+                const cssevent2 = new CustomEvent("nextbtval", {
+                    detail: key
+                });
+                this.dispatchEvent(cssevent2);
+            } else {
+                let splitparetan = '<!@!>';
+                let fulldata = key + splitparetan + vale;
+                console.log('fulldata OUTPUT : ', fulldata);
+                const cssevent1 = new CustomEvent("passfieldvalue", {
+                    detail: fulldata
+                });
+                this.dispatchEvent(cssevent1);
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                error.textContent = ""
+                this.check_vali_next = true;
+                const cssevent3 = new CustomEvent("nextbtvaltrue", {
+                    detail: key
+                });
+                this.dispatchEvent(cssevent3);
+            }
+        }
+        else{
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            console.log('** error variable ===>' + JSON.stringify(error));
+            console.log('** error variable 1 ===>' + error.textContent);
+            error.textContent = " You have entered an invalid email address! ";
+            error.style.color = "red";
+            const cssevent2 = new CustomEvent("nextbtval", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent2);
+        }
+
+    }
+    else if(fild_teye == 'textarea'){
+        if (this.minimum > vale.length) {
+            // alert('pls enter min chater');
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            console.log('** error variable ===>' + JSON.stringify(error));
+            console.log('** error variable 1 ===>' + error.textContent);
+            error.textContent = 'Please enter a minimum ' + this.minimum + ' chater. ';
+            error.style.color = "red";
+            this.check_vali_next = false;
+            console.log('yash stru :- ', JSON.stringify(this.error_validation_json));
+            const cssevent2 = new CustomEvent("nextbtval", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent2);
+        } else {
+            let splitparetan = '<!@!>';
+            let fulldata = key + splitparetan + vale;
+            console.log('fulldata OUTPUT : ', fulldata);
+            const cssevent1 = new CustomEvent("passfieldvalue", {
+                detail: fulldata
+            });
+            this.dispatchEvent(cssevent1);
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            error.textContent = ""
+            this.check_vali_next = true;
+            const cssevent3 = new CustomEvent("nextbtvaltrue", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent3);
+        }
+
+    }
+    else if(fild_teye == 'url'){
+        var expression =/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+        if(vale.match(expression)){
+                let splitparetan = '<!@!>';
+                let fulldata = key + splitparetan + vale;
+                console.log('fulldata OUTPUT : ', fulldata);
+                const cssevent1 = new CustomEvent("passfieldvalue", {
+                    detail: fulldata
+                });
+                this.dispatchEvent(cssevent1);
+                var error = this.template.querySelector(`[data-id="${key}"]`)
+                error.textContent = ""
+                this.check_vali_next = true;
+                const cssevent3 = new CustomEvent("nextbtvaltrue", {
+                    detail: key
+                });
+                this.dispatchEvent(cssevent3);
+        }
+        else{
+            var error = this.template.querySelector(`[data-id="${key}"]`)
+            console.log('** error variable ===>' + JSON.stringify(error));
+            console.log('** error variable 1 ===>' + error.textContent);
+            error.textContent = " You have entered an invalid Link ";
+            error.style.color = "red";
+            const cssevent2 = new CustomEvent("nextbtval", {
+                detail: key
+            });
+            this.dispatchEvent(cssevent2);
+        }
+
+    }
+}
+@api show_error_msg(strString) {
+    try {
+        var error = this.template.querySelector(`[data-id="${strString}"]`);
+        console.log('** error variable ===>' + JSON.stringify(error));
+        console.log('** error variable 1 ===>' + error.textContent);
+        error.textContent = "Please enter a valid number";
+        error.style.color = "red";
+        this.check_vali_next = false;
+    } catch (error) {
+        console.log("In the catch block ==> Method :** onDragOver ** || LWC:** formBuilder ** ==>", {
+            error
+        });
+        console.log('above error ==>' + error);
+
+    }
+}
+full_name(event) {
+    // alert('yash');
+    let label_name = event.target.name;
+    let f_name = event.target.value;
+    this.fullName[label_name] = f_name;
+    // console.log( 'full name json :- ',JSON.stringify(this.fullName));
+    let ne = this.fullName['salutation'];
+    let ne2 = this.fullName['f_name'];
+    let ne3 = this.fullName['s_name'];
+    let FullName = ne + '<QF>' + ne2 + '<QF>' + ne3;
+    // console.log(' ne4 :-',FullName);
+    var nameArr = FullName.split('<QF>');
+    // console.log('data key OUTPUT : ',nameArr[0]);
+    // console.log('data object OUTPUT : ',nameArr[1]);
+    // console.log('data value OUTPUT : ',nameArr[2]);
+    let key = event.target.dataset.name;
+    let splitparetan = '<!@!>';
+    let fulldata = key + splitparetan + FullName;
+    // console.log('fulldata OUTPUT : ',fulldata);
+    const cssevent1 = new CustomEvent("passfieldvalue", {
+        detail: fulldata
+    });
+    this.dispatchEvent(cssevent1);
+}
+address(event) {
+    // alert('yash');
+    let label_name = event.target.name;
+    let ads_val = event.target.value;
+    this.Address[label_name] = ads_val;
+    // console.log( 'full name json :- ',JSON.stringify(this.fullName));
+    let street = this.Address['street'];
+    let city = this.Address['city'];
+    let state = this.Address['state'];
+    let zipcode = this.Address['zipcode'];
+    let country = this.Address['country'];
+    let FullAdd = street + '<QF>' + city + '<QF>' + state + '<QF>' + zipcode + '<QF>' + country;
+    console.log(' ne4 :-', FullAdd);
+    var nameArr = FullAdd.split('<QF>');
+    console.log('data key OUTPUT : ', nameArr[0]);
+    console.log('data object OUTPUT : ', nameArr[1]);
+    console.log('data value OUTPUT : ', nameArr[2]);
+    let key = event.target.dataset.name;
+    let splitparetan = '<!@!>';
+    let fulldata = key + splitparetan + FullAdd;
+    // console.log('fulldata OUTPUT : ',fulldata);
+    const cssevent1 = new CustomEvent("passfieldvalue", {
+        detail: fulldata
+    });
+    this.dispatchEvent(cssevent1);
+
+}
+radiobutton(event) {
+    let radio_val = event.target.value;
+    // alert(radio_val);
+    // var radio_val = this.template.querySelector(`input[name="${label_name}"]:checked`).value; 
+    // alert('hello');
+    // alert(radio_val);
+    let key = event.target.dataset.name;
+    let splitparetan = '<!@!>';
+    let fulldata = key + splitparetan + radio_val;
+    // console.log('fulldata OUTPUT : ',fulldata);
+    const cssevent1 = new CustomEvent("passfieldvalue", {
+        detail: fulldata
+    });
+    this.dispatchEvent(cssevent1);
+}
+check_box(event) {
+    // alert('yash');
+    let radio_val = event.target.value;
+    let add_var = 'yes';
+    for (let i = 0; i < this.chexk_val_list.length; i++) {
+        if (this.chexk_val_list[i] == radio_val) {
+            add_var = 'No';
+            this.chexk_val_list.splice(i, 1);
+        }
+    }
+    if (add_var == 'yes') {
+        this.chexk_val_list.push(radio_val);
+    }
+    console.log('chek val :- ', JSON.stringify(this.chexk_val_list));
+    let full_cheh_val;
+    for (let i = 0; i < this.chexk_val_list.length; i++) {
+        full_cheh_val = full_cheh_val + '<QF>' + this.chexk_val_list[i];
+    }
+    console.log(' full_cheh_val:- ', full_cheh_val);
+    let key = event.target.dataset.name;
+    let splitparetan = '<!@!>';
+    let fulldata = key + splitparetan + full_cheh_val;
+    // console.log('fulldata OUTPUT : ',fulldata);
+    const cssevent1 = new CustomEvent("passfieldvalue", {
+        detail: fulldata
+    });
+    this.dispatchEvent(cssevent1);
+
+}
+
 }

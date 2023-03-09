@@ -251,7 +251,6 @@
     </template>
 
     <template if:true={fieldtype}>
-
         <template if:true={sTrueLink}>
             <div onmouseenter={FieldCSSUpdate}>
                 <template if:true={FieldShown}>
@@ -272,11 +271,12 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                 onblur={handleblur1} placeholder={placeholder} type='url' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled}  />
+                                <span data-id={fieldmapping}></span>
+                                
                         </div>
-
                     </label>
                 </template>
             </div>
@@ -302,9 +302,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                 onblur={handleblur1} placeholder={placeholder} type='password' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                <span data-id={fieldmapping}></span>
                         </div>
 
                     </label>
@@ -331,9 +332,11 @@
                                 </template>
                             </div>
                         </template>
-                        <textarea onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                        <textarea data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                             onblur={handleblur1} disabled={isdisabled} class="slds-input"
-                            placeholder={placeholder}></textarea>
+                            placeholder={placeholder} maxlength={maximum} minlength={minimum}></textarea>
+                            <span data-id={fieldmapping}></span>
+                            
                     </label>
                 </template>
             </div>
@@ -359,9 +362,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                onblur={handleblur1} placeholder={placeholder} type='Text' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                onblur={handleblur1} placeholder={placeholder} type='text' value=""
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} maxlength={maximum} minlength={minimum} />
+                                <span data-id={fieldmapping}></span>
                         </div>
 
                     </label>
@@ -389,9 +393,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                onblur={handleblur1} placeholder={placeholder} type='email' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                onblur={handleblur1} placeholder={placeholder} type='email' value="" maxlength={maximum} minlength={minimum}
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                <span data-id={fieldmapping}></span>
                         </div>
                     </label>
                 </template>
@@ -418,9 +423,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                 onblur={handleblur1} placeholder={placeholder} type='datetime-local' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                <span data-id={fieldmapping}></span>
                         </div>
                     </label>
                 </template>
@@ -447,9 +453,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                onblur={handleblur1} placeholder={placeholder} type='number' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                onblur={handleblur1} placeholder={placeholder} type='number' value="" max={maximum} min={minimum}
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                <span data-id={fieldmapping}></span>
                         </div>
                     </label>
                 </template>
@@ -476,9 +483,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                 onblur={handleblur1} placeholder={placeholder} type='Time' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                <span data-id={fieldmapping}></span>
                         </div>
                     </label>
                 </template>
@@ -505,9 +513,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                onblur={handleblur1} placeholder={placeholder} type='number' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                onblur={handleblur1} placeholder={placeholder} type='number' value="" maxlength={maximum} minlength={minimum}
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                <span data-id={fieldmapping}></span>
                         </div>
 
                     </label>
@@ -535,9 +544,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                 onblur={handleblur1} placeholder={placeholder} type='number' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                <span data-id={fieldmapping}></span>
                         </div>
 
                     </label>
@@ -565,9 +575,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                onblur={handleblur1} placeholder={placeholder} type='number' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                onblur={handleblur1} placeholder={placeholder} type='number' value="" max={maximum} min={minimum}
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                <span data-id={fieldmapping}></span>
                         </div>
 
                     </label>
@@ -595,9 +606,10 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                 onblur={handleblur1} placeholder={placeholder} type='date' value=""
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                onchange={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                <span data-id={fieldmapping}></span>
                         </div>
 
                     </label>
@@ -625,11 +637,12 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                 onblur={handleblur1} class={fieldId} placeholder={placeholder} type="checkbox" value=""
                                 name={tView} options={CheckBoxOp} pattern={fieldValidations}
-                                message-when-pattern-mismatch={fieldAttributeValue} onclick={OnFieldClick} key={value}
+                                message-when-pattern-mismatch={fieldAttributeValue} onchange={OnFieldClick} key={value}
                                 disabled={isdisabled}></input>
+                                <span data-id={fieldmapping}></span>
                         </div>
 
                     </label>
@@ -660,31 +673,31 @@
                             <div class="slds-form slds-form_stacked">
                                 <div class="slds-form-element">
                                     <div class="areatext slds-form-element__control">
-                                        <textarea onmousemove={handlehover} onmouseout={handleblur}
+                                        <textarea data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
                                             onfocusin={handlefocus} onblur={handleblur1} disabled={isdisabled}
                                             data-id="street-address" class="slds-input" placeholder="Street"></textarea>
                                     </div>
                                 </div>
                                 <div class="slds-form-element flex">
                                     <div class="slds-form-element__control leftfield">
-                                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                        <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                             onblur={handleblur1} disabled={isdisabled} type="text" data-id="city"
                                             class="slds-input" placeholder="City" />
                                     </div>
                                     <div class="slds-form-element__control rightfield">
-                                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                        <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                             onblur={handleblur1} disabled={isdisabled} type="text" data-id="state"
                                             class="slds-input" placeholder="State" />
                                     </div>
                                 </div>
                                 <div class="slds-form-element flex">
                                     <div class="slds-form-element__control leftfield">
-                                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                        <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                             onblur={handleblur1} disabled={isdisabled} type="text" data-id="zip-code"
                                             class="slds-input" placeholder="Zip Code" />
                                     </div>
                                     <div class="slds-form-element__control rightfield">
-                                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                        <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                             onblur={handleblur1} disabled={isdisabled} type="text" data-id="country"
                                             class="slds-input" placeholder="Country" />
                                     </div>
@@ -716,7 +729,7 @@
                             </div>
                         </template>
                         <div class="slds-form-element__control">
-                            <select class="slds-input slds-select" onchange={ds} disabled={isdisabled}>
+                            <select data-name={fieldmapping} class="slds-input slds-select" onchange={ds} disabled={isdisabled}>
                                 <template for:each={picklistvalue} for:item="value">
                                     <option value={value.value} key={value}>{value.key}</option>
                                 </template>
@@ -786,6 +799,7 @@
                 </template>
             </div>
         </template>
+
 
         <template if:true={sTrueMultiPicklist}>
             <div onmouseenter={FieldCSSUpdate}>
@@ -892,10 +906,11 @@
                     </template>
                     <!-- <lightning-input class={fieldId} ></lightning-input> -->
                     <div class="slds-form-element__control">
-                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                            onblur={handleblur1} placeholder={placeholder} type="email"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" onclick={OnFieldClick} class="slds-input"
-                            disabled={isdisabled} />
+                        <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                            onfocusin={handlefocus} value={fildval} onblur={handleblur1} placeholder={placeholder}
+                            type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" onchange={OnFieldClick}
+                            class="slds-input" disabled={isdisabled} maxlength={maximum} minlength={minimum} />
+                            <span data-id={fieldmapping}></span>
                     </div>
                 </template>
             </template>
@@ -923,9 +938,9 @@
                     <div class="fullname" id={PageId}>
                         <div class="slds-form-element__control fullnamewidth">
                             <div class="slds-select_container">
-                                <select onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                                <select data-name={fieldmapping} name="salutation" onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                                     onblur={handleblur1} class="slds-input slds-select" data-id="select-01"
-                                    onchange={salutationValue} disabled={isdisabled}>
+                                    onchange={full_name} disabled={isdisabled}>
                                     <option class="slds-input" value=""> --None-- </option>
                                     <template for:each={salutationvalue} for:item="value">
                                         <option class="slds-input" value={value} key={value}>{value}</option>
@@ -937,18 +952,18 @@
                         <!-- <lightning-select onchange={salutationValue}>
                         </lightning-select> -->
                         <div class="slds-form-element__control fullnamewidth">
-                            <input data-id="First Name" onmousemove={handlehover} onmouseout={handleblur}
+                            <input data-id="First Name" data-name={fieldmapping} name="f_name" onmousemove={handlehover} onmouseout={handleblur}
                                 onfocusin={handlefocus} onblur={handleblur1} placeholder="First Name"
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                onchange={full_name} class="slds-input" disabled={isdisabled} />
                         </div>
                         <div class="slds-form-element__control fullnamewidth">
-                            <input data-id="Last Name" onmousemove={handlehover} onmouseout={handleblur}
+                            <input data-id="Last Name" data-name={fieldmapping} name="s_name" onmousemove={handlehover} onmouseout={handleblur}
                                 onfocusin={handlefocus} onblur={handleblur1} placeholder="Last Name"
-                                onclick={OnFieldClick} class="slds-input" disabled={isdisabled} />
+                                onchange={full_name} class="slds-input" disabled={isdisabled} />
                         </div>
                         <!-- <lightning-input aura:id="FirstName"</lightning-input> -->
                         <!-- <lightning-input aura:id="LastName" placeholder="Last Name"
-                            onclick={OnFieldClick}></lightning-input> -->
+                            onchange={OnFieldClick}></lightning-input> -->
                     </div>
                 </template>
             </template>
@@ -974,11 +989,12 @@
                         </div>
                     </template>
                     <div class="slds-form-element__control">
-                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                            onblur={handleblur1} placeholder={placeholder} onclick={OnFieldClick} class="slds-input"
-                            disabled={isdisabled}></input>
+                        <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                            onblur={handleblur1} placeholder={placeholder} onchange={OnFieldClick} class="slds-input"
+                            value={fildval} disabled={isdisabled} maxlength={maximum} minlength={minimum} ></input>
+                            <span data-id={fieldmapping}></span>
                     </div>
-                    <!-- <lightning-input placeholder="Name" onclick={OnFieldClick}></lightning-input> -->
+                    <!-- <lightning-input placeholder="Name" onchange={OnFieldClick}></lightning-input> -->
                 </template>
             </template>
         </template>
@@ -1008,40 +1024,45 @@
                     <div class="slds-form slds-form_stacked">
                         <div class="slds-form-element">
                             <div class="areatext slds-form-element__control">
-                                <textarea onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                    onblur={handleblur1} disabled={isdisabled} data-id="street-address"
-                                    class="slds-input" placeholder="Street"></textarea>
+                                <textarea data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                                    onfocusin={handlefocus} onchange={address} onblur={handleblur1} data-id="street-address"
+                                    disabled={isdisabled} id="street-address" name="street" class="slds-input"
+                                    placeholder="Street"></textarea>
                             </div>
                         </div>
                         <div class="slds-form-element flex">
                             <div class="slds-form-element__control leftfield">
-                                <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                    onblur={handleblur1} disabled={isdisabled} type="text" data-id="city"
-                                    class="slds-input" placeholder="City" />
+                                <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                                    onfocusin={handlefocus} onchange={address} onblur={handleblur1} data-id="city"
+                                    disabled={isdisabled} type="text" id="city" name="city" class="slds-input"
+                                    placeholder="City" />
                             </div>
                             <div class="slds-form-element__control rightfield">
-                                <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                    onblur={handleblur1} disabled={isdisabled} type="text" data-id="state"
-                                    class="slds-input" placeholder="State" />
+                                <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                                    onfocusin={handlefocus} onchange={address} onblur={handleblur1} data-id="state"
+                                    disabled={isdisabled} type="text" id="state" name="state" class="slds-input"
+                                    placeholder="State" />
                             </div>
                         </div>
                         <div class="slds-form-element flex">
                             <div class="slds-form-element__control leftfield">
-                                <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                    onblur={handleblur1} disabled={isdisabled} type="text" data-id="zip-code"
-                                    class="slds-input" placeholder="Zip Code" />
+                                <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                                    onfocusin={handlefocus} onchange={address} onblur={handleblur1} data-id="zip-code"
+                                    disabled={isdisabled} type="text" id="zip-code" name="zipcode" class="slds-input"
+                                    placeholder="Zip Code" />
                             </div>
                             <div class="slds-form-element__control rightfield">
-                                <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                    onblur={handleblur1} disabled={isdisabled} type="text" data-id="country"
-                                    class="slds-input" placeholder="Country" />
+                                <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                                    onfocusin={handlefocus} onchange={address} onblur={handleblur1} data-id="country"
+                                    disabled={isdisabled} type="text" id="country" name="country" class="slds-input"
+                                    placeholder="Country" />
                             </div>
                         </div>
                     </div>
                     <!-- clode Custom Address Field -->
                     <!-- <lightning-input-address street-placeholder="Street" city-placeholder="City"
                         country-placeholder="Country" province-placeholder="Region" postal-code-placeholder="PostalCode"
-                         onclick={OnFieldClick}></lightning-input-address> -->
+                         onchange={OnFieldClick}></lightning-input-address> -->
                 </template>
             </template>
         </template>
@@ -1066,10 +1087,12 @@
                             </template>
                         </div>
                     </template>
-                    <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                        onblur={handleblur1} class={fieldId} placeholder={placeholder} type="text" value=""
-                        pattern={fieldValidations} message-when-pattern-mismatch={fieldAttributeValue}
-                        onclick={OnFieldClick} disabled={isdisabled}></input>
+                    <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                        onfocusin={handlefocus} onblur={handleblur1} class={fieldId} placeholder={placeholder}
+                        type="text" value={fildval} pattern={fieldValidations}
+                        message-when-pattern-mismatch={fieldAttributeValue} onchange={OnFieldClick}
+                        disabled={isdisabled}></input>
+                    <span data-id={fieldmapping}></span>
                 </template>
             </template>
         </template>
@@ -1092,10 +1115,11 @@
                             </template>
                         </div>
                     </template>
-                    <textarea onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                        onblur={handleblur1} class={fieldId} placeholder={placeholder} value=""
-                        pattern={fieldValidations} message-when-pattern-mismatch={fieldAttributeValue}
-                        onclick={OnFieldClick} disabled={isdisabled}></textarea>
+                    <textarea data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} type="text"
+                        onfocusin={handlefocus} onblur={handleblur1} class={fieldId} placeholder={placeholder}
+                        value={fildval} pattern={fieldValidations} message-when-pattern-mismatch={fieldAttributeValue}
+                        onchange={OnFieldClick} disabled={isdisabled}></textarea>
+                    <span data-id={fieldmapping}></span>
                 </template>
             </template>
         </template>
@@ -1119,13 +1143,15 @@
                             </template>
                         </div>
                     </template>
-                    <select onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                        onblur={handleblur1} class="dropdown-menu" value={tView} onclick={OnFieldClick}>
+                    <select data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                        onfocusin={handlefocus} onblur={handleblur1} class="dropdown-menu" value={fildval}
+                        onchange={OnFieldClick}>
                         <option value={dropdownOp}>Select Option </option>
                         <!-- <template for:each={dropOptions} for:item="value">
                             <option value={value.Id} key={value.Id}>{value.label}</option>
                         </template> -->
                     </select>
+                    <span data-id={fieldmapping}></span>
                 </template>
             </template>
         </template>
@@ -1153,11 +1179,11 @@
                     <div>
                         <template for:each={salutationvalue} for:item="value">
                             {value}
-                            <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                                onblur={handleblur1} class={fieldId} placeholder={placeholder} type="checkbox" value=""
-                                name={tView} options={CheckBoxOp} pattern={fieldValidations}
-                                message-when-pattern-mismatch={fieldAttributeValue} onclick={OnFieldClick} key={value}
-                                disabled={isdisabled}></input>
+                            <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                            onfocusin={handlefocus} onblur={handleblur1} class={fieldId} placeholder={placeholder}
+                            type="checkbox" value={value} name={tView} options={CheckBoxOp}
+                            pattern={fieldValidations} message-when-pattern-mismatch={fieldAttributeValue}
+                            onchange={check_box} key={value} disabled={isdisabled}></input>
                         </template>
                     </div>
                 </template>
@@ -1183,10 +1209,10 @@
                     </template>
                     <template for:each={salutationvalue} for:item="value">
                         {value}
-                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                            onblur={handleblur1} class={fieldId} placeholder={placeholder} type="radio" value=""
-                            name={tView} options={CheckBoxOp} pattern={fieldValidations}
-                            message-when-pattern-mismatch={fieldAttributeValue} onclick={OnFieldClick} key={value}
+                        <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                            onfocusin={handlefocus} onblur={handleblur1} class={fieldId} placeholder={placeholder}
+                            type="radio" value={value} name={tView} options={CheckBoxOp} pattern={fieldValidations}
+                            message-when-pattern-mismatch={fieldAttributeValue} onchange={radiobutton} key={value}
                             disabled={isdisabled}></input>
                     </template>
                 </template>
@@ -1213,7 +1239,7 @@
                     </template>
                     <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                         onblur={handleblur1} class={fieldId} type="file" name="file" label="Upload File"
-                        onclick={OnFieldClick} data-id="username" disabled={isdisabled}></input>
+                        onchange={OnFieldClick} data-id="username" disabled={isdisabled}></input>
                 </template>
             </template>
         </template>
@@ -1238,14 +1264,16 @@
                         </div>
                     </template>
                     <div class="slds-form-element__control">
-                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                            onblur={handleblur1} class='slds-input' placeholder={placeholder} type="number"
-                            format="#,##0,000.00#" value="" message-when-pattern-mismatch={fieldAttributeValue}
-                            onclick={OnFieldClick} disabled={isdisabled}></input>
+                        <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                            onfocusin={handlefocus} onblur={handleblur1} class='slds-input' placeholder={placeholder}
+                            type="number" format="#,##0,000.00#" value={fildval}
+                            message-when-pattern-mismatch={fieldAttributeValue} onchange={OnFieldClick} max={maximum}
+                            min={minimum} disabled={isdisabled}></input>
+                        <span data-id={fieldmapping}></span>
                     </div>
                     <!-- <lightning-input class={fieldId} placeholder={placeholder} type="number" format="#,##0,000.00#"
                         value="" pattern={fieldValidations} disabled message-when-pattern-mismatch={fieldAttributeValue}
-                        onclick={OnFieldClick}></lightning-input> -->
+                        onchange={OnFieldClick}></lightning-input> -->
                 </template>
             </template>
         </template>
@@ -1269,10 +1297,12 @@
                             </template>
                         </div>
                     </template>
-                    <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                    <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                         onblur={handleblur1} class="slds-input" id={fieldId} placeholder={placeholder} type="number"
-                        formatter="currency" value="" pattern={fieldValidations} onclick={OnFieldClick}
+                        formatter="currency" value={fildval} pattern={fieldValidations} onchange={OnFieldClick} max={maximum}
+                        min={minimum}
                         disabled={isdisabled}></input>
+                    <span data-id={fieldmapping}></span>
                 </template>
             </template>
         </template>
@@ -1297,9 +1327,10 @@
                         </div>
                     </template>
                     <div class="slds-form-element__control">
-                        <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                            onblur={handleblur1} class='slds-input' placeholder={placeholder} type="number" value=""
-                            onclick={OnFieldClick} disabled={isdisabled}></input>
+                        <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                            onfocusin={handlefocus} onblur={handleblur1} class='slds-input' placeholder={placeholder}
+                            type="number" value={fildval} onchange={OnFieldClick} disabled={isdisabled}></input>
+                        <span data-id={fieldmapping}></span>
                     </div>
                 </template>
             </template>
@@ -1324,11 +1355,13 @@
                             </template>
                         </div>
                     </template>
-                    <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                        onblur={handleblur1} class="slds-input" id={fieldId} placeholder={placeholder}
-                        formatter="currency" value="" pattern={fieldValidations} type="date" display-date-picker="true"
-                        message-when-pattern-mismatch={fieldAttributeValue} onclick={OnFieldClick}
-                        disabled={isdisabled}></input>
+                    
+                    <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                        onfocusin={handlefocus} onblur={handleblur1} class="slds-input" id={fieldId}
+                        placeholder={placeholder} formatter="currency" value={fildval} pattern={fieldValidations}
+                        type="date" display-date-picker="true" message-when-pattern-mismatch={fieldAttributeValue}
+                        onchange={OnFieldClick} min={minimumdate} max={maximumdate} disabled={isdisabled}></input>
+                    <span data-id={fieldmapping}></span>
                 </template>
             </template>
         </template>
@@ -1351,10 +1384,13 @@
                             </template>
                         </div>
                     </template>
-                    <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                        onblur={handleblur1} class="slds-input" id={fieldId} placeholder={placeholder} value=""
-                        pattern={fieldValidations} type="time" message-when-pattern-mismatch={fieldAttributeValue}
-                        onclick={OnFieldClick} disabled={isdisabled}></input>
+                    
+                    <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                        onfocusin={handlefocus} onblur={handleblur1} class="slds-input" id={fieldId}
+                        placeholder={placeholder} value={fildval} pattern={fieldValidations} type="time"
+                        message-when-pattern-mismatch={fieldAttributeValue} onchange={OnFieldClick} max={maximumtime}
+                        min={minimumtime} disabled={isdisabled}></input>
+                    <span data-id={fieldmapping}></span>
                 </template>
             </template>
         </template>
@@ -1377,11 +1413,13 @@
                             </template>
                         </div>
                     </template>
-                    <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
-                        onblur={handleblur1} class="slds-input" id={fieldId} placeholder={placeholder} value=""
-                        pattern={fieldValidations} type="datetime" display-date-picker="true"
-                        message-when-pattern-mismatch={fieldAttributeValue} onclick={OnFieldClick}
-                        disabled={isdisabled}></input>
+                    
+                    <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur}
+                        onfocusin={handlefocus} onblur={handleblur1} class="slds-input" id={fieldId}
+                        placeholder={placeholder} value={fildval} pattern={fieldValidations} type="datetime"
+                        display-date-picker="true" message-when-pattern-mismatch={fieldAttributeValue}
+                        onchange={OnFieldClick} disabled={isdisabled}></input>
+                    <span data-id={fieldmapping}></span>
                 </template>
             </template>
         </template>
@@ -1595,11 +1633,12 @@
                             </label>
                         </div>
                     </template>
-                    <input onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
+                    <input data-name={fieldmapping} onmousemove={handlehover} onmouseout={handleblur} onfocusin={handlefocus}
                         onfocusout={handleblur1} type="url" placeholder={placeholder} class="slds-input"
                         pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})"
                         readonly={isReadOnly} onclick={showOnClick} onblur={linkValue} value={fieldValue}
-                        onchange={blankValueCheck} disabled={isdisabled}></input>
+                        onchange={OnFieldClick} disabled={isdisabled}></input>
+                        <span data-id={fieldmapping}></span>
                 </template>
             </template>
         </template>
@@ -1650,7 +1689,7 @@
                             </label>
                         </div>
                     </template>
-                    <div class="outrichstyle" onclick={OnFieldClick}>
+                    <div class="outrichstyle" onchange={OnFieldClick}>
                         <lightning-formatted-rich-text value='<b>hello</b>'></lightning-formatted-rich-text>
                     </div>
                 </template>

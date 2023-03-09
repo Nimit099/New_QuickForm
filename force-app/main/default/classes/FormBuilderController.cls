@@ -848,12 +848,12 @@ public without sharing class FormBuilderController{
             Form_Fields__c field = new Form_Fields__c();
             List<Form_Fields__c> updateList = new List<Form_Fields__c>();
 
-            List<Form_Fields__c> fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c
+            List<Form_Fields__c> fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Mapping__c
                                               FROM Form_Fields__c
                                               WHERE Form_Page__c = :Form_Page_Id
                                               ORDER BY Field_Order__c ASC];
             if (Field_Page_Id != ''){
-                Form_Fields__c field_which_page_changed = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c
+                Form_Fields__c field_which_page_changed = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Mapping__c
                                                            FROM Form_Fields__c
                                                            WHERE Id = :Name
                                                            ORDER BY Field_Order__c ASC];
@@ -898,13 +898,13 @@ public without sharing class FormBuilderController{
                                 System.debug('##Field API Name=' + fieldName);// list of all field API na
                                 System.debug('type:=>' + type);
                                 field.Mapped_Obj__c = type;
-                                field.Field_Mapping__c = fieldName;
+                                field.Field_Mapping__c = fieldMap.get(fieldName) + '<!@!>' + type;
                             }
                         }
                     }
                 }
                 if (Position == 0){
-                    Form_Fields__c maxPostion = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c
+                    Form_Fields__c maxPostion = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Mapping__c
                                                  FROM Form_Fields__c
                                                  ORDER BY Field_Order__c DESC
                                                  LIMIT 1];
@@ -992,7 +992,7 @@ public without sharing class FormBuilderController{
                 }
                 update field;
             }
-            fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
+            fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c, Field_Mapping__c
                          FROM Form_Fields__c
                          WHERE Form__c = :Form_Id
                          ORDER BY Field_Order__c ASC];
@@ -1012,7 +1012,7 @@ public without sharing class FormBuilderController{
             List<Form_Fields__c> cuurentPageFields = new List<Form_Fields__c>();
 
             Form_Page__c currentFormPage = new Form_Page__c();
-            cuurentPageFields = [SELECT Id, Name, Field_Order__c, Form_Page__c
+            cuurentPageFields = [SELECT Id, Name, Field_Order__c, Form_Page__c, Field_Mapping__c
                                  FROM Form_Fields__c
                                  WHERE Form_Page__c = :Form_Page_Id
                                  ORDER BY Field_Order__c ASC];
@@ -1070,7 +1070,7 @@ public without sharing class FormBuilderController{
             }
 
             pageWrapper pw = new pageWrapper();
-            pw.fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
+            pw.fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c, Field_Mapping__c
                             FROM Form_Fields__c
                             WHERE Form__c = :FormId
                             ORDER BY Field_Order__c ASC];
@@ -1183,7 +1183,7 @@ public without sharing class FormBuilderController{
                                 Form_Fields__c field = new Form_Fields__c();
                                 //requiredFieldList.add(fieldMap.get(fieldName).getDescribe().getLabel()+'./.'+ fieldMap.get(fieldName).getDescribe().getType());
                                 field.Mapped_Obj__c = type;
-                                field.Field_Mapping__c = fieldName;
+                                field.Field_Mapping__c = fieldMap.get(fieldName) + '<!@!>' + type;
                                 field.Name = fieldMap.get(fieldName).getDescribe().getLabel() + ',' + fieldMap.get(fieldName).getDescribe().getType() + ',isrequired';
                                 field.Form__c = FormDetail.Id;
                                 field.Form_Page__c = page_Id.Id;
@@ -1220,7 +1220,7 @@ public without sharing class FormBuilderController{
             }
             // List<Form_Fields__c> fieldList=[SELECT Id,Name,Form__c,Form_Page__c,Field_Order__c, Field_Validations__c FROM Form_Fields__c];
             // return fieldList;
-            List<Form_Fields__c> fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
+            List<Form_Fields__c> fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c, Field_Mapping__c
                                               FROM Form_Fields__c
                                               WHERE Form__c = :id
                                               ORDER BY Field_Order__c ASC];
@@ -1249,13 +1249,13 @@ public without sharing class FormBuilderController{
         Form_Fields__c dropField = new Form_Fields__c();
         try{
             if (String.isNotBlank(dropFieldId) && String.isNotBlank(currentFieldId)){
-                cuurentField = [SELECT Id, Name, Form_Page__c, Field_Order__c, Form__c
+                cuurentField = [SELECT Id, Name, Form_Page__c, Field_Order__c, Form__c, Field_Mapping__c
                                 FROM Form_Fields__c
                                 WHERE Id = :currentFieldId];
-                dropField = [SELECT Id, Name, Form_Page__c, Field_Order__c, Form__c
+                dropField = [SELECT Id, Name, Form_Page__c, Field_Order__c, Form__c, Field_Mapping__c
                              FROM Form_Fields__c
                              WHERE Id = :dropFieldId];
-                fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c
+                fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Mapping__c
                              FROM Form_Fields__c
                              WHERE Form__c = :cuurentField.Form__c
                              ORDER BY Field_Order__c ASC];
@@ -1298,7 +1298,7 @@ public without sharing class FormBuilderController{
                 update cuurentField;
             }
             List<Form_Fields__c> latestFieldList = new List<Form_Fields__c>();
-            latestFieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
+            latestFieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c, Field_Mapping__c
                                FROM Form_Fields__c
                                WHERE Form__c = :cuurentField.Form__c
                                ORDER BY Field_Order__c ASC];
@@ -1332,7 +1332,7 @@ public without sharing class FormBuilderController{
                 newFormPage.Page_Number__c = totalPages + 1;
             }
             insert newFormPage;
-            List<Form_Fields__c> formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
+            List<Form_Fields__c> formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c, Field_Mapping__c
                                                FROM Form_Fields__c
                                                ORDER BY Field_Order__c ASC];
             pageWrapper pw = new pageWrapper();
@@ -1394,7 +1394,7 @@ public without sharing class FormBuilderController{
             pagesToUpdate.add(updatedPage);
             pagesToUpdate.addAll(pagesAfter);
             update pagesToUpdate;
-            List<Form_Fields__c> formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Validations__c, Field_Order__c
+            List<Form_Fields__c> formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Validations__c, Field_Order__c, Field_Mapping__c
                                                FROM Form_Fields__c
                                                ORDER BY Field_Order__c ASC];
             pageWrapper pw = new pageWrapper();
@@ -1418,7 +1418,7 @@ public without sharing class FormBuilderController{
                                  WHERE Id = :id];
             form.Name = rename;
             update form;
-            List<Form_Fields__c> formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
+            List<Form_Fields__c> formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c, Field_Mapping__c
                                                FROM Form_Fields__c
                                                ORDER BY Field_Order__c ASC];
             pageWrapper pw = new pageWrapper();
@@ -1478,7 +1478,7 @@ public without sharing class FormBuilderController{
                 }
                 update pagesToUpdate;
             }
-            List<Form_Fields__c> formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
+            List<Form_Fields__c> formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c, Field_Mapping__c
                                                FROM Form_Fields__c
                                                ORDER BY Field_Order__c ASC];
             pageWrapper pw = new pageWrapper();
@@ -1515,6 +1515,7 @@ public without sharing class FormBuilderController{
         }
     }
 
+    // add by yash
     @AuraEnabled
     public static string editFormSubmit(String id, String name, String progressIn, String captcha){
         try{
@@ -1614,6 +1615,7 @@ public without sharing class FormBuilderController{
             throw new AuraHandledException(e.getMessage());
         }
     }
+
     @AuraEnabled
     public static String signatureSave(String fieldId, String fieldData){
         try{
@@ -1680,6 +1682,100 @@ public without sharing class FormBuilderController{
         public list<SObject> referenceval{ get; set; }
         @AuraEnabled
         public String objicon{ get; set; }
+    }
+    
+    @AuraEnabled
+    public static List<Form_Fields__c> getFieldsRecords_page(Id id){
+        try{
+            List<Form_Fields__c> page_fild_list = [SELECT Name, Field_Mapping__c, Field_Validations__c
+                                                   From Form_Fields__c
+                                                   where Form_Page__c = :ID];
+
+            return page_fild_list;
+
+        } catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled
+    public static List<Form__c> GetFormObject(String id){
+        try{
+            List<Form__c> form_obj = [SELECT Mapped_Objects__c
+                                      From Form__c
+                                      where ID = :Id];
+
+            return form_obj;
+
+        } catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled
+    public static void createrecord(Form_Submission__c acc, SObject first_obj_list){
+        // public static void createrecord(Account acc){
+        try{
+            System.debug('yasj ' + acc);
+            System.debug('yasj first_obj_list' + first_obj_list);
+            System.debug(acc.name);
+            insert acc;
+            insert first_obj_list;
+
+        } catch (Exception e){
+            System.debug('error --> ' + e);
+        }
+    }
+
+    @AuraEnabled
+    public static void createrecord_for_secod_object(Form_Submission__c acc, SObject first_obj_list, SObject list_second_obj){
+        try{
+            System.debug('yasj ' + acc);
+            System.debug(acc.name);
+            insert acc;
+            System.debug('yasj first_obj_list' + first_obj_list);
+            insert first_obj_list;
+            System.debug('yasj first_obj_list' + list_second_obj);
+            // Contact acctest = new Contact();
+            // acctest.AccountId =first_obj_list.id;
+            // list_second_obj.add(acctest);
+            // List<sobject> tasks = new List<sobject>();
+            // tasks.AccountId=first_obj_list.id;
+            // // list_second_obj.'AccountId' =first_obj_list.id;
+            insert list_second_obj;
+
+
+        } catch (Exception e){
+            System.debug('error --> ' + e);
+        }
+    }
+
+    @AuraEnabled
+    public static void createrecord_for_third_object(Form_Submission__c acc, SObject first_obj_list, SObject list_second_obj, SObject list_third_obj){
+        try{
+            System.debug('yasj ' + acc);
+            System.debug('yasj first_obj_list' + first_obj_list);
+            System.debug(acc.name);
+            insert acc;
+            insert first_obj_list;
+
+        } catch (Exception e){
+            System.debug('error --> ' + e);
+        }
+    }
+
+    @AuraEnabled
+    public static List<Form_Fields__c> GetFormValidation(String form_id){
+        try{
+            List<Form_Fields__c> form_val_list = [SELECT Field_Mapping__c, Field_Validations__c
+                                                  FROM Form_Fields__c
+                                                  WHERE Form__c = :form_id];
+
+            return form_val_list;
+
+        } catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
     }
 
 }

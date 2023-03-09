@@ -14,17 +14,20 @@ import whitepen from '@salesforce/resourceUrl/whitepen';
 import records from '@salesforce/apex/qfthankyou.insertrecord';
 import getrecordslist from '@salesforce/apex/qfthankyou.getrecordslist';
 import getrecords from '@salesforce/apex/qfthankyou.getthankyoupage';
+import {
+    NavigationMixin
+} from "lightning/navigation";
 
-export default class ThankyouComponent extends LightningElement {
+export default class ThankyouComponent extends NavigationMixin(LightningElement) {
     thankyoulogo = thankyoulogo;
     whitepen = whitepen;
     formats = ['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'link', 'clean', 'table', 
     'header', 'color', 'background'];
-    text;
-    url;
-    richtext;
-    label;
-    changelabel;
+    @api text;
+    @api url;
+    @api richtext;
+    @api label;
+    @api changelabel;
     textcheck = false;
     richtextcheck = false;
     editlabelcheck = false;
@@ -34,13 +37,15 @@ export default class ThankyouComponent extends LightningElement {
     @api currentthankyouid;
     @api formname = '';
     None = true;
-    ThankYou_Text;
-    ThankYou_URL;
-    Redirect_Text_And_URL;
-    ThankYou_Report;
-    ThankYou_RichText;
+    @api ThankYou_Text;
+    @api ThankYou_URL;
+    @api Redirect_Text_And_URL;
+    @api ThankYou_Report;
+    @api ThankYou_RichText;
     classtext;
     spinner;
+    @api editing = false;
+    @api thankyoutype;
     
 
 // <!-- ===================================
@@ -51,18 +56,14 @@ export default class ThankyouComponent extends LightningElement {
 // =================================== -->
     connectedCallback(){
         this.spinner = true;
-        console.log('OUTPUT : ',this.currentformid);
+        if(this.editing == true){
         getrecords({currentformid : this.currentformid}).then(result => {
             this.label = result.ThankYou_Label__c;
             this.changelabel = result.ThankYou_Label__c;
             this.currentthankyouid = result.Id;
-            console.log(this.label);
-            console.log('calsstext ==>' ,this.classtext);
-            console.log('ID   ==>',this.currentformid);
             if(result.Thankyou_Page_Type__c == 'Show Text'){
             this.text = result.Thankyou_Text__c;
             this.textfunc();
-            console.log('you a');
            }
             else if(result.Thankyou_Page_Type__c == 'Redirect to a webpage'){
             this.url = result.Thank_you_URL__c;
@@ -83,12 +84,42 @@ export default class ThankyouComponent extends LightningElement {
            else if(result.Thankyou_Page_Type__c == 'Show report of User data'){
            this.reportfunc();  
         }
+        this.template.querySelector('.thanksPreviewDiv').style.background = '#E5E5E5';
+        this.template.querySelector('.thanksMainDiv').style= 'justify-content= none';
         this.spinner = false;
-    })
-        .catch(error => {
+    }).catch(error => {
             this.spinner = false;
 		})
+    } else{
+        if(this.thankyoutype == 'Show Text'){
+            this.textfunc();
+           }
+            else if(this.thankyoutype == 'Redirect to a webpage'){
+            this.urlfunc();
+           }
+           else if(this.thankyoutype == 'Show text, then redirect to web page'){
+            this.text_urlfunc();
+            setTimeout(() => {
+                const config = {
+                    type: 'standard__webPage',
+                    attributes: {
+                        url: this.url
+                    }
+                };
+                this[NavigationMixin.Navigate](config);
+            }, 3000);
+           }
+           else if(this.thankyoutype == 'Show HTML block'){
+            this.richtextfun();
+           }
+           else if(this.thankyoutype == 'None'){
+           this.nonefunc();
+           }
+           else if(this.thankyoutype == 'Show report of User data'){
+           this.reportfunc();  
+        }
     }
+}
 
 
 // <!-- ===================================
@@ -241,7 +272,7 @@ export default class ThankyouComponent extends LightningElement {
         this.ThankYou_RichText =false;
         this.textcheck = true;
         this.richtextcheck = false;
-        this.template.querySelector(".text").style="display:block"
+        // this.template.querySelector(".text").style="display:block"
         this.spinner = false;
     }
     text_urlfunc(){
@@ -254,7 +285,7 @@ export default class ThankyouComponent extends LightningElement {
         this.ThankYou_RichText =false;
         this.textcheck = true;
         this.richtextcheck = false;
-        this.template.querySelector(".text_url").style="display:block"
+        // this.template.querySelector(".text_url").style="display:block"
         this.spinner = false;
     }
     richtextfun(){
@@ -267,7 +298,7 @@ export default class ThankyouComponent extends LightningElement {
         this.ThankYou_RichText = true;
         this.textcheck = false;
         this.richtextcheck = true;
-        this.template.querySelector(".richtext").style="display:block"
+        // this.template.querySelector(".richtext").style="display:block"
         this.spinner = false;
     }
     reportfunc(){

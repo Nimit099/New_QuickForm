@@ -112,7 +112,7 @@
 
         <template if:true={activethankyou}>
             <c-thankyou-component currentformid={ParentMessage} formname={FormName} cmptype="main" form-id={FormId}
-                id='thkmcp'></c-thankyou-component>
+                id='thkmcp' editing={activethankyou}></c-thankyou-component>
         </template>
 
         <template if:true={activepreview}>

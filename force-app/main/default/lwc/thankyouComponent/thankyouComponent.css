@@ -1,6 +1,7 @@
 .thanksMainDiv {
   height: 100%;
   display: flex;
+  justify-content: center;
 }
 
 .thanksChoice {
@@ -70,7 +71,7 @@
 .thanksPreviewDiv {
   width: 80%;
   height: 100%;
-  background-color: #E5E5E5;
+  /* background-color: #E5E5E5; */
   display: flex;
   flex-direction: column;
   justify-content: center;

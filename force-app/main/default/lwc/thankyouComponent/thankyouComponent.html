@@ -50,6 +50,7 @@
             </div>
         </section>
         </template> -->
+        <template if:true={editing}>
         <div data-id="ModalBackdrop" class="slds-backdrop"></div>
         <div class="thanksChoice">
             <div class="thanksLabelDiv">
@@ -152,14 +153,16 @@
                 </div>
             </div>
         </div>
+    </template>
         <div class="thanksPreviewDiv">
+            <template if:true={editing}>
 
             <div class="thanksEditButton">
                 <button label="Edit Text" icon-position="left" onclick={editlabel} class="saveBtn editBtn"> <img
                         src={whitepen} alt="" class="penicon"> Edit Label</button>
             </div>
 
-
+        </template>
             <template if:true={editlabelcheck}>
                 <!-- <section data-id="Modal" role="dialog" tabindex="-1" aria-labelledby="ModalHeading" aria-modal="true" aria-describedby="ModalBody" class="slds-modal editlabel" onclick={hideFolderList}> -->
                 <div class="richtextModel">
@@ -224,10 +227,12 @@
                     </div>
                 </template>
             </div>
+            <template if:true={editing}>
             <div class="saveButton">
                 <button class="cancelBtn" onclick={cancelThanksData}>Cancel</button>
                 <button class="saveBtn" onclick={saveThanksData}>Save</button>
             </div>
+        </template>
         </div>
     </div>
 </template>
