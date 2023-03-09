@@ -105,7 +105,8 @@
                                 data-name="padding-bottom:" label="Bottom Padding (px)"
                                 onchange={handlepageCss}></lightning-input>
                             <lightning-input type="color" label="Background" name="color" value={pagecolorpicker}
-                                data-name="background-color:" onchange={handlepageCss}></lightning-input>
+                                data-name="background-color:" onchange={handlepageCss}
+                                class="colorpickercls"></lightning-input>
 
                             <lightning-input label="Background Image" onchange={openpagefileUpload} type="file"
                                 name="file" accept=".png , .jpeg , .jpg" class="backclass"></lightning-input>
@@ -175,9 +176,10 @@
                 <button class="accordion" onclick={designaccordian}>Input</button> -->
                         <div class="panel" style="display: flex; flex-direction: column; gap: 8px;">
                             <lightning-input type="color" label="Background" value={bgInput}
-                                data-name="background-color:" onchange={handleFieldCss}></lightning-input>
+                                data-name="background-color:" onchange={handleFieldCss}
+                                class="colorpickercls"></lightning-input>
                             <lightning-input type="color" label="Border" value={borderInput} data-name="border-color:"
-                                onchange={handleFieldCss}></lightning-input>
+                                onchange={handleFieldCss} class="colorpickercls"></lightning-input>
                             <lightning-combobox name="Border style" label="Border style" value={borderStyle}
                                 options={optborderStyle} data-name="border-style:"
                                 onchange={handleFieldCss}></lightning-combobox>
@@ -189,9 +191,9 @@
                                 onchange={handleFieldCss}></lightning-input>
                             <lightning-combobox label="Font" options={optlabelfontfamily} value={inputfontfamily}
                                 data-name="font-family:" onchange={handleFieldCss}></lightning-combobox>
-                            <lightning-combobox label="Font weight" value={labelfontweight} options={optinputfontweight}
+                            <lightning-combobox label="Font weight" value={inputfontweight} options={optinputfontweight}
                                 data-name="font-weight:" onchange={handleFieldCss}></lightning-combobox>
-                            <lightning-combobox label="Font style" value={labelfontstyle} options={optinputfontstyle}
+                            <lightning-combobox label="Font style" value={inputfontstyle} options={optinputfontstyle}
                                 data-name="font-style:" onchange={handleFieldCss}></lightning-combobox>
                             <lightning-input type="number" label="Font size (px)" value={inputfontsize}
                                 data-name="font-size:" onchange={handleFieldCss}></lightning-input>
@@ -209,13 +211,14 @@
                                 data-name="justify-content:" onchange={handleButtonCss}></lightning-combobox>
 
                             <lightning-input type="color" label="Text Color" value={btnTextColor} data-name="color:"
-                                onchange={handleButtonCss}></lightning-input>
+                                onchange={handleButtonCss} class="colorpickercls"></lightning-input>
 
 
                             <lightning-input type="color" label="Background Color" data-name="background-color:"
-                                value={btnBgColor} onchange={handleButtonCss}></lightning-input>
+                                value={btnBgColor} onchange={handleButtonCss} class="colorpickercls"></lightning-input>
                             <lightning-input type="color" label="Border color" value={btncolor}
-                                data-name="border-color:" onchange={handleButtonCss}></lightning-input>
+                                data-name="border-color:" onchange={handleButtonCss}
+                                class="colorpickercls"></lightning-input>
                             <lightning-combobox label="Border style" value={btnborderstyle} options={optbtnborderstyle}
                                 data-name="border-style:" onchange={handleButtonCss}></lightning-combobox>
                             <lightning-input type="number" label="Border thickness (px)" value={btnborderwidth}
@@ -236,6 +239,8 @@
                                 value={btnWidth} data-name="width:"></lightning-input>
                             <lightning-input type="number" label="Height (px)" onchange={handleButtonCss}
                                 value={btnHeight} data-name="height:"></lightning-input>
+                            <!--<lightning-input type="number" label="Button Gap (px)" onchange={handleButtonCss}
+                                value={btnGap} data-name="gap:"></lightning-input>-->
                             <!-- <lightning-input type="number" label="Horizontal Padding (px)" onchange={handleButtonCss} value={btnHorizontalPadding} data-name="padding1:" ></lightning-input>
                     <lightning-input type="number" label="Vertical Padding (px)" onchange={handleButtonCss} value={btnVerticalPadding} data-name="padding2:" ></lightning-input> -->
 
@@ -246,7 +251,8 @@
 
                         <div class="panel" style="display: flex; flex-direction: column; gap: 8px;">
                             <lightning-input type="color" label="Input background" value={fieldhoverbg}
-                                data-name="background-color:" onchange={handlefieldhover}></lightning-input>
+                                data-name="background-color:" onchange={handlefieldhover}
+                                class="colorpickercls"></lightning-input>
                             <lightning-input type="color" label="Input border" value={fieldhoverborderColor}
                                 data-name="border-color:" onchange={handlefieldhover}></lightning-input>
                             <lightning-input type="color" label="Input text color" value={fieldhovercolor}

@@ -16,6 +16,8 @@
     border-radius: 4px;
 }
 .colorpickercls .slds-color-picker__selector.slds-popover {
-    /* top: 572px !important; */
-    position: relative !important;
+    top: 50.8% !important;
+    /* position: relative !important; */
+    /* transform: translateY(-112%); */
+    /* top: unset !important; */
 }

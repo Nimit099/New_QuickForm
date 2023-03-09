@@ -50,8 +50,7 @@ export default class FieldsSectionComponent extends LightningElement {
                 this.objectoneicon = this.ObjectName[2];
                 console.log('object one icon :- ' + this.objectoneicon);
                 this.objecttwoicon = this.ObjectName[3];
-            }
-            if (this.ObjectName.length == 6) {
+            } else if (this.ObjectName.length == 6) {
                 var Obj1 = this.ObjectName[0].replaceAll('__c', '');
                 var Obj2 = this.ObjectName[1].replaceAll('__c', '');
                 var Obj3 = this.ObjectName[2].replaceAll('__c', '');
@@ -61,7 +60,7 @@ export default class FieldsSectionComponent extends LightningElement {
                 this.objectoneicon = this.ObjectName[3];
                 this.objecttwoicon = this.ObjectName[4];
                 this.objectthreeicon = this.ObjectName[5];
-            } else {
+            } else if (this.ObjectName.length == 2) {
                 var Obj1 = this.ObjectName[0].replaceAll('__c', '');
                 this.ObjectName1 = Obj1.replaceAll('_', ' ');
                 this.objectoneicon = this.ObjectName[1];

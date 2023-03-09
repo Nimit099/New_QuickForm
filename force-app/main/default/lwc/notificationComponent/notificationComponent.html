@@ -168,7 +168,7 @@
                     <div class="slds-col slds-size_10-of-12">
                         <!-- <lightning-input-rich-text variant="label-hidden" onfocusout={handleSubject} placeholder="Enter Subject" onkeypress={handleFocus} type="text"
                         name="form_title" class="msge" value={Subject}></lightning-input-rich-text> -->
-                        <lightning-input-rich-text label="Message" class="msg" value={Message}
+                        <lightning-input-rich-text formats={formats} label="Message" class="msg" value={Message}
                             onfocusout={handlemessage}></lightning-input-rich-text>
                         <div class="error_msg" if:true={required_Message}>Please Enter Email Message</div>
                         <!-- <lightning-input-rich-text
@@ -198,6 +198,7 @@
                 <input class="qf-standard-button-cancel" type="button" value="Cancel" name="Cancel" onclick={Cancel} />
                 <input class="qf-standard-button" type="button" value="Save" name="Save" onclick={handleSave} />
             </div>
+            
         </div>
     </div>
 </template>

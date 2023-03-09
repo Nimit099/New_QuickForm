@@ -1,0 +1,28 @@
+<apex:page controller="customMetadata" showHeader="false" sidebar="false" standardStylesheets="false">
+    <apex:includeLightning />   
+    <!--Lightning Container-->
+    <div id="LightningContainer"/>
+    <script type="text/javascript">
+    //get contact Id from URL
+    var c_url = window.location.href;
+    console.log('c url*****-->',c_url);
+    let paramString = c_url.split('?')[1];
+        let queryString = new URLSearchParams(paramString);
+        for(let pair of queryString.entries()) {
+            var p_value = pair[1];
+        }
+    console.log("Value is:" + p_value);
+    var contactId = p_value;
+    console.log('contactId-->',contactId);
+    //Create Lightning Component
+    $Lightning.use("c:preview_form_test_app", function() {
+        $Lightning.createComponent("c:previewFormCmp", 
+                                   {}, //Pass Parameter
+                                   "LightningContainer", function(cmp) {
+                                       console.log()
+                                       console.log('Component created Successfully');
+                                   });
+    });
+   
+    </script>
+</apex:page>

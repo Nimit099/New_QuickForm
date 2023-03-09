@@ -19,23 +19,25 @@ export default class ToastComponent extends LightningElement {
 
     @api
     showToast(type, message, time) {
-        this.type = type;
-        this.message = message;
-      console.log('type',this.type);
-      console.log('message',this.message);
-        if(this.type == "success"){
-            this.showToastBar_success = true;
-            this.showToastBar_error = false;
-        }
-        else{
-            this.showToastBar_success = false;
-            this.showToastBar_error = true;
+        if (type != undefined && message != undefined){
+            this.type = type;
+            this.message = message;
+            console.log('type',this.type);
+            console.log('message',this.message);
+            if(this.type == "success"){
+                this.showToastBar_success = true;
+                this.showToastBar_error = false;
+            }
+            else{
+                this.showToastBar_success = false;
+                this.showToastBar_error = true;
 
+            }
+            console.log('OUTPUT toast: ',message);
+            setTimeout(() => {
+                this.closeModel();
+            }, this.autoCloseTime);
         }
-        console.log('OUTPUT toast: ',message);
-        setTimeout(() => {
-            this.closeModel();
-        }, this.autoCloseTime);
     }
 
     

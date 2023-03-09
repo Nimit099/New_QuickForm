@@ -10,7 +10,7 @@
             </div>
         </div>
     </template>
-    <template if:false={activepreview}>
+    <template if:true={activepreviews}>
         <button onclick={backhome} class="backbutton"><img src={BackButton} alt="">
             <p>Home Page</p>
         </button>
@@ -40,28 +40,37 @@
 
                         <template for:each={page.FieldData} for:item="field">
 
-                            <div id={field.formid} class="field"  data-order-id={field.Field_Order__c}
-                                data-page-record={field.Form_Page__c} data-record={field.formid} data-ref="inner"
-                                 data-record-count={fieldcount} onclick={openfieldvalidation}
-                                key={field.formid} data-field-name={field.Name} data-id={field.Id}>
+                                        <div id={field.Id} class="field"
+                                            data-order-id={field.Field_Order__c} data-page-record={field.Form_Page__c}
+                                            data-record={field.Id} data-ref="inner"
+                                            data-record-count={fieldcount} key={field.Id}
+                                            data-field-name={field.Name} data-field-id={field.Id} data-id={field.Id}>
+                                            <c-quickformfieldcomponent formid={formid} t-view={field.Name}
+                                                data-page-record={page.pageId} compview="Full" disable-field="true"
+                                                field-attribute="" field-attribute-value="" field-id={field.Id}
+                                                page-id={page.ParentMessage} data-field-id={field.Id}
+                                                onstartsppiner={stopspinner}
+                                                is-reqired={field.Field_Validations__c.isRequired}
+                                                helptextcheck={field.Field_Validations__c.isHelptext}
+                                                labelcheck={field.Field_Validations__c.isLabel}
+                                                labelvalue={field.Field_Validations__c.Label}
+                                                helptextvalue={field.Field_Validations__c.HelpText}
+                                                salutationvalue={field.Field_Validations__c.Salutation}
+                                                isdisabled={field.Field_Validations__c.isDisabled}
+                                                placeholder={field.Field_Validations__c.Placeholder}
+                                                fieldtype={field.Field_Validations__c.fieldtype}
+                                                terms-and-condition-value={field.Field_Validations__c.Richtext}
+                                                hovercssproperty={hovercss} focuscssproperty={focuscss}
+                                                fieldcss={fcss}
+                                                labelcss={lcss}></c-quickformfieldcomponent>
 
-                                <c-quickformfieldcomponent formid={formid} t-view={field.Name} compview="Full"
-                                    disable-field="true" field-attribute="" field-attribute-value="" field-id={field.Id}
-                                    page-id={page.formid} is-reqired={field.Field_Validations__c.isRequired}
-                                    helptextcheck={field.Field_Validations__c.isHelptext}
-                                    labelcheck={field.Field_Validations__c.isLabel}
-                                    labelvalue={field.Field_Validations__c.Label}
-                                    helptextvalue={field.Field_Validations__c.HelpText}
-                                    salutationvalue={field.Field_Validations__c.Salutation}
-                                    isdisabled={field.Field_Validations__c.isDisabled}
-                                    placeholder={field.Field_Validations__c.Placeholder}
-                                    fieldtype={field.Field_Validations__c.Fieldtype}></c-quickformfieldcomponent>
 
                             </div>
                         </template>
-                        <div class="field captchafield">
+                        <div class="captchafield">
                             <template if:true={isIndexLast}>
-                                <c-captcha-type oncaptchaverification={verifycaptcha}
+                                <h1 class="captchatext">To confirm that you are a human, please complete the captcha below.</h1>
+                                <c-captcha-type class="captchabox" oncaptchaverification={verifycaptcha}
                                     captypetypes={captchavalue}></c-captcha-type>
                             </template>
                         </div>

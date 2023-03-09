@@ -4,7 +4,7 @@
     margin: auto 5% auto 0%;
     padding: 3%;
     /* background-color: #FFFFFF; */
-    /* border-radius: 0px; */
+    border-radius: 28px;
     overflow: hidden;
 }
 .tab-menu ul{
@@ -21,7 +21,7 @@
     color: rgb(0, 0, 0);
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 15px;
    
 }
 .tab-menu ul li a.active-tab{
@@ -39,18 +39,29 @@
 .active-tab-content{
     display: block  ;
 }
+.siteDropdown{
+    margin-top: 10px;
+    margin-left: 20px;
+    display: inline-block;
+}
+lightning-combobox {
+    --sds-c-input-radius-border: 18px;
+}
+.save_btn{
+    display: inline-block;
+    margin-left: 20px;
+}
 .main {
     position: absolute;
     height: 100%;
     width: 100%;
-    top: 0%;
-    /* border-radius: 0px; */
+    border-radius: 28px;
 }
  .sizebox{
-    margin:auto; 
-    width:80%; 
-    margin-top:30px;
-    height: 90% !important;
+    /* margin:auto;  */
+    width:100%; 
+    /* margin-top:30px; */
+    height: 100% !important;
     background-color: white;
     /* border-radius: 28px !important; */
     border-radius: 15px !important;
@@ -58,6 +69,21 @@
  .gridbox{
     height: 100% !important;  
     /* box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%); */
+}
+
+.qf-standard-button {
+    height: 30px;
+    width: 15vh;
+    /* margin-right: 15px; */
+    border-radius: 58px;
+    background-color: #6699CC;
+    font-size: 17px;
+    color: #ffffff;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
 
  .slds-modal__container {
@@ -144,18 +170,25 @@
     margin: 1% 0;
 }
  .s-wrap1 .s-item-4 {
-    background-image: url("/resource/img1");
+    /* background-image: url("/resource/img1"); */
+    background-image: url("/resource/UserConfig1");
+    /* height: 80%; */
+    /* width: 20%; */
 }
 
  .s-wrap1 .s-item-5 {
-    background-image: url("/resource/img2");
+    /* background-image: url("/resource/img2"); */
+    background-image: url("/resource/UserConfig2");
 }
 
  .s-wrap1 .s-item-6 {
-    background-image: url("/resource/img3");
+    /* background-image: url("/resource/img3"); */
+    background-image: url("/resource/UserConfig3");
+    /* background-image: url({$Resource.img3 + '/image3.png'}); */
 }
 .s-wrap1 .s-item-7 {
-    background-image: url("/resource/img4");
+    /* background-image: url("/resource/img4"); */
+    background-image: url("/resource/UserConfig4");
 }
 
  .s-type-11 .s-control1 {
@@ -427,7 +460,7 @@
   .resourcediv{
     border-left: 1px solid gray; 
     background-color: #3E77AE;
-    border-radius: 15px; 
+    border-radius: 28px; 
     margin-top: 20px; 
     margin-bottom: 20px; 
     right: 20px; 
@@ -776,21 +809,85 @@
     display: inline;
 }
 
+ /* Spinner CSS -- START */
+.slds-spinner_container {
+  position: absolute !important;
+  top: 0;
+  right: -500px !important;
+  bottom: 0;
+  left: -500px !important;
+  /* z-index: var(--lwc-zIndexSpinner,9050) !important; */
+  /* background-color: var(--lwc-colorBackgroundTempModalTintAlt,rgba(255, 255, 255, 0.75)); */
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: opacity .2s ease, visibility 0s !important;
+  transition-delay: 0s, .3s !important;
+}
+
+.spinner-main-div {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.loader--ripple {
+  display: inline-block;
+  position: relative;
+  height: 100px;
+  width: 100px;
+
+}
+
+.loader--ripple div {
+  position: absolute;
+  animation: loader--ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  border: 4px solid;
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.loader--ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes loader--ripple {
+  0% {
+    top: 50px;
+    left: 50px;
+    opacity: 1;
+    height: 0;
+    width: 0;
+  }
+
+  100% {
+    top: -1px;
+    left: -1px;
+    opacity: 0;
+    height: 100px;
+    width: 100px;
+  }
+}
+
+.loader--ripple div {
+  border-color: #00539f;
+}
+
 @media all and (min-width : 768px) and (max-width:1024px) {
     
     .main {
         position: absolute;
         height: 100%;
         width: 100%;
-        top: 0%;
     }
      .sizebox{
-        margin:auto; 
-        width:85% !important; 
-        margin-top:14px !important;
-        height: 95% !important;
+        /* margin:auto;  */
+        width:100% !important; 
+        /* margin-top:14px !important; */
+        height: 100% !important;
         background-color: white;
-        border-radius: 28px !important;
+        border-radius: 15px !important;
     }
      .slds-modal__container {
         margin: 0 auto;
@@ -966,7 +1063,10 @@
         position: absolute;
         height: 100%;
         width: 100%;
-        top: 0%;
+    }
+    .tab{
+        padding-top: 10px;
+        /* display: none; */
     }
      .s-wrap11 .s-content11 {
         margin: 0;
@@ -981,16 +1081,16 @@
         transition: transform 1s;
     }
      .sizebox{
-        margin:auto ; 
-        width:92%; 
-        margin-top:15px;
+        /* margin:auto ;  */
+        width:100%; 
+        /* margin-top:15px; */
         /* margin-top:0px; */
-        height: 96% !important;
+        height: 100% !important;
         /* height: 100% !important; */
         background-color: white;
         overflow: hidden !important;
         overflow-y: hidden !important;
-        border-radius: 28px !important;
+        border-radius: 15px !important;
     }
      .slds-modal__container {
         margin: 0 auto;
@@ -1006,13 +1106,19 @@
         padding-top: 10px !important;
     }
      .s-wrap1 {
-        height: 26rem !important;
+        /* height: 26rem !important; */
+        height: 35rem !important;
         width: 100% !important;
-        margin-right: 3% !important;
-        margin-bottom: 5% !important;
+        /* margin-right: 3% !important; */
+        /* margin-bottom: 5% !important; */
         position: relative;
         overflow: hidden;
     }
+    /* .s-wrap1 .s-item-4 {
+        background-image: url("/resource/img1");
+        height: 80%;
+        width: 20%;
+    } */
      .s-wrap1 .s-item1 {
         display: inline-block;
         width: 20% !important;
@@ -1180,6 +1286,27 @@
     }
 
 }
+
+@media all and (min-width : 1920px){
+
+    .UserConfigDetails{
+        /* margin-top: 5px; */
+    }
+
+    .UserConfigDetails p{
+        margin-top: 25px;
+        font-size: 18px;
+    }
+
+    /* .UserConfigDetails b{
+        font-size: 20px;
+    } */
+
+    .h1class{
+        font-size: 22px;
+    }
+}
+
  body {
     background: #ecf0f1;
   }

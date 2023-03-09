@@ -72,7 +72,7 @@
     height: 75vh;
 }
 
-.slds-box_xx-small:hover {
+/* .slds-box_xx-small:hover {
     background-color: #f0f0f0;
 }
 
@@ -86,6 +86,25 @@
     border-radius: 28px !important;
     font-size: 15px !important;
     height: 35px !important;
+    padding: 0 12px !important;
+    white-space: revert;
+    margin: 0 15px 14px 5%;
+} */
+
+.fieldOutlines:hover {
+    background-color: #f0f0f0;
+}
+
+.fieldOutlines {
+    border: 1px solid #046EAA;
+    align-items: center;
+    text-align: left;
+    flex-direction: row;
+    display: flex !important;
+    height: auto;
+    border-radius: 28px !important;
+    font-size: 15px !important;
+    min-height: 35px !important;
     padding: 0 12px !important;
     white-space: revert;
     margin: 0 15px 14px 5%;

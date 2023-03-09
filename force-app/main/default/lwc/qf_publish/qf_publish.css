@@ -57,7 +57,7 @@
     height: 34px;
     width: 110px;
     margin-left: 60px;
-    margin-right: 15px;
+    /* margin-right: 15px; */
     border-radius: 30px;
     background-color: #6699CC;
     font-size: 15px;
@@ -101,14 +101,6 @@
 
 .publishCheckboxes .slds-form-element__control .slds-radio:last-child {
     border: none
-}
-
-.leftPanelTitle {
-    text-transform: capitalize;
-    color: rgba(0, 0, 0, 0.56);
-    padding: 41px 0 0 16px;
-    font-weight: bold;
-    font-size: 24px
 }
 
 .lightBoxChexboxes {
@@ -155,7 +147,7 @@
     width: 90%;
     font-size: 12px;
     font-weight: normal;
-    padding: 1% 0.7%;
+    padding: 1% 0.8% 1% 1.2%;
 }
 
 .copyCodeSection {
@@ -187,12 +179,11 @@
 .copiedtext2,
 .copiedtext3 {
     text-align: center;
-    opacity: 0;
-    color: #000;
     opacity: 1;
     display: none;
     color: #6699CC;
     font-size: 1rem;
+    margin: auto 1%;
 }
 
 .LeftBar {
@@ -245,17 +236,6 @@
     align-items: center;
 }
 
-.inputBox {
-    background: #FFFFFF;
-    box-shadow: 0px 2px 2px rgb(0 0 0 / 25%);
-    border-radius: 10px;
-    border: none;
-    width: 90%;
-    font-size: 12px;
-    font-weight: normal;
-    padding: 1% 0.7%;
-}
-
 .copyIcon:focus {
     border: none;
 }
@@ -268,7 +248,7 @@
     background: #ebebeb;
     border-radius: 15px;
     height: 40%;
-    line-height: 3em;
+    line-height: 2em;
     padding: 10px 25px;
     display: flex;
     align-items: center;
@@ -323,19 +303,39 @@
 
 .codestyle {
     padding-left: 0.9rem;
-    padding-left: 0.9rem;
-    background-color: #f0f0f0;
-    height: 18rem;
+    padding-right: 0.9rem;
+    /* background-color: #f0f0f0; */
+    /* height: 18rem; */
     overflow-y: scroll;
-    background-color: #f0f0f0;
+    background-color: #D9D9D9;
+    height: 300px;
+}
+.codingstyle{
+
+/* width: 238px; */
+/* height: 218px; */
+color: #000000;
+padding-left: 20px;
+word-wrap: break-word;
+padding-right: 20px;
 }
 
+.subcode{
+    /* position: absolute; */
+/* width: 320rem; */
+height: 280px;
+box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+border-radius: 4px;
+}
+.code{
+    gap: inherit;
+}
 .codestyle::-webkit-scrollbar {
     display: none;
 }
 
 .mainHeading {
-    background-color: #f0f0f0;
+    background-color: #D9D9D9;
 }
 
 .subcodeJs,
@@ -373,8 +373,13 @@
 
 .heading {
     display: flex;
-    margin: 10px 0 0 10px;
+    /* margin: 10px 0 0 10px; */
     align-items: center;
+    background-color: #D9D9D9;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 .myBtn {
@@ -413,15 +418,28 @@
     gap: 10px;
 }
 
+.leftPanelTitle {
+    text-align: center;
+    color: rgb(0, 0, 0, 0.56);
+    font-size: 30px;
+    font-weight: 800;
+    font-family: 'Roboto';
+    line-height: 25px;
+    /* margin: 1%; */
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
 @media only screen and (max-width:1669px) {
     .iframeCode {
-        line-height: 3rem;
+        line-height: 2rem;
     }
 }
 
 @media only screen and (max-width:1550px) {
     .iframeCode {
-        line-height: 3rem;
+        line-height: 2rem;
     }
 
     .LeftBar {
@@ -453,30 +471,25 @@
         gap: 10px;
     }
 
-    .codestyle {
+    /* .codestyle {
         height: 10.5rem;
-    }
+        
+    } */
 
     .formlink {
         font-weight: normal;
         height: 10%;
     }
 
-    .copiedtext,
-    .copiedtext1,
-    .copiedtext2,
-    .copiedtext3 {
-        text-align: center;
-        opacity: 0;
-        color: #000;
-        opacity: 1;
-        display: none;
-        color: #6699CC;
-        font-size: 1rem;
-    }
-
     .leftPanelTitle {
-        padding: 30px 0 0 16px;
+        color: rgb(0, 0, 0, 0.56);
+        font-size: 30px;
+        font-weight: 800;
+        font-family: 'Roboto';
+        line-height: 25px;
+        /* margin: 1%; */
+        margin-top: 30px;
+        margin-bottom: 10px;
     }
 
     .formLinkTitle {
@@ -548,10 +561,32 @@
 
 .divtag1 {
     text-align: left;
-    padding-left: 20px
+    padding-left: 20px;
+    word-break: break-all;
 }
 
 .divtag2 {
     display: flex;
     flex-direction: row;
+}
+.iconsImages {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+.iconsImg{
+    width: 16px;
+    height: 12px;
+    background: #FFFFFF;
+    padding-left: 1px;
+}
+.diviconsImg{
+    width: 20px;
+height: 20px;
+background: #FFFFFF;
+border-radius: 4px;
+display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
 }

@@ -1,4 +1,4 @@
-public with sharing class EmailClass {
+public without sharing class EmailClass {
 
     @AuraEnabled
     public static List<SObject> search(String searchString) {
@@ -15,6 +15,8 @@ public with sharing class EmailClass {
             }
             system.debug('searchList:::' + searchList.size());
         } catch (Exception e) {
+            error_handler.insert_errordata(e,'EmailClass','search');
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
         return searchList;
@@ -36,6 +38,8 @@ public with sharing class EmailClass {
             mail.setEntityAttachments(emailDetails.files);
             Messaging.sendEmail(new List<messaging.SingleEmailMessage>{ mail });
         } catch (exception e) {
+            error_handler.insert_errordata(e,'EmailClass','sendEmailController');
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
     }

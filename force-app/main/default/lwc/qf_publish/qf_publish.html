@@ -9,7 +9,7 @@
     <!-- =========[Start Popup Modal] =======================-->
     <!-- [Text Box] -->
     <template if:true={spinner}>
-        <div data-id = "spinnerId" class="slds-spinner_container spinnercont">
+        <div data-id="spinnerId" class="slds-spinner_container spinnercont">
             <div class="spinner-main-div">
                 <div class="loader--ripple">
                     <div></div>
@@ -25,23 +25,29 @@
     <!-- =====================[Start of component]=============================== -->
     <div class="slds-grid slds-wrap">
         <!--=============================[ Start Left bar]=============================== -->
-        <div class="LeftBar slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_2-of-12 slds-p-left_medium slds-p-right_large">
+        <div
+            class="LeftBar slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_2-of-12 slds-p-left_medium slds-p-right_large">
             <!-- [Title] -->
-            <div>
-                <h1 class="leftPanelTitle">PUBLISHMENT</h1>
+            <div class="leftPanelTitle">
+                PUBLISHMENT
             </div>
             <!-- [Checkboxes] -->
             <div class="publishCheckboxes">
-                <lightning-radio-group class='checkBoxes' onchange={handleRadioChange}  name="radioGroup" options={option} value={publishment_value} data-name='aura' type="radio" ></lightning-radio-group>                
-            </div> 
+                <lightning-radio-group class='checkBoxes' onchange={handleRadioChange} name="radioGroup"
+                    options={option} value={publishment_value} data-name='aura' type="radio"></lightning-radio-group>
+            </div>
             <!-- [Start light box accordions] -->
-        
+
             <template if:true={lightBoxOpt}>
                 <div class="lightBoxChexboxes">
-                    <div class="lightBoxAcc" style={text_b_color} onclick={handleLightBoxChange} data-id='textLink' id="textLink">Text Link</div>
-                    <div class="lightBoxAcc" style={img_b_color} onclick={handleLightBoxChange} data-id='imageLink' id="imageLink"> Image Link</div>
-                    <div class="lightBoxAcc" style={auto_b_color} onclick={handleLightBoxChange} data-id='autoPopup' id="autoPopup">Auto popup</div>
-                    <div class="lightBoxAcc" style={floating_b_color} onclick={handleLightBoxChange} data-id='floatingBtn' id="floatingBtn">Floating Button</div>
+                    <div class="lightBoxAcc" style={text_b_color} onclick={handleLightBoxChange} data-id='textLink'
+                        id="textLink">Text Link</div>
+                    <div class="lightBoxAcc" style={img_b_color} onclick={handleLightBoxChange} data-id='imageLink'
+                        id="imageLink"> Image Link</div>
+                    <div class="lightBoxAcc" style={auto_b_color} onclick={handleLightBoxChange} data-id='autoPopup'
+                        id="autoPopup">Auto popup</div>
+                    <div class="lightBoxAcc" style={floating_b_color} onclick={handleLightBoxChange}
+                        data-id='floatingBtn' id="floatingBtn">Floating Button</div>
                 </div>
             </template>
             <!-- [End light box accordions] -->
@@ -52,57 +58,65 @@
 
         <!-- =====================[Start Right bar]================================== -->
 
-        <div class="PublishForm slds-col  slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_9-of-12 slds-p-horizontal_xx-large">
+        <div
+            class="PublishForm slds-col  slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_9-of-12 slds-p-horizontal_xx-large">
             <!-- [Form link title] -->
             <div class="formLinkTitle">
                 <h1>Form Link</h1>
             </div>
             <!-- [Introduction about form link] -->
             <div class=" linkText ">
-                <p>This way of publishing your form is perfect if you want to handle a small amount of code or if you want to directly invite somebody to view your form.</p>
+                <p>This way of publishing your form is perfect if you want to handle a small amount of code or if you
+                    want to directly invite somebody to view your form.</p>
             </div>
 
             <!-- [Form URL and copy button to copy url directly to clipboard] -->
-           
+
             <template if:true={formSiteURL}>
                 <div class="formlink ">
-                    <input type="link" data-id="urlinput" value={formurl} id="myInput" readonly={readonly} class="inputBox" />
-                    <img src={copy_Icon} class="iconsImage" id="menuItems" title='copy' onclick={copyTextFieldHelper} data-id="buttonId" />
-                    <span class="urlCopied" aria-hidden="true"><b>Copied</b></span>
+                    <input type="link" data-id="urlinput" value={formurl} id="myInput" readonly={readonly}
+                        class="inputBox" />
+                    <img src={copy_Icon} class="iconsImage" id="menuItems" title='copy' onclick={copyTextFieldHelper}
+                        data-id="buttonId" />
+                    <span class="urlCopied" aria-hidden="true"><b>Copied!</b></span>
                 </div>
             </template>
 
             <!-- [Aura code, copy button , description etc... ] -->
-         
+
             <template if:true={usingAura}>
-            <!-- [Publish your form using aura component] -->
+                <!-- [Publish your form using aura component] -->
                 <div class="publishUsing slds-m-top_medium">
                     <h2>Publish Using Aura Component</h2>
                 </div>
-            <!-- [Description ] -->
+                <!-- [Description ] -->
                 <div class="introCodeText slds-m-top_medium">
-                    <p>There are various ways to publish forms or surveys, according to your requirements. This section offers the options of linking your form through Aura Component</p>
+                    <p>There are various ways to publish forms or surveys, according to your requirements. This section
+                        offers the options of linking your form through Aura Component</p>
                 </div>
-            <!-- [Aura component code] -->
+                <!-- [Aura component code] -->
                 <lightning-layout-item>
                     <div class="copyCodeSection_1">
-                        <div data-id="overview" class="codeCopySection slds-p-around_large slds-m-top_medium copyCodeSection_12">
+                        <div data-id="overview"
+                            class="codeCopySection slds-p-around_large slds-m-top_medium copyCodeSection_12">
                             <div class="divtag">
-                                &lt; aura:component implements="forceCommunity:availableForAllPageTypes" access="global" &gt;
-                                <br />
+                                &lt;!--  QuickForm Aura Component Code snippet starts from here --&gt;<br/>
+                                &lt;aura:component implements="forceCommunity:availableForAllPageTypes" access="global"&gt;<br/>
                                 <div class="divtag1">
-                                    &lt;iframe src={formurl} transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
-                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
-                                    <br />&lt;/iframe&gt;
+                                    &lt;iframe src=&quot;{srcurl}&quot; allowTransparency=&quot;true&quot; style=&quot;min-height:100vh; overflow:auto;&quot; width=&quot;100%&quot; id=&quot;quickform001&quot; name=&quot;quickform&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; frameborder=&quot;0&quot;&gt;<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp; &lt;p&gt; If your Browser doesn&#39;t support iFrames. Please check with the support team. &lt;/p&gt;<br/>
+                                    &lt;/iframe&gt;
                                 </div>
-                                &lt;/aura:component &gt;
+                                &lt;/aura:component&gt;<br/>
+                                &lt;!--  QuickForm Aura Component Code snippet starts from here --&gt;
                             </div>
                         </div>
-                    
+
                         <div class="bt-center">
                             <div class="bt divtag2">
-                                <input class="std-btn" type="button" value="Copy Code" onclick={copyDivToClipboard_1} name="Copy Code" /> 
-                                <span data-id="test" class="copiedtext1" aria-hidden="true">Copied</span>
+                                <input class="std-btn" type="button" value="Copy Code" onclick={copyDivToClipboard_1}
+                                    name="Copy Code" />
+                                <span data-id="test" class="copiedtext1" aria-hidden="true">Copied!</span>
                             </div>
                         </div>
                     </div>
@@ -110,7 +124,7 @@
             </template>
 
             <!--[Lwc code , copy button , description etc...]-->
-       
+
             <template if:true={usingLWC}>
                 <!-- [Publish your form using Ligtning web  component] -->
                 <div class="publishUsing slds-m-top_medium">
@@ -118,7 +132,8 @@
                 </div>
                 <!-- [Description] -->
                 <div class="introCodeText slds-m-top_medium ">
-                    <p>There are various ways to publish forms or surveys, according to your requirements. This section offers the options of linking your form through Lightning web component (LWC).</p>
+                    <p>There are various ways to publish forms or surveys, according to your requirements. This section
+                        offers the options of linking your form through Lightning web component (LWC).</p>
                 </div>
                 <!-- [Lightning Component code] -->
                 <div class="copyCodeSection_2">
@@ -126,53 +141,61 @@
                         <div class="divtag">
                             &lt;lightning-layout-item&gt; <br />
                             <div class="Publish_lwc_Component_code">
-                                &lt;iframe src="{formurl}" transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
-                                <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
+                                &lt;iframe src="{srcurl}" transparency="true" style="min-height:100vh; overflow:auto;"
+                                width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0"
+                                frameborder="0" &gt;
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt; &lt;/p&gt;
                                 <br />&lt;/iframe&gt;
                             </div>
                             &lt;/lightning-layout-item&gt;
                         </div>
                     </div>
-                    
+
                     <div class="bt-center">
                         <div class="bt divtag2">
-                            <input class="std-btn" type="button" value="Copy Code" name="Copy"  onclick={copyDivToClipboard_2} /> 
-                            <span data-id="lwccode" class="copiedtext2" aria-hidden="true">Copied</span>
+                            <input class="std-btn" type="button" value="Copy Code" name="Copy"
+                                onclick={copyDivToClipboard_2} />
+                            <span data-id="lwccode" class="copiedtext2" aria-hidden="true">Copied!</span>
                         </div>
                     </div>
-                </div>   
+                </div>
             </template>
 
             <!--[Iframe code , copy button , description etc...]-->
-           
+
             <template if:true={formIFrame}>
                 <!-- [Publish your form using Iframe] -->
                 <div class="publishUsing slds-m-top_medium">
-                    <h2>Publish Using IFrame </h2>
+                    <h2>Publish Using iFrame </h2>
                 </div>
                 <!-- [Description] -->
                 <div class="introCodeText slds-m-top_medium  ">
-                    <p>There are various ways to publish forms or surveys, according to your requirements. This section offers the options of linking your form through Iframe.</p>
+                    <p>There are various ways to publish forms or surveys, according to your requirements. This section
+                        offers the options of linking your form through Iframe.</p>
                 </div>
                 <!-- [Iframe code] -->
                 <div class="copyCodeSection_3">
                     <div class=" codeCopySection iframeCode  slds-p-around_large slds-m-top_medium copyCodeSection_32">
                         <p id="copyIframe">
-                            &lt;iframe src="{formurl}" transparency="true" style="min-height:100vh; overflow:auto;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" &gt;
-                            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt; Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc) &lt;/p&gt;
+                            &lt;iframe src="{srcurl}" transparency="true" style="min-height:100vh; overflow:auto;"
+                            width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0"
+                            frameborder="0" &gt;
+                            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+                            &lt;/p&gt;
                             <br />&lt;/iframe&gt;
                         </p>
                     </div>
                     <div class="bt-center">
                         <div class="bt divtag2">
-                            <input class="std-btn" type="button" value="Copy Code" onclick={copyDivToClipboard_3} name="Copy" /> 
-                            <span class="copiedtext3" aria-hidden="true">Copied</span>
+                            <input class="std-btn" type="button" value="Copy Code" onclick={copyDivToClipboard_3}
+                                name="Copy" />
+                            <span class="copiedtext3" aria-hidden="true">Copied!</span>
                         </div>
                     </div>
-                    
-                </div>         
+
+                </div>
             </template>
-            
+
 
             <!-- [QR code] -->
 
@@ -183,24 +206,25 @@
                 </div>
                 <!-- [Description] -->
                 <div class="introCodeText slds-m-top_medium  ">
-                    <p>There are various ways to publish forms or surveys, according to your requirements. This section offers the options of linking your form through Qr Code.</p>
+                    <p>There are various ways to publish forms or surveys, according to your requirements. This section
+                        offers the options of linking your form through Qr Code.</p>
                 </div>
                 <!-- [QR] -->
                 <div class="center">
                     <div class="bt-center">
                         <div class="bt">
-                            <input class="std-btn" type="button" value="Show QR" name="Show QR" onclick={qrGenerate}/>                           
+                            <input class="std-btn" type="button" value="Show QR" name="Show QR" onclick={qrGenerate} />
                         </div>
-                    </div>                   
-                    <div class="qrcode2" id="qrcode2"></div>                   
+                    </div>
+                    <div class="qrcode2" id="qrcode2"></div>
                 </div>
             </template>
- 
+
 
 
 
             <!--[lightbox checkbox]-->
-           
+
             <template if:true={formLightBox}>
                 <!-- [Publish your form by link it to text or image] -->
                 <div class="publishUsing slds-m-top_medium">
@@ -208,47 +232,67 @@
                 </div>
                 <!-- [Description] -->
                 <div class="introCodeText slds-m-top_medium  ">
-                    <p>There are various ways to publish forms or surveys, according to your requirements. This section offers the options of linking your form through text or images.</p>
+                    <p>There are various ways to publish forms or surveys, according to your requirements. This section
+                        offers the options of linking your form through text or images.</p>
                 </div>
                 <!-- [HTML , Css and Js code] -->
                 <div class="slds-m-top_medium">
 
-                    <template if:true={formTextLink}>                   
+                    <template if:true={formTextLink}>
                         <div class="lightBoxSection">
-                            <div class=" code slds-grid" >
-                                <div class=" slds-col slds-size_1-of-1 slds-small-size_1-of-1	slds-medium-size_4-of-12 slds-large-size_4-of-12 subcode">
+                            <div class=" code slds-grid">
+                                <div
+                                    class=" slds-col slds-size_1-of-1 slds-small-size_1-of-1	slds-medium-size_4-of-12 slds-large-size_4-of-12 subcode">
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon icon-name="utility:insert_tag_field" class="codeIcons" size="small" alternative-text="Html" title="Html" ></lightning-button-icon>
-                                            <h1><b>Html:</b></h1>
+                                            <!-- <lightning-button-icon icon-name="utility:insert_tag_field" class="codeIcons" size="small" alternative-text="Html" title="Html" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={html_Icon} class="iconsImg" title='html' data-id="buttonId" />
+                                            </div>
+                                            <h1><b>HTML:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
                                     </div>
                                     <div class="codestyle" id="copytext">
+                                        <div class="codingstyle">
                                         <br /> &lt;p id="myBtn" &gt; Text Link &lt;/p &gt;
                                         <br /> &lt;div id="myModal" class="modal"&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="modal-content"&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="close">&times;&lt;/span&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
-                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{formurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
+                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+                                        class="modal-content"&gt;
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span
+                                        class="close">&times;&lt;/span&gt;
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{srcurl}"> &lt;/iframe&gt; &lt;/p&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
                                         <br /> &lt;/div&gt;
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class=" slds-col slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12 subcode subcodeCss">
+                                <div
+                                    class=" slds-col slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12 subcode subcodeCss">
 
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon data-id="text2" class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon>
-                                            <h1><b>Css:</b></h1>
+                                            <!-- <lightning-button-icon data-id="text2" class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={css_Icon} class="iconsImg" title='html' data-id="buttonId" />
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
+                                            <h1><b>CSS:</b></h1>
+                                        </div>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
 
                                     </div>
 
                                     <div class="codestyle" id="copytext2">
+                                        <div class="codingstyle">
                                         <br /> body <br />{ <br />font-family: Arial, Helvetica, sans-serif; <br />}
                                         <br />
                                         <br /> #myBtn{
@@ -312,21 +356,29 @@
                                         <br />
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class=" slds-col slds-small-size_1-of-1 slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12 subcode subcodeJs">
+                                <div
+                                    class=" slds-col slds-small-size_1-of-1 slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12 subcode subcodeJs">
 
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon icon-name="utility:merge_field" variant="border-filled" size="small" class="codeIcons" alternative-text="Javascript" title="Javascript" ></lightning-button-icon>
+                                            <!-- <lightning-button-icon icon-name="utility:merge_field" variant="border-filled" size="small" class="codeIcons" alternative-text="Javascript" title="Javascript" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={js_Icon} class="iconsImg" title='html' data-id="buttonId" />
+                                            </div>
 
                                             <h1><b>JavaScript:</b></h1>
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
 
                                     </div>
-                                 
+
 
                                     <div class="codestyle" id="copytext3">
+                                        <div class="codingstyle">
                                         <br /> // Get the modal
                                         <br /> var modal = document.getElementById("myModal");
                                         <br />
@@ -354,52 +406,72 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
 
-                            
+
                         </div>
-                 
+
                     </template>
-                   
+
                     <template if:true={formImageLink}>
                         <div class="lightBoxSection">
-                            <div class="code slds-grid" >
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode ">
+                            <div class="code slds-grid">
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode ">
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon class="codeIcons" icon-name="utility:insert_tag_field" variant="border-filled" size="small" alternative-text="Html" title="Html" ></lightning-button-icon>
-                                            <h1><b>Html:</b></h1>
+                                            <!-- <lightning-button-icon class="codeIcons" icon-name="utility:insert_tag_field" variant="border-filled" size="small" alternative-text="Html" title="Html" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={html_Icon} class="iconsImg" title='html' data-id="buttonId" />
+                                            </div>
+                                            <h1><b>HTML:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
 
                                     </div>
 
                                     <div class="codestyle" id="copytext4">
+                                        <div class="codingstyle">
                                         <br /> &lt;img id="myBtn" src="image.png" / &gt;
                                         <br /> &lt;div id="myModal" class="modal"&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="modal-content"&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="close">&times; &lt;/span&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
-                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{formurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
+                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+                                        class="modal-content"&gt;
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span
+                                        class="close">&times; &lt;/span&gt;
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{srcurl}"> &lt;/iframe&gt; &lt;/p&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
                                         <br /> &lt;/div&gt;
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeCss">
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeCss">
 
 
 
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon>
-                                            <h1><b>Css:</b></h1>
+                                            <!-- <lightning-button-icon class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={css_Icon} class="iconsImg" title='html' data-id="buttonId" />
+                                            </div>
+                                            <h1><b>CSS:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc}></lightning-button-icon>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc}></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
 
                                     </div>
                                     <div class="codestyle" id="copytext5">
+                                        <div class="codingstyle">
                                         <br /> body <br />{ <br />font-family: Arial, Helvetica, sans-serif; <br />}
                                         <br />
 
@@ -453,18 +525,26 @@
                                         <br />
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeJs">
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeJs">
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon class="codeIcons" icon-name="utility:merge_field" variant="border-filled" size="small" alternative-text="Javascript" title="Javascript" ></lightning-button-icon>
+                                            <!-- <lightning-button-icon class="codeIcons" icon-name="utility:merge_field" variant="border-filled" size="small" alternative-text="Javascript" title="Javascript" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={js_Icon} class="iconsImg" title='html' data-id="buttonId" />
+                                            </div>
                                             <h1><b>JavaScript:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc}></lightning-button-icon>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc}></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
 
                                     </div>
                                     <div class="codestyle" id="copytext6">
+                                        <div class="codingstyle">
                                         <br /> // Get the modal
                                         <br /> var modal = document.getElementById("myModal");
                                         <br />
@@ -493,49 +573,69 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
                     </template>
-                  
+
 
                     <template if:true={formAutoPopup}>
                         <div class="lightBoxSection">
-                            <div class="code slds-grid" >
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode">
+                            <div class="code slds-grid">
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode">
 
 
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon class="codeIcons" icon-name="utility:insert_tag_field" variant="border-filled" size="small" alternative-text="Html" title="Html" ></lightning-button-icon>
-                                            <h1><b>Html:</b></h1>
+                                            <!-- <lightning-button-icon class="codeIcons" icon-name="utility:insert_tag_field" variant="border-filled" size="small" alternative-text="Html" title="Html" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={html_Icon} class="iconsImg" title='html' data-id="buttonId" />
+                                            </div>
+                                            <h1><b>HTML:</b></h1>
 
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
 
                                     </div>
                                     <div class="codestyle" id="copytext7">
+                                        <div class="codingstyle">
                                         <br /> &lt;img id="myBtn" src="image.png" / &gt;
                                         <br /> &lt;div id="myModal" class="modal"&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="modal-content"&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="close">&times;&lt;/span&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
-                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{formurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
+                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+                                        class="modal-content"&gt;
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span
+                                        class="close">&times;&lt;/span&gt;
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{srcurl}"> &lt;/iframe&gt; &lt;/p&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
                                         <br /> &lt;/div&gt;
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeCss">
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeCss">
 
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon>
-                                            <h1><b>Css:</b></h1>
+                                            <!-- <lightning-button-icon class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={css_Icon} class="iconsImg" title='html' data-id="buttonId" />
+                                            </div>
+                                            <h1><b>CSS:</b></h1>
 
                                         </div>
 
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
 
                                     </div>
                                     <div class="codestyle" id="copytext8">
+                                        <div class="codingstyle">
                                         <br /> body <br />{ <br />font-family: Arial, Helvetica, sans-serif; <br />}
                                         <br />
 
@@ -589,21 +689,29 @@
                                         <br />
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	slds-large-size_4-of-12  subcode subcodeJs">
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	slds-large-size_4-of-12  subcode subcodeJs">
 
 
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon class="codeIcons" icon-name="utility:merge_field" variant="border-filled" size="small" alternative-text="Javascript" title="Javascript" ></lightning-button-icon>
+                                            <!-- <lightning-button-icon class="codeIcons" icon-name="utility:merge_field" variant="border-filled" size="small" alternative-text="Javascript" title="Javascript" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={js_Icon} class="iconsImg" title='html' data-id="buttonId" />
+                                            </div>
                                             <h1><b>JavaScript:</b></h1>
 
                                         </div>
 
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
 
                                     </div>
                                     <div class="codestyle" id="copytext9">
+                                        <div class="codingstyle">
                                         <br /> // Get the modal
                                         <br /> var modal = document.getElementById("myModal");
                                         <br />
@@ -633,43 +741,64 @@
                                 </div>
                             </div>
                         </div>
-      
+                        </div>
+
                     </template>
 
-                 
+
                     <template if:true={floatingButton}>
                         <div class="lightBoxSection">
-                            <div class="code slds-grid " >
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode">
+                            <div class="code slds-grid ">
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode">
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon class="codeIcons" icon-name="utility:insert_tag_field" variant="border-filled" size="small" alternative-text="Html" title="Html" ></lightning-button-icon>
-                                            <h1><b>Html:</b></h1>
+                                            <!-- <lightning-button-icon class="codeIcons" icon-name="utility:insert_tag_field" variant="border-filled" size="small" alternative-text="Html" title="Html" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={html_Icon} class="iconsImg" title='html' data-id="buttonId" />
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
+                                            <h1><b>HTML:</b></h1>
+                                        </div>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
                                     </div>
 
                                     <div class="codestyle" id="copytext10">
-                                        <br /> &lt;button id="myBtn"/&gt; &lt;span &gt; + &lt;/span &gt; &lt;/button&gt;
+                                        <div class="codingstyle">
+                                            <br /> &lt;button id="myBtn"/&gt; &lt;span &gt; + &lt;/span &gt;
+                                            &lt;/button&gt;
                                         <br /> &lt;div id="myModal" class="modal"&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="modal-content"&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="close">&times; &lt;/span&gt;
-                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
-                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{formurl}" >your browser does not support &lt;/iframe&gt; &lt;/p&gt;
+                                        <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+                                        class="modal-content"&gt;
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span
+                                        class="close">&times; &lt;/span&gt;
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+                                        <br /> &lt;iframe frameborder= '0' scrolling ="yes" src="{srcurl}"> &lt;/iframe&gt; &lt;/p&gt;
                                         <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
                                         <br /> &lt;/div&gt;
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeCss">
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeCss">
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon>
-                                            <h1><b>Css:</b></h1>
+                                            <!-- <lightning-button-icon class="codeIcons" icon-name="utility:favorite" variant="border-filled" size="small" alternative-text="Css" title="Css" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={css_Icon} class="iconsImg" title='html' data-id="buttonId" />
                                         </div>
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc}></lightning-button-icon>
+                                            <h1><b>CSS:</b></h1>
+                                        </div>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc}></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
                                     </div>
                                     <div class="codestyle" id="copytext11">
+                                        <div class="codingstyle">
                                         <br /> body <br />{ <br />font-family: Arial, Helvetica, sans-serif; <br />}
 
                                         <br />
@@ -747,21 +876,29 @@
                                         <br />
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeJs">
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12	 slds-large-size_4-of-12  subcode subcodeJs">
 
 
                                     <div class="mainHeading">
                                         <div class="heading">
-                                            <lightning-button-icon class="codeIcons" icon-name="utility:merge_field" variant="border-filled" size="small" alternative-text="Javascript" title="Javascript" ></lightning-button-icon>
+                                            <!-- <lightning-button-icon class="codeIcons" icon-name="utility:merge_field" variant="border-filled" size="small" alternative-text="Javascript" title="Javascript" ></lightning-button-icon> -->
+                                            <div class="diviconsImg">
+                                                <img src={js_Icon} class="iconsImg" title='html' data-id="buttonId" />
+                                            </div>
                                             <h1><b>JavaScript:</b></h1>
 
                                         </div>
 
-                                        <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon>
+                                        <!-- <lightning-button-icon class="copyIcon" icon-name="utility:copy" size="small" alternative-text="Settings" title="copy" onclick={copy_code_fir_lwc} ></lightning-button-icon> -->
+                                        <img src={copy_Icon} class="iconsImages" title='copy'
+                                            onclick={copy_code_fir_lwc} data-id="buttonId" />
 
                                     </div>
                                     <div class="codestyle" id="copytext12">
+                                        <div class="codingstyle">
                                         <br /> // Get the modal
                                         <br /> var modal = document.getElementById("myModal");
                                         <br />
@@ -787,18 +924,19 @@
                                         <br />if (event.target == modal) { modal.style.display = "none";
                                         <br />}
                                         <br /> }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
-                    </template>                    
+                    </template>
                 </div>
             </template>
         </div>
-       
+
         <!-- =====================[End Right bar]================================== -->
     </div>
 
-  
+
     <!--========================[End  component ]================================== -->
 </template>

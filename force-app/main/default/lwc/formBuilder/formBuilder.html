@@ -116,7 +116,7 @@
         </template>
 
         <template if:true={activepreview}>
-            <c-preview-form-cmp formid={ParentMessage} activepreview={activepreview}></c-preview-form-cmp>
+            <c-preview-form-cmp formid={ParentMessage}></c-preview-form-cmp>
         </template>
 
         <template if:true={activeqf_publish}>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
 
-                <div class="fieldDiv1 slds-align_absolute-center slds-col slds-small-size_6-of-12  slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_9-of-12"
+                <div class="fieldDiv1 slds-col slds-small-size_6-of-12  slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_9-of-12"
                     style="padding:2%; width:100%;background-color: white;">
 
                     <div class="myform" id="mainformid">
@@ -210,8 +210,8 @@
                                             data-record-count={fieldcount} onclick={openfieldvalidation} key={field.Id}
                                             data-field-name={field.Name} data-field-id={field.Id} data-id={field.Id}>
                                             <c-quickformfieldcomponent formid={ParentMessage} t-view={field.Name}
-                                                compview="Full" disable-field="true" field-attribute=""
-                                                field-attribute-value="" field-id={field.Id}
+                                                data-page-record={page.pageId} compview="Full" disable-field="true"
+                                                field-attribute="" field-attribute-value="" field-id={field.Id}
                                                 page-id={page.ParentMessage} data-field-id={field.Id}
                                                 onstartsppiner={stopspinner}
                                                 is-reqired={field.Field_Validations__c.isRequired}
@@ -224,8 +224,9 @@
                                                 placeholder={field.Field_Validations__c.Placeholder}
                                                 fieldtype={field.Field_Validations__c.fieldtype}
                                                 terms-and-condition-value={field.Field_Validations__c.Richtext}
-                                                fcss={fcss} hoverhovercssproperty ={hovercss} focuscssproperty ={focuscss}
-                                                labelcss={labelcss}></c-quickformfieldcomponent>
+                                                hovercssproperty={hovercss} focuscssproperty={focuscss}
+                                                fieldcss={fcss}
+                                                labelcss={lcss}></c-quickformfieldcomponent>
 
                                         </div>
                                         <!-- <div id={field.ParentMessage} class="field" draggable="true"
@@ -259,6 +260,7 @@
                                         <!-- <button class="nextbutton " variant="brand" value="Next" title="Next"
                                             onclick={onaddpage1}>Submit</button> -->
                                         <template if:false={isIndexLast}>
+                                            <div ></div>
                                             <button data-name="next" variant="brand" title="Next" onclick={onaddpage1}
                                                 class="btn1">Next</button>
                                         </template>

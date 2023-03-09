@@ -49,7 +49,7 @@ export default class FieldValidation extends LightningElement {
             if (this.fieldtype == 'Extra') {
                 let mydata1 = { data: [{ Name: this.fieldName }] };
                 mydata1.data.forEach(element => {
-                    if (element.Name == 'QFPHONE') { element.QFPHONE = true }
+                    if (element.Name == 'QFPHONE') { element.QFEMAILID = true }
                     else if (element.Name == 'QFFULLNAME') { element.QFFULLNAME = true }
                     else if (element.Name == 'QFADDRESS') { element.QFADDRESS = true }
                     else if (element.Name == 'QFNAME') { element.QFEMAILID = true }
@@ -76,7 +76,7 @@ export default class FieldValidation extends LightningElement {
             else {
                 let mydata1 = { data: [{ Name: this.fieldtype }] };
                 mydata1.data.forEach(element => {
-                    if (element.Name == 'PHONE') { element.QFPHONE = true }
+                    if (element.Name == 'PHONE') { element.QFEMAILID = true }
                     else if (element.Name == 'STRING' || element.Name == 'TEXTAREA' || element.Name == 'EMAIL' || element.Name == 'ENCRYPTEDSTRING') { element.QFEMAILID = true }
                     else if (element.Name == 'DOUBLE' || element.Name == 'CURRENCY' || element.Name == 'PERCENT') { element.QFNUMBER = true }
                     else if (element.Name == 'DATE') { element.QFDATE = true }
@@ -94,7 +94,6 @@ export default class FieldValidation extends LightningElement {
     @api
     openvalidation(tab, fieldId, fieldName) {
         try {
-            console.log('TABA' + tab);
             this.fieldtype = fieldName.split(',')[1];
             this.standardrequired = fieldName.split(',')[2];
             this.tab = tab;

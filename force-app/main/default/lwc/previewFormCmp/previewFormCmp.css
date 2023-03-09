@@ -543,5 +543,26 @@ img {
 .mainbody {
     display: flex;
     justify-content: center;
-    width: 60% !important;
+    width: 100% !important;
+}
+
+.captchafield{
+    user-select: none;
+    margin: auto;
+    margin-top: 8%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.captchabox{
+    border: 1px solid #6699cc;
+    border-radius: 14px;
+    padding: 4%;
+}
+
+.captchatext{
+    margin-bottom: 4px;
+    color: rgb(225, 191, 141);
+    mix-blend-mode: difference;
+    font-size: 14px;
 }

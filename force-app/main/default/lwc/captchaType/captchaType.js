@@ -34,7 +34,9 @@ export default class CaptchaType extends LightningElement {
         this.generate_new_normal_captcha();
         this.generate_new_slider_captcha(); 
         this.getrendomcolore();    
-        this.preview_chptchatype(this.captypetypes);  
+        if (this.captypetypes != undefined){
+            this.preview_chptchatype(this.captypetypes);  
+        }
         // console.log('test >>>',captype);
     }
     
@@ -44,11 +46,13 @@ export default class CaptchaType extends LightningElement {
         this.get_normal_captcha_value = this.template.querySelector('input[data-id=normal_captch_usr_input]').value;
         console.log('re '+this.normal_captcha);
         console.log('input '+this.get_normal_captcha_value);
-        if(this.get_normal_captcha_value == this.normal_captcha){
-            console.log('Captcha Verified');
-            this.msg_verified_captcha = true;
-            this.msg_invalid_captcha = false;
-            this.set_normal_captcha_value = this.get_normal_captcha_value; 
+        if ( this.get_normal_captcha_value != undefined && this.normal_captcha != undefined ){
+            if(this.get_normal_captcha_value == this.normal_captcha){
+                console.log('Captcha Verified');
+                this.msg_verified_captcha = true;
+                this.msg_invalid_captcha = false;
+                this.set_normal_captcha_value = this.get_normal_captcha_value; 
+        }
         }
         else{
             console.log('Invalid Captcha');
@@ -59,14 +63,16 @@ export default class CaptchaType extends LightningElement {
         }
     }
     generate_new_normal_captcha() {
-        this.first = this.alphabets[Math.floor(Math.random() * this.alphabetslength)];
-        this.second = Math.floor(Math.random() * 10);
-        this.third = Math.floor(Math.random() * 10);
-        this.fourth = this.alphabets[Math.floor(Math.random() * this.alphabetslength)];
-        this.fifth = this.alphabets[Math.floor(Math.random() * this.alphabetslength)];
-        this.sixth = Math.floor(Math.random() * 10);
-        this.normal_captcha = this.first+this.second+this.third+this.fourth+this.fifth+this.sixth;
-        this.set_normal_captcha_value = null;
+        if (this.alphabetslength != undefined){
+            this.first = this.alphabets[Math.floor(Math.random() * this.alphabetslength)];
+            this.second = Math.floor(Math.random() * 10);
+            this.third = Math.floor(Math.random() * 10);
+            this.fourth = this.alphabets[Math.floor(Math.random() * this.alphabetslength)];
+            this.fifth = this.alphabets[Math.floor(Math.random() * this.alphabetslength)];
+            this.sixth = Math.floor(Math.random() * 10);
+            this.normal_captcha = this.first+this.second+this.third+this.fourth+this.fifth+this.sixth;
+            this.set_normal_captcha_value = null;
+        }
     }
     // End Captcha 1 Normal Captcha
 
@@ -82,11 +88,13 @@ export default class CaptchaType extends LightningElement {
         this.get_math_captcha_value = this.template.querySelector('input[data-id=math_captch_usr_input]').value;
         console.log('re '+this.sum_mat_captcha);
         console.log('input '+this.get_math_captcha_value);
-        if(this.get_math_captcha_value == this.sum_mat_captcha){
-            console.log('Captcha Verified');
-            this.msg_verified_captcha = true;
-            this.msg_invalid_captcha = false;
-            this.set_math_captcha_value = this.get_math_captcha_value;
+        if (this.get_math_captcha_value != undefined && this.sum_mat_captcha != undefined){
+            if(this.get_math_captcha_value == this.sum_mat_captcha){
+                console.log('Captcha Verified');
+                this.msg_verified_captcha = true;
+                this.msg_invalid_captcha = false;
+                this.set_math_captcha_value = this.get_math_captcha_value;
+            }
         }
         else{
             this.generate_new_math_captcha();
@@ -111,16 +119,17 @@ export default class CaptchaType extends LightningElement {
     }
     handleValueChange() {
         console.log('test log');
-        
-        if(this.value == this.slider_captcha_1){
-            console.log('Captcha Verified');
-            this.msg_verified_captcha = true;
-            this.msg_invalid_captcha = false;
-        }
-        else{
-            console.log('Invalid Captcha');
-            this.msg_invalid_captcha = true;
-            this.msg_verified_captcha = false; 
+        if (this.value != undefined && this.slider_captcha_1 != undefined){
+            if(this.value == this.slider_captcha_1){
+                console.log('Captcha Verified');
+                this.msg_verified_captcha = true;
+                this.msg_invalid_captcha = false;
+            }
+            else{
+                console.log('Invalid Captcha');
+                this.msg_invalid_captcha = true;
+                this.msg_verified_captcha = false; 
+            }
         }
 
     }
@@ -148,18 +157,19 @@ export default class CaptchaType extends LightningElement {
     }
     verfication_color_captcha(event){
         this.test = event.target.dataset.name;
-        if (this.test==this.rendomcolor) {
-            // alert('you are verified');
-            // this.pickListValueList=null;
-            this.msg_verified_captcha = true;
-            this.msg_invalid_captcha = false;
-        }
-        else{
-            // alert('you are select wrong option');
-            this.msg_invalid_captcha = true;
-            this.msg_verified_captcha = false;
-            this.getrendomcolore();
-           
+        if (this.test != undefined && this.rendomcolor != undefined){
+            if (this.test==this.rendomcolor) {
+                // alert('you are verified');
+                // this.pickListValueList=null;
+                this.msg_verified_captcha = true;
+                this.msg_invalid_captcha = false;
+            }
+            else{
+                // alert('you are select wrong option');
+                this.msg_invalid_captcha = true;
+                this.msg_verified_captcha = false;
+                this.getrendomcolore();
+            }  
         }
     }
 
@@ -167,42 +177,44 @@ export default class CaptchaType extends LightningElement {
 
 
     @api preview_chptchatype(strString){
-        this.getprogreshbar = strString;
-        console.log('yash ',this.getprogreshbar);
-        if(this.getprogreshbar=='Select'){
-            this.Captcha = false;
-            this.Slider_Captcha = false;
-            this.Image_Captcha = false;
-            this.Normal_Captcha = false;
-            this.Maths_Captcha = false;
-        }
-        if(this.getprogreshbar=='Slider_Captcha'){
-            this.Captcha = false;
-            this.Slider_Captcha = true;
-            this.Image_Captcha = false;
-            this.Normal_Captcha = false;
-            this.Maths_Captcha = false;
-        }
-        if(this.getprogreshbar=='Image_Captcha'){
-            this.Captcha = false;
-            this.Slider_Captcha = false;
-            this.Image_Captcha = true;
-            this.Normal_Captcha = false;
-            this.Maths_Captcha = false;
-        }
-        if(this.getprogreshbar=='Normal_Captcha'){
-            this.Captcha = false;
-            this.Slider_Captcha = false;
-            this.Image_Captcha = false;
-            this.Normal_Captcha = true;
-            this.Maths_Captcha = false;
-        }
-        if(this.getprogreshbar=='Maths_Captcha'){
-            this.Captcha = false;
-            this.Slider_Captcha = false;
-            this.Image_Captcha = false;
-            this.Normal_Captcha = false;
-            this.Maths_Captcha = true;
+        if (strString != undefined){
+            this.getprogreshbar = strString;
+            console.log('yash ',this.getprogreshbar);
+            if(this.getprogreshbar=='Select'){
+                this.Captcha = false;
+                this.Slider_Captcha = false;
+                this.Image_Captcha = false;
+                this.Normal_Captcha = false;
+                this.Maths_Captcha = false;
+            }
+            if(this.getprogreshbar=='Slider_Captcha'){
+                this.Captcha = false;
+                this.Slider_Captcha = true;
+                this.Image_Captcha = false;
+                this.Normal_Captcha = false;
+                this.Maths_Captcha = false;
+            }
+            if(this.getprogreshbar=='Image_Captcha'){
+                this.Captcha = false;
+                this.Slider_Captcha = false;
+                this.Image_Captcha = true;
+                this.Normal_Captcha = false;
+                this.Maths_Captcha = false;
+            }
+            if(this.getprogreshbar=='Normal_Captcha'){
+                this.Captcha = false;
+                this.Slider_Captcha = false;
+                this.Image_Captcha = false;
+                this.Normal_Captcha = true;
+                this.Maths_Captcha = false;
+            }
+            if(this.getprogreshbar=='Maths_Captcha'){
+                this.Captcha = false;
+                this.Slider_Captcha = false;
+                this.Image_Captcha = false;
+                this.Normal_Captcha = false;
+                this.Maths_Captcha = true;
+            }
         }
 
     }

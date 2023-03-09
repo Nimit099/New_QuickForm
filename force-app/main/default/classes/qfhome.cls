@@ -9,7 +9,7 @@
 // =================================== 
 
 
-public with sharing class qfhome {
+public without sharing class qfhome {
 
 // <!-- ===================================
 // # MV Clouds Private Limited
@@ -20,12 +20,14 @@ public with sharing class qfhome {
     @AuraEnabled
     public static Map<Integer,List<Form__c>> records(){
         try {
-            List<Form__c> forms = [SELECT Id,Name,Total_Submissions__c, Status__c FROM Form__c];
+            List<Form__c> forms = [SELECT Id,Name,Total_Submissions__c, Status__c FROM Form__c  ORDER BY LastModifiedDate DESC];
             Integer count = [SELECT Count() FROM Form__c];
             Map<Integer,List<Form__c>> data = new Map<Integer,List<Form__c>>();
             data.put(count,forms);
             return data;
         } catch (Exception e) {
+            // error_handler.insert_errordata(e,'qfhome','records');
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -48,6 +50,8 @@ public with sharing class qfhome {
             return data;
             
         } catch (Exception e) {
+            // error_handler.insert_errordata(e,'qfhome','search');
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -84,6 +88,8 @@ public with sharing class qfhome {
             }
 
         } catch (Exception e) {
+            error_handler.insert_errordata(e,'qfhome','status');
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -112,6 +118,8 @@ public with sharing class qfhome {
                 }
 
         } catch (Exception e) {
+            // error_handler.insert_errordata(e,'qfhome','deleteform');
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -133,6 +141,8 @@ public with sharing class qfhome {
             return forms;
                 
         } catch (Exception e) {
+            error_handler.insert_errordata(e,'qfhome','renameform');
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -140,17 +150,17 @@ public with sharing class qfhome {
     public static Void sendemail(String name, String email, String subject, String body){
         try {
             List<Messaging.SingleEmailMessage> emailList = new List<Messaging.SingleEmailMessage>();
-            List<String> address = new List<String>{'smit11685@gmail.com'};
+            List<String> address = new List<String>{'smit11685@gmail.com','prakash.m@mvclouds.com'};
                 
             Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-            System.debug('mail :'+ mail);
             mail.setSubject(subject);
             mail.setplaintextbody(body+'\n\n\nFrom '+name +'\nEmail '+email);
             mail.setToAddresses(address);
             emailList.add(mail);
-            System.debug('emailList :'+emailList);
             Messaging.sendEmail(emailList);
         } catch (Exception e) {
+            error_handler.insert_errordata(e,'qfhome','sendemail');
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
     }

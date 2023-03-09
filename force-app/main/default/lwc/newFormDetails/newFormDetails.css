@@ -542,6 +542,7 @@ lightning-combobox {
 img {
     height: 100%;
     width: 100%;
+    cursor: pointer;
     /* margin-bottom: 45%; */
     /* height: 65%; */
     /* width: 100%; */

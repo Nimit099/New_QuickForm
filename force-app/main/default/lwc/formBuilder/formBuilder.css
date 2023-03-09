@@ -271,7 +271,6 @@ div.child2 {
     display: flex;
     flex-direction: row;
     justify-content: var(--btnJustify, center);
-    gap: 20px;
 }
 
 .footer {
@@ -1490,7 +1489,7 @@ lightning-textarea {
     flex-direction: column;
     /* justify-content: center; */
     height: 100%;
-    padding: 20px 20px 5px 20px;
+    padding: 5px 20px 5px 20px;
 }
 
 .captcha_progressbar_preview_main {
@@ -2299,4 +2298,11 @@ img {
 
 .btn1{
     padding-left: 0%;
+}
+
+.btn2{
+    padding-left: 0%;
+    color: rgba(0, 0, 0, 0) !important;
+    background-color: rgba(0, 0, 0, 0)!important;
+    border-color:  rgba(0, 0, 0, 0) !important;
 }

@@ -28,6 +28,8 @@ public without sharing class customMetadata {
              
             return l_Types;
         } catch (Exception e) {
+            // error_handler.insert_errordata(e ,'customMetadata','f_get_Type');
+            // System.debug(e.getMessage());
             System.debug('Exception: '+e.getMessage());
             return null;
         }
@@ -46,6 +48,8 @@ public without sharing class customMetadata {
              
             return Captcha_Types;
         } catch (Exception e) {
+            // error_handler.insert_errordata(e,'customMetadata','Get_Captcha_Types');
+            // System.debug(e.getMessage());
             System.debug('Exception: '+e.getMessage());
             return null;
         }
@@ -59,33 +63,36 @@ public without sharing class customMetadata {
     // }
     @AuraEnabled
     public static String siteUrl(String Formid){
+        String publishedURL = '';
         try {
-            System.debug('Exception form url: '+ Formid);
-            String formid_test = Formid;
-            System.debug('String form id: '+ formid_test);
-            System.debug('u r in siteList ');
-            Site siteList = [SELECT GuestUserId, Name, MasterLabel, Subdomain, UrlPathPrefix FROM Site WHERE Status = 'Active'];
-            List<String> siteFullUrlList = new List<String>();
-            System.debug('list of siteList :-' + siteList.Name);
-            String name = siteList.Name;
-            Site mySite = [select Id from Site where Name =:name];
-            SiteDetail mySiteDetail = [select SecureURL from SiteDetail where DurableId = :mySite.Id];
-            System.debug(mySiteDetail.SecureURL+siteList.Name);
-            String modifiedSecureURL = mySiteDetail.SecureURL;
-            if (modifiedSecureURL.endsWith('/')) {
-                modifiedSecureURL = modifiedSecureURL.substring(0, modifiedSecureURL.length() - 1);
+            System.debug('Method Name : customMetadata.siteUrl');
+            System.debug('Form ID: '+ Formid);
+            List<Form__c> formRecord = new List<Form__c>([SELECT Id, Name, Form_Published_URL__c FROM Form__c WHERE Id = :Formid]);
+            if(formRecord.size() > 0 && !String.isBlank(formRecord[0].Form_Published_URL__c)) {
+                publishedURL = formRecord[0].Form_Published_URL__c;
+            } else {
+                //Getting Site details
+                Site mySite = [select Id from Site where Status = 'Active'];
+                SiteDetail mySiteDetail = [select SecureURL from SiteDetail where DurableId = :mySite.Id];
+                String modifiedSecureURL = mySiteDetail.SecureURL;
+                System.debug('modifiedSecureURL --> '+modifiedSecureURL);
+                // if (modifiedSecureURL.endsWith('/')) {
+                //     modifiedSecureURL = modifiedSecureURL.substring(0, modifiedSecureURL.length() - 1);
+                // }
+                // Form Id Encryption 
+                String encryptedData = EncryptDecryptController.processEncryption(Formid);
+                publishedURL = modifiedSecureURL+'PreViewForm?access_key='+encryptedData;
+                System.debug(publishedURL);
+                Form__c formRec = new Form__c(Id = Formid);
+                formRec.Form_Published_URL__c = publishedURL;
+                update formRec;
             }
-            String testtest = modifiedSecureURL+'?formid='+formid_test;
-            System.debug(testtest);
-            siteFullUrlList.add(mySiteDetail.SecureURL+siteList.Name);
-            return testtest;
         } catch (Exception e) {
+            // error_handler.insert_errordata(e,'customMetadata','siteUrl');
+            // System.debug(e.getMessage());
             System.debug('An exception occurred: ' + e.getMessage());
             return null;
         }
+        return publishedURL;
     }
-    
-    
-
-    
 }

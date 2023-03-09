@@ -1,10 +1,11 @@
-public with sharing class FormBuilderController{
+public without sharing class FormBuilderController{
     @AuraEnabled
     public static List<BaseField_mdt__mdt> GetFieldsMetaData(){
         try{
             List<BaseField_mdt__mdt> basefield = BaseField_mdt__mdt.getAll().values();
             return basefield;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','GetFieldsMetaData');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -26,6 +27,7 @@ public with sharing class FormBuilderController{
             sw.FormDirectionProp = Form_Direction__mdt.getAll().values();
             return sw;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','GetStyles');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -33,55 +35,58 @@ public with sharing class FormBuilderController{
     //Method to get Field's Data
     @Auraenabled
     public static List<List<String>> getFields(String id){
-        List<String> types = new List<String>();
-        Form__c FormDetail = [SELECT Id, Mapped_Objects__c
-                              FROM Form__c
-                              WHERE Id = :id
-                              LIMIT 1];
-        //List<Form_Page__c> pageList = [SELECT Id, Name, Page_Number__c FROM Form_Page__c WHERE Form__c=:Form_Id ORDER BY Page_Number__c ASC];
-        types = (FormDetail.Mapped_Objects__c).split(',');
-        System.debug(types);
-        List<List<String>> allFields = new List<List<String>>();
-        List<List<String>> allReqiredFields = new List<List<String>>();
-        List<Form_Fields__c> FieldList = new List<Form_Fields__c>();
+        try{
+            List<String> types = new List<String>();
+            Form__c FormDetail = [SELECT Id, Mapped_Objects__c
+                                  FROM Form__c
+                                  WHERE Id = :id
+                                  LIMIT 1];
+            //List<Form_Page__c> pageList = [SELECT Id, Name, Page_Number__c FROM Form_Page__c WHERE Form__c=:Form_Id ORDER BY Page_Number__c ASC];
+            types = (FormDetail.Mapped_Objects__c).split(',');
+            System.debug(types);
+            List<List<String>> allFields = new List<List<String>>();
+            List<List<String>> allReqiredFields = new List<List<String>>();
+            List<Form_Fields__c> FieldList = new List<Form_Fields__c>();
 
-        for (String type : types){
-            Map<String, Schema.SObjectType> schemaMap = Schema.getGlobalDescribe();
-            Schema.SObjectType leadSchema = schemaMap.get(type) ;
-            Map<String, Schema.SObjectField> fieldMap = leadSchema.getDescribe().fields.getMap();
-            List<String> Fields = new List<String>();
-            Set<String> compoundFields = new Set<String>();
-            Integer Position = 0;
-            for (String fieldName : fieldMap.keySet()){
-                if (fieldMap.get(fieldName).getDescribe().isUpdateable() && fieldMap.get(fieldName).getDescribe().isNillable() == true){
-                    // list of all field API name
-                    System.debug(fieldMap.get(fieldName).getDescribe().getCompoundFieldName() + '===> getfields');
-                    if (fieldMap.get(fieldName).getDescribe().getCompoundFieldName() == null){
-                        Fields.add(fieldMap.get(fieldName).getDescribe().getLabel() + './.' + fieldMap.get(fieldName).getDescribe().getType());
-                    }
-                    //It provides to get the object fields label.
-                    //It provides to get the object fields label.
-                    else{
-                        String temp = fieldMap.get(fieldName).getDescribe().getCompoundFieldName();
-                        String type1 = '';
-                        boolean hasAddress = temp.Contains('Address');
-                        if (hasAddress){
-                            type1 = 'QFADDRESS';
+            for (String type : types){
+                Map<String, Schema.SObjectType> schemaMap = Schema.getGlobalDescribe();
+                Schema.SObjectType leadSchema = schemaMap.get(type) ;
+                Map<String, Schema.SObjectField> fieldMap = leadSchema.getDescribe().fields.getMap();
+                List<String> Fields = new List<String>();
+                Set<String> compoundFields = new Set<String>();
+                Integer Position = 0;
+                for (String fieldName : fieldMap.keySet()){
+                    System.debug(fieldName);
+                    if (fieldMap.get(fieldName).getDescribe().getRelationshipName() != null || fieldMap.get(fieldName).getDescribe().isUpdateable() && fieldMap.get(fieldName).getDescribe().isNillable() == true){
+                        // list of all field API name
+                        System.debug(fieldMap.get(fieldName).getDescribe().getCompoundFieldName() + '===> getfields');
+                        if (fieldMap.get(fieldName).getDescribe().getCompoundFieldName() == null){
+                            Fields.add(fieldMap.get(fieldName).getDescribe().getLabel() + './.' + fieldMap.get(fieldName).getDescribe().getType());
+                        } else{
+                            String temp = fieldMap.get(fieldName).getDescribe().getCompoundFieldName();
+                            String type1 = '';
+                            boolean hasAddress = temp.Contains('Address');
+                            if (hasAddress){
+                                type1 = 'QFADDRESS';
+                            }
+                            compoundFields.add(temp + './.' + type1);
                         }
-                        compoundFields.add(temp + './.' + type1);
                     }
                 }
-
+                Fields.addAll(compoundFields);
+                allFields.add(Fields);
             }
-            Fields.addAll(compoundFields);
-            allFields.add(Fields);
-        }
-        // if(!FieldList.isEmpty()){
-        //     insert FieldList;
-        // }
-        System.debug(allFields);
+            // if(!FieldList.isEmpty()){
+            //     insert FieldList;
+            // }
+            System.debug(allFields);
 
-        return allFields;
+            return allFields;
+
+        } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getfields');
+            return null;
+        }
     }
 
     @AuraEnabled
@@ -139,6 +144,7 @@ public with sharing class FormBuilderController{
             update nform;
             return nform.Form_Styling__c + ',' + URL;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','UploadFormImage');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -197,6 +203,7 @@ public with sharing class FormBuilderController{
             update nform;
             return nform.Page_CSS__c + ',' + URL;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','UploadPageImage');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -227,6 +234,7 @@ public with sharing class FormBuilderController{
             update nform;
             return nform.Form_Styling__c;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','RemoveFormImage');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -257,6 +265,7 @@ public with sharing class FormBuilderController{
             update nform;
             return nform.Page_CSS__c;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','RemovePageImage');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -300,6 +309,7 @@ public with sharing class FormBuilderController{
             update nform;
             result = nform.Button_CSS__c;
         } catch (Exception e){
+            error_handler.insert_errordata(e, 'FormBuilderController', 'StoreBtnStyles');
             result = e.getMessage();
         }
         return result;
@@ -315,6 +325,7 @@ public with sharing class FormBuilderController{
             update nform;
             return nform.Button_Position__c;
         } catch (Exception e){
+            error_handler.insert_errordata(e, 'FormBuilderController', 'StoreBtnposition');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -360,6 +371,7 @@ public with sharing class FormBuilderController{
             // nform.All_Field_Styling__c = Value;
             result = nform.Label_CSS__c;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','StoreLabelStyles');
             result = e.getMessage();
         }
         return result;
@@ -404,6 +416,7 @@ public with sharing class FormBuilderController{
             update nform;
             result = nform.Form_Styling__c;
         } catch (Exception e){
+            error_handler.insert_errordata(e, 'FormBuilderController', 'StoreFormStyles');
             result = e.getMessage();
         }
         return result;
@@ -449,6 +462,7 @@ public with sharing class FormBuilderController{
             // nform.Page_CSS__c = Value;
             result = nform.Page_CSS__c;
         } catch (Exception e){
+            error_handler.insert_errordata(e, 'FormBuilderController', 'StorePageStyles');
             result = e.getMessage();
         }
         return result;
@@ -493,6 +507,7 @@ public with sharing class FormBuilderController{
             update nform;
             result = nform.All_Field_Styling__c;
         } catch (Exception e){
+            error_handler.insert_errordata(e, 'FormBuilderController', 'StoreStyles');
             result = e.getMessage();
         }
         return result;
@@ -507,6 +522,7 @@ public with sharing class FormBuilderController{
             String str = '/sfc/servlet.shepherd/version/download/' + nform.FormBgID__c + ',' + '/sfc/servlet.shepherd/version/download/' + nform.PageBgID__c;
             return str;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getBGImages');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -552,6 +568,7 @@ public with sharing class FormBuilderController{
             // nform.All_Field_Styling__c = Value;
             result = nform.All_Field_Hover__c;
         } catch (Exception e){
+            error_handler.insert_errordata(e, 'FormBuilderController', 'StoreHoverStyles');
             result = e.getMessage();
         }
         return result;
@@ -598,6 +615,7 @@ public with sharing class FormBuilderController{
             // nform.All_Field_Styling__c = Value;
             result = nform.All_Field_Focus__c;
         } catch (Exception e){
+            error_handler.insert_errordata(e, 'FormBuilderController', 'StoreFocusStyles');
             result = e.getMessage();
         }
         return result;
@@ -613,6 +631,7 @@ public with sharing class FormBuilderController{
             System.debug('CSS->>>' + nform.Form_Styling__c);
             return nform.Form_Styling__c;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getFormCSS');
             String errorM = '';
             errorM = 'Method getFormCSS ==> ' + 'Apex Form Id ==>' + id + '--Error Line Number ==>' + e.getLineNumber() + ' Error Message ==>' + e.getMessage();
             return errorM;
@@ -629,6 +648,7 @@ public with sharing class FormBuilderController{
             System.debug('CSS->>>' + nform.Page_CSS__c);
             return nform.Page_CSS__c;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getPageCSS');
             String errorM = '';
             errorM = 'Method getPageCSS ==> ' + 'Apex Form Id ==>' + id + '--Error Line Number ==>' + e.getLineNumber() + ' Error Message ==>' + e.getMessage();
             return errorM;
@@ -645,6 +665,7 @@ public with sharing class FormBuilderController{
             System.debug('CSS->>>' + nform.All_Field_Styling__c);
             return nform.All_Field_Styling__c;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getFieldCSS');
             //throw new AuraHandledException(e.getMessage());
             String errorM = '';
             errorM = 'Apex Form Id ==>' + id + '--Error Line Number ==>' + e.getLineNumber() + ' Error Message ==>' + e.getMessage();
@@ -654,32 +675,47 @@ public with sharing class FormBuilderController{
 
     @AuraEnabled
     public static string getHoverCSS(String id){
-        Form__c nform = [SELECT Id, All_Field_Hover__c
-                         FROM Form__c
-                         WHERE Id = :id];
-        System.debug(nform);
-        System.debug('CSS->>>' + nform.All_Field_Hover__c);
-        return nform.All_Field_Hover__c;
+        try{
+            Form__c nform = [SELECT Id, All_Field_Hover__c
+                             FROM Form__c
+                             WHERE Id = :id];
+            System.debug(nform);
+            System.debug('CSS->>>' + nform.All_Field_Hover__c);
+            return nform.All_Field_Hover__c;
+        } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getHoverCSS');
+            return null;
+        }
     }
 
     @AuraEnabled
     public static string getFocusCSS(String id){
-        Form__c nform = [SELECT Id, All_Field_Focus__c
-                         FROM Form__c
-                         WHERE Id = :id];
-        System.debug(nform);
-        System.debug('CSS->>>' + nform.All_Field_Focus__c);
-        return nform.All_Field_Focus__c;
+        try{
+            Form__c nform = [SELECT Id, All_Field_Focus__c
+                             FROM Form__c
+                             WHERE Id = :id];
+            System.debug(nform);
+            System.debug('CSS->>>' + nform.All_Field_Focus__c);
+            return nform.All_Field_Focus__c;
+        } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getFocusCSS');
+            return null;
+        }
     }
 
     @AuraEnabled
     public static string getLabelCSS(String id){
-        Form__c nform = [SELECT Id, Label_CSS__c
-                         FROM Form__c
-                         WHERE Id = :id];
-        System.debug(nform);
-        System.debug('CSS->>>' + nform.Label_CSS__c);
-        return nform.Label_CSS__c;
+        try{
+            Form__c nform = [SELECT Id, Label_CSS__c
+                             FROM Form__c
+                             WHERE Id = :id];
+            System.debug(nform);
+            System.debug('CSS->>>' + nform.Label_CSS__c);
+            return nform.Label_CSS__c;
+        } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getLabelCSS');
+            return null;
+        }
     }
 
     @AuraEnabled
@@ -692,9 +728,24 @@ public with sharing class FormBuilderController{
             System.debug('CSS->>>' + nform.Button_CSS__c + nform.Button_Position__c);
             return nform.Button_CSS__c + nform.Button_Position__c;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getButtonCSS');
             String errorM = '';
             errorM = 'Method getButtonCSS ==> ' + 'Apex Form Id ==>' + id + '--Error Line Number ==>' + e.getLineNumber() + ' Error Message ==>' + e.getMessage();
             return errorM;
+        }
+    }
+
+    @AuraEnabled
+    public static Form__c formdetails(Id id){
+        try{
+            Form__c nform = [SELECT Id, Name, Progress_Indicator__c, Captcha_Type__c, Button_CSS__c, Button_Position__c, Page_CSS__c, Form_Styling__c, All_Field_Hover__c, All_Field_Focus__c, All_Field_Styling__c, Label_CSS__c, FormBgID__c, PageBgID__c
+                             FROM Form__c
+                             WHERE Id = :id];
+            System.debug('all styles :---> ' + nform);
+            return nform;
+        } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','formdetails');
+            throw new AuraHandledException(e.getMessage());
         }
     }
 
@@ -706,6 +757,7 @@ public with sharing class FormBuilderController{
                              WHERE Id = :id];
             return nform.Progress_Indicator__c;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getprogressbar');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -718,6 +770,7 @@ public with sharing class FormBuilderController{
                              WHERE Id = :id];
             return nform.Captcha_Type__c;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getcaptcha');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -731,6 +784,7 @@ public with sharing class FormBuilderController{
                                            ORDER BY Page_Number__c ASC];
             return pageList;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','GetFormPage');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -776,6 +830,7 @@ public with sharing class FormBuilderController{
         try{
             return Scale_Rating__mdt.getAll().values();
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','getScaleRating');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -866,7 +921,7 @@ public with sharing class FormBuilderController{
                              '?$`~isDisabled<!@!>false' + 
                              '?$`~isLabel<!@!>true' + 
                              '?$`~isHelpText<!@!>false' + 
-                             '?$`~Label<!@!>' + Name.split(',')[0].replace('QF', '') + 
+                             '?$`~Label<!@!>' + Name.split(',')[0].replace('QF', '').toUpperCase() + 
                              '?$`~HelpText<!@!>' + 
                              '?$`~isPlaceholder<!@!>false' + 
                              '?$`~Placeholder<!@!>' + 
@@ -888,7 +943,7 @@ public with sharing class FormBuilderController{
                              '?$`~isDisabled<!@!>false' + 
                              '?$`~isLabel<!@!>true' + 
                              '?$`~isHelpText<!@!>false' + 
-                             '?$`~Label<!@!>' + Name.split(',')[0].replace('QF', '') + 
+                             '?$`~Label<!@!>' + Name.split(',')[0].replace('QF', '').toUpperCase() + 
                              '?$`~HelpText<!@!>' + 
                              '?$`~isPlaceholder<!@!>false' + 
                              '?$`~Placeholder<!@!>' + 
@@ -910,7 +965,7 @@ public with sharing class FormBuilderController{
                              '?$`~isDisabled<!@!>false' + 
                              '?$`~isLabel<!@!>true' + 
                              '?$`~isHelpText<!@!>false' + 
-                             '?$`~Label<!@!>' + Name.split(',')[0].replace('QF', '') + 
+                             '?$`~Label<!@!>' + Name.split(',')[0].replace('QF', '').toUpperCase() + 
                              '?$`~HelpText<!@!>' + 
                              '?$`~isPlaceholder<!@!>false' + 
                              '?$`~Placeholder<!@!>' + 
@@ -944,71 +999,90 @@ public with sharing class FormBuilderController{
             return fieldList;
 
         } catch (Exception e){
+            error_handler.insert_errordata(e, 'FormBuilderController', 'CreateFieldRecord');
             throw new AuraHandledException(e.getMessage());
         }
     }
 
     @AuraEnabled
-    public static pageWrapper addPageBreak(Id FormId, String Name, String Form_Page_Id, Integer Position, String TargetedFeild){
+    public static pageWrapper addPageBreak(Id FormId, String Name, String Form_Page_Id, Integer Position, String dropFieldId){
         try{
-            System.debug('FormId-->>' + FormId);
-            System.debug('Name-->>' + Name);
-            System.debug('Form_Page_Id-->>' + Form_Page_Id);
-            System.debug('Position-->>' + Position);
-            System.debug('TargetedFeild-->>' + TargetedFeild);
+            System.debug('FormId= =>>' + FormId + '-- Name ==>>' + Name + '-- Form_Page_Id ==>>' + Form_Page_Id + 'Position ==>>' + Position + 'dropFieldId ==>>' + dropFieldId);
 
-            List<Form_Page__c> allPages = [SELECT id
-                                           from Form_Page__c
-                                           WHERE Form__c = :FormId];
-            System.debug('allPages-->>' + allPages);
+            List<Form_Fields__c> cuurentPageFields = new List<Form_Fields__c>();
 
-            Integer total_pages = allPages.size();
+            Form_Page__c currentFormPage = new Form_Page__c();
+            cuurentPageFields = [SELECT Id, Name, Field_Order__c, Form_Page__c
+                                 FROM Form_Fields__c
+                                 WHERE Form_Page__c = :Form_Page_Id
+                                 ORDER BY Field_Order__c ASC];
+
+            List<Form_Page__c> allPages = [SELECT id, Name, Page_Number__c
+                                           FROM Form_Page__c
+                                           WHERE Form__c = :FormId
+                                           ORDER BY Page_Number__c ASC];
+            System.debug('*** allPages size ==>' + allPages.size() + '*** allPages ==>' + allPages);
+            // Integer total_pages = allPages.size();
+
+            List<Form_Page__c> pagesToUpdateList = new List<Form_Page__c>();
+            boolean isPageFind = false;
+
+            for (Form_Page__c fp : allPages){
+                if (isPageFind){
+                    pagesToUpdateList.add(fp);
+                }
+                if (fp.Id == Form_Page_Id && isPageFind == false){
+                    isPageFind = true;
+                    currentFormPage = fp;
+                }
+
+            }
+
             Form_Page__c newFormPage = new Form_Page__c();
             newFormPage.Form__c = FormId;
-            newFormPage.Name = 'New Form';
-            newFormPage.Page_Number__c = total_pages;
+            newFormPage.Name = 'New Page';
+            newFormPage.Page_Number__c = currentFormPage.Page_Number__c + 1;
             insert newFormPage;
 
-            System.debug(FormId);
-            System.debug('debugsss-->>');
-            System.debug(Name);
+            for (Form_Page__c fp : pagesToUpdateList){
+                fp.Page_Number__c = fp.Page_Number__c + 1;
+            }
+            update pagesToUpdateList;
 
 
-            String newId = [SELECT Id
-                            From Form_Page__c
-                            where Page_Number__c = :total_pages AND Form__c = :FormId
-                            ORDER BY Page_Number__c DESC
-                            LIMIT 1].Id;
-            System.debug('newId-->>' + newId);
-
-            if (Position != 0){
-                List<Form_Fields__c> updateList = new List<Form_Fields__c>();
-                List<Form_Fields__c> formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c
-                                                   FROM Form_Fields__c
-                                                   WHERE Form_Page__c = :Form_Page_Id
-                                                   ORDER BY Field_Order__c ASC];
-                for (Form_Fields__c it : formFields){
-                    if (it.Field_Order__c > Position){
-                        it.Form_Page__c = newId;
-                        updateList.add(it);
+            // checking current page has any field or not
+            if (String.isNotBlank(dropFieldId) && cuurentPageFields.size() > 0){
+                List<Form_Fields__c> newPageFields = new List<Form_Fields__c>();
+                boolean isFieldFind = false;
+                for (Form_Fields__c ff : cuurentPageFields){
+                    if (isFieldFind){
+                        newPageFields.add(ff);
+                    }
+                    if (ff.Id == dropFieldId && isFieldFind == false){
+                        isFieldFind = true;
                     }
                 }
-                update updateList;
 
-                formFields = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
-                              FROM Form_Fields__c
-                              ORDER BY Field_Order__c ASC];
-                pageWrapper pw = new pageWrapper();
-                pw.fieldList = formFields;
-                pw.pageList = [SELECT Id, Name, Page_Number__c
-                               FROM Form_Page__c
-                               WHERE Form__c = :FormId
-                               ORDER BY Page_Number__c ASC];
-                return pw;
+                for (Form_Fields__c ff : newPageFields){
+                    ff.Form_Page__c = newFormPage.Id;
+                }
+                update newPageFields;
             }
-            return null;
+
+            pageWrapper pw = new pageWrapper();
+            pw.fieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
+                            FROM Form_Fields__c
+                            WHERE Form__c = :FormId
+                            ORDER BY Field_Order__c ASC];
+            pw.pageList = [SELECT Id, Name, Page_Number__c
+                           FROM Form_Page__c
+                           WHERE Form__c = :FormId
+                           ORDER BY Page_Number__c ASC];
+            return pw;
+
         } catch (Exception e){
             System.debug('Exception-->>' + e.getMessage() + '-->Line--' + e.getLineNumber() + '-->Stack-->' + e.getStackTraceString());
+            error_handler.insert_errordata(e, 'FormBuilderController', 'addPageBreak');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -1052,6 +1126,7 @@ public with sharing class FormBuilderController{
             }
             return result;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','ObjName');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -1101,42 +1176,42 @@ public with sharing class FormBuilderController{
                         Schema.SObjectType leadSchema = schemaMap.get(type) ;
                         Map<String, Schema.SObjectField> fieldMap = leadSchema.getDescribe().fields.getMap();
                         for (String fieldName : fieldMap.keySet()){
-                            if (fieldMap.get(fieldName).getDescribe().isUpdateable()){
-                                if (fieldMap.get(fieldName).getDescribe().isNillable() == false){
-                                    Position = Position + 1;
-                                    System.debug('##Field API Name=' + fieldName);
-                                    Form_Fields__c field = new Form_Fields__c();
-                                    //requiredFieldList.add(fieldMap.get(fieldName).getDescribe().getLabel()+'./.'+ fieldMap.get(fieldName).getDescribe().getType());
-                                    field.Mapped_Obj__c = type;
-                                    field.Field_Mapping__c = fieldName;
-                                    field.Name = fieldMap.get(fieldName).getDescribe().getLabel() + ',' + fieldMap.get(fieldName).getDescribe().getType() + ',isrequired';
-                                    field.Form__c = FormDetail.Id;
-                                    field.Form_Page__c = page_Id.Id;
-                                    field.Field_Order__c = Position + 1;
-                                    field.Field_Validations__c = 'isRequired<!@!>true' + 
-                                                                 '?$`~isDisabled<!@!>false' + 
-                                                                 '?$`~isLabel<!@!>true' + 
-                                                                 '?$`~isHelpText<!@!>false' + 
-                                                                 '?$`~Label<!@!>' + fieldName.split(',')[0] + 
-                                                                 '?$`~HelpText<!@!>' + 
-                                                                 '?$`~isPlaceholder<!@!>false' + 
-                                                                 '?$`~Placeholder<!@!>' + 
-                                                                 '?$`~Minimum<!@!>0' + 
-                                                                 '?$`~Maximum<!@!>128' + 
-                                                                 '?$`~isPrefix<!@!>false' + 
-                                                                 '?$`~Prefix<!@!>' + 
-                                                                 '?$`~Decimal<!@!>' + 
-                                                                 '?$`~Richtext<!@!>' + 
-                                                                 '?$`~MinimumTime<!@!>' + 
-                                                                 '?$`~MaximumTime<!@!>' + 
-                                                                 '?$`~MinimumDateTime<!@!>' + 
-                                                                 '?$`~MaximumDateTime<!@!>' + 
-                                                                 '?$`~MinimumDate<!@!>' + 
-                                                                 '?$`~MaximumDate<!@!>' + 
-                                                                 '?$`~Salutation<!@!>';
-                                    Fields.add(field);
-                                }
+
+                            if (fieldName == 'Name' || (!fieldMap.get(fieldName).getDescribe().isNillable() && !fieldMap.get(fieldName).getDescribe().isDefaultedOnCreate() && fieldMap.get(fieldName).getDescribe().isCreateable())){
+                                Position = Position + 1;
+                                System.debug('##Field API Name=' + fieldName);
+                                Form_Fields__c field = new Form_Fields__c();
+                                //requiredFieldList.add(fieldMap.get(fieldName).getDescribe().getLabel()+'./.'+ fieldMap.get(fieldName).getDescribe().getType());
+                                field.Mapped_Obj__c = type;
+                                field.Field_Mapping__c = fieldName;
+                                field.Name = fieldMap.get(fieldName).getDescribe().getLabel() + ',' + fieldMap.get(fieldName).getDescribe().getType() + ',isrequired';
+                                field.Form__c = FormDetail.Id;
+                                field.Form_Page__c = page_Id.Id;
+                                field.Field_Order__c = Position + 1;
+                                field.Field_Validations__c = 'isRequired<!@!>true' + 
+                                                             '?$`~isDisabled<!@!>false' + 
+                                                             '?$`~isLabel<!@!>true' + 
+                                                             '?$`~isHelpText<!@!>false' + 
+                                                             '?$`~Label<!@!>' + fieldMap.get(fieldName).getDescribe().getLabel().toUpperCase() + 
+                                                             '?$`~HelpText<!@!>' + 
+                                                             '?$`~isPlaceholder<!@!>false' + 
+                                                             '?$`~Placeholder<!@!>' + 
+                                                             '?$`~Minimum<!@!>0' + 
+                                                             '?$`~Maximum<!@!>128' + 
+                                                             '?$`~isPrefix<!@!>false' + 
+                                                             '?$`~Prefix<!@!>' + 
+                                                             '?$`~Decimal<!@!>' + 
+                                                             '?$`~Richtext<!@!>' + 
+                                                             '?$`~MinimumTime<!@!>' + 
+                                                             '?$`~MaximumTime<!@!>' + 
+                                                             '?$`~MinimumDateTime<!@!>' + 
+                                                             '?$`~MaximumDateTime<!@!>' + 
+                                                             '?$`~MinimumDate<!@!>' + 
+                                                             '?$`~MaximumDate<!@!>' + 
+                                                             '?$`~Salutation<!@!>';
+                                Fields.add(field);
                             }
+
                         }
                         iteration = iteration + 1;
                     }
@@ -1154,6 +1229,7 @@ public with sharing class FormBuilderController{
         } catch (Exception e){
             System.debug('Error Line Number ==>' + e.getLineNumber() + ' Error Message ==>' + e.getMessage());
             System.debug('Error ==>' + e);
+            // error_handler.insert_errordata(e,'FormBuilderController','getFieldsRecords');
             return null;
         }
     }
@@ -1165,13 +1241,12 @@ public with sharing class FormBuilderController{
      ** Description        : Used for Reordering fields in form builder
      ***************************************************************/
     @AuraEnabled
-    public static List<Form_Fields__c> reOrderField(String dropFieldId, String currentFieldId){
+    public static List<Form_Fields__c> reOrderField(String dropFieldId, String currentFieldId, String dropPageId){
         List<Form_Fields__c> fieldList = new List<Form_Fields__c>();
         List<Form_Fields__c> fieldListToUpdate = new List<Form_Fields__c>();
 
         Form_Fields__c cuurentField = new Form_Fields__c();
         Form_Fields__c dropField = new Form_Fields__c();
-        // String formId = 'a0401000001mRBCAA2';
         try{
             if (String.isNotBlank(dropFieldId) && String.isNotBlank(currentFieldId)){
                 cuurentField = [SELECT Id, Name, Form_Page__c, Field_Order__c, Form__c
@@ -1213,6 +1288,14 @@ public with sharing class FormBuilderController{
                     update fieldListToUpdate;
                 }
 
+            } else if (String.isNotBlank(currentFieldId)){
+                System.debug('In the else part of notblank check ==>');
+                cuurentField = [SELECT Id, Name, Form_Page__c, Field_Order__c, Form__c
+                                FROM Form_Fields__c
+                                WHERE Id = :currentFieldId];
+                cuurentField.Field_Order__c = 2;
+                cuurentField.Form_Page__c = dropPageId;
+                update cuurentField;
             }
             List<Form_Fields__c> latestFieldList = new List<Form_Fields__c>();
             latestFieldList = [SELECT Id, Name, Form__c, Form_Page__c, Field_Order__c, Field_Validations__c
@@ -1223,6 +1306,7 @@ public with sharing class FormBuilderController{
         } catch (Exception e){
             System.debug('Error Line Number ==>' + e.getLineNumber() + ' Error Message ==>' + e.getMessage());
             System.debug('Error ==>' + e);
+            // error_handler.insert_errordata(e,'FormBuilderController','reOrderField');
             return null;
         }
     }
@@ -1259,6 +1343,7 @@ public with sharing class FormBuilderController{
                            ORDER BY Page_Number__c ASC];
             return pw;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','createPage');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -1320,6 +1405,7 @@ public with sharing class FormBuilderController{
                            ORDER BY Page_Number__c ASC];
             return pw;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','updatePage');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -1343,6 +1429,7 @@ public with sharing class FormBuilderController{
                            ORDER BY Page_Number__c ASC];
             return pw;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','renameform');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -1357,6 +1444,7 @@ public with sharing class FormBuilderController{
             update renameform;
             return rename;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','renameMainform');
             throw new AuraHandledException(e.getMessage());
         }
     }
@@ -1401,21 +1489,21 @@ public with sharing class FormBuilderController{
                            ORDER BY Page_Number__c ASC];
             return pw;
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','deletePage');
             throw new AuraHandledException(e.getMessage());
         }
     }
 
-    @AuraEnabled
-    public static Form__c formDetails(Id id){
-        try{
-            return [SELECT Id, Captcha_Type__c, Progress_Indicator__c, Name
-                    FROM Form__c
-                    where Id = :id];
-        } catch (Exception e){
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
-
+    // @AuraEnabled
+    // public static Form__c formDetails(Id id){
+    //     try{
+    //         return [SELECT Id, Captcha_Type__c, Progress_Indicator__c, Name
+    //                 FROM Form__c
+    //                 where Id = :id];
+    //     } catch (Exception e){
+    //         throw new AuraHandledException(e.getMessage());
+    //     }
+    // }
     @AuraEnabled
     public static Form_Page__c pageDetails(Id FormId, Id PageId){
         try{
@@ -1448,8 +1536,150 @@ public with sharing class FormBuilderController{
             update editForm;
             return 'saved successfully';
         } catch (Exception e){
+            // error_handler.insert_errordata(e,'FormBuilderController','editFormSubmit');
             throw new AuraHandledException(e.getMessage());
         }
+    }
+
+    @AuraEnabled
+    public static referencewrapper getreferencevalue(Id id, String searchkey){
+        try{
+            String searchkeyword = '%' + searchkey + '%';
+            String Query;
+            Form_Fields__c MappedObject = [SELECT Id, Mapped_Obj__c, Field_Mapping__c
+                                           FROM Form_Fields__c
+                                           WHERE Id = :id];
+            String mappedfield = MappedObject.Field_Mapping__c.split('<!@!>')[0];
+            Schema.DescribeFieldResult f = Schema.getGlobalDescribe().get(MappedObject.Mapped_Obj__c).getDescribe().fields.getMap().get(mappedfield).getDescribe();
+            String Objects;
+            for (Schema.SObjectType reference : f.getReferenceTo()){
+                Objects = reference.getDescribe().getName();
+            }
+            if (searchkey == null || searchkey == 'undefined' || searchkey == ''){
+                Query = 'SELECT Id, Name FROM ' + Objects + ' Limit 1000';
+            } else{
+                Query = 'SELECT Id, Name FROM ' + Objects + ' WHERE Name LIKE :searchkeyword';
+            }
+            List<sObject> ObjectRecords = Database.query(Query);
+
+            referencewrapper rw = new referencewrapper();
+            rw.referenceval = ObjectRecords;
+            
+            Set<String> objectset = new Set<String>{ 'Account', 'Address', 'AlternativePaymentMethod', 'Announcement', 'AppAnalyticsQueryRequest', 'AppointmentTopicTimeSlot', 'ApptBundleAggrDurDnscale', 'ApptBundleAggrPolicy', 'ApptBundleConfig', 'ApptBundlePolicy', 'ApptBundlePolicySvcTerr', 'ApptBundlePropagatePolicy', 'ApptBundleRestrictPolicy', 'ApptBundleSortPolicy', 'Asset', 'AssetDowntimePeriod', 'AssetRelationship', 'AssetWarranty', 'AssociatedLocation', 'AttributeDefinition', 'AuthorizationForm', 'AuthorizationFormConsent', 'AuthorizationFormDataUse', 'AuthorizationFormText', 'BusinessBrand', 'CalendarView', 'Campaign', 'CampaignMember', 'CardPaymentMethod', 'Case', 'CollaborationGroup', 'CollaborationGroupRecord', 'CommSubscription', 'CommSubscriptionChannelType', 'CommSubscriptionConsent', 'CommSubscriptionTiming', 'ConsumptionRate', 'ConsumptionSchedule', 'Contact', 'ContactPointAddress', 'ContactPointConsent', 'ContactPointEmail', 'ContactPointPhone', 'ContactPointTypeConsent', 'ContactRequest', 'ContentVersion', 'Contract', 'ContractGroupPlan', 'ContractGroupPlanGroupClass', 'ContractLineItem', 'Customer', 'DataUseLegalBasis', 'DataUsePurpose', 'DigitalWallet', 'DuplicateRecordItem', 'DuplicateRecordSet', 'EngagementChannelType', 'Entitlement', 'EntitlementContact', 'Error_Handler__c', 'Event', 'Expense', 'ExpenseReport', 'ExpenseReportEntry', 'ExpressionFilter', 'ExpressionFilterCriteria', 'FinanceTransaction', 'FlowRecordRelation', 'GroupCensus', 'GroupCensusMember', 'GroupCensusMemberPlan', 'GroupClass', 'GroupClassContribution', 'Idea', 'Image', 'Individual', 'InsuranceContract', 'JobProfile', 'Lead', 'LegalEntity', 'ListEmail', 'ListEmailIndividualRecipient', 'ListEmailRecipientSource', 'Location', 'LocationGroup', 'LocationGroupAssignment', 'Macro', 'MacroInstruction', 'MaintenanceAsset', 'MaintenancePlan', 'MaintenanceWorkRule', 'Opportunity', 'Order', 'OrgMetric', 'OrgMetricScanResult', 'OrgMetricScanSummary', 'PartyConsent', 'Payment', 'PaymentAuthAdjustment', 'PaymentAuthorization', 'PaymentGateway', 'PaymentGatewayLog', 'PaymentGroup', 'PaymentLineInvoice', 'Pricebook2', 'ProcessException', 'Product2', 'ProductConsumed', 'ProductConsumptionSchedule', 'ProductItem', 'ProductRequest', 'ProductRequestLineItem', 'ProductRequired', 'ProductServiceCampaign', 'ProductServiceCampaignItem', 'ProductTransfer', 'ProductWarrantyTerm', 'ProfileSkill', 'ProfileSkillEndorsement', 'ProfileSkillUser', 'PromptAction', 'PromptError', 'QuickText', 'Recommendation', 'RecommendationResponse', 'RecordAction', 'Refund', 'RefundLinePayment', 'ResourceAbsence', 'ReturnOrder', 'ReturnOrderLineItem', 'SchedulingConstraint', 'Scorecard', 'ScorecardAssociation', 'ScorecardMetric', 'SearchPromotionRule', 'Seller', 'SerializedProduct', 'ServiceAppointment', 'ServiceContract', 'ServiceCrew', 'ServiceCrewMember', 'ServiceResource', 'ServiceResourcePreference', 'ServiceTerritory', 'ServiceTerritoryLocation', 'SetupAssistantStep', 'Shift', 'ShiftTemplate', 'Shipment', 'ShipmentItem', 'Solution', 'Task', 'TimeSheet', 'TimeSheetEntry', 'TravelMode', 'UnitOfMeasure', 'UserEmailPreferredPerson', 'WarrantyTerm', 'WorkAccess', 'WorkBadge', 'WorkBadgeDefinition', 'WorkOrder', 'WorkOrderLineItem', 'WorkPlan', 'WorkPlanSelectionRule', 'WorkPlanTemplate', 'WorkPlanTemplateEntry', 'WorkStep', 'WorkStepTemplate', 'WorkThanks', 'WorkType', 'WorkTypeGroup', 'WorkTypeGroupMember' };
+                
+            if (objectset.contains(Objects)){
+            rw.objicon = 'standard:'+Objects.toLowerCase();
+            }
+             else{
+                rw.objicon = 'custom:custom3';
+             }
+
+            return rw;
+        } catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled
+    public static Map<String, String> getpicklistvalue(Id id){
+        try{
+
+            Form_Fields__c MappedObject = [SELECT Id, Mapped_Obj__c, Field_Mapping__c
+                                           FROM Form_Fields__c
+                                           WHERE Id = :id];
+            String mappedfield = MappedObject.Field_Mapping__c.split('<!@!>')[0];
+            Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
+            Set<String> objectKeys = gd.keySet();
+            Map<String, String> picklistvalue = new Map<String, String>();
+
+            //Iterate through all objects to locate ACCOUNT Object
+
+            Schema.SObjectType systemObjectType = gd.get(MappedObject.Mapped_Obj__c);
+            Schema.DescribeSObjectResult r = systemObjectType.getDescribe();
+            Map<String, Schema.SObjectField> M = r.fields.getMap();
+            Set<String> fieldNames = M.keySet();
+            Schema.SObjectField field = M.get(mappedfield);
+            Schema.DescribeFieldResult fieldDesc = field.getDescribe();
+
+
+            //extract the picklist values
+            // System.debug(fieldDesc.getPicklistValues() + ' ::::::::::::::::::::::::::::::::::: ') ;
+            for (Integer i = 0; i < fieldDesc.getPicklistValues().size(); i++){
+                picklistvalue.put(fieldDesc.getPicklistValues()[i].getLabel(), fieldDesc.getPicklistValues()[i].getValue());
+            }
+
+
+            return picklistvalue;
+        } catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+    @AuraEnabled
+    public static String signatureSave(String fieldId, String fieldData){
+        try{
+            Form_Fields__c formField = [SELECT Id, Form__c
+                                        FROM Form_Fields__c
+                                        WHERE Id = :fieldId];
+            String s = fieldData.replaceFirst('data:image/png;base64,', '');
+            ContentVersion conVer = new ContentVersion();
+            conVer.title = 'signature1456';
+            conVer.versionData = EncodingUtil.base64decode(s);
+            conVer.PathOnClient = 'signature16.png';
+            insert conVer;
+
+            String contentId = [select id, ContentDocumentId
+                                from ContentVersion
+                                WHERE Id = :conVer.Id].ContentDocumentId;
+            ContentDocumentLink cl = new ContentDocumentLink();
+            cl.ContentDocumentId = contentId;
+            cl.LinkedEntityId = formField.Form__c;
+            cl.ShareType = 'V';
+            cl.Visibility = 'AllUsers';
+            insert cl;
+
+            return contentId;
+        } catch (Exception e){
+            // GenericException Exp = ExceptionHandler.logException(e, 'QFFormFieldComponentController', 'signatureSave');
+            return null;
+        }
+    }
+
+    @AuraEnabled
+    public static Id SaveFile(String fieldId, String fileName, String base64Data, String contentType){
+        try{
+            base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
+            ContentVersion cv = new ContentVersion();
+            cv.Title = fileName;
+            cv.PathOnClient = fileName;
+            cv.VersionData = EncodingUtil.base64Decode(base64Data);
+            cv.IsMajorVersion = true;
+            Insert cv;
+
+            Form_Fields__c formField = [SELECT Id, Form__c
+                                        FROM Form_Fields__c
+                                        WHERE Id = :fieldId];
+            String conDocId = [SELECT ContentDocumentId
+                               FROM ContentVersion
+                               WHERE Id = :cv.Id].ContentDocumentId;
+            ContentDocumentLink cl = new ContentDocumentLink();
+            cl.ContentDocumentId = conDocId;
+            cl.LinkedEntityId = formField.Form__c;
+            cl.ShareType = 'V';
+            cl.Visibility = 'AllUsers';
+            insert cl;
+
+            return conDocId;
+        } catch (Exception e){
+            // GenericException Exp = ExceptionHandler.logException(e, 'QFFormFieldComponentController', 'SaveFile');
+            return null;
+        }
+    }
+    
+    public class referencewrapper{
+        @AuraEnabled
+        public list<SObject> referenceval{ get; set; }
+        @AuraEnabled
+        public String objicon{ get; set; }
     }
 
 }

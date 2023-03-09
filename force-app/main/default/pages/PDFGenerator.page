@@ -1,0 +1,120 @@
+<apex:page controller="PDFGeneratorController" renderAs="advanced_pdf" applyHtmlTag="false" showHeader="false" sidebar="false"
+  standardStylesheets="false" action="{!getPagesOfForm}">
+<!-- <apex:page controller="PDFGeneratorController"  applyHtmlTag="false" showHeader="false" sidebar="false"
+  standardStylesheets="false" action='{!getPagesOfForm}'> -->
+    <head>
+        <style>
+
+            @page {
+                size: A4 portrait;
+                border: 1px solid black;
+                font-family: Arial Unicode MS;
+                @top-center {
+                    content: element(header);
+                }
+                @bottom-left {
+                    content: element(footer);
+                }
+            }
+            .main-pdf-div {
+                padding: 16px;
+            }
+
+            .form-hader {
+                font-size: 24px;
+                font-weight: 600;
+                text-align: center;
+                background: #35b7ff;
+                width: 100%;
+                margin-bottom: 24px;
+                padding: 16px 0px;
+            }
+
+            .pdf-page {
+                height: 100vh;
+            }
+
+            .page-end {
+                height: 24px;
+            }
+
+            .page-data {
+                font-size: 20px;
+            }
+
+            .field-txt {
+                font-weight: 600;
+                min-width: 150px;
+            }
+
+            .pg-obj-titile {
+                padding: 8px 0px 8px 8px;
+                margin-bottom: 8px;
+                background: #f2f2f2;
+                text-align: center;
+                font-weight: 600;
+            }
+
+        </style>
+    </head>
+
+
+    <body>
+        <div class="main-pdf-div">
+            <div class="pdf-page">
+                <div class="form-hader">
+                    Form : {!formData.formName}
+                </div>
+
+                <!-- First Object Data -->
+                <apex:outputPanel rendered="{!isFirstObject}">
+                    <div class="page-data">
+                        <div class="pg-obj-titile">{!formData.firstObjectFieldMap['sobjectType']}</div>
+                        <apex:repeat value="{!formData.firstObjectFieldMap}" var="field">
+                            <apex:outputPanel rendered="{!field !='sobjectType'}">
+                                <tr>
+                                    <td class="field-txt">{!field}</td>
+                                    <td> : {!formData.firstObjectFieldMap[field]}</td>
+                                </tr>
+                            </apex:outputPanel>
+                        </apex:repeat>
+                    </div>
+                    <div class="page-end"></div>
+                </apex:outputPanel>
+
+                <!-- Second Object Data -->
+                <apex:outputPanel rendered="{!isSecondObject}">
+                    <div class="page-data">
+                        <div class="pg-obj-titile">{!formData.secondObjectFieldMap['sobjectType']}</div>
+                        <apex:repeat value="{!formData.secondObjectFieldMap}" var="field">
+                            <apex:outputPanel rendered="{!field !='sobjectType'}">
+                                <tr>
+                                    <td class="field-txt">{!field}</td>
+                                    <td> : {!formData.secondObjectFieldMap[field]}</td>
+                                </tr>
+                            </apex:outputPanel>
+                        </apex:repeat>
+                    </div>
+                    <div class="page-end"></div>
+                </apex:outputPanel>
+
+                <!-- Third Object Data -->
+                <apex:outputPanel rendered="{!isThirdObject}">
+                    <div class="page-data">
+                        <div class="pg-obj-titile">{!formData.thirdObjectFieldMap['sobjectType']}</div>
+                        <apex:repeat value="{!formData.thirdObjectFieldMap}" var="field">
+                            <apex:outputPanel rendered="{!field !='sobjectType'}">
+                                <tr>
+                                    <td class="field-txt">{!field}</td>
+                                    <td> : {!formData.thirdObjectFieldMap[field]}</td>
+                                </tr>
+                            </apex:outputPanel>
+                        </apex:repeat>
+                    </div>
+                    <div class="page-end"></div>
+                </apex:outputPanel>
+
+            </div>
+        </div>
+    </body>
+</apex:page>

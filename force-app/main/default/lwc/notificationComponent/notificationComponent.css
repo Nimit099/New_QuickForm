@@ -1,9 +1,10 @@
-.main{
+.main {
     width: 100%;
-    height:calc(100vh);
-    background-color: #fff;    
+    height: calc(100vh);
+    background-color: #fff;
 }
-.notification_titel{
+
+.notification_titel {
     width: 90%;
     height: 10%;
     /* margin-top: 10%; */
@@ -14,11 +15,13 @@
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.39);
 }
-.puls_icon{
+
+.puls_icon {
     height: 16px;
     width: 16px;
 }
-.addcc_addbcc{
+
+.addcc_addbcc {
     font-weight: 400;
     margin: 5px 10px 0px 0px;
     display: flex;
@@ -26,14 +29,16 @@
     justify-content: center;
     gap: 5px;
 }
-        
 
-.addcc_addbcc:hover{
-     cursor: pointer;
+
+.addcc_addbcc:hover {
+    cursor: pointer;
 }
-.addcc_addbcc_main{
+
+.addcc_addbcc_main {
     display: flex;
 }
+
 c-email-input {
     border-top-style: hidden;
     border-right-style: hidden;
@@ -43,17 +48,20 @@ c-email-input {
     background-color: hidden;
     width: 100%;
 }
-.titel{
-    /* position: absolute; */
-    font-style: normal;
+
+.titel {
+    color: rgb(0, 0, 0, 0.56);
+    font-size: 30px;
     font-weight: 800;
-    font-size: 22px;
+    font-family: 'Roboto';
     line-height: 25px;
-    text-transform: capitalize;
-    color: rgba(0, 0, 0, 0.56);
-    /* text-shadow: 0px 4px 4px rgb(0 0 0 / 25%); */
+    /* margin: 1%; */
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-bottom: 10px;
 }
-.input_label{
+
+.input_label {
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -62,12 +70,15 @@ c-email-input {
     color: #000000;
 
 }
-abbr{
+
+abbr {
     color: #ff0000;
 }
+
 .lgc-bg-inverse {
     background-color: rgb(22, 50, 92);
 }
+
 .input_outerbox {
     width: 85%;
     height: 61%;
@@ -76,16 +87,18 @@ abbr{
     border: 1px solid;
     border-radius: 28px;
     margin-top: 1%;
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 25%);
     overflow: scroll;
     overflow-x: hidden;
     display: flex;
 }
+
 ::-webkit-scrollbar {
     width: 10px;
     height: 90%;
 }
-.input_section{
+
+.input_section {
     width: 90%;
     /* height: 80%; */
     padding-top: 2%;
@@ -94,72 +107,82 @@ abbr{
     margin-right: auto;
     margin: auto;
 }
+
 .input_section .slds-grid.slds-wrap {
     margin-top: 2%;
 }
-.input_box{
+
+.input_box {
     width: 100%;
 }
+
 .slds-form-element__icon {
     display: inline-block;
     position: relative;
     /* padding-top: var(--lwc-spacingXxSmall,0.25rem); */
     vertical-align: top;
-    line-height: var(--lwc-lineHeightReset,1);
+    line-height: var(--lwc-lineHeightReset, 1);
     z-index: 1;
 }
-.bt-center{
+
+.bt-center {
     background-color: #ffffff;
     width: 100%;
-    padding: var(--lwc-spacingMedium,1rem);
+    padding: var(--lwc-spacingMedium, 1rem);
     /* margin-top: 1%; */
 }
-.bt{
+
+.bt {
     /* width: 100%; */
     background-color: #ffffff;
     width: 350px;
     margin-right: auto;
     margin-left: auto;
+    display: flex;
+    gap: 10px;
 
 }
+
 .qf-standard-button-cancel {
-    height: 35px;
-    width: 160px;
-    margin-right: 15px;
-    border-radius: 30px;
-    background-color: #DEDEDE;
-    font-size: 15px;
-    color: #000000;
     border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    width: 160px;
+    height: 35px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border-radius: 58px;
+    background-color: #DEDEDE;
 }
 
 .qf-standard-button {
-    height: 35px;
-    width: 160px;
-    margin-right: 15px;
-    border-radius: 30px;
-    background-color: #6699CC;
-    font-size: 15px;
-    color: #ffffff;
     border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    width: 160px;
+    height: 35px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border-radius: 58px;
+    background-color: #6699CC;
+    color: white;
 }
 
 
-.email_to{
+.email_to {
     display: flex;
     width: 100%;
 }
-.emailsend{
+
+.emailsend {
     padding-top: 3%;
     width: 70%;
 }
 
-.email_reply{
+.email_reply {
     padding-top: 2%;
 }
 
 
-.input-box{
+.input-box {
     border: 1px solid #D3D3D3;
     /* height: 30PX; */
     min-height: 30px;
@@ -168,26 +191,30 @@ abbr{
     padding: 2px;
 }
 
-.add{
+.add {
     display: flex;
     flex-wrap: nowrap;
 }
-.email_subject{
+
+.email_subject {
     padding-top: 2%;
 }
-.email_message{
+
+.email_message {
     width: 80%;
     padding-top: 2%;
 }
 
-.checkbox{
+.checkbox {
     padding-top: 2%;
 }
-.toadd{
+
+.toadd {
     border: solid;
-    padding: 0px 16px 0px 12px ;
+    padding: 0px 16px 0px 12px;
     border-width: thin;
 }
+
 .input[c-emailInput_emailInput] {
     border-top-style: hidden;
     border-right-style: hidden;
@@ -197,12 +224,14 @@ abbr{
     background-color: hidden;
     width: 100%;
 }
-.test{
+
+.test {
     margin-top: 3%;
     border-bottom: 1px solid #D3D3D3;
 
 }
-.error_msg{
+
+.error_msg {
     color: #ff0000;
 }
 
@@ -216,7 +245,7 @@ abbr{
     justify-content: center;
 }
 
- .loader--ripple {
+.loader--ripple {
     display: inline-block;
     position: relative;
     height: 100px;
@@ -224,7 +253,7 @@ abbr{
 
 }
 
- .loader--ripple div {
+.loader--ripple div {
     position: absolute;
     animation: loader--ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
     border: 4px solid;
@@ -232,7 +261,7 @@ abbr{
     opacity: 1;
 }
 
- .loader--ripple div:nth-child(2) {
+.loader--ripple div:nth-child(2) {
     animation-delay: -0.5s;
 }
 
@@ -254,16 +283,19 @@ abbr{
     }
 }
 
- .loader--ripple div {
+.loader--ripple div {
     border-color: #00539f;
 }
-.header{
+
+.header {
     display: flex;
 }
-lightning-button{
-    --lwc-buttonColorBorderPrimary:rgb(255, 255, 255);
+
+lightning-button {
+    --lwc-buttonColorBorderPrimary: rgb(255, 255, 255);
 }
-.help_div{
+
+.help_div {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -271,22 +303,26 @@ lightning-button{
     font-size: 13px;
     margin: 15px 25px;
 }
-.help{
+
+.help {
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.feedback{
+
+.feedback {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 9%;
 }
-.help{
+
+.help {
     width: 5%;
     gap: 5px;
-    /* color: #6699CC; */      /* Remove comment once button is working*/
+    /* color: #6699CC; */
+    /* Remove comment once button is working*/
     color: grey;
     border-radius: 16px;
     padding: 5px 0;
@@ -295,12 +331,14 @@ lightning-button{
     background: #FFFCFC;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
-.crossIcon{
+
+.crossIcon {
     left: 92%;
     display: none;
     cursor: pointer;
     position: absolute;
 }
+
 /* =========================     Spinner Sarts      =========================== */
 
 
@@ -317,17 +355,19 @@ lightning-button{
     background-color: hidden;
     width: 100%;
 }
-.pill{
+
+.pill {
     border-radius: 4px !important;
     /* margin: 5px !important; */
-   --sds-c-pill-color-background : #6699CC !important;
-   --sds-c-pill-top-margin: 5px;
+    --sds-c-pill-color-background: #6699CC !important;
+    --sds-c-pill-top-margin: 5px;
     color: white;
 }
 
-.email_error_msg{
+.email_error_msg {
     color: #ff0000;
 }
+
 /* .slds-pill{
     border-radius: 4px !important;
     margin: 5px !important;
@@ -345,6 +385,6 @@ lightning-button{
     outline-width: 0;
 }
 
-.msg{
+.msg {
     --sds-c-textarea-sizing-min-height: initial;
 }

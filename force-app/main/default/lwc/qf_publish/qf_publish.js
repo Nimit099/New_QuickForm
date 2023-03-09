@@ -1,17 +1,30 @@
-import { LightningElement, wire, track, api } from 'lwc';
-import copyIcon from '@salesforce/resourceUrl/CopyUrlIcon'; //static resource for copy url icon
+import {
+    LightningElement,
+    wire,
+    track,
+    api
+} from 'lwc';
+import copyIcon from '@salesforce/resourceUrl/CopyUrlIcon';
+import htmlIcon from '@salesforce/resourceUrl/html';
+import jsIcon from '@salesforce/resourceUrl/js';
+import cssIcon from '@salesforce/resourceUrl/css'; //static resource for copy url icon
 import siteUrl from "@salesforce/apex/customMetadata.siteUrl";
-import { loadStyle } from 'lightning/platformResourceLoader';
+import {
+    loadStyle
+} from 'lightning/platformResourceLoader';
 import GroupRadio from '@salesforce/resourceUrl/groupRadio';
 import qrcode from './qrcode.js';
 
 export default class Qf_publish extends LightningElement {
     copy_Icon = copyIcon;
+    html_Icon = htmlIcon;
+    css_Icon = cssIcon;
+    js_Icon = jsIcon;
     @track spinner = false;
     readonly = true;
     lightBoxOpt; // Required to check css
     formSiteURL = true; // Not sure
-    usingAura = true;// proper required css
+    usingAura = true; // proper required css
     usingLWC; // proper required css
     formIFrame; // proper required css
     formLightBox;
@@ -21,29 +34,34 @@ export default class Qf_publish extends LightningElement {
     floatingButton;
     formQRCode;
     @track formurl;
+    @track srcurl;
     @api currentformid;
     @track publishment_value = 'aura';
     @track text_b_color = "background-color: #b2CCE5;";
     @track img_b_color = "background-color: #ffffff;";
     @track auto_b_color = "background-color: #ffffff;";
     @track floating_b_color = "background-color: #ffffff;";
-    messages;
-
 
     connectedCallback() {
         this.spinner = true;
         console.log('OUTPUT to connectedcallback : ', this.currentformid);
-        siteUrl({ Formid: this.currentformid })
+        siteUrl({
+                Formid: this.currentformid
+            })
             .then(data => {
                 this.formurl = data;
+                this.srcurl = data;
+                if (this.formurl.includes("User Configuration tab")) {
+                    this.srcurl = '';
+                    this.template.querySelector('.inputBox').style.color = 'red';
+                }
                 this.spinner = false;
-                console.log('formurl : ', this.formurl);
-                console.log('OUTPUT : ', data);
-                this.messages = data;
                 this.error = undefined;
             })
             .catch(error => {
-                console.log({ error });
+                console.log({
+                    error
+                });
                 this.spinner = false;
             })
 
@@ -53,10 +71,10 @@ export default class Qf_publish extends LightningElement {
     renderedCallback() {
 
         Promise.all([
-            loadStyle(this, GroupRadio)
-        ]).then(() => {
-            console.log('Files loaded');
-        })
+                loadStyle(this, GroupRadio)
+            ]).then(() => {
+                console.log('Files loaded');
+            })
             .catch(error => {
                 console.log(error.body.message);
             });
@@ -65,29 +83,32 @@ export default class Qf_publish extends LightningElement {
 
 
     get option() {
-        return [
-            { 'label': 'Aura Component', 'value': 'aura', 'checked': 'true' },
-            { 'label': 'LWC', 'value': 'lwc' },
-            { 'label': 'IFrame', 'value': 'iframe' },
-            { 'label': 'QR Code', 'value': 'QR Code' },
-            { 'label': 'Lightbox', 'value': 'lightBox' },
+        return [{
+                'label': 'Aura Component',
+                'value': 'aura',
+                'checked': 'true'
+            },
+            {
+                'label': 'LWC',
+                'value': 'lwc'
+            },
+            {
+                'label': 'iFrame',
+                'value': 'iframe'
+            },
+            {
+                'label': 'QR Code',
+                'value': 'QR Code'
+            },
+            {
+                'label': 'Lightbox',
+                'value': 'lightBox'
+            },
         ]
     }
 
     copyTextFieldHelper(event) {
-        try {
-            let hiddenInput = this.template.querySelector('input');
-            console.log('OUTPUT : ', hiddenInput);
-            let sel_val = hiddenInput.select();
-            console.log('sel_val', sel_val);
-            hiddenInput.setSelectionRange(0, 9999999);
-            var copied = this.template.querySelector('.urlCopied');
-            copied.style.display = 'block';
-            setTimeout(function () { copied.style.display = 'none'; }, 1500);
-        } catch (e) {
-            component.find("toastCmp").showToastModel("Something went wrong", "error");
-
-        }
+        this.copyToClipboard('input', '.urlCopied');
     }
 
 
@@ -106,10 +127,23 @@ export default class Qf_publish extends LightningElement {
     copyToClipboard(elementSelector, copiedTextSelector) {
         try {
             const range = document.createRange();
+            let parentDiv = null;
+            let hiddenInput = null;
+
+            if (elementSelector === '.codestyle') {
+                parentDiv = event.currentTarget.parentNode.parentNode.querySelector('.codestyle');
+                range.selectNode(parentDiv);
+            } else if (elementSelector === 'input') {
+                hiddenInput = this.template.querySelector('input');
+                range.selectNode(hiddenInput);
+            } else {
             range.selectNode(this.template.querySelector(elementSelector));
+            }
+
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
             document.execCommand("copy");
+
             const copied = this.template.querySelector(copiedTextSelector);
             copied.style.display = 'block';
             setTimeout(() => {
@@ -117,6 +151,9 @@ export default class Qf_publish extends LightningElement {
                 window.getSelection().removeAllRanges();
             }, 1500);
         } catch (e) {
+            if (copiedTextSelector === '.urlCopied') {
+                component.find("toastCmp").showToastModel("Something went wrong", "error");
+            } else {
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Error',
@@ -126,22 +163,12 @@ export default class Qf_publish extends LightningElement {
             );
         }
     }
+    }
+
 
     copy_code_fir_lwc(event) {
         console.log('method in copy_code_fir_lwc');
-        try {
-            const parentDiv = event.currentTarget.parentNode.parentNode.querySelector('.codestyle');
-            const range = document.createRange();
-            range.selectNode(parentDiv);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-            document.execCommand("copy");
-            setTimeout(function () { window.getSelection().removeAllRanges(); }, 1500);
-
-        } catch (e) {
-            console.log('error in copy_code_fir_lwc--->' + e);
-
-        }
+        this.copyToClipboard('.codestyle', null);
     }
 
     handleRadioChange(event) {
@@ -170,16 +197,14 @@ export default class Qf_publish extends LightningElement {
 
         if (selectedOption == 'QR Code') {
             this.formQRCode = true;
-        }
-        else {
+        } else {
             this.formQRCode = false;
         }
 
         if (selectedOption == 'lightBox') {
             this.formLightBox = true;
             this.lightBoxOpt = true;
-        }
-        else {
+        } else {
             this.formLightBox = false;
             this.lightBoxOpt = false;
         }

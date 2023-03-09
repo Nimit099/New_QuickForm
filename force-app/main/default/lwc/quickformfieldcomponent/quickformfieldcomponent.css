@@ -1,5 +1,5 @@
 .flex {
-    display: flex;
+    display: flex !important;
 }
 
 .rightfield {
@@ -119,7 +119,10 @@ lightning-input-address {
     position: absolute;
     top: -26%;
     float: left;
-    margin-left: 15px;
+    /* margin-left: 15px; */
+    display: flex;
+    gap: 2px;
+    flex-direction: row-reverse;
 }
 
 .rate:not(:checked)>input {
@@ -129,16 +132,18 @@ lightning-input-address {
 
 .rate:not(:checked)>label {
     float: right;
-    width: 1em;
+    width: 1.3em;
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
     font-size: 30px;
     color: #ccc;
+    margin-left: 3px;
 }
 
 .rate:not(:checked)>label:before {
-    content: '★ ';
+    content: '★  ';
+    font-size: 37px;
 }
 
 .rate>input:checked~label {
@@ -160,7 +165,7 @@ lightning-input-address {
 
 .rate {
     float: left;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 
 .rate:not(:checked)>input {
@@ -170,7 +175,7 @@ lightning-input-address {
 
 .rate:not(:checked)>label {
     float: right;
-    width: 1em;
+    width: 1.3em;
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
@@ -204,7 +209,7 @@ lightning-input-address {
     display: none;
 }
 
-.slds-select{
+.slds-select {
     background-color: rgb(255, 255, 255);
     border-color: rgb(0, 0, 0);
     border-style: solid;
@@ -367,7 +372,7 @@ select:hover,
 
 .em {
     height: 1.5em;
-    width: 1.5em;
+    width: 1.3em;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -422,7 +427,7 @@ select:hover,
 
 .likert-style {
     min-height: 30px;
-    min-width: 40px;
+    min-width: 55px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -503,13 +508,13 @@ select:hover,
     align-items: center;
 }
 
-.likert-style {
+/* .likert-style {
     min-height: 30px;
     min-width: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .scaleRating {
     border: 1px solid;
@@ -520,6 +525,74 @@ select:hover,
 }
 
 .starrating {
-    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    min-height: 50px;
     position: relative;
+}
+
+.newslds {
+    width: 15px !important;
+    height: 20px !important;
+}
+
+.slds-scope .slds-form_stacked .slds-form-element:not(.slds-form-element_readonly) {
+    display: flex !important;
+}
+
+.dropuser {
+    position: relative;
+    width: 40%;
+    max-width: none !important;
+    min-width: none !important;
+}
+
+.multipicklist {
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrows {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.leftarrow {
+    height: 26%;
+    width: 30px;
+    background-color: #6699CC;
+    display: flex;
+    justify-content: center;
+}
+
+.tickicons {
+    display: none;
+}
+input.nosubmit {
+    border: 1px solid #555;
+    width: 100%;
+    padding: 9px 4px 9px 40px;
+     background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+  }
+  span.deleteicon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+span.deleteicon span {
+    position: absolute;
+    display: none;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+    color: black;
+    font: 13px monospace;
+    text-align: center;
+    line-height: 1em;
+    cursor: pointer;
+}
+span.deleteicon input {
+    padding-right: 18px;
+    box-sizing: border-box;
 }
